@@ -3,6 +3,7 @@ import './App.css';
 import useGoogleSheets from 'use-google-sheets';
 import buildServiceData from '../../services/buildData.ts';
 import DefaultView from '../View';
+import { groupByKey } from '../../utils/ArrayUtil';
 
 const App = () => {
     const { data, loading, error } = useGoogleSheets({
@@ -20,10 +21,13 @@ const App = () => {
     }
 
     const tableData = buildServiceData(data);
+    const groupedData = groupByKey(tableData, 'date');
 
     return (
         <div className="App">
-            <DefaultView tableData={tableData} />
+            <DefaultView
+                groupedData={groupedData}
+            />
         </div>
     );
 };

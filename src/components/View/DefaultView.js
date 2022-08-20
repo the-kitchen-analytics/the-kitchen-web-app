@@ -4,12 +4,12 @@ import Statistics from "../Statistics";
 import DataTable from "../DataTable";
 import { sum } from "../../utils/ArrayUtil";
 
-const DefaultView = ({ tableData }) => {
+const DefaultView = ({ groupedData }) => {
 
-    const buildStatisticsData = (tableData) => ({
-        daysCount: new Set(tableData.map(entry => entry.date)).size,
-        totalIncome: sum(tableData.map(it => it.totalPriceAfterTaxes)),
-        operationsCount: sum(tableData.map(({ operations }) => operations.length))
+    const buildStatisticsData = (groupedData) => ({
+        daysCount: Object.keys(groupedData).length,
+        totalIncome: sum(Object.values(groupedData).flat().map(({ totalPriceAfterTaxes }) => totalPriceAfterTaxes)),
+        operationsCount: Object.values(groupedData).flat().length
     });
 
     return (
@@ -17,7 +17,7 @@ const DefaultView = ({ tableData }) => {
             <Grid.Row>
                 <Grid.Column>
                     <DataTable
-                        data={tableData}
+                        groupedData={groupedData}
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -25,7 +25,7 @@ const DefaultView = ({ tableData }) => {
                 <Grid.Column>
                     <Segment>
                         <Statistics
-                            data={buildStatisticsData(tableData)}
+                            data={buildStatisticsData(groupedData)}
                         />
                     </Segment>
                 </Grid.Column>

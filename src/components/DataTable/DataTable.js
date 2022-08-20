@@ -29,13 +29,11 @@ const PriceCell = ({ children }) => (
     </Price>
 )
 
-const DataTable = ({ data }) => {
+const DataTable = ({ groupedData }) => {
 
     const getTotalIncomePerADay = (entriesPerADay) => {
         return sum(entriesPerADay.map(it => sum(it.operations.map(op => op.priceAfterTaxes))))
     }
-
-    const groupedData = useMemo(() => groupByKey(data, 'date'), [data]);
 
     const getTableBody = (tableData) => {
         return Object.entries(tableData).map(([key, values]) => {
