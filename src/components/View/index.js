@@ -1,2 +1,7 @@
-import DefaultView from "./DefaultView";
-export default DefaultView;
+import GeneralView from "./GeneralView";
+import NoContentView from "./NoContentView";
+
+export {
+    GeneralView,
+    NoContentView
+};

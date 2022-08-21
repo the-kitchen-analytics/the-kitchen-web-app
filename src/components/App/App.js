@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './App.css';
 import useGoogleSheets from 'use-google-sheets';
+
+import { GeneralView } from '../View';
+
 import buildServiceData from '../../services/buildData.ts';
-import DefaultView from '../View';
 import { groupByKey } from '../../utils/ArrayUtil';
 
 const App = () => {
@@ -12,6 +14,43 @@ const App = () => {
         sheetsOptions: [{ id: process.env.REACT_APP_GOOGLE_SHEETS_LIST_ID }]
     });
 
+    const [tableData, setTableData] = useState([]);
+    const [groupedData, setGroupedData] = useState({});
+
+    useEffect(() => {
+        if (!loading && !error && data) {
+            const tableData = buildServiceData(data)
+            setTableData(tableData);
+            setGroupedData(groupByKey(tableData, 'dateFormatted'));
+        }
+
+    }, [data, loading, error]);
+
+    const getAllData = useCallback(() => Object.values(groupedData), [groupedData]);
+
+    const getDataByDay = useCallback((day) => {
+        console.debug('getDataByDay', day)
+
+        const result = groupedData[day]
+
+        console.debug('result', result);
+        return result || [];
+    }, [groupedData]);
+
+
+    const getDataByMonth = useCallback((month) => {
+        console.debug('getDataByMonth', month);
+
+        const result = tableData
+            .flat()
+            .filter(it => it.date.getMonth() === month)
+
+        console.debug('result', result);
+        return result ? Object.values(groupByKey(tableData, 'dateFormatted')) : [];
+    }, [tableData]);
+
+    const getWorkedDays = useCallback(() => [...Object.keys(groupedData)].reverse(), [groupedData]);
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -20,16 +59,13 @@ const App = () => {
         return <div>Error!</div>;
     }
 
-    const tableData = buildServiceData(data);
-
-    const groupedData2 = [];
-
-    const groupedData = groupByKey(tableData, 'date');
-
     return (
         <div className="App">
-            <DefaultView
-                groupedData={groupedData}
+            <GeneralView
+                getAllData={getAllData}
+                getDataByDay={getDataByDay}
+                getDataByMonth={getDataByMonth}
+                getWorkedDays={getWorkedDays}
             />
         </div>
     );
