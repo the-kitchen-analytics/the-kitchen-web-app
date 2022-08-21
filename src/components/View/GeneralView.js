@@ -1,74 +1,83 @@
-import React, { useState } from "react";
-import { Container, Grid, Icon, Menu } from "semantic-ui-react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
+import { Container, Grid } from "semantic-ui-react";
 
 import NoContentView from "./NoContentView";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "./Tables";
-import { sum } from "../../utils/ArrayUtil";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "./Statistics";
 
-const MenuItemWrapper = ({ name, activeItem, handleItemClick, children = '' }) => (
-    <Menu.Item
-        name={name}
-        active={activeItem === name}
-        onClick={handleItemClick}
-        children={children}
-    />
-);
+import { getCurrentMonth } from "../../utils/DateUtils.ts";
+import MainMenu from "../Common/MainMenu/MainMenu";
 
-const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, getWorkedDays }) => {
-
-    const buildStatisticsData = (groupedData) => ({
-        daysCount: Object.keys(groupedData).length,
-        totalIncome: sum(Object.values(groupedData).flat().map(({ totalPriceAfterTaxes }) => totalPriceAfterTaxes)),
-        operationsCount: Object.values(groupedData).flat().length
-    });
+const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) => {
 
     const [activeItem, setActiveItem] = useState(DailyTableView.displayName);
+    const [selectedDay, setSelectedDay] = useState(null);
+    const [selectedMonth] = useState(getCurrentMonth());
 
-    const handleItemClick = (e, { name }) => setActiveItem(name);
+    useEffect(() => {
+        if (Array.isArray(workedDays) && workedDays.length > 0) {
+            setSelectedDay(workedDays[0]);
+        }
+    }, [workedDays])
 
-    const getContent = (activeView) => {
-        switch (activeView) {
+    const daySelectOptions = useMemo(() => workedDays.map(day => ({
+        key: day,
+        text: day,
+        value: day
+    })), [workedDays]);
+
+    const handleActiviItemChange = useCallback((e, { name }) => setActiveItem(name), []);
+    const handleDateChange = useCallback((e, { value }) => setSelectedDay(value), []);
+
+    const getMonthlyData = useCallback(() => getDataByMonth(selectedMonth), [getDataByMonth, selectedMonth]);
+
+    const getContent = useCallback(() => {
+        switch (activeItem) {
             case DailyTableView.displayName:
                 return (
                     <DailyTableView
-                        getTableData={getDataByDay}
-                        getWorkedDays={getWorkedDays}
+                        handleDateChange={handleDateChange}
+                        selectedDate={selectedDay}
+                        data={getDataByDay(selectedDay)}
+                        daySelectOptions={daySelectOptions}
                     />
                 );
 
             case MonthlyTableView.displayName:
                 return (
                     <MonthlyTableView
-                        getTableData={getDataByMonth}
+                        data={getMonthlyData()}
                     />
                 )
 
             case AllTimeTableView.displayName:
                 return (
                     <AllTimeTableView
-                        getTableData={getAllData}
+                        data={getAllData()}
                     />
                 );
 
             case DailyStatisticsView.displayName:
                 return (
                     <DailyStatisticsView
-                        getStatisticData={getDataByDay}
+                        handleDateChange={handleDateChange}
+                        selectedDate={selectedDay}
+                        data={getDataByDay(selectedDay)}
+                        daySelectOptions={daySelectOptions}
                     />
                 );
 
             case MonthlyStatisticsView.displayName:
                 return (
                     <MonthlyStatisticsView
-                        getStatisticData={getDataByMonth}
+                        data={getMonthlyData()}
                     />
                 )
 
             case AllTimeStatisticsView.displayName:
                 return (
                     <AllTimeStatisticsView
-                        getStatisticData={getAllData}
+                        data={getAllData()}
                     />
                 );
 
@@ -76,108 +85,33 @@ const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, getWorkedDays }
                 <NoContentView />
             )
         }
-    }
+    }, [
+        activeItem,
+        selectedDay,
+        daySelectOptions,
+        handleDateChange,
+        getDataByDay,
+        getMonthlyData,
+        getAllData,
+    ]);
 
     return (
-        <Container>
-            <Grid centered padded stackable>
+        <Grid centered padded stackable>
+            <Grid.Row>
+                <Grid.Column width={4}>
+                    <MainMenu
+                        activeItem={activeItem}
+                        handleActiviItemChange={handleActiviItemChange}
+                    />
+                </Grid.Column>
 
-                <Grid.Row>
-                    <Grid.Column width={4}>
-                        <Menu fluid vertical tabular>
-                            <Menu.Item>
-                                <Menu.Header>
-                                    <Icon name="table" />
-                                    Таблицы
-                                </Menu.Header>
-
-                                <Menu.Menu>
-                                    <MenuItemWrapper
-                                        name={DailyTableView.displayName}
-                                        activeItem={activeItem}
-                                        handleItemClick={handleItemClick}
-                                    >
-                                        За день
-                                    </MenuItemWrapper>
-
-                                    <MenuItemWrapper
-                                        name={MonthlyTableView.displayName}
-                                        activeItem={activeItem}
-                                        handleItemClick={handleItemClick}
-                                    >
-                                        За месяц
-                                    </MenuItemWrapper>
-
-                                    <MenuItemWrapper
-                                        name={AllTimeTableView.displayName}
-                                        activeItem={activeItem}
-                                        handleItemClick={handleItemClick}
-                                    >
-                                        За всё время
-                                    </MenuItemWrapper>
-                                </Menu.Menu>
-                            </Menu.Item>
-
-                            <Menu.Item>
-                                <Menu.Header>
-                                    <Icon name="chart bar" />
-                                    Статистика
-                                </Menu.Header>
-
-                                <Menu.Menu>
-                                    <MenuItemWrapper
-                                        name={DailyStatisticsView.displayName}
-                                        activeItem={activeItem}
-                                        handleItemClick={handleItemClick}
-                                    >
-                                        За день
-                                    </MenuItemWrapper>
-
-                                    <MenuItemWrapper
-                                        name={MonthlyStatisticsView.displayName}
-                                        activeItem={activeItem}
-                                        handleItemClick={handleItemClick}
-                                    >
-                                        За месяц
-                                    </MenuItemWrapper>
-
-                                    <MenuItemWrapper
-                                        name={AllTimeStatisticsView.displayName}
-                                        activeItem={activeItem}
-                                        handleItemClick={handleItemClick}
-                                    >
-                                        За всё время
-                                    </MenuItemWrapper>
-                                </Menu.Menu>
-                            </Menu.Item>
-
-                            <Menu.Item
-                                name='links'
-                                active={activeItem === 'links'}
-                                onClick={handleItemClick}
-                            >
-                                <Icon name="linkify" />
-                                Ссылки
-                            </Menu.Item>
-                            <Menu.Item
-                                name='settings'
-                                active={activeItem === 'settings'}
-                                onClick={handleItemClick}
-                            >
-                                <Icon name="setting" />
-                                Настройки
-                            </Menu.Item>
-                        </Menu>
-                    </Grid.Column>
-
-                    <Grid.Column stretched width={12}>
-                        {
-                            getContent(activeItem)
-                        }
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        </Container>
+                <Grid.Column stretched width={12}>
+                    {
+                        getContent(activeItem)
+                    }
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
     );
 }
 

@@ -1,26 +1,20 @@
 import React from "react";
 import { Header } from "semantic-ui-react";
 
-import GenericTable from "../../Common/Table/GenericTable";
+import MainTable from "../../Common/Table/Table";
 
-const MonthlyTableView = ({ getTableData }) => {
-
-    const data = getTableData(new Date().getMonth());
-    console.debug('MonthlyTableView:', data);
-
-    return (
+const MonthlyTableView = ({ data }) => (
+    <div className="view">
         <div className="view">
-            <div className="view">
-                <Header>
-                    <h1>За месяц</h1>
-                </Header>
-                <GenericTable
-                    tableData={data}
-                />
-            </div>
+            <Header>
+                <h1>За месяц</h1>
+            </Header>
+            <MainTable
+                tableData={data}
+            />
         </div>
-    );
-}
+    </div>
+);
 
 MonthlyTableView.displayName = 'MonthlyTableView';
 export default MonthlyTableView;

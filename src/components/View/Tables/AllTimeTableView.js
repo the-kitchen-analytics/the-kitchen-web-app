@@ -1,14 +1,14 @@
 import React from "react";
 import { Header } from "semantic-ui-react";
-import GenericTable from "../../Common/Table/GenericTable";
+import MainTable from "../../Common/Table/Table";
 
-const AllTimeTableView = ({ getTableData }) => (
+const AllTimeTableView = ({ data }) => (
     <div className="view">
         <Header>
             <h1>За всё время</h1>
         </Header>
-        <GenericTable
-            tableData={getTableData()}
+        <MainTable
+            tableData={data}
         />
     </div>
 );

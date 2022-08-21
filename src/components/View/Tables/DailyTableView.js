@@ -1,29 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { Header } from "semantic-ui-react";
 import DaySelect from "../../Common/DaySelect";
 
-import GenericTable from "../../Common/Table/GenericTable";
+import MainTable from "../../Common/Table/Table";
 
-const DailyTableView = ({ getTableData, getWorkedDays }) => {
-    const workedDays = getWorkedDays();
-    const [selectedDate, setSelectedDate] = useState(workedDays[0]);
-
-    // Todo rework this shit
-    useEffect(() => {
-        setSelectedDate(selectedDate || workedDays[0])
-    }, [selectedDate, workedDays]);
-
-    const data = getTableData(selectedDate);
-
-    const daySelectOptions = useMemo(() => workedDays.map(day => ({
-        key: day,
-        text: day,
-        value: day
-    })), [workedDays]);
-
-    const handleDateChange = (e, { value }) => {
-        setSelectedDate(value);
-    }
+const DailyTableView = ({ data, daySelectOptions, selectedDate, handleDateChange }) => {
 
     return (
         <div className="view">
@@ -37,7 +18,7 @@ const DailyTableView = ({ getTableData, getWorkedDays }) => {
                 handleChange={handleDateChange}
             />
 
-            <GenericTable
+            <MainTable
                 tableData={[data]}
             />
         </div>

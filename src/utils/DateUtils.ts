@@ -16,9 +16,15 @@ const compare = (dateLeft: Date, dateRight: Date): number => {
     return compareAsc(dateLeft, dateRight);
 }
 
+const getCurrentDate = (): Date => new Date();
+
+const getCurrentMonth = (): Number => getCurrentDate().getMonth()
+
 export {
     parseDate,
     parseDateTime,
     formatDate,
-    compare
+    compare,
+    getCurrentDate,
+    getCurrentMonth
 }

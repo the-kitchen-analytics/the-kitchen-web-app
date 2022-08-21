@@ -4,7 +4,7 @@ import { Table, Icon } from "semantic-ui-react";
 import { DateCell, OperationsCell, PriceCell } from "./Cell";
 import { getTotalIncomePerADay } from "../../../utils/MoneyUtils.ts";
 
-const GenericTable = ({ tableData = [[]] }) => {
+const MainTable = ({ tableData = [[]] }) => {
     const renderTableBody = useCallback(() => tableData.map((values) => {
         return values.map(({ id, date, operations, totalPriceBeforeTaxes, totalPriceAfterTaxes }, i) => (
             <Table.Row key={id} verticalAlign='top'>
@@ -25,12 +25,12 @@ const GenericTable = ({ tableData = [[]] }) => {
                         {operations}
                     </OperationsCell>
                 </Table.Cell>
-                <Table.Cell i={i}>
+                <Table.Cell i={i} textAlign="right">
                     <PriceCell euro>
                         {totalPriceBeforeTaxes}
                     </PriceCell>
                 </Table.Cell>
-                <Table.Cell i={i}>
+                <Table.Cell i={i} textAlign="right">
                     <strong>
                         <PriceCell euro>
                             {totalPriceAfterTaxes}
@@ -72,4 +72,4 @@ const GenericTable = ({ tableData = [[]] }) => {
     );
 };
 
-export default GenericTable;
+export default MainTable;

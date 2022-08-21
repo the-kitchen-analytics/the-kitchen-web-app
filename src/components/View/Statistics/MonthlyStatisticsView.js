@@ -1,15 +1,18 @@
 import React from "react";
+import { Header } from "semantic-ui-react";
+import Statistics from "../../Common/Statistics/Statistics";
 
-const MonthlyStatisticsView = ({ getStatisticsData }) => {
+const MonthlyStatisticsView = ({ data }) => (
+    <div className="view">
+        <Header>
+            <h1>За месяц</h1>
+        </Header>
 
-    const data = getStatisticsData();
-
-    return (
-        <div className="view">
-
-        </div>
-    );
-}
+        <Statistics
+            data={data}
+        />
+    </div>
+);
 
 MonthlyStatisticsView.displayName = 'MonthlyStatisticsView';
 export default MonthlyStatisticsView;
