@@ -1,6 +1,6 @@
-import React, { useMemo } from "react"
+import React from "react"
 import { Table, List, Label } from "semantic-ui-react"
-import { groupByKey, sum } from "../../utils/ArrayUtil"
+import { sum } from "../../utils/ArrayUtil"
 import { formatDate } from "../../utils/DateUtils.ts";
 import Price from "../Price";
 
@@ -32,12 +32,12 @@ const PriceCell = ({ children }) => (
 const DataTable = ({ groupedData }) => {
 
     const getTotalIncomePerADay = (entriesPerADay) => {
-        return sum(entriesPerADay.map(it => sum(it.operations.map(op => op.priceAfterTaxes))))
+        return sum(entriesPerADay.map(({ totalPriceAfterTaxes }) => totalPriceAfterTaxes));
     }
 
     const getTableBody = (tableData) => {
         return Object.entries(tableData).map(([key, values]) => {
-            return values.map(({ id, date, operations }, i) => (
+            return values.map(({ id, date, operations, totalPriceBeforeTaxes, totalPriceAfterTaxes }, i) => (
                 <Table.Row key={id} verticalAlign='top'>
                     {
                         i === 0 ? (
@@ -58,13 +58,13 @@ const DataTable = ({ groupedData }) => {
                     </Table.Cell>
                     <Table.Cell i={i}>
                         <PriceCell euro>
-                            {sum(operations.map(op => op.originalPrice))}
+                            {totalPriceBeforeTaxes}
                         </PriceCell>
                     </Table.Cell>
                     <Table.Cell i={i}>
                         <strong>
                             <PriceCell euro>
-                                {sum(operations.map(op => op.priceAfterTaxes))}
+                                {totalPriceAfterTaxes}
                             </PriceCell>
                         </strong>
                     </Table.Cell>

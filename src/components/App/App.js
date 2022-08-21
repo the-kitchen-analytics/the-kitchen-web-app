@@ -21,6 +21,9 @@ const App = () => {
     }
 
     const tableData = buildServiceData(data);
+
+    const groupedData2 = [];
+
     const groupedData = groupByKey(tableData, 'date');
 
     return (
