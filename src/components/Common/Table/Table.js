@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Table, Icon } from "semantic-ui-react";
 
 import { DateCell, OperationsCell, PriceCell } from "./Cell";
-import { getTotalIncomePerADay } from "../../../utils/MoneyUtils.ts";
+import { getTotalIncomePerADay } from "../../../utils/MoneyUtils";
 
 const MainTable = ({ tableData = [[]] }) => {
     const renderTableBody = useCallback(() => tableData.map((values) => {

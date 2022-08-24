@@ -1,7 +1,11 @@
-import ServiceEntry from "../domain/ServiceEntry.ts";
 import { sum } from "./ArrayUtil";
 
-const getTotalIncomePerADay = (entriesPerADay: Array<ServiceEntry>): Number => {
+/**
+ * 
+ * @param {array} entriesPerADay 
+ * @returns number
+ */
+const getTotalIncomePerADay = (entriesPerADay) => {
     return sum(entriesPerADay.map(({ totalPriceAfterTaxes }) => totalPriceAfterTaxes));
 }
 

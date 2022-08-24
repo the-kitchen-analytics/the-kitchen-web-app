@@ -1,7 +1,7 @@
 import React from "react";
 import { Label } from "semantic-ui-react";
 import { Price } from "../../Fields";
-import { formatDate } from "../../../../utils/DateUtils.ts";
+import { formatDate } from "../../../../utils/DateUtils";
 import { getRandomColorName } from "../../../../utils/ColorUtils";
 
 const DateCell = ({ children, price = 0 }) => (

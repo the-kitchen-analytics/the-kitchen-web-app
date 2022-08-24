@@ -4,7 +4,7 @@ import { Container } from 'semantic-ui-react';
 
 import { GeneralView } from '../View';
 
-import buildServiceData from '../../services/buildData.ts';
+import buildServiceData from '../../services/buildData';
 import { groupByKey } from '../../utils/ArrayUtil';
 import Loader from '../Common/Loader';
 

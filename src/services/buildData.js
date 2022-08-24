@@ -1,7 +1,7 @@
-import { getPriceFromString } from '../utils/StringUtils.ts';
-import ServiceEntry from '../domain/ServiceEntry.ts';
-import Operation from '../domain/Operation.ts';
-import { parseDate, compare } from '../utils/DateUtils.ts';
+import { getPriceFromString } from '../utils/StringUtils';
+import ServiceEntry from '../domain/ServiceEntry';
+import Operation from '../domain/Operation';
+import { parseDate, compare } from '../utils/DateUtils';
 
 
 const DATE_CREATED_TITLE = 'Отметка времени';
@@ -9,10 +9,10 @@ const DATE_TITLE = 'Выберите дату';
 const OPERATION_NAME_TITLE = 'Выберите набор услуг';
 
 
-const buildServiceData = (sheetData: any): Array<ServiceEntry> => {
+const buildServiceData = (sheetData) => {
     const { data } = sheetData[0];
 
-    const serviceDataArray = data.map((dataEntry: any, i: number) => {
+    const serviceDataArray = data.map((dataEntry, i) => {
         const id = i;
         const date = parseDate(dataEntry[DATE_TITLE]);
         const dateCreated = parseDate(dataEntry[DATE_CREATED_TITLE]);
@@ -23,11 +23,11 @@ const buildServiceData = (sheetData: any): Array<ServiceEntry> => {
     return sort(serviceDataArray);
 }
 
-const sort = (entries: Array<ServiceEntry>): Array<ServiceEntry> => {
+const sort = (entries) => {
     return entries.sort((a, b) => compare(a.date, b.date));
 }
 
-const buildOperations = (data: any, date: Date): Array<Operation> => {
+const buildOperations = (data, date) => {
     return data
         .split(";,")
         .map(operation => {

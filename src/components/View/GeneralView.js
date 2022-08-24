@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { Container, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 import NoContentView from "./NoContentView";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "./Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "./Statistics";
 
-import { getCurrentMonth } from "../../utils/DateUtils.ts";
+import { getCurrentMonth } from "../../utils/DateUtils";
 import MainMenu from "../Common/MainMenu/MainMenu";
 
 const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) => {
