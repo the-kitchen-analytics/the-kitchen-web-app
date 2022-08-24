@@ -8,17 +8,49 @@ import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } fro
 import { getCurrentMonth } from "../../utils/DateUtils";
 import MainMenu from "../Common/MainMenu/MainMenu";
 
-const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) => {
+import { groupByKey } from "../../utils/ArrayUtil";
+import _ from "lodash";
 
-    const [activeItem, setActiveItem] = useState(DailyTableView.displayName);
+const MainView = ({ data, refreshData }) => {
+
+    const [groupedData, setGroupedData] = useState({});
+    const [workedDays, setWorkedDays] = useState([]);
+    const [activeViewName, setActiveViewName] = useState(DailyTableView.displayName);
     const [selectedDay, setSelectedDay] = useState(null);
     const [selectedMonth] = useState(getCurrentMonth());
 
     useEffect(() => {
-        if (Array.isArray(workedDays) && workedDays.length > 0) {
-            setSelectedDay(workedDays[0]);
+        if (data) {
+            console.debug("MainView.useEffect()", data)
+            const groupedData = groupByKey(data, 'dateFormatted')
+            const workedDays = [...Object.keys(groupedData)]
+
+            setGroupedData(groupedData)
+            setWorkedDays(workedDays)
+
+            if (!_.isEmpty(workedDays)) {
+                setSelectedDay(workedDays[0])
+            }
         }
-    }, [workedDays])
+
+    }, [data]);
+
+    const getAllData = useCallback(() => Object.values(groupedData), [groupedData]);
+
+    const getDataByDay = useCallback(() => {
+        const result = groupedData[selectedDay]
+
+        return result || [];
+    }, [groupedData, selectedDay]);
+
+
+    const getDataByMonth = useCallback(() => {
+        const result = data
+            .flat()
+            .filter(it => it.date.getMonth() === selectedMonth)
+
+        return result ? Object.values(groupByKey(data, 'dateFormatted')) : [];
+    }, [data, selectedMonth]);
 
     const daySelectOptions = useMemo(() => workedDays.map(day => ({
         key: day,
@@ -26,19 +58,17 @@ const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) =
         value: day
     })), [workedDays]);
 
-    const handleActiviItemChange = useCallback((e, { name }) => setActiveItem(name), []);
+    const handleActiviItemChange = useCallback((e, { name }) => setActiveViewName(name), []);
     const handleDateChange = useCallback((e, { value }) => setSelectedDay(value), []);
 
-    const getMonthlyData = useCallback(() => getDataByMonth(selectedMonth), [getDataByMonth, selectedMonth]);
-
     const getContent = useCallback(() => {
-        switch (activeItem) {
+        switch (activeViewName) {
             case DailyTableView.displayName:
                 return (
                     <DailyTableView
                         handleDateChange={handleDateChange}
                         selectedDate={selectedDay}
-                        data={getDataByDay(selectedDay)}
+                        data={getDataByDay()}
                         daySelectOptions={daySelectOptions}
                     />
                 );
@@ -46,7 +76,7 @@ const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) =
             case MonthlyTableView.displayName:
                 return (
                     <MonthlyTableView
-                        data={getMonthlyData()}
+                        data={getDataByMonth()}
                     />
                 )
 
@@ -62,7 +92,7 @@ const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) =
                     <DailyStatisticsView
                         handleDateChange={handleDateChange}
                         selectedDate={selectedDay}
-                        data={getDataByDay(selectedDay)}
+                        data={getDataByDay()}
                         daySelectOptions={daySelectOptions}
                     />
                 );
@@ -70,7 +100,7 @@ const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) =
             case MonthlyStatisticsView.displayName:
                 return (
                     <MonthlyStatisticsView
-                        data={getMonthlyData()}
+                        data={getDataByMonth()}
                     />
                 )
 
@@ -85,34 +115,27 @@ const GeneralView = ({ getAllData, getDataByDay, getDataByMonth, workedDays }) =
                 <NoContentView />
             )
         }
-    }, [
-        activeItem,
-        selectedDay,
-        daySelectOptions,
-        handleDateChange,
-        getDataByDay,
-        getMonthlyData,
-        getAllData,
-    ]);
+    }, [activeViewName, selectedDay, daySelectOptions, handleDateChange, getDataByDay, getDataByMonth, getAllData]);
 
     return (
         <Grid centered padded stackable>
             <Grid.Row>
                 <Grid.Column width={4}>
                     <MainMenu
-                        activeItem={activeItem}
+                        activeItem={activeViewName}
                         handleActiviItemChange={handleActiviItemChange}
+                        refreshData={refreshData}
                     />
                 </Grid.Column>
 
                 <Grid.Column stretched width={12}>
                     {
-                        getContent(activeItem)
+                        getContent(activeViewName)
                     }
                 </Grid.Column>
             </Grid.Row>
         </Grid>
-    );
+    )
 }
 
-export default GeneralView;
+export default MainView;

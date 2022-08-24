@@ -10,6 +10,8 @@ const OPERATION_NAME_TITLE = 'Выберите набор услуг';
 
 
 const buildServiceData = (sheetData) => {
+    console.debug("buildServiceData", sheetData);
+
     const { data } = sheetData[0];
 
     const serviceDataArray = data.map((dataEntry, i) => {
@@ -20,7 +22,7 @@ const buildServiceData = (sheetData) => {
         return new ServiceEntry(id, date, operations, dateCreated);
     });
 
-    return sort(serviceDataArray);
+    return sort(serviceDataArray).reverse();
 }
 
 const sort = (entries) => {

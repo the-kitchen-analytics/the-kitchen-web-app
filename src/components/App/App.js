@@ -1,85 +1,44 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import useGoogleSheets from 'use-google-sheets';
 import { Container } from 'semantic-ui-react';
 
-import { GeneralView } from '../View';
-
-import buildServiceData from '../../services/buildData';
-import { groupByKey } from '../../utils/ArrayUtil';
+import { MainView } from '../View';
 import Loader from '../Common/Loader';
+import buildServiceData from "../../services/buildData";
 
-const App = () => {
-    const { data, loading, error } = useGoogleSheets({
-        apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-        sheetId: process.env.REACT_APP_GOOGLE_SHEETS_ID,
-        sheetsOptions: [{ id: process.env.REACT_APP_GOOGLE_SHEETS_LIST_ID }]
-    });
-
-    const [tableData, setTableData] = useState([]);
-    const [groupedData, setGroupedData] = useState({});
-    const [workedDays, setWorkedDays] = useState([]);
-
-    useEffect(() => {
-        if (!loading && !error && data) {
-            const tableData = buildServiceData(data)
-            const groupedData = groupByKey(tableData, 'dateFormatted')
-            setTableData(tableData);
-            setGroupedData(groupedData);
-            setWorkedDays([...Object.keys(groupedData)].reverse())
-        }
-
-    }, [data, loading, error]);
-
-    const getAllData = useCallback(() => Object.values(groupedData), [groupedData]);
-
-    const getDataByDay = useCallback((day) => {
-        const result = groupedData[day]
-
-        return result || [];
-    }, [groupedData]);
-
-
-    const getDataByMonth = useCallback((month) => {
-        const result = tableData
-            .flat()
-            .filter(it => it.date.getMonth() === month)
-
-        return result ? Object.values(groupByKey(tableData, 'dateFormatted')) : [];
-    }, [tableData]);
-
-    const getContent = useCallback(() => {
-        if (loading) {
-            return <Loader />;
-        }
-
-        if (error) {
-            return <div>Error!</div>;
-        }
-
-        return (
-            <GeneralView
-                getAllData={getAllData}
-                getDataByDay={getDataByDay}
-                getDataByMonth={getDataByMonth}
-                workedDays={workedDays}
-            />
-        )
-    }, [loading, error, workedDays, getAllData, getDataByDay, getDataByMonth]);
+const App = ({ googleSheetsOptions }) => {
+    const { data, loading, error, refetch } = useGoogleSheets(googleSheetsOptions);
 
     if (loading) {
-        return <Loader />;
+        return (
+            <Container>
+                <Loader />
+            </Container>
+        )
     }
 
     if (error) {
-        return <div>Error!</div>;
+        return (
+            <Container>
+                <p>Error :(</p>
+            </Container>
+        )
+    }
+
+    console.debug("Render App!", loading, error, data)
+
+    const refreshData = () => {
+        console.debug("Refetch data")
+        refetch()
     }
 
     return (
-        <div className="App">
+        <div className="app">
             <Container>
-                {
-                    getContent()
-                }
+                <MainView
+                    data={buildServiceData(data)}
+                    refreshData={refreshData}
+                />
             </Container>
         </div>
     );

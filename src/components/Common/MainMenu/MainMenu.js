@@ -5,9 +5,16 @@ import MenuItemWrapper from "./MenuItemWrapper";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "../../View/Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "../../View/Statistics";
 
-const MainMenu = ({ activeItem, handleActiviItemChange }) => (
-    <Menu fluid vertical secondary size="huge">
+const MainMenu = ({ activeItem, handleActiviItemChange, refreshData }) => (
+    <Menu
+        defaultActiveIndex={0}
+        stackable
+        fluid
+        vertical
+        size="massive"
+    >
         <Menu.Item>
+
             <Menu.Header>
                 <Icon name="table" />
                 Таблицы
@@ -73,14 +80,7 @@ const MainMenu = ({ activeItem, handleActiviItemChange }) => (
             </Menu.Menu>
         </Menu.Item>
 
-        <Menu.Item
-            name='links'
-            active={activeItem === 'links'}
-            onClick={handleActiviItemChange}
-        >
-            <Icon name="linkify" />
-            Ссылки
-        </Menu.Item>
+
         <Menu.Item
             name='settings'
             active={activeItem === 'settings'}
@@ -88,6 +88,14 @@ const MainMenu = ({ activeItem, handleActiviItemChange }) => (
         >
             <Icon name="setting" />
             Настройки
+        </Menu.Item>
+
+        <Menu.Item
+            name='refreshData'
+            onClick={refreshData}
+        >
+            <Icon name="refresh" />
+            Обновить данные
         </Menu.Item>
     </Menu>
 );

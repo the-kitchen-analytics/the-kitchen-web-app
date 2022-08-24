@@ -1,7 +1,7 @@
-import GeneralView from "./GeneralView";
+import MainView from "./MainView";
 import NoContentView from "./NoContentView";
 
 export {
-    GeneralView,
+    MainView,
     NoContentView
 };
