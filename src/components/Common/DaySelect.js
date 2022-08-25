@@ -8,6 +8,7 @@ const DaySelect = ({ value, handleChange, options = [] }) => (
         options={options}
         onChange={handleChange}
         value={value}
+        fluid
     />
 );
 

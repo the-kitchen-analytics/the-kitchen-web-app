@@ -5,6 +5,9 @@ import { DateCell, OperationsCell, PriceCell } from "./Cell";
 import { getTotalIncomePerADay } from "../../../utils/MoneyUtils";
 
 const MainTable = ({ tableData = [[]] }) => {
+
+    const totalIncome = getTotalIncomePerADay(tableData.flat())
+
     const renderTableBody = useCallback(() => tableData.map((values) => {
         return values.map(({ id, date, operations, totalPriceBeforeTaxes, totalPriceAfterTaxes }, i) => (
             <Table.Row key={id} verticalAlign='top'>
@@ -55,7 +58,7 @@ const MainTable = ({ tableData = [[]] }) => {
     );
 
     return (
-        <Table striped celled structured>
+        <Table structured celled>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Дата</Table.HeaderCell>
@@ -68,6 +71,21 @@ const MainTable = ({ tableData = [[]] }) => {
             <Table.Body>
                 {shouldRenderTableBody() ? renderTableBody() : getNoContentElement()}
             </Table.Body>
+
+            <Table.Footer>
+                <Table.Row>
+                    <Table.HeaderCell colSpan={3}>Итого</Table.HeaderCell>
+                    <Table.HeaderCell collapsing textAlign="right">
+                        <strong>
+                            <PriceCell>
+                                {
+                                    totalIncome
+                                }
+                            </PriceCell>
+                        </strong>
+                    </Table.HeaderCell>
+                </Table.Row>
+            </Table.Footer>
         </Table>
     );
 };
