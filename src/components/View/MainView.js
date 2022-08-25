@@ -1,16 +1,18 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { Grid, GridColumn, GridRow, Header, Segment } from "semantic-ui-react";
+import _ from "lodash";
+import { Grid, GridColumn, GridRow, Segment } from "semantic-ui-react";
 
+import { GenericView } from "../Common/View";
 import NoContentView from "./NoContentView";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "./Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "./Statistics";
-
-import { getCurrentMonth } from "../../utils/DateUtils";
 import MainMenu from "../Common/MainMenu/MainMenu";
 import DaySelect from "../Common/DaySelect";
+import SettingsView from "./Settings/SettingsView";
 
 import { groupByKey } from "../../utils/ArrayUtil";
-import _ from "lodash";
+import { getCurrentMonth } from "../../utils/DateUtils";
+import { withDailyDataView, withMonthlyDataView, withAllDataView } from "../../HOC"
 
 const MainView = ({ data, refreshData }) => {
 
@@ -72,145 +74,31 @@ const MainView = ({ data, refreshData }) => {
     const getContent = useCallback(() => {
         switch (activeViewName) {
             case DailyTableView.displayName:
-                return (
-                    <>
-                        <Header>
-                            <Grid divided>
-                                <GridRow>
-                                    <GridColumn>
-                                        <h1>За день</h1>
-                                    </GridColumn>
-                                </GridRow>
-                                <GridRow>
-                                    <GridColumn
-                                        tablet={8}
-                                        largeScreen={6}
-                                        widescreen={8}
-                                        mobile={16}
-                                    >
-                                        {
-                                            getDaySelectElement()
-                                        }
-                                    </GridColumn>
-                                </GridRow>
-                            </Grid>
-                        </Header>
-
-                        <DailyTableView
-                            data={getDataByDay()}
-                        />
-                    </>
-
-                );
+                return withDailyDataView(DailyTableView, getDataByDay, getDaySelectElement)
 
             case MonthlyTableView.displayName:
-                return (
-                    <>
-                        <Header>
-                            <Grid divided>
-                                <GridRow>
-                                    <GridColumn>
-                                        <h1>За месяц</h1>
-                                    </GridColumn>
-                                </GridRow>
-                            </Grid>
-                        </Header>
-
-                        <MonthlyTableView
-                            data={getDataByMonth()}
-                        />
-                    </>
-                )
+                return withMonthlyDataView(MonthlyTableView, getDataByMonth)
 
             case AllTimeTableView.displayName:
-                return (
-                    <>
-                        <Header>
-                            <Grid divided>
-                                <GridRow>
-                                    <GridColumn>
-                                        <h1>За всё время</h1>
-                                    </GridColumn>
-                                </GridRow>
-                            </Grid>
-                        </Header>
-
-                        <AllTimeTableView
-                            data={getAllData()}
-                        />
-                    </>
-                );
+                return withAllDataView(AllTimeTableView, getAllData)
 
             case DailyStatisticsView.displayName:
-                return (
-                    <>
-                        <Header>
-                            <Grid divided>
-                                <GridRow>
-                                    <GridColumn>
-                                        <h1>За день</h1>
-                                    </GridColumn>
-                                </GridRow>
-                                <GridRow>
-                                    <GridColumn
-                                        tablet={8}
-                                        largeScreen={6}
-                                        widescreen={8}
-                                        mobile={16}
-                                    >
-                                        {
-                                            getDaySelectElement()
-                                        }
-                                    </GridColumn>
-                                </GridRow>
-                            </Grid>
-                        </Header>
-
-                        <DailyStatisticsView
-                            data={getDataByDay()}
-                        />
-                    </>
-
-
-                );
+                return withDailyDataView(DailyStatisticsView, getDataByDay, getDaySelectElement)
 
             case MonthlyStatisticsView.displayName:
-                return (
-                    <>
-                        <Header>
-                            <Grid divided>
-                                <GridRow>
-                                    <GridColumn>
-                                        <h1>За месяц</h1>
-                                    </GridColumn>
-                                </GridRow>
-                            </Grid>
-                        </Header>
-
-                        <MonthlyStatisticsView
-                            data={getDataByMonth()}
-                        />
-                    </>
-                )
+                return withMonthlyDataView(MonthlyStatisticsView, getDataByMonth)
 
             case AllTimeStatisticsView.displayName:
-                return (
-                    <>
-                        <Header>
-                            <Grid divided>
-                                <GridRow>
-                                    <GridColumn>
-                                        <h1>За всё время</h1>
-                                    </GridColumn>
-                                </GridRow>
-                            </Grid>
-                        </Header>
+                return withAllDataView(AllTimeStatisticsView, getAllData)
 
-                        <AllTimeStatisticsView
-                            data={getAllData()}
+            case SettingsView.displayName:
+                return (
+                    <GenericView header="Настройки">
+                        <SettingsView
+
                         />
-                    </>
-                );
+                    </GenericView>
+                )
 
             default: return (
                 <NoContentView />

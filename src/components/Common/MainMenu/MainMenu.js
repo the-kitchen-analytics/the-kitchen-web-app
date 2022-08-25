@@ -4,6 +4,7 @@ import { Menu, Icon } from "semantic-ui-react";
 import MenuItemWrapper from "./MenuItemWrapper";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "../../View/Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "../../View/Statistics";
+import { SettingsView } from "../../View";
 
 const MainMenu = ({ activeItem, handleActiviItemChange, refreshData }) => (
     <Menu
@@ -82,8 +83,8 @@ const MainMenu = ({ activeItem, handleActiviItemChange, refreshData }) => (
 
 
         <Menu.Item
-            name='settings'
-            active={activeItem === 'settings'}
+            name={SettingsView.displayName}
+            active={activeItem === SettingsView.displayName}
             onClick={handleActiviItemChange}
         >
             <Icon name="setting" />
