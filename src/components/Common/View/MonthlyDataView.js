@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from "react";
-import MonthSelect from "../components/Common/MonthSelect";
 import { Grid, Header, Divider } from "semantic-ui-react";
-import { getCurrentMonth } from "../utils/DateUtils";
+import MonthSelect from "../MonthSelect";
+import { getCurrentMonth } from "../../../utils/DateUtils";
 
-const useMonthlyDataView = (Component, getData, getMonthSelectElement) => {
+const MonthlyDataView = ({ getData, component }) => {
 
-    const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth())
+    const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth() + 1)
 
     const monthSelectOptions = useMemo(() => ([
         {
@@ -70,6 +70,8 @@ const useMonthlyDataView = (Component, getData, getMonthSelectElement) => {
         }
     ]), [])
 
+    const Component = component;
+
     return (
         <Grid>
             <Grid.Row>
@@ -80,7 +82,7 @@ const useMonthlyDataView = (Component, getData, getMonthSelectElement) => {
                 </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row>
+            <Grid.Row columns={2}>
                 <Grid.Column
                     tablet={8}
                     largeScreen={6}
@@ -100,7 +102,7 @@ const useMonthlyDataView = (Component, getData, getMonthSelectElement) => {
             <Grid.Row>
                 <Grid.Column>
                     <Component
-                        data={getData()}
+                        data={getData(selectedMonth)}
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -108,4 +110,4 @@ const useMonthlyDataView = (Component, getData, getMonthSelectElement) => {
     )
 }
 
-export default useMonthlyDataView
+export default MonthlyDataView;

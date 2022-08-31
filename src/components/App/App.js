@@ -5,6 +5,7 @@ import { MainView } from '../View';
 import Loader from '../Common/Loader';
 import buildServiceData from "../../services/buildData";
 import useDataFetch from '../../hooks/useDataFetch';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = () => {
     const { data, loading, error, refetch } = useDataFetch();
@@ -32,13 +33,16 @@ const App = () => {
         refetch()
     }
 
+
     return (
         <div className="app">
             <Container>
-                <MainView
-                    data={buildServiceData(data)}
-                    refreshData={refreshData}
-                />
+                <BrowserRouter basename='the-kitchen-analytics-react-app'>
+                    <MainView
+                        data={buildServiceData(data)}
+                        refreshData={refreshData}
+                    />
+                </BrowserRouter>
             </Container>
         </div>
     );

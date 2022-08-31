@@ -1,12 +1,14 @@
 import React from "react";
-import { Menu, Icon } from "semantic-ui-react";
+import { Menu, Icon, Image, Divider } from "semantic-ui-react";
 
 import MenuItemWrapper from "./MenuItemWrapper";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "../../View/Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "../../View/Statistics";
 import { SettingsView } from "../../View";
 
-const MainMenu = ({ activeItem, handleActiviItemChange, refreshData }) => (
+const LOGO_SRC = process.env.PUBLIC_URL + '/apple-touch-icon.png'
+
+const MainMenu = ({ refreshData }) => (
     <Menu
         defaultActiveIndex={0}
         stackable
@@ -14,6 +16,13 @@ const MainMenu = ({ activeItem, handleActiviItemChange, refreshData }) => (
         vertical
         size="massive"
     >
+        <Menu.Item onClick={refreshData}>
+            <Image
+                avatar
+                src={LOGO_SRC}
+            /> <strong>The Kitchen App</strong>
+        </Menu.Item>
+
         <Menu.Item>
 
             <Menu.Header>
@@ -23,25 +32,22 @@ const MainMenu = ({ activeItem, handleActiviItemChange, refreshData }) => (
 
             <Menu.Menu>
                 <MenuItemWrapper
+                    to={'table/daily'}
                     name={DailyTableView.displayName}
-                    activeItem={activeItem}
-                    handleItemClick={handleActiviItemChange}
                 >
                     За день
                 </MenuItemWrapper>
 
                 <MenuItemWrapper
+                    to={'table/montly'}
                     name={MonthlyTableView.displayName}
-                    activeItem={activeItem}
-                    handleItemClick={handleActiviItemChange}
                 >
                     За месяц
                 </MenuItemWrapper>
 
                 <MenuItemWrapper
+                    to={'table'}
                     name={AllTimeTableView.displayName}
-                    activeItem={activeItem}
-                    handleItemClick={handleActiviItemChange}
                 >
                     За всё время
                 </MenuItemWrapper>
@@ -56,48 +62,38 @@ const MainMenu = ({ activeItem, handleActiviItemChange, refreshData }) => (
 
             <Menu.Menu>
                 <MenuItemWrapper
+                    to={'statistics/daily'}
                     name={DailyStatisticsView.displayName}
-                    activeItem={activeItem}
-                    handleItemClick={handleActiviItemChange}
                 >
                     За день
                 </MenuItemWrapper>
 
                 <MenuItemWrapper
+                    to={'statistics/montly'}
                     name={MonthlyStatisticsView.displayName}
-                    activeItem={activeItem}
-                    handleItemClick={handleActiviItemChange}
                 >
                     За месяц
                 </MenuItemWrapper>
 
                 <MenuItemWrapper
+                    to={'statistics'}
                     name={AllTimeStatisticsView.displayName}
-                    activeItem={activeItem}
-                    handleItemClick={handleActiviItemChange}
                 >
                     За всё время
                 </MenuItemWrapper>
             </Menu.Menu>
         </Menu.Item>
 
+        <Divider fitted />
 
-        <Menu.Item
+        <MenuItemWrapper
+            to={'settings'}
             name={SettingsView.displayName}
-            active={activeItem === SettingsView.displayName}
-            onClick={handleActiviItemChange}
         >
             <Icon name="setting" />
             Настройки
-        </Menu.Item>
+        </MenuItemWrapper>
 
-        <Menu.Item
-            name='refreshData'
-            onClick={refreshData}
-        >
-            <Icon name="refresh" />
-            Обновить данные
-        </Menu.Item>
     </Menu>
 );
 
