@@ -1,13 +1,13 @@
 import React from 'react';
-import useGoogleSheets from 'use-google-sheets';
 import { Container } from 'semantic-ui-react';
 
 import { MainView } from '../View';
 import Loader from '../Common/Loader';
 import buildServiceData from "../../services/buildData";
+import useDataFetch from '../../hooks/useDataFetch';
 
-const App = ({ googleSheetsOptions }) => {
-    const { data, loading, error, refetch } = useGoogleSheets(googleSheetsOptions);
+const App = () => {
+    const { data, loading, error, refetch } = useDataFetch();
 
     if (loading) {
         return (

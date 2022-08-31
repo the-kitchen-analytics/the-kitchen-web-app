@@ -6,16 +6,8 @@ import 'semantic-ui-css/semantic.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const googleSheetsOptions = {
-  apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-  sheetId: process.env.REACT_APP_GOOGLE_SHEETS_ID,
-  sheetsOptions: [{ id: process.env.REACT_APP_GOOGLE_SHEETS_LIST_ID }]
-};
-
 root.render(
-  <React.StrictMode>
-    <App
-      googleSheetsOptions={googleSheetsOptions}
-    />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
