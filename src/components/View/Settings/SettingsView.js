@@ -8,7 +8,7 @@ const SettingsView = () => {
         <div className="view">
 
             <SelectAccentColorSetting
-                colorOptions={fancyColorNames}
+                colorOptions={[...fancyColorNames, 'grey', 'black']}
             />
 
         </div>
