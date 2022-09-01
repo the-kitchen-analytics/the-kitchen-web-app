@@ -1,17 +1,10 @@
-import _ from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Grid, Header, Divider } from "semantic-ui-react";
 import DaySelect from '../DaySelect';
 
 const DailyDataView = ({ getData, options, component }) => {
 
-    const [selectedDay, setSelectedDay] = useState(null)
-
-    useEffect(() => {
-        if (!selectedDay && !_.isEmpty(options)) {
-            setSelectedDay(options[0].value)
-        }
-    }, [selectedDay, options])
+    const [selectedDay, setSelectedDay] = useState(options.length > 0 ? options[0].value : null)
 
     const Component = component;
 

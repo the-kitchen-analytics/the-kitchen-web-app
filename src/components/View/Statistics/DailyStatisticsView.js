@@ -6,7 +6,7 @@ const DailyStatisticsView = ({ data }) => {
     return (
         <div className="view">
             <Statistics
-                data={[data]}
+                data={data}
             />
         </div>
     );
