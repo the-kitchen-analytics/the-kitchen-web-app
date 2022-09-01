@@ -8,7 +8,6 @@ const AccentColorSetingContextProvider = ({ children }) => {
 
     const setAccentColorWrapper = (colorName) => {
         if (colorName !== accentColor) {
-            console.debug('set new accent color')
             setAccentColor(colorName)
             localStorage.setItem('accentColor', colorName)
         }

@@ -14,25 +14,30 @@ const SelectAccentColorSetting = ({ colorOptions }) => {
 
         return (
             <Label
+                key={colorName}
                 as='a'
                 onClick={() => setAccentColor(colorName)}
                 basic={!isActive}
                 color={colorName}
             >
+                {
+                    isActive ? <Icon name='check circle' /> : ''
+                }
                 {capitalize(colorName)}
             </Label>
         )
     }
 
     return (
-        <Segment>
+        <Segment padded>
             <Header>
-                <Icon name="adjust" /> Акцентный цвет
+                <Icon name="paint brush" /> Акцентный цвет
             </Header>
 
             <p>
                 Нажмите, чтобы выбрать:
             </p>
+
             <Label.Group size='huge'>
                 {
                     colorOptions.map(buildOption)
