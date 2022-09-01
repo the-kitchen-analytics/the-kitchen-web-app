@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, { useMemo } from "react";
 import { useRoutes, Navigate } from "react-router-dom";
 import { Grid, GridColumn, GridRow, Segment } from "semantic-ui-react";
 import { GenericView, DailyDataView, MonthlyDataView, AllDataView } from "../Common/View";
@@ -6,48 +6,35 @@ import { AllTimeTableView, DailyTableView, MonthlyTableView } from "./Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "./Statistics";
 import MainMenu from "../Common/MainMenu/MainMenu";
 import SettingsView from "./Settings/SettingsView";
-import { groupByKey } from "../../utils/ArrayUtil";
 import NoContentView from "./NoContentView";
+import useDataFilters from "../../hooks/useDataFilters";
+import useTransformedData from "../../hooks/useTransformedData";
+import Loader from "../Common/Loader";
+import useStatisticsFilters from "../../hooks/useStatisticsFilters";
+import buildDaySelectOptions from "../../services/buildDaySelectOptions";
+import useTableFilters from "../../hooks/useTableFilters";
+import { AccentColorSetingContextProvider } from "../../context/accentColorSettingContext";
 
 
 const MainView = ({ data, refreshData }) => {
 
-    const [groupedData, setGroupedData] = useState({})
-    const [workedDays, setWorkedDays] = useState([])
+    const { groupedData, workedDays, isDataTransformed } = useTransformedData(data);
 
-    useEffect(() => {
-        if (data) {
-            console.debug("MainView.useEffect()", data)
-            const groupedData = groupByKey(data, 'dateFormatted')
-            const workedDays = [...Object.keys(groupedData)]
+    const dataFilters = useDataFilters(data, groupedData);
 
-            setGroupedData(groupedData)
-            setWorkedDays(workedDays)
-        }
+    const {
+        getAllTableData,
+        getTableDataByMonth,
+        getTableDataByDay
+    } = useTableFilters(dataFilters);
 
-    }, [data]);
+    const {
+        getAllStatisticsData,
+        getStatisticsDataByMonth,
+        getStaisticsDataByDay
+    } = useStatisticsFilters(dataFilters);
 
-    const getAllData = useCallback(() => Object.values(groupedData), [groupedData]);
-
-    const getDataByDay = useCallback((selectedDay) => {
-        const result = groupedData[selectedDay]
-
-        return result || [];
-    }, [groupedData]);
-
-    const getDataByMonth = useCallback((selectedMonth) => {
-        const result = data
-            .flat()
-            .filter(it => it.date.getMonth() + 1 === selectedMonth)
-
-        return result ? Object.values(groupByKey(result, 'dateFormatted')) : result;
-    }, [data]);
-
-    const daySelectOptions = useMemo(() => workedDays.map(day => ({
-        key: day,
-        text: day,
-        value: day
-    })), [workedDays]);
+    const daySelectOptions = useMemo(() => buildDaySelectOptions(workedDays), [workedDays]);
 
     const routes = useMemo(() => ([
         {
@@ -62,7 +49,7 @@ const MainView = ({ data, refreshData }) => {
                     element: (
                         <DailyDataView
                             options={daySelectOptions}
-                            getData={getDataByDay}
+                            getData={getTableDataByDay}
                             component={DailyTableView}
                         />
                     ),
@@ -71,7 +58,7 @@ const MainView = ({ data, refreshData }) => {
                     path: "montly",
                     element: (
                         <MonthlyDataView
-                            getData={getDataByMonth}
+                            getData={getTableDataByMonth}
                             component={MonthlyTableView}
                         />
                     )
@@ -80,7 +67,7 @@ const MainView = ({ data, refreshData }) => {
                     path: '',
                     element: (
                         <AllDataView
-                            getData={getAllData}
+                            getData={getAllTableData}
                             component={AllTimeTableView}
                         />
                     )
@@ -96,7 +83,7 @@ const MainView = ({ data, refreshData }) => {
                     element: (
                         <DailyDataView
                             options={daySelectOptions}
-                            getData={getDataByDay}
+                            getData={getStaisticsDataByDay}
                             component={DailyStatisticsView}
                         />
                     )
@@ -105,7 +92,7 @@ const MainView = ({ data, refreshData }) => {
                     path: "montly",
                     element: (
                         <MonthlyDataView
-                            getData={getDataByMonth}
+                            getData={getStatisticsDataByMonth}
                             component={MonthlyStatisticsView}
                         />
                     )
@@ -114,7 +101,7 @@ const MainView = ({ data, refreshData }) => {
                     path: '',
                     element: (
                         <AllDataView
-                            getData={getAllData}
+                            getData={getAllStatisticsData}
                             component={AllTimeStatisticsView}
                         />
                     )
@@ -134,31 +121,38 @@ const MainView = ({ data, refreshData }) => {
             path: '*',
             element: <NoContentView />
         }
-    ]), [daySelectOptions, getAllData, getDataByDay, getDataByMonth])
+    ]), [daySelectOptions, getAllStatisticsData, getAllTableData, getStaisticsDataByDay, getStatisticsDataByMonth, getTableDataByDay, getTableDataByMonth])
+
+    const reactRoutes = useRoutes(routes)
+
+    if (!isDataTransformed) {
+        return <Loader text="Подготовка данных" />
+    }
 
     return (
-        <Grid centered padded stackable>
-            <Grid.Row>
-                <Grid.Column widescreen={4}>
-                    <MainMenu
-                        refreshData={refreshData}
-                    />
-                </Grid.Column>
+        <AccentColorSetingContextProvider>
+            <Grid centered padded stackable>
+                <Grid.Row>
+                    <Grid.Column widescreen={4}>
+                        <MainMenu
+                            refreshData={refreshData}
+                        />
+                    </Grid.Column>
 
-                <Grid.Column stretched width={12}>
-
-                    <GridRow>
-                        <GridColumn>
-                            <Segment padded>
-                                {
-                                    useRoutes(routes)
-                                }
-                            </Segment>
-                        </GridColumn>
-                    </GridRow>
-                </Grid.Column>
-            </Grid.Row>
-        </Grid>
+                    <Grid.Column stretched width={12}>
+                        <GridRow>
+                            <GridColumn>
+                                <Segment padded>
+                                    {
+                                        reactRoutes
+                                    }
+                                </Segment>
+                            </GridColumn>
+                        </GridRow>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+        </AccentColorSetingContextProvider>
     )
 }
 

@@ -1,50 +1,77 @@
 import React from "react";
-import { Statistic } from "semantic-ui-react";
-import { sum } from "../../../utils/ArrayUtil";
+import { Grid, Statistic } from "semantic-ui-react";
 import Price from "../../Price";
 
-const Statistics = ({ data }) => {
+const Statistics = ({ data: { generalData, averageData } }) => {
 
-    const buildStatisticsData = (data) => ({
-        daysCount: data.length,
-        totalIncome: sum(data.flat().map(({ totalPriceAfterTaxes }) => totalPriceAfterTaxes)),
-        operationsCount: data.flat().length
-    });
-
-    const { daysCount, operationsCount, totalIncome } = buildStatisticsData(data);
+    const { daysCount, operationsCount, totalIncome } = generalData;
 
     return (
         <div className="statistics">
-            <Statistic.Group horizontal>
-                {
-                    daysCount === null || daysCount === undefined ? '' : (
-                        <Statistic
-                            color="yellow"
-                        >
-                            <Statistic.Value>{daysCount}</Statistic.Value>
-                            <Statistic.Label>Дней отработано</Statistic.Label>
-                        </Statistic>
-                    )
-                }
+            <Grid padded stackable>
+                <Grid.Row columns={2}>
+                    <Grid.Column>
+                        <Statistic.Group horizontal>
+                            {
+                                daysCount === null || daysCount === undefined ? '' : (
+                                    <Statistic
+                                        color="yellow"
+                                    >
+                                        <Statistic.Value>{daysCount}</Statistic.Value>
+                                        <Statistic.Label>Дней отработано</Statistic.Label>
+                                    </Statistic>
+                                )
+                            }
 
-                <Statistic
-                    color="teal"
-                >
-                    <Statistic.Value>{operationsCount}</Statistic.Value>
-                    <Statistic.Label>Процедур произведено</Statistic.Label>
-                </Statistic>
+                            <Statistic
+                                color="teal"
+                            >
+                                <Statistic.Value>{operationsCount}</Statistic.Value>
+                                <Statistic.Label>Процедур произведено</Statistic.Label>
+                            </Statistic>
 
-                <Statistic
-                    color="blue"
-                >
-                    <Statistic.Value>
-                        <Price euro>
-                            {totalIncome}
-                        </Price>
-                    </Statistic.Value>
-                    <Statistic.Label>Заработано</Statistic.Label>
-                </Statistic>
-            </Statistic.Group>
+                            <Statistic
+                                color="green"
+                            >
+                                <Statistic.Value>
+                                    <Price euro>
+                                        {totalIncome}
+                                    </Price>
+                                </Statistic.Value>
+                                <Statistic.Label>Заработано</Statistic.Label>
+                            </Statistic>
+                        </Statistic.Group>
+                    </Grid.Column>
+
+                    {
+                        averageData ? (
+                            <Grid.Column>
+                                <Statistic.Group horizontal>
+
+                                    <Statistic
+                                        color="orange"
+                                    >
+                                        <Statistic.Value>{averageData.operationsCountPerDay.toFixed(0)}</Statistic.Value>
+                                        <Statistic.Label>Процедур в среднем за день</Statistic.Label>
+                                    </Statistic>
+
+                                    <Statistic
+                                        color="blue"
+                                    >
+                                        <Statistic.Value>
+                                            <Price euro>
+                                                {averageData.incomePerDay}
+                                            </Price>
+                                        </Statistic.Value>
+                                        <Statistic.Label>В среднем за день</Statistic.Label>
+                                    </Statistic>
+
+                                </Statistic.Group>
+                            </Grid.Column>
+                        ) : ''
+                    }
+                </Grid.Row>
+            </Grid>
         </div>
     );
 }
