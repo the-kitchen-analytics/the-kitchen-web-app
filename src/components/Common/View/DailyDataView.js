@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Grid, Header, Divider } from "semantic-ui-react";
-import DaySelect from '../DaySelect';
+import { Grid } from "semantic-ui-react";
+import { DaySelect } from "../Inputs/Dropdown";
+import GenericView from "./GenericView";
 
 const DailyDataView = ({ getData, options, component }) => {
 
@@ -9,20 +10,14 @@ const DailyDataView = ({ getData, options, component }) => {
     const Component = component;
 
     return (
-        <Grid>
-            <Grid.Row>
-                <Grid.Column>
-                    <Header as='h1'>
-                        За день
-                    </Header>
-                </Grid.Column>
-            </Grid.Row>
-
+        <GenericView
+            header="За день"
+        >
             <Grid.Row>
                 <Grid.Column
-                    tablet={8}
-                    largeScreen={6}
-                    widescreen={8}
+                    tablet={4}
+                    largeScreen={4}
+                    widescreen={4}
                     mobile={16}
                 >
                     <DaySelect
@@ -33,8 +28,6 @@ const DailyDataView = ({ getData, options, component }) => {
                 </Grid.Column>
             </Grid.Row>
 
-            <Divider />
-
             <Grid.Row>
                 <Grid.Column>
                     <Component
@@ -42,7 +35,7 @@ const DailyDataView = ({ getData, options, component }) => {
                     />
                 </Grid.Column>
             </Grid.Row>
-        </Grid>
+        </GenericView>
     )
 };
 

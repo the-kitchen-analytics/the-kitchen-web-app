@@ -1,8 +1,21 @@
 import React from "react";
-import { Grid, Statistic } from "semantic-ui-react";
+import { Grid, Segment, Statistic } from "semantic-ui-react";
 import Price from "../../Price";
+import { NoContentView } from "../../View";
 
 const Statistics = ({ data: { generalData, averageData } }) => {
+
+    if (generalData === null && averageData === null) {
+        return (
+            <Segment
+                basic
+                padded
+                textAlign="center"
+            >
+                <NoContentView />
+            </Segment>
+        )
+    }
 
     const { daysCount, operationsCount, totalIncome } = generalData;
 

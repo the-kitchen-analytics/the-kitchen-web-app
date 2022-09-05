@@ -7,7 +7,7 @@ const buildStatisticsData = (rawData) => {
     const daysCount = workedDays.length;
 
     return {
-        generalData: {
+        generalData: _.isEmpty(rawData) ? null : {
             daysCount,
             totalIncome,
             operationsCount,

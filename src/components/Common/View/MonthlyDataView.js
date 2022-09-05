@@ -1,112 +1,87 @@
-import React, { useState, useMemo } from "react";
-import { Grid, Header, Divider } from "semantic-ui-react";
-import MonthSelect from "../MonthSelect";
-import { getCurrentMonth } from "../../../utils/DateUtils";
+import _ from "lodash";
+import React, { useState } from "react";
+import { Grid } from "semantic-ui-react";
+import { getCurrentDate } from "../../../utils/DateUtils";
+import { MonthSelect, YearSelect } from "../Inputs/Dropdown";
+import { Carosel } from "../Inputs";
+import GenericView from "./GenericView";
+
+const now = getCurrentDate();
+const CURRENT_MONTH_AND_YEAR = {
+    month: now.getMonth() + 1,
+    year: now.getFullYear()
+}
 
 const MonthlyDataView = ({ getData, component }) => {
 
-    const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth() + 1)
+    const [selectedDate, setSelectedDate] = useState(CURRENT_MONTH_AND_YEAR)
 
-    const monthSelectOptions = useMemo(() => ([
-        {
-            key: 0,
-            text: 'Январь',
-            value: 1
-        },
-        {
-            key: 1,
-            text: 'Февраль',
-            value: 2
-        },
-        {
-            key: 2,
-            text: 'Март',
-            value: 3
-        },
-        {
-            key: 3,
-            text: 'Апрель',
-            value: 4
-        },
-        {
-            key: 4,
-            text: 'Май',
-            value: 5
-        },
-        {
-            key: 5,
-            text: 'Июнь',
-            value: 6
-        },
-        {
-            key: 6,
-            text: 'Июль',
-            value: 7
-        },
-        {
-            key: 7,
-            text: 'Август',
-            value: 8
-        },
-        {
-            key: 8,
-            text: 'Сентябрь',
-            value: 9
-        },
-        {
-            key: 9,
-            text: 'Октябрь',
-            value: 10
-        },
-        {
-            key: 10,
-            text: 'Ноябрь',
-            value: 11
-        },
-        {
-            key: 11,
-            text: 'Декабрь',
-            value: 12
-        }
-    ]), [])
+    const setSelectedMonth = (month) => {
+        setSelectedDate((selectedDate) => ({ ...selectedDate, month }));
+    }
+
+    const setSelectedYear = (year) => {
+        setSelectedDate((selectedDate) => ({ ...selectedDate, year }));
+    }
 
     const Component = component;
 
     return (
-        <Grid>
-            <Grid.Row>
-                <Grid.Column>
-                    <Header as='h1'>
-                        За месяц
-                    </Header>
-                </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row columns={2}>
+        <GenericView
+            header="За месяц"
+        >
+            <Grid.Row columns='equal'>
                 <Grid.Column
-                    tablet={8}
-                    largeScreen={6}
-                    widescreen={8}
-                    mobile={16}
+                    width={4}
                 >
                     <MonthSelect
-                        value={selectedMonth}
-                        options={monthSelectOptions}
+                        value={selectedDate.month}
                         handleChange={(e, { value }) => setSelectedMonth(value)}
+                    />
+                </Grid.Column>
+
+                <Grid.Column
+                    width={4}
+                >
+                    <YearSelect
+                        value={selectedDate.year}
+                        handleChange={(e, { value }) => setSelectedYear(value)}
+                    />
+                </Grid.Column>
+
+                <Grid.Column
+                    width={6}
+                    textAlign="right"
+                    floated="right"
+                >
+                    <Carosel
+                        previousItemProps={{
+                            disabled: selectedDate.month <= 1,
+                            onClick: () => setSelectedMonth(selectedDate.month - 1)
+                        }}
+                        resetButtonProps={{
+                            content: 'Текущий месяц',
+                            disabled: _.isEqual(CURRENT_MONTH_AND_YEAR, selectedDate),
+                            onClick: () => setSelectedDate(CURRENT_MONTH_AND_YEAR)
+                        }}
+                        nextItemProps={{
+                            disabled: selectedDate.month >= 12,
+                            onClick: () => setSelectedMonth(selectedDate.month + 1)
+                        }}
                     />
                 </Grid.Column>
             </Grid.Row>
 
-            <Divider />
+            {/* <Divider /> */}
 
             <Grid.Row>
                 <Grid.Column>
                     <Component
-                        data={getData(selectedMonth)}
+                        data={getData(selectedDate.month)}
                     />
                 </Grid.Column>
             </Grid.Row>
-        </Grid>
+        </GenericView>
     )
 }
 
