@@ -1,87 +1,47 @@
 import React from "react";
+import _ from "lodash";
 import { Grid, Segment, Statistic } from "semantic-ui-react";
-import Price from "../../Price";
 import { NoContentView } from "../../View";
 
-const Statistics = ({ data: { generalData, averageData } }) => {
+const Statistics = ({ data = [] }) => {
 
-    if (generalData === null && averageData === null) {
+    if (_.isEmpty(data.flat())) {
         return (
-            <Segment
-                basic
-                padded
-                textAlign="center"
-            >
+            <Segment>
                 <NoContentView />
             </Segment>
         )
     }
 
-    const { daysCount, operationsCount, totalIncome } = generalData;
+    const buildStatisticComponent = (entry) => (
+        <Statistic
+            key={entry.name}
+            color={entry.color}
+        >
+            <Statistic.Value>{entry.renderValue()}</Statistic.Value>
+            <Statistic.Label>{entry.renderLabel()}</Statistic.Label>
+        </Statistic>
+    )
 
     return (
         <div className="statistics">
             <Grid padded stackable>
                 <Grid.Row columns={2}>
-                    <Grid.Column>
-                        <Statistic.Group horizontal>
-                            {
-                                daysCount === null || daysCount === undefined ? '' : (
-                                    <Statistic
-                                        color="yellow"
-                                    >
-                                        <Statistic.Value>{daysCount}</Statistic.Value>
-                                        <Statistic.Label>Дней отработано</Statistic.Label>
-                                    </Statistic>
-                                )
-                            }
-
-                            <Statistic
-                                color="teal"
-                            >
-                                <Statistic.Value>{operationsCount}</Statistic.Value>
-                                <Statistic.Label>Процедур произведено</Statistic.Label>
-                            </Statistic>
-
-                            <Statistic
-                                color="green"
-                            >
-                                <Statistic.Value>
-                                    <Price euro>
-                                        {totalIncome}
-                                    </Price>
-                                </Statistic.Value>
-                                <Statistic.Label>Заработано</Statistic.Label>
-                            </Statistic>
-                        </Statistic.Group>
-                    </Grid.Column>
-
                     {
-                        averageData ? (
-                            <Grid.Column>
-                                <Statistic.Group horizontal>
-
-                                    <Statistic
-                                        color="orange"
-                                    >
-                                        <Statistic.Value>{averageData.operationsCountPerDay.toFixed(0)}</Statistic.Value>
-                                        <Statistic.Label>Процедур в среднем за день</Statistic.Label>
-                                    </Statistic>
-
-                                    <Statistic
-                                        color="blue"
-                                    >
-                                        <Statistic.Value>
-                                            <Price euro>
-                                                {averageData.incomePerDay}
-                                            </Price>
-                                        </Statistic.Value>
-                                        <Statistic.Label>В среднем за день</Statistic.Label>
-                                    </Statistic>
-
+                        data.map((entries, i) => (
+                            <Grid.Column
+                                key={entries.map(it => it.name).join()}
+                            >
+                                <Statistic.Group
+                                    size="small"
+                                    horizontal
+                                >
+                                    {
+                                        entries.map(buildStatisticComponent)
+                                    }
                                 </Statistic.Group>
                             </Grid.Column>
-                        ) : ''
+                        ))
                     }
                 </Grid.Row>
             </Grid>
