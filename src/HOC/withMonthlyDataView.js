@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import MonthSelect from "../components/Common/MonthSelect";
+import MonthSelect from "../components/shared/MonthSelect";
 import { Grid, Header, Divider } from "semantic-ui-react";
 import { getCurrentMonth } from "../utils/DateUtils";
 

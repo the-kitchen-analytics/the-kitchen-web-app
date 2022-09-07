@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { buildStatisticsData } from "../services/statisticsService";
+import { buildStatisticsData } from "../utils/statistics";
 
 const useStatisticsFilters = ({ getAllData, getDataByDay, getDataByMonth }) => {
 
