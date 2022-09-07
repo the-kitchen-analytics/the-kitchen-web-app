@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useRoutes, Navigate } from "react-router-dom";
 import { Grid, GridColumn, GridRow, Segment } from "semantic-ui-react";
-import { GenericView, DailyDataView, MonthlyDataView, AllDataView } from "../Common/View";
+import { DailyDataView, MonthlyDataView, AllDataView } from "../Common/View";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "./Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "./Statistics";
 import MainMenu from "../Common/MainMenu/MainMenu";
@@ -14,6 +14,7 @@ import useStatisticsFilters from "../../hooks/useStatisticsFilters";
 import buildDaySelectOptions from "../../services/buildDaySelectOptions";
 import useTableFilters from "../../hooks/useTableFilters";
 import { AccentColorSetingContextProvider } from "../../context/accentColorSettingContext";
+import SubmitDataView from "./SubmitData/SubmitDataView";
 
 
 const MainView = ({ data, refreshData }) => {
@@ -112,11 +113,17 @@ const MainView = ({ data, refreshData }) => {
         {
             path: "settings",
             element: (
-                <GenericView header="Настройки">
-                    <SettingsView />
-                </GenericView>
+                <SettingsView />
             )
         },
+
+        {
+            path: 'submitData',
+            element: (
+                <SubmitDataView />
+            )
+        },
+
         {
             path: '*',
             element: <NoContentView />

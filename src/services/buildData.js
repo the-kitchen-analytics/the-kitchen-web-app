@@ -12,9 +12,7 @@ const OPERATION_NAME_TITLE = 'Выберите набор услуг';
 const buildServiceData = (sheetData) => {
     console.debug("buildServiceData", sheetData);
 
-    const { data } = sheetData[0];
-
-    const serviceDataArray = data.map((dataEntry, i) => {
+    const serviceDataArray = sheetData.map((dataEntry, i) => {
         const id = i;
         const date = parseDate(dataEntry[DATE_TITLE]);
         const dateCreated = parseDate(dataEntry[DATE_CREATED_TITLE]);

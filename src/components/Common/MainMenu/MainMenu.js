@@ -4,7 +4,7 @@ import { Menu, Icon, Image, Divider } from "semantic-ui-react";
 import MenuItemWrapper from "./MenuItemWrapper";
 import { AllTimeTableView, DailyTableView, MonthlyTableView } from "../../View/Tables";
 import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from "../../View/Statistics";
-import { SettingsView } from "../../View";
+import { SettingsView, SubmitDataView } from "../../View";
 import { AccentColorSetingContext } from "../../../context/accentColorSettingContext";
 
 const LOGO_SRC = process.env.PUBLIC_URL + '/apple-touch-icon.png'
@@ -91,6 +91,14 @@ const MainMenu = ({ refreshData }) => {
             </Menu.Item>
 
             <Divider fitted />
+
+            <MenuItemWrapper
+                to={'submitData'}
+                name={SubmitDataView.displayName}
+            >
+                <Icon name="check square" />
+                Отправить данные
+            </MenuItemWrapper>
 
             <MenuItemWrapper
                 to={'settings'}
