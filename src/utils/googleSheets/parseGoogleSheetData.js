@@ -44,7 +44,7 @@ const parseGoogleSheetData = (sheetData) => {
         return createEntry(id, date, operations, dateCreated);
     });
 
-    return sort(serviceDataArray).reverse();
+    return sort(serviceDataArray);
 }
 
 export default parseGoogleSheetData;
