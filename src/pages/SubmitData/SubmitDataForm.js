@@ -81,10 +81,14 @@ const SubmitDataForm = ({ refreshData }) => {
         }));
     }
 
+    const getSubmitButtonLabel = useCallback(() => {
+        return 'Сохранить ' + (formData.procedures.length > 0 ? `(${formData.procedures.length})` : '')
+    }, [formData.procedures]);
+
     return (
         <Form
-            method="post"
             onSubmit={handleFormSubmit}
+            loading={isHttpRequestPerformed}
         >
             <Form.Field required>
                 <DatePicker
@@ -115,27 +119,28 @@ const SubmitDataForm = ({ refreshData }) => {
             />
 
             <Form.Field>
-                <Button.Group
-                    size="large"
+                <Button
                     fluid
-                >
-                    <Button
-                        type="button"
-                        content="Очистить"
-                        disabled={_.isEmpty(formData.procedures) || isHttpRequestPerformed}
-                        icon="trash"
-                        onClick={handleRemoveAllProcedures}
-                    />
+                    size="large"
+                    type="button"
+                    content="Очистить"
+                    disabled={_.isEmpty(formData.procedures) || isHttpRequestPerformed}
+                    icon="trash"
+                    onClick={handleRemoveAllProcedures}
+                />
+            </Form.Field>
 
-                    <Button
-                        icon="save"
-                        type="submit"
-                        color={accentColor}
-                        content="Сохранить"
-                        disabled={!isFormDataValid() || isHttpRequestPerformed}
-                        loading={isHttpRequestPerformed}
-                    />
-                </Button.Group>
+            <Form.Field>
+                <Button
+                    fluid
+                    size="large"
+                    icon="save"
+                    type="submit"
+                    color={accentColor}
+                    content={getSubmitButtonLabel()}
+                    disabled={!isFormDataValid() || isHttpRequestPerformed}
+                    loading={isHttpRequestPerformed}
+                />
             </Form.Field>
         </Form>
     )

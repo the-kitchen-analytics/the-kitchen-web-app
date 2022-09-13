@@ -1,17 +1,22 @@
-import React, { useState, useCallback, useMemo } from "react";
-import { Accordion, Form, Label, Divider } from "semantic-ui-react";
+import React, { useCallback, useMemo, Fragment } from "react";
+import { Accordion, Divider, Form, Label } from "semantic-ui-react";
 import AccorditionItem from "./AccorditionItem";
 import _ from "lodash";
 
 import proceduresData from "../../data/operations.json";
 import { TYPE_MANICURE, TYPE_PEDICURE, TYPE_SPA } from "../../data/procedureTypes";
 import { buildPriceString } from "../../utils/money";
+import { useLocalStorage } from "../../hooks";
 
-const ProceduresCheckboxGroup = ({ formData, setFormData }) => {
+const ProceduresCheckboxGroup = ({ formData, setFormData, accorditionActiveIndex, setAccorditionActiveIndex }) => {
 
-    const [shouldDisplayHalfPartProcedures, setShouldDisplayHalfPartProcedures] = useState(false);
-    const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useState(false);
-    const [accorditionActiveIndex, setAccorditionActiveIndex] = useState(-1);
+    const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures]);
+
+    const [shouldDisplayHalfPartProcedures, setShouldDisplayHalfPartProcedures] = useLocalStorage('shouldDisplayHalfPartProcedures', false);
+
+    const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', false);
+
+    const [shouldDisplaySelectedProcedures, setShouldDisplaySelectedProcedures] = useLocalStorage('shouldDisplaySelectedProcedures', false);
 
     const handleAccorditionChange = (e, titleProps) => {
         const { index } = titleProps
@@ -38,6 +43,10 @@ const ProceduresCheckboxGroup = ({ formData, setFormData }) => {
         setShouldDisplayProcedurePrice(value => !value);
     }
 
+    const toggleShouldDisplaySelectedProcedures = () => {
+        setShouldDisplaySelectedProcedures(value => !value);
+    }
+
     const addProcedure = useCallback((procedure) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -56,41 +65,58 @@ const ProceduresCheckboxGroup = ({ formData, setFormData }) => {
         checked ? addProcedure(procedure) : removeProcedure(procedure)
     }, [addProcedure, removeProcedure]);
 
-    const procedureToCheckboxItem = useCallback((procedure) => (
-        <Form.Checkbox
-            key={procedure.id}
-            name={procedure.name}
-            label={
-                shouldDisplayProcedurePrice
-                    ? buildPriceString(procedure.name, procedure.priceBeforeTaxes)
-                    : procedure.name
-            }
-            onChange={(event, { checked }) => handleProcedureItemChange(procedure, checked)}
-            checked={formData.procedures.includes(procedure)}
-        />
+    const procedureToCheckboxItem = useCallback((procedure, i) => (
+        <Fragment key={procedure.id}>
+            {i !== 0 && <Divider />}
+            <Form.Checkbox
+                style={{ width: '100%' }}
+                name={procedure.name}
+                label={
+                    shouldDisplayProcedurePrice
+                        ? buildPriceString(procedure.name, procedure.priceBeforeTaxes)
+                        : procedure.name
+                }
+                onChange={(event, { checked }) => handleProcedureItemChange(procedure, checked)}
+                checked={formData.procedures.map(({ id }) => id).includes(procedure.id)}
+            />
+        </Fragment>
+
     ), [formData, handleProcedureItemChange, shouldDisplayProcedurePrice]);
 
+    const createAccorditionItem = useCallback((title, data) => {
+
+        const count = selectedIds
+            .filter(selectedId => data.map(({ id }) => id).includes(selectedId))
+            .length;
+
+        return {
+            title,
+            data,
+            count
+        }
+    }, [selectedIds])
+
     const accorditionItems = useMemo(() => ([
-        {
-            title: 'Маникюр',
-            data: proceduresData
+        createAccorditionItem(
+            'Маникюр',
+            proceduresData
                 .filter(getTypeFilter(TYPE_MANICURE))
                 .filter(halfPartProceduresFilter)
-        },
+        ),
 
-        {
-            title: 'Педикюр',
-            data: proceduresData
+        createAccorditionItem(
+            'Педикюр',
+            proceduresData
                 .filter(getTypeFilter(TYPE_PEDICURE))
-                .filter(halfPartProceduresFilter)
-        },
+                .filter(halfPartProceduresFilter),
+        ),
 
-        {
-            title: 'SPA-услуги',
-            data: proceduresData
+        createAccorditionItem(
+            'SPA-услуги',
+            proceduresData
                 .filter(getTypeFilter(TYPE_SPA))
-        }
-    ]), [getTypeFilter, halfPartProceduresFilter])
+        )
+    ]), [createAccorditionItem, getTypeFilter, halfPartProceduresFilter])
 
     return (
         <Form.Group grouped required>
@@ -98,8 +124,8 @@ const ProceduresCheckboxGroup = ({ formData, setFormData }) => {
 
             <Form.Field>
                 <Form.Checkbox
-                    label="Скрыть 1/2 услуги"
-                    checked={!shouldDisplayHalfPartProcedures}
+                    label="Показывать 1/2 услуги"
+                    checked={shouldDisplayHalfPartProcedures}
                     onChange={toggleShouldDisplayHalfPartProcedures}
                 />
             </Form.Field>
@@ -112,44 +138,65 @@ const ProceduresCheckboxGroup = ({ formData, setFormData }) => {
                 />
             </Form.Field>
 
-            <Accordion>
+            <Form.Field>
+                <Form.Checkbox
+                    label="Показывать выбранные услуги"
+                    checked={shouldDisplaySelectedProcedures}
+                    onChange={toggleShouldDisplaySelectedProcedures}
+                />
+            </Form.Field>
 
-                {
-                    accorditionItems.map(({ title, data }, index) => (
-                        <AccorditionItem
-                            key={title}
-                            title={title}
-                            index={index}
-                            activeIndex={accorditionActiveIndex}
-                            handleToggle={handleAccorditionChange}
-                        >
+            <Form.Field>
+                <Divider hidden />
+
+                <Accordion
+                    styled
+                    fluid
+                >
+                    {
+                        accorditionItems.map(({ title, data, count }, index) => (
+                            <AccorditionItem
+                                key={title}
+                                title={title}
+                                index={index}
+                                activeIndex={accorditionActiveIndex}
+                                handleToggle={handleAccorditionChange}
+                                count={count}
+                            >
+                                {
+                                    data.map(procedureToCheckboxItem)
+                                }
+                            </AccorditionItem>
+                        ))
+                    }
+                </Accordion>
+
+                <Divider hidden />
+            </Form.Field>
+
+            {
+                shouldDisplaySelectedProcedures && (
+                    <>
+                        <Form.Field label="Выбранные услуги:" />
+                        <Label.Group>
                             {
-                                data.map(procedureToCheckboxItem)
+                                formData.procedures.map(procedure => (
+                                    <Label
+                                        size="large"
+                                        key={procedure.id}
+                                        content={
+                                            shouldDisplayProcedurePrice ?
+                                                buildPriceString(procedure.name, procedure.priceBeforeTaxes)
+                                                : procedure.name
+                                        }
+                                        onRemove={() => removeProcedure(procedure)}
+                                    />
+                                ))
                             }
-                        </AccorditionItem>
-                    ))
-                }
-
-            </Accordion>
-
-            <Divider />
-
-            <Form.Field label="Выбранные услуги:" />
-            <Label.Group>
-                {
-                    formData.procedures.map(procedure => (
-                        <Label
-                            key={procedure.id}
-                            content={
-                                shouldDisplayProcedurePrice ?
-                                    buildPriceString(procedure.name, procedure.priceBeforeTaxes)
-                                    : procedure.name
-                            }
-                            onRemove={() => removeProcedure(procedure)}
-                        />
-                    ))
-                }
-            </Label.Group>
+                        </Label.Group>
+                    </>
+                )
+            }
 
         </Form.Group>
     )
