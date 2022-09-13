@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion, Icon } from "semantic-ui-react";
 
-const AccorditionItem = ({ title, index, activeIndex, handleToggle, count, children }) => {
+const AccordionItem = ({ title, index, activeIndex, handleToggle, count, children }) => {
 
     const isActive = index === activeIndex
 
@@ -13,7 +13,7 @@ const AccorditionItem = ({ title, index, activeIndex, handleToggle, count, child
                 onClick={handleToggle}
             >
                 <Icon name='dropdown' />
-                {title} {count !== 0 && ` (${count})`}
+                {title} {count !== 0 && `(${count})`}
             </Accordion.Title>
 
             <Accordion.Content active={isActive}>
@@ -25,4 +25,4 @@ const AccorditionItem = ({ title, index, activeIndex, handleToggle, count, child
     )
 }
 
-export default AccorditionItem;
+export default AccordionItem;

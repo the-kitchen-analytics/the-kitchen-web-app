@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, Fragment } from "react";
 import { Accordion, Divider, Form, Label } from "semantic-ui-react";
-import AccorditionItem from "./AccorditionItem";
+import AccordionItem from "./AccordionItem";
 import _ from "lodash";
 
 import proceduresData from "../../data/operations.json";
@@ -155,7 +155,7 @@ const ProceduresCheckboxGroup = ({ formData, setFormData, accorditionActiveIndex
                 >
                     {
                         accorditionItems.map(({ title, data, count }, index) => (
-                            <AccorditionItem
+                            <AccordionItem
                                 key={title}
                                 title={title}
                                 index={index}
@@ -166,7 +166,7 @@ const ProceduresCheckboxGroup = ({ formData, setFormData, accorditionActiveIndex
                                 {
                                     data.map(procedureToCheckboxItem)
                                 }
-                            </AccorditionItem>
+                            </AccordionItem>
                         ))
                     }
                 </Accordion>
