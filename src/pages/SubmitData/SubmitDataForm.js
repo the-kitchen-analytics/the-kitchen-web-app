@@ -15,7 +15,7 @@ import { buildWorkerSelectOptions } from "../../utils/ui/dropdown";
 import { useNavigate } from "react-router-dom";
 
 
-const SubmitDataForm = () => {
+const SubmitDataForm = ({ refreshData }) => {
 
     const navigate = useNavigate();
 
@@ -65,6 +65,7 @@ const SubmitDataForm = () => {
             date: parseDateFromDropdown(formData.date)
         }).then(() => {
             setIsHttpRequestPerformed(false);
+            refreshData()
             navigate('/')
         })
     }

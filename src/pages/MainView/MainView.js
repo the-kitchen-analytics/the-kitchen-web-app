@@ -9,7 +9,7 @@ const MainView = ({ data, refreshData }) => {
 
     const { groupedData, workedDays, isDataTransformed } = useTransformedData(data);
 
-    const reactRoutes = useRoutes(data, groupedData, workedDays)
+    const reactRoutes = useRoutes(data, refreshData, groupedData, workedDays)
 
     if (!isDataTransformed) {
         return <Loader text="Подготовка данных" />

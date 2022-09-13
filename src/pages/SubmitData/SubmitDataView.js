@@ -3,13 +3,15 @@ import { Grid } from "semantic-ui-react";
 import { GenericView } from "../../components/shared/View";
 import SubmitDataForm from "./SubmitDataForm";
 
-const SubmitDataView = () => {
+const SubmitDataView = ({ refreshData }) => {
 
     return (
         <GenericView header="Отправить данные">
             <Grid.Row>
                 <Grid.Column>
-                    <SubmitDataForm />
+                    <SubmitDataForm
+                        refreshData={refreshData}
+                    />
                 </Grid.Column>
             </Grid.Row>
         </GenericView>

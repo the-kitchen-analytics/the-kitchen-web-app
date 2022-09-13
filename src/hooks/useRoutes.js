@@ -19,7 +19,7 @@ import SettingsView from "../pages/Settings/SettingsView";
 import SubmitDataView from "../pages/SubmitData/SubmitDataView";
 import NoContentView from "../pages/NoContentView";
 
-const useRoutes = (data, groupedData, workedDays) => {
+const useRoutes = (data, refreshData, groupedData, workedDays) => {
 
     const dataFilters = useDataFilters(data, groupedData);
 
@@ -121,7 +121,9 @@ const useRoutes = (data, groupedData, workedDays) => {
             {
                 path: 'submitData',
                 element: (
-                    <SubmitDataView />
+                    <SubmitDataView
+                        refreshData={refreshData}
+                    />
                 )
             },
 
@@ -137,7 +139,8 @@ const useRoutes = (data, groupedData, workedDays) => {
         getStaisticsDataByDay,
         getStatisticsDataByMonth,
         getTableDataByDay,
-        getTableDataByMonth
+        getTableDataByMonth,
+        refreshData
     ])
 
     return useReactRoutes(routes)
