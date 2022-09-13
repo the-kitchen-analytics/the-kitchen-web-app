@@ -13,7 +13,15 @@ import _ from "lodash";
 import { DatePicker } from "../../components/ui/Input";
 import { buildWorkerSelectOptions } from "../../utils/ui/dropdown";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "../../hooks";
 
+const INITIAL_FORM_DATA = Object.freeze({
+    date: formatDateForDatePicker(getCurrentDate()),
+    worker: workersData.length === 1 ? workersData[0].name : '',
+    procedures: []
+});
+
+const INITIAL_ACORDITION_INDEX = -1;
 
 const SubmitDataForm = ({ refreshData }) => {
 
@@ -22,14 +30,9 @@ const SubmitDataForm = ({ refreshData }) => {
     const apiService = useContext(ApiServiceContext);
     const { settings: { accentColor } } = useContext(UserSettingsContext);
 
-    const [formData, setFormData] = useState({
-        date: formatDateForDatePicker(getCurrentDate()),
-        worker: workersData.length === 1 ? workersData[0].name : '',
-        procedures: []
-    });
-
+    const [formData, setFormData] = useLocalStorage('submitDataForm', INITIAL_FORM_DATA);
+    const [accorditionActiveIndex, setAccorditionActiveIndex] = useLocalStorage(INITIAL_ACORDITION_INDEX);
     const [isHttpRequestPerformed, setIsHttpRequestPerformed] = useState(false);
-
     const [workerSelectOptions] = useState(buildWorkerSelectOptions(workersData));
 
     const handleInputChangeWrapper = useCallback((e) => handleInputChange(e, setFormData), [setFormData]);
@@ -54,39 +57,44 @@ const SubmitDataForm = ({ refreshData }) => {
         }
 
         return true;
-    }, [isDateFieldValid, isWorkerFieldValid, isProceduresFieldValid])
+    }, [isDateFieldValid, isWorkerFieldValid, isProceduresFieldValid]);
 
-    const handleFormSubmit = async (e) => {
+    const clearForm = useCallback(() => {
+        setFormData(INITIAL_FORM_DATA)
+    }, [setFormData]);
+
+    const handleFormSubmit = (e) => {
         e.preventDefault();
         setIsHttpRequestPerformed(true);
+        setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
 
         apiService.postData({
             ...formData,
             date: parseDateFromDropdown(formData.date)
         }).then(() => {
             setIsHttpRequestPerformed(false);
-            refreshData()
-            navigate('/')
-        })
+            clearForm();
+            refreshData();
+            navigate('/');
+        });
     }
 
     const shouldDisableWorkerSelect = useMemo(() => {
         return workerSelectOptions.length === 1 || isWorkerFieldValid()
     }, [workerSelectOptions, isWorkerFieldValid]);
 
-    const handleRemoveAllProcedures = () => {
-        setFormData(oldData => ({
-            ...oldData,
-            procedures: []
-        }));
-    }
-
     const getSubmitButtonLabel = useCallback(() => {
         return 'Сохранить ' + (formData.procedures.length > 0 ? `(${formData.procedures.length})` : '')
     }, [formData.procedures]);
 
+    const handleClearFromButtonClick = useCallback(() => {
+        setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
+        clearForm();
+    }, [setAccorditionActiveIndex, clearForm])
+
     return (
         <Form
+            size="large"
             onSubmit={handleFormSubmit}
             loading={isHttpRequestPerformed}
         >
@@ -116,6 +124,8 @@ const SubmitDataForm = ({ refreshData }) => {
             <ProceduresCheckboxGroup
                 formData={formData}
                 setFormData={setFormData}
+                accorditionActiveIndex={accorditionActiveIndex}
+                setAccorditionActiveIndex={setAccorditionActiveIndex}
             />
 
             <Form.Field>
@@ -126,7 +136,7 @@ const SubmitDataForm = ({ refreshData }) => {
                     content="Очистить"
                     disabled={_.isEmpty(formData.procedures) || isHttpRequestPerformed}
                     icon="trash"
-                    onClick={handleRemoveAllProcedures}
+                    onClick={handleClearFromButtonClick}
                 />
             </Form.Field>
 
