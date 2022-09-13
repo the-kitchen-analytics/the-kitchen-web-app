@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, Fragment } from "react";
+import React, { useCallback, useMemo, Fragment, useState } from "react";
 import { Accordion, Divider, Form, Label } from "semantic-ui-react";
 import AccordionItem from "./AccordionItem";
 import _ from "lodash";
@@ -12,7 +12,7 @@ const ProceduresCheckboxGroup = ({ formData, setFormData, accorditionActiveIndex
 
     const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures]);
 
-    const [shouldDisplayHalfPartProcedures, setShouldDisplayHalfPartProcedures] = useLocalStorage('shouldDisplayHalfPartProcedures', false);
+    const [shouldDisplayHalfPartProcedures, setShouldDisplayHalfPartProcedures] = useState(false);
 
     const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', false);
 
