@@ -30,8 +30,6 @@ const sort = (entries) => {
 }
 
 const parseGoogleSheetData = (sheetData) => {
-    console.debug('parseGoogleSheetData', sheetData);
-
     const serviceDataArray = sheetData.map((dataEntry, i) => {
         const id = i;
         const date = parseDate(dataEntry[DATE_TITLE]);

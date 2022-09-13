@@ -88,15 +88,15 @@ const navigationBarOptions = Object.freeze([
         },
     },
 
-    // {
-    //     type: TYPE_ITEM,
-    //     itemProps: {
-    //         key: SUBMIT_DATA,
-    //         to: SUBMIT_DATA,
-    //     },
-    //     icon: 'check square',
-    //     text: 'Отправить данные'
-    // },
+    {
+        type: TYPE_ITEM,
+        itemProps: {
+            key: SUBMIT_DATA,
+            to: SUBMIT_DATA,
+        },
+        icon: 'check square',
+        text: 'Отправить данные'
+    },
 
     {
         type: TYPE_ITEM,

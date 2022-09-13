@@ -1,10 +1,15 @@
 import React from 'react';
-import Dashboard from './pages/Dashboard/Dashboard';
+import ApiServiceContext from './context/ApiServiceContext';
+import Dashboard from './pages/Dashboard';
+import { googleSheetsService } from './services';
 
 const App = () => {
+
     return (
         <div className="app">
-            <Dashboard />
+            <ApiServiceContext.Provider value={googleSheetsService}>
+                <Dashboard />
+            </ApiServiceContext.Provider>
         </div>
     );
 };

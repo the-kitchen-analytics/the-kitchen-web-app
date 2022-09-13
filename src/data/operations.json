@@ -1,0 +1,498 @@
+[
+    {
+        "priceBeforeTaxes": 35,
+        "name": "GASTRO SET-TOP MASTER",
+        "id": 1,
+        "priceAfterTaxes": 14,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 35,
+        "name": "THE KITCHEN. Cнятие, маникюр, гель-лак",
+        "id": 2,
+        "priceAfterTaxes": 14,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 38,
+        "name": "FRENCH PIE. Снятие, маникюр, френч гель-лак",
+        "id": 3,
+        "priceAfterTaxes": 15.2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 30,
+        "name": "SNACKY TIME. Cнятие, маникюр, покрытие onestep, OPI Infinite Shine, OPI Gel Break",
+        "id": 4,
+        "priceAfterTaxes": 12,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 28.999999999999996,
+        "name": "EASY FOOD. Снятие, экспресс маникюр, гель-лак",
+        "id": 5,
+        "priceAfterTaxes": 11.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 43,
+        "name": "HEALTHY FOOD. Снятие, маникюр, IBX, гель-лак",
+        "id": 6,
+        "priceAfterTaxes": 17.2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 25,
+        "name": "FAST FOOD. Снятие, экспресс маникюр, покрытие onestep, OPI Infinite Shine, OPI Gel Break",
+        "id": 7,
+        "priceAfterTaxes": 10,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 30,
+        "name": "DETOX. Снятие, маникюр, IBX",
+        "id": 8,
+        "priceAfterTaxes": 12,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 64,
+        "name": "HEALTHY FOOD. Снятие, педикюр, IBX, гель-лак",
+        "id": 9,
+        "priceAfterTaxes": 25.6,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 55.00000000000001,
+        "name": "THE KITCHEN. Снятие, педикюр, гель-лак",
+        "id": 10,
+        "priceAfterTaxes": 22,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 43,
+        "name": "FAST FOOD. Снятие, экспресс педикюр, гель-лак onestep, OPI Infinite Shine, OPI Gel Break",
+        "id": 11,
+        "priceAfterTaxes": 17.2,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 51,
+        "name": "SNACKY TIME. Снятие, педикюр, гель-лак onestep",
+        "id": 12,
+        "priceAfterTaxes": 20.4,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 60,
+        "name": "FRENCH PIE. Снятие, педикюр, гель-лак френч",
+        "id": 13,
+        "priceAfterTaxes": 24,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 47,
+        "name": "EASY FOOD. Снятие, экспресс педикюр, гель-лак",
+        "id": 14,
+        "priceAfterTaxes": 18.8,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 51,
+        "name": "DETOX. Снятие, педикюр, IBX",
+        "id": 15,
+        "priceAfterTaxes": 20.4,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 24,
+        "name": "Маникюр",
+        "id": 16,
+        "priceAfterTaxes": 9.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 17,
+        "name": "Экспресс маникюр",
+        "id": 17,
+        "priceAfterTaxes": 6.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 24,
+        "name": "Мужской маникюр",
+        "id": 18,
+        "priceAfterTaxes": 9.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 15,
+        "name": "Детский маникюр с покрытием лак (до 10 лет)",
+        "id": 19,
+        "priceAfterTaxes": 6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 13,
+        "name": "Восстановление ногтей IBX",
+        "id": 20,
+        "priceAfterTaxes": 5.2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 13,
+        "name": "Покрытие гель-лак Didier - OPI",
+        "id": 21,
+        "priceAfterTaxes": 5.2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 4.5,
+        "name": "Покрытие лак OPI/ Christina Fitzger",
+        "id": 22,
+        "priceAfterTaxes": 1.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 9,
+        "name": "Покрытие однофазное Didier",
+        "id": 23,
+        "priceAfterTaxes": 3.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 5,
+        "name": "Укрепление гелем",
+        "id": 24,
+        "priceAfterTaxes": 2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 3,
+        "name": "Ремонт ногтя",
+        "id": 25,
+        "priceAfterTaxes": 1.2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 12,
+        "name": "Снятие гель лак покрытия",
+        "id": 26,
+        "priceAfterTaxes": 4.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 5,
+        "name": "Дизайн",
+        "id": 27,
+        "priceAfterTaxes": 2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 2,
+        "name": "Наклейка",
+        "id": 28,
+        "priceAfterTaxes": 0.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 43,
+        "name": "Мужской педикюр",
+        "id": 29,
+        "priceAfterTaxes": 17.2,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 35,
+        "name": "Экспресс педикюр",
+        "id": 30,
+        "priceAfterTaxes": 14,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 43,
+        "name": "Педикюр",
+        "id": 31,
+        "priceAfterTaxes": 17.2,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 8,
+        "name": "Снятие гель лак покрытия в комплексе с другим покрытием",
+        "id": 32,
+        "priceAfterTaxes": 3.2,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 15,
+        "name": "SPA рук",
+        "id": 33,
+        "priceAfterTaxes": 6,
+        "type": "spa"
+    },
+    {
+        "priceBeforeTaxes": 10,
+        "name": "Скрабирование рук",
+        "id": 34,
+        "priceAfterTaxes": 4,
+        "type": "spa"
+    },
+    {
+        "priceBeforeTaxes": 10,
+        "name": "Скрабирование ног",
+        "id": 35,
+        "priceAfterTaxes": 4,
+        "type": "spa"
+    },
+    {
+        "priceBeforeTaxes": 10,
+        "name": "Массаж плеч и головы",
+        "id": 36,
+        "priceAfterTaxes": 4,
+        "type": "spa"
+    },
+    {
+        "priceBeforeTaxes": 25,
+        "name": "SPA ног",
+        "id": 37,
+        "priceAfterTaxes": 10,
+        "type": "spa"
+    },
+    {
+        "priceBeforeTaxes": 10,
+        "name": "Массаж ног",
+        "id": 38,
+        "priceAfterTaxes": 4,
+        "type": "spa"
+    },
+    {
+        "priceBeforeTaxes": 10,
+        "name": "Массаж рук",
+        "id": 39,
+        "priceAfterTaxes": 4,
+        "type": "spa"
+    },
+    {
+        "priceBeforeTaxes": 17.5,
+        "name": "1/2 GASTRO SET-TOP MASTER",
+        "id": 40,
+        "priceAfterTaxes": 7,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 17.5,
+        "name": "1/2 THE KITCHEN. Cнятие, маникюр, гель-лак",
+        "id": 41,
+        "priceAfterTaxes": 7,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 19,
+        "name": "1/2 FRENCH PIE. Снятие, маникюр, френч гель-лак",
+        "id": 42,
+        "priceAfterTaxes": 7.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 15,
+        "name": "1/2 SNACKY TIME. Cнятие, маникюр, покрытие onestep, OPI Infinite Shine, OPI Gel Break",
+        "id": 43,
+        "priceAfterTaxes": 6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 14.499999999999998,
+        "name": "1/2 EASY FOOD. Снятие, экспресс маникюр, гель-лак",
+        "id": 44,
+        "priceAfterTaxes": 5.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 21.5,
+        "name": "1/2 HEALTHY FOOD. Снятие, маникюр, IBX, гель-лак",
+        "id": 45,
+        "priceAfterTaxes": 8.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 12.5,
+        "name": "1/2 FAST FOOD. Снятие, экспресс маникюр, покрытие onestep, OPI Infinite Shine, OPI Gel Break",
+        "id": 46,
+        "priceAfterTaxes": 5,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 15,
+        "name": "1/2 DETOX. Снятие, маникюр, IBX",
+        "id": 47,
+        "priceAfterTaxes": 6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 32,
+        "name": "1/2 HEALTHY FOOD. Снятие, педикюр, IBX, гель-лак",
+        "id": 48,
+        "priceAfterTaxes": 12.8,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 27.500000000000004,
+        "name": "1/2 THE KITCHEN. Снятие, педикюр, гель-лак",
+        "id": 49,
+        "priceAfterTaxes": 11,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 21.5,
+        "name": "1/2 FAST FOOD. Снятие, экспресс педикюр, гель-лак onestep, OPI Infinite Shine, OPI Gel Break",
+        "id": 50,
+        "priceAfterTaxes": 8.6,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 25.5,
+        "name": "1/2 SNACKY TIME. Снятие, педикюр, гель-лак onestep",
+        "id": 51,
+        "priceAfterTaxes": 10.2,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 30,
+        "name": "1/2 FRENCH PIE. Снятие, педикюр, гель-лак френч",
+        "id": 52,
+        "priceAfterTaxes": 12,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 23.5,
+        "name": "1/2 EASY FOOD. Снятие, экспресс педикюр, гель-лак",
+        "id": 53,
+        "priceAfterTaxes": 9.4,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 25.5,
+        "name": "1/2 DETOX. Снятие, педикюр, IBX",
+        "id": 54,
+        "priceAfterTaxes": 10.2,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 12,
+        "name": "1/2 Маникюр",
+        "id": 55,
+        "priceAfterTaxes": 4.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 8.5,
+        "name": "1/2 Экспресс маникюр",
+        "id": 56,
+        "priceAfterTaxes": 3.4,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 12,
+        "name": "1/2 Мужской маникюр",
+        "id": 57,
+        "priceAfterTaxes": 4.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 7.5,
+        "name": "1/2 Детский маникюр с покрытием лак (до 10 лет)",
+        "id": 58,
+        "priceAfterTaxes": 3,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 6.5,
+        "name": "1/2 Восстановление ногтей IBX",
+        "id": 59,
+        "priceAfterTaxes": 2.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 6.5,
+        "name": "1/2 Покрытие гель-лак Didier - OPI",
+        "id": 60,
+        "priceAfterTaxes": 2.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 2.25,
+        "name": "1/2 Покрытие лак OPI/ Christina Fitzger",
+        "id": 61,
+        "priceAfterTaxes": 0.9,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 4.5,
+        "name": "1/2 Покрытие однофазное Didier",
+        "id": 62,
+        "priceAfterTaxes": 1.8,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 2.5,
+        "name": "1/2 Укрепление гелем",
+        "id": 63,
+        "priceAfterTaxes": 1,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 1.5,
+        "name": "1/2 Ремонт ногтя",
+        "id": 64,
+        "priceAfterTaxes": 0.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 6,
+        "name": "1/2 Снятие гель лак покрытия",
+        "id": 65,
+        "priceAfterTaxes": 2.4,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 2.5,
+        "name": "1/2 Дизайн",
+        "id": 66,
+        "priceAfterTaxes": 1,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 1,
+        "name": "1/2 Наклейка",
+        "id": 67,
+        "priceAfterTaxes": 0.4,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 21.5,
+        "name": "1/2 Мужской педикюр",
+        "id": 68,
+        "priceAfterTaxes": 8.6,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 17.5,
+        "name": "1/2 Экспресс педикюр",
+        "id": 69,
+        "priceAfterTaxes": 7,
+        "type": "pedicure"
+    },
+    {
+        "priceBeforeTaxes": 21.5,
+        "name": "1/2 Педикюр",
+        "id": 70,
+        "pedicure": 8.6,
+        "type": "manicure"
+    },
+    {
+        "priceBeforeTaxes": 4,
+        "name": "1/2 Снятие гель лак покрытия в комплексе с другим покрытием",
+        "id": 71,
+        "priceAfterTaxes": 1.6
+    }
+]

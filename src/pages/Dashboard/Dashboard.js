@@ -2,15 +2,17 @@ import React from "react";
 import { Container } from 'semantic-ui-react';
 import MainView from "../MainView";
 import { Loader } from "../../components/ui";
-import { useGoogleSheetDataFetch } from "../../hooks";
 import { BrowserRouter } from 'react-router-dom';
-import { parseGoogleSheetData } from "../../utils/googleSheets";
+import useFetchData from "../../hooks/useFetchData";
+import { useContext } from "react";
+import ApiServiceContext from "../../context/ApiServiceContext";
 
-const Dashboard = () => {
+const Dashboard = ({ fetchDataOptions }) => {
 
-    const { data, loading, error, refetch } = useGoogleSheetDataFetch();
+    const apiService = useContext(ApiServiceContext)
+    const { data, isLoading, hasError, refresh } = useFetchData(apiService.fetchData, apiService.transformData);
 
-    if (loading) {
+    if (isLoading) {
         return (
             <Container>
                 <Loader />
@@ -18,7 +20,7 @@ const Dashboard = () => {
         )
     }
 
-    if (error) {
+    if (hasError) {
         return (
             <Container>
                 <p>Error :(</p>
@@ -26,18 +28,15 @@ const Dashboard = () => {
         )
     }
 
-    console.debug("Render App!", loading, error, data)
-
-    const answers = data.find(list => list.id === process.env.REACT_APP_GOOGLE_SHEETS_LIST_ID).data
-    console.debug('answers', answers)
+    console.debug("Render App!", isLoading, hasError, data.length)
 
     return (
         <div className="app">
             <Container>
                 <BrowserRouter basename='the-kitchen-analytics-react-app'>
                     <MainView
-                        data={parseGoogleSheetData(answers)}
-                        refreshData={refetch}
+                        data={data}
+                        refreshData={refresh}
                     />
                 </BrowserRouter>
             </Container>

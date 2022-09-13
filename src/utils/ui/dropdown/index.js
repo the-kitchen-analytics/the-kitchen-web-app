@@ -1,5 +1,7 @@
 import buildDropdownOptions from "./buildDropdownOptions";
+import buildWorkerSelectOptions from "./buildWorkerSelectoptions";
 
 export {
-    buildDropdownOptions
+    buildDropdownOptions,
+    buildWorkerSelectOptions
 }

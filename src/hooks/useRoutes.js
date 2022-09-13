@@ -16,7 +16,7 @@ import {
 import { DailyTableView, MonthlyTableView, AllTimeTableView } from "../pages/Tables";
 import { DailyStatisticsView, MonthlyStatisticsView, AllTimeStatisticsView } from "../pages/Statistics";
 import SettingsView from "../pages/Settings/SettingsView";
-// import SubmitDataView from "../pages/SubmitData/SubmitDataView";
+import SubmitDataView from "../pages/SubmitData/SubmitDataView";
 import NoContentView from "../pages/NoContentView";
 
 const useRoutes = (data, groupedData, workedDays) => {
@@ -118,12 +118,12 @@ const useRoutes = (data, groupedData, workedDays) => {
                 )
             },
 
-            // {
-            //     path: 'submitData',
-            //     element: (
-            //         <SubmitDataView />
-            //     )
-            // },
+            {
+                path: 'submitData',
+                element: (
+                    <SubmitDataView />
+                )
+            },
 
             {
                 path: '*',
