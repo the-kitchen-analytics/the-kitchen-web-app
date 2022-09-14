@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Header, Icon, Segment, Label } from "semantic-ui-react";
+import { Header, Icon, Segment, Label, Message } from "semantic-ui-react";
 import { capitalize } from "lodash";
 import { UserSettingsContext } from "../../context/UserSettingsContext";
 
@@ -34,9 +34,10 @@ const SelectAccentColorSetting = ({ colorOptions }) => {
                 <Icon name="paint brush" /> Акцентный цвет
             </Header>
 
-            <p>
-                Нажмите, чтобы выбрать:
-            </p>
+            <Message
+                header='Нажмите, чтобы выбрать:'
+                content='Выбранный цвет будет отображаться в меню, таблицах и других частях приложения.'
+            />
 
             <Label.Group size='huge'>
                 {

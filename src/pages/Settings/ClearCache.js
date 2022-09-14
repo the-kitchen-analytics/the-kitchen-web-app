@@ -16,7 +16,7 @@ const ClearCache = () => {
         <Segment>
             <Header
                 icon="erase"
-                content="Очистить кеш"
+                content="Очистить кэш"
             />
 
             <Message
