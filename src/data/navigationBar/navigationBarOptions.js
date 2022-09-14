@@ -94,7 +94,7 @@ const navigationBarOptions = Object.freeze([
             key: SUBMIT_DATA,
             to: SUBMIT_DATA,
         },
-        icon: 'check square',
+        icon: 'upload',
         text: 'Отправить данные'
     },
 
