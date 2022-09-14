@@ -7,7 +7,11 @@ import SelectAccentColorSetting from "./SelectAccentColorSetting";
 
 const SettingsView = () => {
     return (
-        <GenericView header="Настройки">
+        <GenericView
+            icon="settings"
+            header="Настройки"
+            subheader="Управляйте вашими настройками"
+        >
             <Grid.Row>
                 <Grid.Column>
                     <SelectAccentColorSetting

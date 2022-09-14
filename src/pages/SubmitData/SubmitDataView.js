@@ -6,7 +6,11 @@ import SubmitDataForm from "./SubmitDataForm";
 const SubmitDataView = ({ refreshData }) => {
 
     return (
-        <GenericView header="Отправить данные">
+        <GenericView
+            icon="cloud upload"
+            header="Отправить данные"
+            subheader="Сохраните ваши данные в облаке"
+        >
             <Grid.Row>
                 <Grid.Column>
                     <SubmitDataForm

@@ -1,14 +1,22 @@
 import React from "react";
-import { Grid, Header } from "semantic-ui-react";
+import { Grid, Header, Icon } from "semantic-ui-react";
 
-const GenericView = ({ header, children }) => (
+const GenericView = ({ header, subheader, icon, children }) => (
     <Grid stackable>
         <Grid.Row>
             <Grid.Column>
-                <Header as="h1">
+                <Header as='h2'>
                     {
-                        header
+                        icon && <Icon name={icon} />
                     }
+                    <Header.Content>
+                        {
+                            header
+                        }
+                        {
+                            subheader && <Header.Subheader>{subheader}</Header.Subheader>
+                        }
+                    </Header.Content>
                 </Header>
             </Grid.Column>
         </Grid.Row>

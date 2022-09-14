@@ -12,7 +12,7 @@ const CURRENT_MONTH_AND_YEAR = {
     year: now.getFullYear()
 }
 
-const MonthlyDataView = ({ getData, component }) => {
+const MonthlyDataView = ({ getData, component, icon }) => {
 
     const [selectedDate, setSelectedDate] = useState(CURRENT_MONTH_AND_YEAR)
 
@@ -28,7 +28,9 @@ const MonthlyDataView = ({ getData, component }) => {
 
     return (
         <GenericView
+            icon={icon}
             header="За месяц"
+            subheader="Выберите месяц и год"
         >
             <Grid.Row columns='equal'>
                 <Grid.Column

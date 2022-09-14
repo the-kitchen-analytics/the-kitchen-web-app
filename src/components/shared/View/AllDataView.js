@@ -2,12 +2,16 @@ import React from "react";
 import { Grid } from "semantic-ui-react";
 import GenericView from "./GenericView";
 
-const AllDataView = ({ getData, component }) => {
+const AllDataView = ({ getData, component, icon }) => {
 
     const Component = component;
 
     return (
-        <GenericView header="За всё время">
+        <GenericView
+            icon={icon}
+            header="За всё время"
+            subheader="Ваши данные за всё время"
+        >
             <Grid.Row>
                 <Grid.Column>
                     <Component

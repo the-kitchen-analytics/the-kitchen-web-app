@@ -50,6 +50,7 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
                         path: "daily",
                         element: (
                             <DailyDataView
+                                icon="table"
                                 options={daySelectOptions}
                                 getData={getTableDataByDay}
                                 component={DailyTableView}
@@ -60,6 +61,7 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
                         path: "montly",
                         element: (
                             <MonthlyDataView
+                                icon="table"
                                 getData={getTableDataByMonth}
                                 component={MonthlyTableView}
                             />
@@ -69,6 +71,7 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
                         path: '',
                         element: (
                             <AllDataView
+                                icon="table"
                                 getData={getAllTableData}
                                 component={AllTimeTableView}
                             />
@@ -84,6 +87,7 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
                         path: "daily",
                         element: (
                             <DailyDataView
+                                icon="chart bar"
                                 options={daySelectOptions}
                                 getData={getStaisticsDataByDay}
                                 component={DailyStatisticsView}
@@ -94,6 +98,7 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
                         path: "montly",
                         element: (
                             <MonthlyDataView
+                                icon="chart bar"
                                 getData={getStatisticsDataByMonth}
                                 component={MonthlyStatisticsView}
                             />
@@ -103,6 +108,7 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
                         path: '',
                         element: (
                             <AllDataView
+                                icon="chart bar"
                                 getData={getAllStatisticsData}
                                 component={AllTimeStatisticsView}
                             />

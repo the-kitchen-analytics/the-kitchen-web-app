@@ -3,7 +3,7 @@ import { Grid } from "semantic-ui-react";
 import { DaySelect } from "../dropdown";
 import GenericView from "./GenericView";
 
-const DailyDataView = ({ getData, options, component }) => {
+const DailyDataView = ({ getData, options, component, icon }) => {
 
     const [selectedDay, setSelectedDay] = useState(options.length > 0 ? options[0].value : null)
 
@@ -11,7 +11,9 @@ const DailyDataView = ({ getData, options, component }) => {
 
     return (
         <GenericView
+            icon={icon}
             header="За день"
+            subheader="Выберите день"
         >
             <Grid.Row>
                 <Grid.Column
