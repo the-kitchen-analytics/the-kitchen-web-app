@@ -640,5 +640,14 @@
             "manicure",
             "pedicure"
         ]
+    },
+    {
+        "priceBeforeTaxes": 32,
+        "name": "Японский маникюр",
+        "id": 72,
+        "priceAfterTaxes": 12.8,
+        "types": [
+            "manicure"
+        ]
     }
 ]
