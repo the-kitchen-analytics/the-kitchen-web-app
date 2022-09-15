@@ -1,10 +1,11 @@
 import _ from "lodash";
-import React, { useState } from "react";
+import React from "react";
 import { Grid } from "semantic-ui-react";
 import { getCurrentDate } from "../../../utils/date";
 import { MonthSelect, YearSelect } from "../dropdown";
 import Carosel from "../../ui/Carosel";
 import GenericView from "./GenericView";
+import { useLocalStorage } from "../../../hooks";
 
 const now = getCurrentDate();
 const CURRENT_MONTH_AND_YEAR = {
@@ -12,9 +13,9 @@ const CURRENT_MONTH_AND_YEAR = {
     year: now.getFullYear()
 }
 
-const MonthlyDataView = ({ getData, component, icon }) => {
+const MonthlyDataView = ({ getData, component, icon, componentProps = {} }) => {
 
-    const [selectedDate, setSelectedDate] = useState(CURRENT_MONTH_AND_YEAR)
+    const [selectedDate, setSelectedDate] = useLocalStorage('selectedMonthAndYear', CURRENT_MONTH_AND_YEAR)
 
     const setSelectedMonth = (month) => {
         setSelectedDate((selectedDate) => ({ ...selectedDate, month }));
@@ -79,7 +80,8 @@ const MonthlyDataView = ({ getData, component, icon }) => {
             <Grid.Row>
                 <Grid.Column>
                     <Component
-                        data={getData(selectedDate.month)}
+                        {...componentProps}
+                        data={getData(selectedDate.month, selectedDate.year)}
                     />
                 </Grid.Column>
             </Grid.Row>

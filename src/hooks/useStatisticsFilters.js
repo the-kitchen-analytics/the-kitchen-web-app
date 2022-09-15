@@ -5,8 +5,8 @@ const useStatisticsFilters = ({ getAllData, getDataByDay, getDataByMonth }) => {
 
     const getAllStatisticsData = useCallback(() => buildStatisticsData(getAllData()), [getAllData])
 
-    const getStatisticsDataByMonth = useCallback((month) =>
-        buildStatisticsData(getDataByMonth(month)), [getDataByMonth])
+    const getStatisticsDataByMonth = useCallback((month, year) =>
+        buildStatisticsData(getDataByMonth(month, year)), [getDataByMonth])
 
     const getStaisticsDataByDay = useCallback((day) =>
         buildStatisticsData(getDataByDay(day)), [getDataByDay])

@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import { useRoutes as useReactRoutes } from "react-router-dom";
 
-import useDataFilters from "./useDataFilters";
-import useTableFilters from "./useTableFilters";
-import useStatisticsFilters from "./useStatisticsFilters";
+import { useDataFilters, useTableFilters, useStatisticsFilters } from "./";
 import { buildDropdownOptions } from "../utils/ui/dropdown";
 
 import { Navigate } from "react-router-dom";

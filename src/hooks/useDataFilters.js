@@ -10,10 +10,10 @@ const useDataFilters = (data, groupedData) => {
         return result || [];
     }, [groupedData]);
 
-    const getDataByMonth = useCallback((selectedMonth) => {
+    const getDataByMonth = useCallback((selectedMonth, selectedYear) => {
         const result = data
             .flat()
-            .filter(it => it.date.getMonth() + 1 === selectedMonth)
+            .filter(({ date }) => (date.getFullYear() === selectedYear && date.getMonth() + 1 === selectedMonth))
 
         return result ? Object.values(_.groupBy(result, 'dateFormatted')) : result;
     }, [data]);
