@@ -3,7 +3,8 @@ import { Grid } from "semantic-ui-react";
 import { GenericView } from "../../components/shared/View";
 import { fancyColorNames } from "../../data/colorNames";
 import ClearCache from "./ClearCache";
-import SelectAccentColorSetting from "./SelectAccentColorSetting";
+import ExpectedIncomeForm from "./ExpectedIncomeForm";
+import SelectAccentColor from "./SelectAccentColorSetting";
 
 const SettingsView = () => {
     return (
@@ -14,7 +15,12 @@ const SettingsView = () => {
         >
             <Grid.Row>
                 <Grid.Column>
-                    <SelectAccentColorSetting
+                    <ExpectedIncomeForm />
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+                <Grid.Column>
+                    <SelectAccentColor
                         colorOptions={[...fancyColorNames, 'grey', 'black']}
                     />
                 </Grid.Column>
@@ -24,7 +30,7 @@ const SettingsView = () => {
                     <ClearCache />
                 </Grid.Column>
             </Grid.Row>
-        </GenericView>
+        </GenericView >
     )
 }
 

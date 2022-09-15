@@ -4,7 +4,7 @@ import { capitalize } from "lodash";
 import { UserSettingsContext } from "../../context/UserSettingsContext";
 
 
-const SelectAccentColorSetting = ({ colorOptions }) => {
+const SelectAccentColor = ({ colorOptions }) => {
 
     const { settings: { accentColor }, setSetting } = useContext(UserSettingsContext);
 
@@ -29,7 +29,7 @@ const SelectAccentColorSetting = ({ colorOptions }) => {
     }
 
     return (
-        <Segment padded>
+        <Segment>
             <Header>
                 <Icon name="paint brush" /> Акцентный цвет
             </Header>
@@ -49,4 +49,4 @@ const SelectAccentColorSetting = ({ colorOptions }) => {
 }
 
 
-export default SelectAccentColorSetting;
+export default SelectAccentColor;
