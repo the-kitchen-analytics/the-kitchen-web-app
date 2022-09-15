@@ -4,6 +4,7 @@ import { GenericView } from "../../components/shared/View";
 import { fancyColorNames } from "../../data/colorNames";
 import ClearCache from "./ClearCache";
 import ExpectedIncomeForm from "./ExpectedIncomeForm";
+// import GoogleApiConfiguration from "./GoogleApiConfiguration";
 import SelectAccentColor from "./SelectAccentColorSetting";
 
 const SettingsView = () => {
@@ -13,6 +14,11 @@ const SettingsView = () => {
             header="Настройки"
             subheader="Управляйте вашими настройками"
         >
+            {/* <Grid.Row>
+                <Grid.Column>
+                    <GoogleApiConfiguration />
+                </Grid.Column>
+            </Grid.Row> */}
             <Grid.Row>
                 <Grid.Column>
                     <ExpectedIncomeForm />
