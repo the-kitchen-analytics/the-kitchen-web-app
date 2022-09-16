@@ -7,7 +7,7 @@ import useFetchData from "../../hooks/useFetchData";
 import { useContext } from "react";
 import ApiServiceContext from "../../context/ApiServiceContext";
 
-const Dashboard = ({ fetchDataOptions }) => {
+const Dashboard = () => {
 
     const apiService = useContext(ApiServiceContext)
     const { data, isLoading, hasError, refresh } = useFetchData(apiService.fetchData, apiService.transformData);

@@ -1,37 +1,22 @@
-import _ from "lodash";
-import googleSheetsConfig from "../data/googleSheetsConfig";
-import { formatDate } from "../utils/date";
-import { parseGoogleSheetDataV2 } from '../utils/googleSheets';
-import { buildPriceString } from "../utils/money";
+import { parseISO } from "date-fns";
 
-const POST_URL = process.env.REACT_APP_POST_DATA_URL;
-
-const buildFetchUrl = (googleSheetsConfig) => {
-
-    const { baseUrl, sheetNames, apiKey, valueRenderOption, dateTimeRenderOption } = googleSheetsConfig;
-
-    const params = new URLSearchParams();
-
-    params.set('ranges', sheetNames.data);
-    params.set('key', apiKey);
-
-    if (valueRenderOption) {
-        params.set('valueRenderOption', valueRenderOption);
-    }
-
-    if (dateTimeRenderOption) {
-        params.set('dateTimeRenderOption', dateTimeRenderOption);
-    }
-
-    return `${baseUrl}/?${params.toString()}`;
-}
+const baseUrl = process.env.REACT_APP_API_URL;
 
 const validateFetchedData = (data) => {
     return !!data;
 }
 
+const transformDataEntry = (dataEntry) => {
+    return Object.freeze({
+        ...dataEntry,
+        date: parseISO(dataEntry.date)
+    });
+}
+
+const transformData = (dataSet) => dataSet.map(transformDataEntry);
+
 const fetchData = async () => {
-    const response = await fetch(buildFetchUrl(googleSheetsConfig));
+    const response = await fetch(baseUrl);
 
     if (response.status >= 400) {
         throw new Error(`Response Error: ${response.status}, ${response.text()}`);
@@ -40,31 +25,21 @@ const fetchData = async () => {
     const data = await response.json()
 
     if (validateFetchedData(data)) {
-        return parseGoogleSheetDataV2(data);
+        return transformData(data);
     }
 
-    throw new Error(`Fetched data seem to be invalid: ${data}`);
+    throw new Error(`Fetched data seems to be invalid: ${data}`);
 }
 
 const postData = (data) => {
-    console.debug('post data', data)
+    console.debug('post data', data);
 
-    const { procedures, worker, date } = data;
-
-    const transformedData = Object.freeze({
-        date: formatDate(date),
-        procedures: procedures
-            .map(({ name, priceBeforeTaxes }) => buildPriceString(name, priceBeforeTaxes))
-            .join(';,'),
-        worker,
-        totalPriceBeforeTaxes: _.sumBy(procedures, 'priceBeforeTaxes'),
-        totalPriceAfterTaxes: _.sumBy(procedures, 'priceAfterTaxes')
-    });
-
-
-    return fetch(POST_URL, {
+    return fetch(baseUrl, {
         method: 'POST',
-        body: JSON.stringify(transformedData)
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     });
 }
 
