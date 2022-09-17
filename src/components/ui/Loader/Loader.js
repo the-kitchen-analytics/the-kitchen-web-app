@@ -1,10 +1,13 @@
 import React from "react";
 import { Dimmer, Loader as SemanticLoader } from "semantic-ui-react";
 
-const Loader = ({ text = 'Загрузка данных..' }) => (
+const Loader = (props) => (
     <div className="loader">
         <Dimmer active inverted>
-            <SemanticLoader size='huge'>{text}</SemanticLoader>
+            <SemanticLoader
+                {...props}
+                size='huge'
+            />
         </Dimmer>
     </div>
 );

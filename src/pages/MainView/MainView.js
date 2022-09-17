@@ -12,7 +12,11 @@ const MainView = ({ data, refreshData }) => {
     const reactRoutes = useRoutes(data, refreshData, groupedData, workedDays)
 
     if (!isDataTransformed) {
-        return <Loader text="Подготовка данных" />
+        return (
+            <Loader
+                content="Подготовка данных"
+            />
+        )
     }
 
     return (

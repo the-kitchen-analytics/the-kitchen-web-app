@@ -5,6 +5,8 @@ import useTransformedData from "./useTransformedData";
 import useLocalStorage from "./useLocalStorage";
 import useRoutes from "./useRoutes";
 import useTouched from "./useTouched";
+import useHealthCheck from "./useHealthCheck";
+import useFetchData from "./useFetchData";
 
 export {
     useDataFilters,
@@ -13,5 +15,7 @@ export {
     useTransformedData,
     useLocalStorage,
     useRoutes,
-    useTouched
+    useTouched,
+    useHealthCheck,
+    useFetchData
 }

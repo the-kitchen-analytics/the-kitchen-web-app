@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container } from 'semantic-ui-react';
 import MainView from "../MainView";
 import { Loader } from "../../components/ui";
 import { BrowserRouter } from 'react-router-dom';
-import useFetchData from "../../hooks/useFetchData";
-import { useContext } from "react";
+import { useFetchData } from "../../hooks";
 import ApiServiceContext from "../../context/ApiServiceContext";
 
 const Dashboard = () => {
@@ -15,7 +14,9 @@ const Dashboard = () => {
     if (isLoading) {
         return (
             <Container>
-                <Loader />
+                <Loader
+                    content="Загрузка данных"
+                />
             </Container>
         )
     }
@@ -31,16 +32,14 @@ const Dashboard = () => {
     console.debug("Render App!", isLoading, hasError, data.length)
 
     return (
-        <div className="app">
-            <Container>
-                <BrowserRouter basename='the-kitchen-analytics-react-app'>
-                    <MainView
-                        data={data}
-                        refreshData={refresh}
-                    />
-                </BrowserRouter>
-            </Container>
-        </div>
+        <Container>
+            <BrowserRouter basename='the-kitchen-analytics-react-app'>
+                <MainView
+                    data={data}
+                    refreshData={refresh}
+                />
+            </BrowserRouter>
+        </Container>
     );
 
 }
