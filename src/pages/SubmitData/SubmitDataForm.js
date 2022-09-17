@@ -90,7 +90,11 @@ const SubmitDataForm = ({ refreshData }) => {
     const handleClearFromButtonClick = useCallback(() => {
         setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
         clearForm();
-    }, [setAccorditionActiveIndex, clearForm])
+    }, [setAccorditionActiveIndex, clearForm]);
+
+    const shouldDisableClearFormButton = useCallback(() => {
+        return _.isEqual(formData, INITIAL_FORM_DATA) || isHttpRequestPerformed
+    }, [formData, isHttpRequestPerformed]);
 
     return (
         <Form
@@ -134,7 +138,7 @@ const SubmitDataForm = ({ refreshData }) => {
                     size="large"
                     type="button"
                     content="Очистить"
-                    disabled={_.isEmpty(formData.procedures) || isHttpRequestPerformed}
+                    disabled={shouldDisableClearFormButton()}
                     icon="trash"
                     onClick={handleClearFromButtonClick}
                 />
