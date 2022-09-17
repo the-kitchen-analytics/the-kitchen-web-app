@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useMemo, useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import { WorkerSelect } from "../../components/shared/dropdown";
-import ProceduresCheckboxGroup from "./ProceduresCheckboxGroup";
+import SelectProcedures from "./SelectProcedures";
 import ApiServiceContext from "../../context/ApiServiceContext";
 import { UserSettingsContext } from "../../context/UserSettingsContext";
 
@@ -125,7 +125,7 @@ const SubmitDataForm = ({ refreshData }) => {
                 />
             </Form.Field>
 
-            <ProceduresCheckboxGroup
+            <SelectProcedures
                 formData={formData}
                 setFormData={setFormData}
                 accorditionActiveIndex={accorditionActiveIndex}
