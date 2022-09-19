@@ -1,16 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
+import ApiServiceContext from "../context/ApiServiceContext";
 
-const useHealthCheck = (url) => {
+const useHealthCheck = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSuccess, setIsSuccess] = useState(false);
+    const { healthCheck } = useContext(ApiServiceContext);
     const [error, setError] = useState();
 
     const fetchData = useCallback(async () => {
 
         try {
             setIsLoading(true);
-            const response = await fetch(url);
+            const response = await healthCheck();
 
             if (response.ok) {
                 setIsSuccess(true);
@@ -31,7 +33,7 @@ const useHealthCheck = (url) => {
             setIsLoading(false);
         }
 
-    }, [url]);
+    }, [healthCheck]);
 
     useEffect(() => {
         fetchData();

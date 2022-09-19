@@ -1,5 +1,5 @@
-import googleSheetsService from "./googleSheetsService";
+import apiService from "./apiService";
 
 export {
-    googleSheetsService
+    apiService
 }

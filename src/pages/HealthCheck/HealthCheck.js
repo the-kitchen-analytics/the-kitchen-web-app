@@ -1,13 +1,12 @@
 import React from "react";
-import { Button, Container, Grid, Message, Segment } from "semantic-ui-react";
+import { Container, Grid, Message, Segment } from "semantic-ui-react";
 import { Loader } from "../../components/ui";
+import { LoadableButton } from "../../components/ui/Button";
 import { useHealthCheck } from "../../hooks";
-
-const healthCheckUrl = `${process.env.REACT_APP_API_URL}/info `;
 
 const HealthCheck = ({ children }) => {
 
-    const { isLoading, isSuccess, error, refresh } = useHealthCheck(healthCheckUrl);
+    const { isLoading, isSuccess, error, refresh } = useHealthCheck();
 
     if (isSuccess) {
         return (
@@ -40,13 +39,12 @@ const HealthCheck = ({ children }) => {
                                 mobile={16}
                                 computer={4}
                             >
-                                <Button
+                                <LoadableButton
                                     fluid
                                     primary
                                     icon="sync alternate"
                                     content="Перезагрузить"
                                     size="large"
-                                    disabled={isLoading}
                                     loading={isLoading}
                                     onClick={refresh}
                                 />

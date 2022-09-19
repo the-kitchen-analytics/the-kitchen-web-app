@@ -14,6 +14,7 @@ import { DatePicker } from "../../components/ui/Input";
 import { buildWorkerSelectOptions } from "../../utils/ui/dropdown";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks";
+import { LoadableButton } from "../../components/ui/Button";
 
 const INITIAL_FORM_DATA = Object.freeze({
     date: formatDateForDatePicker(getCurrentDate()),
@@ -145,12 +146,13 @@ const SubmitDataForm = ({ refreshData }) => {
             </Form.Field>
 
             <Form.Field>
-                <Button
+                <LoadableButton
                     fluid
                     size="large"
                     icon="save"
                     type="submit"
                     color={accentColor}
+                    onClick={handleFormSubmit}
                     content={getSubmitButtonLabel()}
                     disabled={!isFormDataValid() || isHttpRequestPerformed}
                     loading={isHttpRequestPerformed}

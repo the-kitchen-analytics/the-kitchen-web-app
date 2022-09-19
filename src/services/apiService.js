@@ -1,6 +1,9 @@
 import { parseISO } from "date-fns";
 
 const baseUrl = process.env.REACT_APP_API_URL;
+const healthCheckUrl = `${process.env.REACT_APP_API_URL}/health`;
+const loginUrl = `${baseUrl}/login`;
+const dataApiUrl = `${baseUrl}/api/data`;
 
 const validateFetchedData = (data) => {
     return !!data;
@@ -15,8 +18,10 @@ const transformDataEntry = (dataEntry) => {
 
 const transformData = (dataSet) => dataSet.map(transformDataEntry);
 
-const fetchData = async () => {
-    const response = await fetch(baseUrl);
+const fetchWrapper = (url, options = {}) => fetch(url, options);
+
+const getData = async () => {
+    const response = await fetchWrapper(dataApiUrl);
 
     if (response.status >= 400) {
         throw new Error(`Response Error: ${response.status}, ${response.text()}`);
@@ -34,7 +39,7 @@ const fetchData = async () => {
 const postData = (data) => {
     console.debug('post data', data);
 
-    return fetch(baseUrl, {
+    return fetchWrapper(dataApiUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -43,10 +48,30 @@ const postData = (data) => {
     });
 }
 
-const googleSheetsService = {
-    fetchData,
-    postData
+const healthCheck = () => fetchWrapper(healthCheckUrl);
+
+const login = async (credentials) => {
+
+    const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify(credentials)
+    }
+
+    const response = await fetchWrapper(loginUrl, fetchOptions);
+
+    if (response.ok) {
+        return await response.json();
+    } else {
+        throw new Error(response.status);
+    }
 }
 
-export default googleSheetsService;
+const apiService = Object.freeze({
+    getData,
+    postData,
+    login,
+    healthCheck
+});
+
+export default apiService;
 

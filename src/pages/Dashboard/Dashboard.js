@@ -8,8 +8,8 @@ import ApiServiceContext from "../../context/ApiServiceContext";
 
 const Dashboard = () => {
 
-    const apiService = useContext(ApiServiceContext)
-    const { data, isLoading, hasError, refresh } = useFetchData(apiService.fetchData, apiService.transformData);
+    const apiService = useContext(ApiServiceContext);
+    const { data, isLoading, hasError, refresh } = useFetchData(apiService.getData, apiService.transformData);
 
     if (isLoading) {
         return (

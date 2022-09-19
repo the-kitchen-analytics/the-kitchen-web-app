@@ -30,13 +30,14 @@ const SelectAccentColor = ({ colorOptions }) => {
 
     return (
         <Segment>
-            <Header>
-                <Icon name="paint brush" /> Акцентный цвет
-            </Header>
+            <Header
+                icon="paint brush"
+                content="Акцентный цвет"
+            />
 
             <Message
                 header='Нажмите, чтобы выбрать:'
-                content='Выбранный цвет будет отображаться в меню, таблицах и других частях приложения.'
+                content='Выбранный цвет будет отображаться в меню, таблицах и других частях приложения'
             />
 
             <Label.Group size='huge'>

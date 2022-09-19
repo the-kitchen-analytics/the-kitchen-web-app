@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Header, Message, Label, Input, Grid } from "semantic-ui-react";
+import { Segment, Header, Message, Input, Grid } from "semantic-ui-react";
 import { useLocalStorage } from "../../hooks";
 
 const LOCAL_STORAGE_KEY = 'expectedIncomeSetting';
@@ -34,18 +34,15 @@ const ExpectedIncomeForm = () => {
                         <Input
                             size={INPUT_SIZE}
                             fluid
-                            labelPosition='right'
                             type='number'
                             placeholder='Введите значение'
                             value={expectedIncome}
                             onChange={({ target: { value } }) => setExpectedIncome(value)}
                             min={0}
                             step={5}
-                        >
-                            <Label icon='euro' basic />
-                            <input />
-                            <Label>.00</Label>
-                        </Input>
+                            icon="euro"
+                            iconPosition="left"
+                        />
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

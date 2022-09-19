@@ -2,19 +2,16 @@ import React from 'react';
 import ApiServiceContext from './context/ApiServiceContext';
 import Dashboard from './pages/Dashboard';
 import HealthCheck from './pages/HealthCheck';
-import { googleSheetsService } from './services';
+import { apiService } from './services';
 
-const App = () => {
-
-    return (
-        <div className="app">
-            <ApiServiceContext.Provider value={googleSheetsService}>
-                <HealthCheck>
-                    <Dashboard />
-                </HealthCheck>
-            </ApiServiceContext.Provider>
-        </div>
-    );
-};
+const App = () => (
+    <div className="app">
+        <ApiServiceContext.Provider value={apiService}>
+            <HealthCheck>
+                <Dashboard />
+            </HealthCheck>
+        </ApiServiceContext.Provider>
+    </div>
+);
 
 export default App;

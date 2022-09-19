@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import { useRoutes as useReactRoutes } from "react-router-dom";
-
-import { useDataFilters, useTableFilters, useStatisticsFilters } from "./";
+import { useDataFilters, useTableFilters, useStatisticsFilters, useLocalStorage } from "./";
 import { buildDropdownOptions } from "../utils/ui/dropdown";
-
 import { Navigate } from "react-router-dom";
 import {
     DailyDataView,
@@ -16,10 +14,14 @@ import { DailyStatisticsView, MonthlyStatisticsView, AllTimeStatisticsView } fro
 import SettingsView from "../pages/Settings/SettingsView";
 import SubmitDataView from "../pages/SubmitData/SubmitDataView";
 import NoContentView from "../pages/NoContentView";
+import { LOGIN } from "../data/routePaths";
+import LoginView from "../pages/Login/LoginView";
 
 const useRoutes = (data, refreshData, groupedData, workedDays) => {
 
     const dataFilters = useDataFilters(data, groupedData);
+
+    const [token, setToken] = useLocalStorage('token', null);
 
     const {
         getAllTableData,
@@ -132,8 +134,19 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
             },
 
             {
+                path: LOGIN,
+                element: (
+                    <LoginView
+                        setToken={setToken}
+                    />
+                )
+            },
+
+            {
                 path: '*',
-                element: <NoContentView />
+                element: (
+                    <NoContentView />
+                )
             }
         ]
     ), [
@@ -144,7 +157,8 @@ const useRoutes = (data, refreshData, groupedData, workedDays) => {
         getStatisticsDataByMonth,
         getTableDataByDay,
         getTableDataByMonth,
-        refreshData
+        refreshData,
+        setToken
     ])
 
     return useReactRoutes(routes)

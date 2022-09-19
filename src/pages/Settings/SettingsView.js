@@ -3,9 +3,11 @@ import { Grid } from "semantic-ui-react";
 import { GenericView } from "../../components/shared/View";
 import { fancyColorNames } from "../../data/colorNames";
 import ClearCache from "./ClearCache";
-import ExpectedIncomeForm from "./ExpectedIncomeForm";
+import ContactUs from "./ContactUs";
+// import ExpectedIncomeForm from "./ExpectedIncomeForm";
 // import GoogleApiConfiguration from "./GoogleApiConfiguration";
 import SelectAccentColor from "./SelectAccentColorSetting";
+import UserAccountSettings from "./UserAccountSettings";
 
 const SettingsView = () => {
     return (
@@ -14,16 +16,24 @@ const SettingsView = () => {
             header="Настройки"
             subheader="Управляйте вашими настройками"
         >
+            <Grid.Row>
+                <Grid.Column>
+                    <UserAccountSettings />
+                </Grid.Column>
+            </Grid.Row>
+
             {/* <Grid.Row>
                 <Grid.Column>
                     <GoogleApiConfiguration />
                 </Grid.Column>
             </Grid.Row> */}
-            <Grid.Row>
+
+            {/* <Grid.Row>
                 <Grid.Column>
                     <ExpectedIncomeForm />
                 </Grid.Column>
-            </Grid.Row>
+            </Grid.Row> */}
+
             <Grid.Row>
                 <Grid.Column>
                     <SelectAccentColor
@@ -31,12 +41,19 @@ const SettingsView = () => {
                     />
                 </Grid.Column>
             </Grid.Row>
+
+            <Grid.Row>
+                <Grid.Column>
+                    <ContactUs />
+                </Grid.Column>
+            </Grid.Row>
+
             <Grid.Row>
                 <Grid.Column>
                     <ClearCache />
                 </Grid.Column>
             </Grid.Row>
-        </GenericView >
+        </GenericView>
     )
 }
 

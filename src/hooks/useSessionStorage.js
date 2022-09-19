@@ -5,8 +5,8 @@ import useWindowStorage from "./useWindowStorage"
  * @param {*} initialValue 
  * @returns 
  */
-const useLocalStorage = (key, initialValue) => {
+const useSessionStorage = (key, initialValue) => {
     return useWindowStorage(window.sessionStorage, key, initialValue);
 }
 
-export default useLocalStorage;
+export default useSessionStorage;
