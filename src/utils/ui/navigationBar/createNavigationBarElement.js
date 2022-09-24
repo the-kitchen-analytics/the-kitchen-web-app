@@ -1,6 +1,6 @@
-import NavigationBarItem from "../../../components/shared/NavigationBar/NavigationBarItem";
+import NavigationBarItem from "../../../components/NavigationBar/NavigationBarItem";
 import { Icon, Divider, Menu } from "semantic-ui-react";
-import { TYPE_DIVIDER, TYPE_ITEM, TYPE_PARENT } from "../../../data/navigationBar/elementTypes";
+import { TYPE_DIVIDER, TYPE_ITEM, TYPE_PARENT } from "../../../data/ui/navigationBar/elementTypes";
 
 const createItemElement = ({ itemProps, icon, text }) => (
     <NavigationBarItem {...itemProps}>

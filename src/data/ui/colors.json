@@ -1,0 +1,54 @@
+[
+    {
+        "name": "red",
+        "isFancy": true
+    },
+    {
+        "name": "orange",
+        "isFancy": true
+    },
+    {
+        "name": "yellow",
+        "isFancy": true
+    },
+    {
+        "name": "olive",
+        "isFancy": true
+    },
+    {
+        "name": "green",
+        "isFancy": true
+    },
+    {
+        "name": "teal",
+        "isFancy": true
+    },
+    {
+        "name": "blue",
+        "isFancy": true
+    },
+    {
+        "name": "violet",
+        "isFancy": true
+    },
+    {
+        "name": "purple",
+        "isFancy": true
+    },
+    {
+        "name": "pink",
+        "isFancy": true
+    },
+    {
+        "name": "brown",
+        "isFancy": false
+    },
+    {
+        "name": "grey",
+        "isFancy": false
+    },
+    {
+        "name": "black",
+        "isFancy": false
+    }
+]

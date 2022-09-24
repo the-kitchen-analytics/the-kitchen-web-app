@@ -5,10 +5,10 @@ import useTransformedData from "./useTransformedData";
 import useWindowStorage from "./useWindowStorage";
 import useLocalStorage from "./useLocalStorage";
 import useSessionStorage from "./useSessionStorage";
-import useRoutes from "./useRoutes";
 import useTouched from "./useTouched";
 import useHealthCheck from "./useHealthCheck";
 import useFetchData from "./useFetchData";
+import useColorNames from "./useColorNames";
 
 export {
     useDataFilters,
@@ -18,8 +18,8 @@ export {
     useWindowStorage,
     useLocalStorage,
     useSessionStorage,
-    useRoutes,
     useTouched,
     useHealthCheck,
-    useFetchData
+    useFetchData,
+    useColorNames
 }

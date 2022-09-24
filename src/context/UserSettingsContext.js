@@ -1,10 +1,11 @@
 import { createContext } from "react";
-import { useLocalStorage } from "../hooks";
-import { getRandomFancyColorName } from "../utils/ui";
+import { useColorNames, useLocalStorage } from "../hooks";
 
 const UserSettingsContext = createContext();
 
 const UserSettingsContextProvider = ({ children }) => {
+
+    const { getRandomFancyColorName } = useColorNames()
 
     const [settings, setSettings] = useLocalStorage('userSettigs', {
         accentColor: getRandomFancyColorName()

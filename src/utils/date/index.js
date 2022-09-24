@@ -4,6 +4,7 @@ import compareDateDesc from "./compareDateDesc";
 import formatDate from "./formatDate";
 import getCurrentDate from "./getCurrentDate";
 import getCurrentMonth from "./getCurrentMonth";
+import getCurrentMonthAndYear from "./getCurrentMonthAndYear";
 import formatDateForDatePicker from "./formatDateForDatePicker";
 import parseDateFromDropdown from "./parseDateFromDropdown";
 
@@ -14,6 +15,7 @@ export {
     formatDate,
     getCurrentDate,
     getCurrentMonth,
+    getCurrentMonthAndYear,
     formatDateForDatePicker,
-    parseDateFromDropdown
+    parseDateFromDropdown,
 }

@@ -1,26 +1,29 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import DataTable from "../../components/DataTable";
 import MonthlyDataLayout from "../../components/layouts/MonthlyDataLayout";
-
+import Statistics from "../../components/Statistics";
 import { getCurrentMonthAndYear } from "../../utils/date";
 
-const MonthlyTableView = () => {
+const MonthlyStatisticsView = () => {
 
-    const { getDataByMonthAndYear } = useOutletContext();
     const [selectedDate, setSelectedDate] = useState(getCurrentMonthAndYear());
+    const { getDataByMonthAndYear } = useOutletContext();
 
     return (
         <MonthlyDataLayout
-            icon="table"
+            icon="chart bar"
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
         >
-            <DataTable
-                data={getDataByMonthAndYear(selectedDate)}
-            />
+            {
+                selectedDate && (
+                    <Statistics
+                        data={getDataByMonthAndYear(selectedDate)}
+                    />
+                )
+            }
         </MonthlyDataLayout>
     );
 }
 
-export default MonthlyTableView;
+export default MonthlyStatisticsView;

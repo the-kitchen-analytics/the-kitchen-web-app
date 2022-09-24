@@ -1,20 +1,20 @@
 import { useOutletContext } from "react-router-dom";
-import DataTable from "../../components/DataTable";
 import AllTimeDataLayout from "../../components/layouts/AllTimeDataLayout";
+import Statistics from "../../components/Statistics";
 
-const AllTimeTableView = () => {
+const AllTimeStatisticsView = () => {
 
     const { getAllData } = useOutletContext();
 
     return (
         <AllTimeDataLayout
-            icon="table"
+            icon="chart bar"
         >
-            <DataTable
+            <Statistics
                 data={getAllData()}
             />
         </AllTimeDataLayout>
     );
 }
 
-export default AllTimeTableView;
+export default AllTimeStatisticsView;

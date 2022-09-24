@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Form, Button } from "semantic-ui-react";
-import { WorkerSelect } from "../../components/shared/dropdown";
 import SelectProcedures from "./SelectProcedures";
 import ApiServiceContext from "../../context/ApiServiceContext";
 import { UserSettingsContext } from "../../context/UserSettingsContext";
@@ -8,17 +7,14 @@ import { UserSettingsContext } from "../../context/UserSettingsContext";
 import { formatDateForDatePicker, getCurrentDate, parseDateFromDropdown } from "../../utils/date";
 import { handleInputChange } from "../../utils/ui/form";
 
-import workersData from "../../data/kitchen-helpers.json";
 import _ from "lodash";
 import { DatePicker } from "../../components/ui/Input";
-import { buildWorkerSelectOptions } from "../../utils/ui/dropdown";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks";
 import { LoadableButton } from "../../components/ui/Button";
 
 const INITIAL_FORM_DATA = Object.freeze({
     date: formatDateForDatePicker(getCurrentDate()),
-    worker: workersData.length === 1 ? workersData[0].name : '',
     procedures: []
 });
 
@@ -34,7 +30,6 @@ const SubmitDataForm = ({ refreshData }) => {
     const [formData, setFormData] = useLocalStorage('submitDataForm', INITIAL_FORM_DATA);
     const [accorditionActiveIndex, setAccorditionActiveIndex] = useLocalStorage(INITIAL_ACORDITION_INDEX);
     const [isHttpRequestPerformed, setIsHttpRequestPerformed] = useState(false);
-    const [workerSelectOptions] = useState(buildWorkerSelectOptions(workersData));
 
     const handleInputChangeWrapper = useCallback((e) => handleInputChange(e, setFormData), [setFormData]);
 
@@ -80,10 +75,6 @@ const SubmitDataForm = ({ refreshData }) => {
         });
     }
 
-    const shouldDisableWorkerSelect = useMemo(() => {
-        return workerSelectOptions.length === 1 || isWorkerFieldValid()
-    }, [workerSelectOptions, isWorkerFieldValid]);
-
     const getSubmitButtonLabel = useCallback(() => {
         return 'Сохранить ' + (formData.procedures.length > 0 ? `(${formData.procedures.length})` : '')
     }, [formData.procedures]);
@@ -111,18 +102,6 @@ const SubmitDataForm = ({ refreshData }) => {
                     name="date"
                     value={formData.date}
                     handleChange={handleInputChangeWrapper}
-                />
-            </Form.Field>
-
-            <Form.Field required>
-                <WorkerSelect
-                    label='Выберите мастера'
-                    name="worker"
-                    value={formData.worker}
-                    isDisabled={shouldDisableWorkerSelect}
-                    options={workerSelectOptions}
-                    handleChange={handleInputChangeWrapper}
-                    isInvalid={!isWorkerFieldValid()}
                 />
             </Form.Field>
 
