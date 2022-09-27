@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { LoadableButton } from "../../components/ui/Button";
+import { LoadableButton } from "../ui/Button";
 import { logout } from "../../config/firebase";
 import { useUserSettings } from "../../hooks";
 
@@ -17,7 +17,7 @@ const Logout = (props) => {
     }
 
     const defultProps = useMemo(() => ({
-        fluid: true,
+        // fluid: true,
         negative: true,
         icon: 'sign out',
         content: 'Выйти',

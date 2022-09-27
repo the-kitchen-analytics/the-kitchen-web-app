@@ -18,7 +18,7 @@ const INITIAL_FORM_DATA = Object.freeze({
 
 const INITIAL_ACORDITION_INDEX = -1;
 
-const SubmitDataForm = ({ refreshData }) => {
+const SubmitDataForm = () => {
 
     const navigate = useNavigate();
 

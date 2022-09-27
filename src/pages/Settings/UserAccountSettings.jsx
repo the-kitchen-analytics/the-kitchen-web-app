@@ -1,60 +1,94 @@
-import React from "react";
+import _ from "lodash";
+import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Segment, Header, Grid, Card, Image, Icon } from "semantic-ui-react";
+import { Segment, Grid } from "semantic-ui-react";
+import EditUserForm from "../../components/EditUserForm";
 import { auth } from "../../config/firebase";
-import Logout from "../Logout/Logout";
+import { usePostData } from "../../hooks";
+import { useMemo } from "react";
+import Profile from "../../components/Profile";
+import { toggleSetter } from "../../utils/ui";
+import { updateProfile } from "firebase/auth";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 
 const UserAccountSettings = () => {
 
-    const [authState, loading, error] = useAuthState(auth);
+    const [authState] = useAuthState(auth);
+    const [isLoading, error, postData] = usePostData();
 
-    console.debug(authState, loading, error);
+    const initialFormData = useMemo(() => ({
+        email: authState.email,
+        displayName: authState.displayName,
+        // description: '',
+        photoURL: authState.photoURL,
+    }), [authState.email, authState.displayName, authState.photoURL]);
+
+    const [formData, setFormData] = useState(initialFormData);
+    const [shouldDisplayEditProfileForm, setShouldDisplayEditProfileForm] = useState(false);
+
+    const shouldDisableSubmitButton = () => {
+        return isLoading || _.isEqual(initialFormData, formData);
+    }
+
+    const shouldDisableResetButton = () => {
+        return isLoading || _.isEqual(initialFormData, formData);
+    }
+
+    const resetFormData = () => {
+        setFormData(initialFormData);
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        await postData(updateProfile, authState, formData);
+        setShouldDisplayEditProfileForm(false);
+        // resetFormData();
+    }
+
+    const handleResetButtonClick = (e) => {
+        e.preventDefault();
+        setShouldDisplayEditProfileForm(false);
+        resetFormData();
+    }
 
     return (
-        <Segment>
-            <Header
-                icon="user circle"
-                content="Профиль"
-            />
-
+        <Segment loading={isLoading}>
             <Grid>
                 <Grid.Row>
-                    <Grid.Column mobile={16} computer={6}>
-                        <Card fluid>
-                            <Image
-                                src={authState.photoURL}
-                                wrapped
-                                ui={false}
-                            />
-                            <Card.Content>
-                                <Card.Header>
-                                    {
-                                        authState.displayName
-                                    }
-                                </Card.Header>
-                                <Card.Meta>
-                                    {
-                                        authState.email
-                                    }
-                                    <div>
-                                        Последний вход: {
-                                            authState.metadata.lastSignInTime
-                                        }
-                                    </div>
-
-                                </Card.Meta>
-                                <Card.Description>
-                                    Matthew is a musician living in Nashville.
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <Logout />
-                            </Card.Content>
-                        </Card>
+                    <Grid.Column>
+                        <Profile
+                            userData={authState}
+                            handleEdit={() => toggleSetter(setShouldDisplayEditProfileForm)}
+                            logout
+                        />
                     </Grid.Column>
                 </Grid.Row>
-            </Grid>
+                {
+                    shouldDisplayEditProfileForm && (
+                        <Grid.Row>
+                            <Grid.Column>
+                                <Segment>
 
+                                    {
+                                        error && (
+                                            <ErrorMessage message={error.message} />
+                                        )
+                                    }
+                                    <EditUserForm
+                                        isLoading={isLoading}
+                                        formData={formData}
+                                        setFormData={setFormData}
+                                        handleSubmit={handleFormSubmit}
+                                        handleResetButtonClick={handleResetButtonClick}
+                                        shouldDisableSubmitButton={shouldDisableSubmitButton}
+                                        shouldDisableResetButton={shouldDisableResetButton}
+                                    />
+                                </Segment>
+                            </Grid.Column>
+                        </Grid.Row>
+                    )
+                }
+            </Grid>
         </Segment>
     )
 }
