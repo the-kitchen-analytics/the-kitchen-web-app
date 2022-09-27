@@ -13,9 +13,9 @@ export const STATISTICS_MONTHLY = `${STATISTICS_BASE_ROUTE}/monthly`;
 export const STATISTICS_ALL = `${STATISTICS_BASE_ROUTE}`;
 
 // AUTH ROUTES
-export const LOGIN = 'login';
-export const REGISTER = 'register';
-export const RESET_PASSWORD = 'resetPassword';
+export const LOGIN = '/login';
+export const REGISTER = '/register';
+export const RESET_PASSWORD = '/resetPassword';
 
 // OTHER ROUTES
 export const SUBMIT_DATA = `${DASHBOARD}/submitData`;

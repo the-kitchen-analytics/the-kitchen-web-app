@@ -8,7 +8,10 @@ import useSessionStorage from "./useSessionStorage";
 import useTouched from "./useTouched";
 import useHealthCheck from "./useHealthCheck";
 import useFetchData from "./useFetchData";
+import usePostData from "./usePostData";
 import useColorNames from "./useColorNames";
+import useApplicationSettings from "./useSystemSettings";
+import useUserSettings from "./useUserSettings";
 
 export {
     useDataFilters,
@@ -21,5 +24,8 @@ export {
     useTouched,
     useHealthCheck,
     useFetchData,
-    useColorNames
+    usePostData,
+    useColorNames,
+    useApplicationSettings,
+    useUserSettings
 }

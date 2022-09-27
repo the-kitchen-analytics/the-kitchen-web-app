@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
 import { Label } from "semantic-ui-react";
 import Price from "../ui/Price"
 import { formatDate } from "../../utils/date";
-import { UserSettingsContext } from "../../context/UserSettingsContext";
+import { useUserSettings } from "../../hooks";
 
 const DateCell = ({ children, price = 0 }) => {
 
-    const { settings: { accentColor } } = useContext(UserSettingsContext);
+    const { settings: { accentColor } } = useUserSettings();
 
     return (
         <>

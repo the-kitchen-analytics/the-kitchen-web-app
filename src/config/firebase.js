@@ -56,17 +56,12 @@ const signInWithGoogle = async () => {
         }
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        throw err;
     }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-    } catch (err) {
-        console.error(err);
-        alert(err.message);
-    }
+const logInWithEmailAndPassword = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
@@ -81,18 +76,12 @@ const registerWithEmailAndPassword = async (name, email, password) => {
         });
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        throw err;
     }
 };
 
-const sendPasswordReset = async (email) => {
-    try {
-        await sendPasswordResetEmail(auth, email);
-        alert("Password reset link sent!");
-    } catch (err) {
-        console.error(err);
-        alert(err.message);
-    }
+const sendPasswordReset = (email) => {
+    return sendPasswordResetEmail(auth, email);
 };
 
 const logout = () => {
@@ -103,7 +92,7 @@ export {
     auth,
     db,
     signInWithGoogle,
-    logInWithEmailAndPassword,
+    logInWithEmailAndPassword as signInWithEmailAndPassword,
     registerWithEmailAndPassword,
     sendPasswordReset,
     logout,

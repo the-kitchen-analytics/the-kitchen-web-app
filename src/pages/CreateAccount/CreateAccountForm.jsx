@@ -1,0 +1,99 @@
+import { useCallback } from "react";
+import { Link } from "react-router-dom";
+import { Form, Divider } from "semantic-ui-react";
+import { useApplicationSettings } from "../../hooks";
+import { handleInputChange } from "../../utils/ui/form";
+
+const CreateAccountForm = ({
+    formData: { name, email, password },
+    setFormData,
+    isLoading,
+    error,
+    handleRegisterWithMailAndPassword,
+    handleSignUpWithGoogle
+}) => {
+
+    const { settings: { controlsSize } } = useApplicationSettings();
+
+    const handleInputChangeWrapper = useCallback((e) => {
+        handleInputChange(e, setFormData)
+    }, [setFormData]);
+
+    const shouldDisableSubmitButton = () => {
+        return isLoading || !(name && email && password);
+    }
+
+    return (
+        <Form
+            error={!!error}
+            size={controlsSize}
+            onSubmit={handleRegisterWithMailAndPassword}
+            loading={isLoading}
+        >
+            <Form.Input
+                required
+                error={!!error}
+                type="text"
+                label="Имя"
+                placeholder="Имя"
+                name="name"
+                value={name}
+                onChange={handleInputChangeWrapper}
+            />
+
+            <Form.Input
+                required
+                error={!!error}
+                type="email"
+                label="Эл. почта"
+                placeholder="Эл. почта"
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={handleInputChangeWrapper}
+            />
+
+            <Form.Input
+                required
+                error={!!error}
+                type="password"
+                label="Пароль"
+                placeholder="Пароль"
+                name="password"
+                autoComplete="new-password"
+                value={password}
+                onChange={handleInputChangeWrapper}
+            />
+
+            <Form.Button
+                fluid
+                size={controlsSize}
+                type="submit"
+                content="Зарегистрироваться"
+                loading={isLoading}
+                disabled={shouldDisableSubmitButton()}
+            />
+
+            <Divider horizontal>Или</Divider>
+
+            <Form.Button
+                fluid
+                primary
+                loading={isLoading}
+                disabled={isLoading}
+                icon='google'
+                type='button'
+                onClick={handleSignUpWithGoogle}
+                content="Войти с Google"
+                size={controlsSize}
+            />
+
+            <Form.Field>
+                Уже есть аккаунт? <Link to="/">Войти</Link>.
+            </Form.Field>
+
+        </Form>
+    );
+}
+
+export default CreateAccountForm;

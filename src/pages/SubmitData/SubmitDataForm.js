@@ -1,8 +1,6 @@
-import React, { useCallback, useContext, useState } from "react";
+import { useCallback, useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import SelectProcedures from "./SelectProcedures";
-import ApiServiceContext from "../../context/ApiServiceContext";
-import { UserSettingsContext } from "../../context/UserSettingsContext";
 
 import { formatDateForDatePicker, getCurrentDate, parseDateFromDropdown } from "../../utils/date";
 import { handleInputChange } from "../../utils/ui/form";
@@ -10,7 +8,7 @@ import { handleInputChange } from "../../utils/ui/form";
 import _ from "lodash";
 import { DatePicker } from "../../components/ui/Input";
 import { useNavigate } from "react-router-dom";
-import { useLocalStorage } from "../../hooks";
+import { useLocalStorage, useUserSettings } from "../../hooks";
 import { LoadableButton } from "../../components/ui/Button";
 
 const INITIAL_FORM_DATA = Object.freeze({
@@ -24,8 +22,7 @@ const SubmitDataForm = ({ refreshData }) => {
 
     const navigate = useNavigate();
 
-    const apiService = useContext(ApiServiceContext);
-    const { settings: { accentColor } } = useContext(UserSettingsContext);
+    const { settings: { accentColor, controlsSize } } = useUserSettings();
 
     const [formData, setFormData] = useLocalStorage('submitDataForm', INITIAL_FORM_DATA);
     const [accorditionActiveIndex, setAccorditionActiveIndex] = useLocalStorage(INITIAL_ACORDITION_INDEX);
@@ -64,15 +61,20 @@ const SubmitDataForm = ({ refreshData }) => {
         setIsHttpRequestPerformed(true);
         setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
 
-        apiService.postData({
+        const data = {
             ...formData,
             date: parseDateFromDropdown(formData.date)
-        }).then(() => {
-            setIsHttpRequestPerformed(false);
-            clearForm();
-            refreshData();
-            navigate('/');
-        });
+        }
+
+        // apiService.postData({
+        //     ...formData,
+        //     date: parseDateFromDropdown(formData.date)
+        // }).then(() => {
+        //     setIsHttpRequestPerformed(false);
+        //     clearForm();
+        //     refreshData();
+        //     navigate('/');
+        // });
     }
 
     const getSubmitButtonLabel = useCallback(() => {
@@ -90,7 +92,7 @@ const SubmitDataForm = ({ refreshData }) => {
 
     return (
         <Form
-            size="large"
+            size={controlsSize}
             onSubmit={handleFormSubmit}
             loading={isHttpRequestPerformed}
         >
@@ -115,7 +117,7 @@ const SubmitDataForm = ({ refreshData }) => {
             <Form.Field>
                 <Button
                     fluid
-                    size="large"
+                    size={controlsSize}
                     type="button"
                     content="Очистить"
                     disabled={shouldDisableClearFormButton()}
@@ -127,7 +129,7 @@ const SubmitDataForm = ({ refreshData }) => {
             <Form.Field>
                 <LoadableButton
                     fluid
-                    size="large"
+                    size={controlsSize}
                     icon="save"
                     type="submit"
                     color={accentColor}

@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Menu, Image } from 'semantic-ui-react'
-import { UserSettingsContext } from "../../context/UserSettingsContext"
+import { useUserSettings } from '../../hooks'
 import { createNavigationBarElement } from '../../utils/ui/navigationBar'
 
 const NavigationBar = ({ logo, title, options }) => {
 
-    const { settings: { accentColor } } = useContext(UserSettingsContext)
+    const { settings: { accentColor } } = useUserSettings();
 
     return (
         <div className='navigation-bar'>

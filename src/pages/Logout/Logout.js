@@ -1,11 +1,19 @@
 import React, { useMemo } from "react";
 import { LoadableButton } from "../../components/ui/Button";
+import { logout } from "../../config/firebase";
+import { useUserSettings } from "../../hooks";
+
+const CONFIRM_LOGOUT_MESSAGE = 'Вы действительно хотите выйти?';
 
 const Logout = (props) => {
 
+    const { settings: { controlsSize } } = useUserSettings();
 
     const handleLogOut = () => {
-        console.debug('log out');
+        if (window.confirm(CONFIRM_LOGOUT_MESSAGE)) {
+            console.debug('log out');
+            logout();
+        }
     }
 
     const defultProps = useMemo(() => ({
@@ -13,10 +21,10 @@ const Logout = (props) => {
         negative: true,
         icon: 'sign out',
         content: 'Выйти',
-        size: 'large',
+        size: controlsSize,
         onClick: handleLogOut,
         ...props
-    }), [props]);
+    }), [props, controlsSize]);
 
     return (
         <LoadableButton

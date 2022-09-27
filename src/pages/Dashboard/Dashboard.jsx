@@ -4,7 +4,7 @@ import { Container, Grid, Segment } from 'semantic-ui-react';
 import NavigationBar from "../../components/NavigationBar";
 
 import { navigationBarOptions } from "../../data/ui/navigationBar";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/images/logo.svg";
 import { UserSettingsContextProvider } from "../../context/UserSettingsContext";
 import { useState } from "react";
 import { useCallback } from "react";

@@ -1,12 +1,10 @@
 import _ from "lodash";
-import React, { useContext } from "react";
 import { Header, Icon, Segment, Label, Message } from "semantic-ui-react";
-import { UserSettingsContext } from "../../context/UserSettingsContext";
-
+import { useUserSettings } from "../../hooks";
 
 const SelectAccentColor = ({ colorOptions }) => {
 
-    const { settings: { accentColor }, setSetting } = useContext(UserSettingsContext);
+    const { settings: { accentColor }, setSetting } = useUserSettings();
 
     const buildOption = (colorName) => {
 

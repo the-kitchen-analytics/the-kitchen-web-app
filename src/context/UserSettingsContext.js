@@ -1,14 +1,15 @@
 import { createContext } from "react";
-import { useColorNames, useLocalStorage } from "../hooks";
+import { useApplicationSettings, useColorNames, useLocalStorage } from "../hooks";
 
 const UserSettingsContext = createContext();
 
 const UserSettingsContextProvider = ({ children }) => {
 
     const { getRandomFancyColorName } = useColorNames()
+    const { settings: systemSettings } = useApplicationSettings();
 
-    const [settings, setSettings] = useLocalStorage('userSettigs', {
-        accentColor: getRandomFancyColorName()
+    const [settings, setSettings] = useLocalStorage('userSettings', {
+        accentColor: getRandomFancyColorName(),
     });
 
     const setSettingsWrapper = (name, value) => {
@@ -16,7 +17,8 @@ const UserSettingsContextProvider = ({ children }) => {
     }
 
     return (
-        <UserSettingsContext.Provider value={{ settings, setSetting: setSettingsWrapper }}>
+        <UserSettingsContext.Provider
+            value={{ settings: { ...systemSettings, ...settings }, setSetting: setSettingsWrapper }}>
             {
                 children
             }

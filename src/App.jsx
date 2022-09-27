@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"
 
-import Login from './components/Login'
-import Register from './components/Register'
-import ResetPassword from './components/Reset'
+import Login from './pages/Login'
+import CreateAccount from './pages/CreateAccount';
+import ResetPassword from './pages/ResetPassword';
 import RequireAuth from './components/RequireAuth';
 
 import NoContent from './pages/NoContent';
@@ -15,76 +15,72 @@ import { DailyStatisticsView, MonthlyStatisticsView, AllTimeStatisticsView } fro
 import Settings from "./pages/Settings";
 import SubmitData from "./pages/SubmitData";
 
-import { DASHBOARD, routes, TABLE_DAILY } from './data/routePaths';
+import { routes } from './data/routePaths';
+import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
 
 const App = () => (
     <div className="app">
-        <Router basename='the-kitchen-analytics-react-app'>
-            <Routes>
-                <Route index element={<Navigate to={`${DASHBOARD}/${TABLE_DAILY}`} />} />
+        <ApplicationSettingsContextProvider>
+            <Router basename='the-kitchen-analytics-react-app'>
+                <Routes>
+                    <Route index element={<Navigate to={`/dashboard/`} />} />
 
-                <Route path={routes.LOGIN} element={<Login />} />
-                <Route path={routes.REGISTER} element={<Register />} />
-                <Route
-                    path={routes.RESET_PASSWORD}
-                    element={
-                        <RequireAuth>
-                            <ResetPassword />
-                        </RequireAuth>
-                    }
-                />
-
-                <Route
-                    path={routes.DASHBOARD}
-                    element={
-                        <RequireAuth>
-                            <Dashboard />
-                        </RequireAuth>
-                    }
-                    errorElement={<ErrorPage />}
-                >
-                    <Route path='table'>
-                        <Route
-                            index
-                            element={<AllTimeTableView />}
-                        />
-                        <Route
-                            path={'daily'}
-                            element={<DailyTableView />}
-                        />
-                        <Route
-                            path={'monthly'}
-                            element={<MonthlyTableView />}
-                        />
-                    </Route>
-
-                    <Route path='statistics'>
-                        <Route
-                            index
-                            element={<AllTimeStatisticsView />}
-                        />
-                        <Route
-                            path={'daily'}
-                            element={<DailyStatisticsView />}
-                        />
-                        <Route
-                            path={'monthly'}
-                            element={<MonthlyStatisticsView />}
-                        />
-                    </Route>
+                    <Route path={routes.LOGIN} element={<Login />} />
+                    <Route path={routes.REGISTER} element={<CreateAccount />} />
+                    <Route path={routes.RESET_PASSWORD} element={<ResetPassword />} />
 
                     <Route
-                        path={'submitData'}
-                        element={<SubmitData />}
-                    />
-                    <Route
-                        path={'settings'}
-                        element={<Settings />}
-                    />
-                </Route>
-                <Route path="*" element={<NoContent />} />
-            </Routes>
-        </Router>
+                        path={routes.DASHBOARD}
+                        element={
+                            <RequireAuth>
+                                <Dashboard />
+                            </RequireAuth>
+                        }
+                        errorElement={<ErrorPage />}
+                    >
+                        <Route path='table'>
+                            <Route
+                                index
+                                element={<AllTimeTableView />}
+                            />
+                            <Route
+                                path={'daily'}
+                                element={<DailyTableView />}
+                            />
+                            <Route
+                                path={'monthly'}
+                                element={<MonthlyTableView />}
+                            />
+                        </Route>
+
+                        <Route path='statistics'>
+                            <Route
+                                index
+                                element={<AllTimeStatisticsView />}
+                            />
+                            <Route
+                                path={'daily'}
+                                element={<DailyStatisticsView />}
+                            />
+                            <Route
+                                path={'monthly'}
+                                element={<MonthlyStatisticsView />}
+                            />
+                        </Route>
+
+                        <Route
+                            path={'submitData'}
+                            element={<SubmitData />}
+                        />
+                        <Route
+                            path={'settings'}
+                            element={<Settings />}
+                        />
+                    </Route>
+                    <Route path="*" element={<NoContent />} />
+                </Routes>
+            </Router>
+        </ApplicationSettingsContextProvider>
     </div>
 )
 
