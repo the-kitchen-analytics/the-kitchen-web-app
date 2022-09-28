@@ -24,7 +24,9 @@ export default function CreateAccount() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user) navigate("/dashboard");
+        if (user) {
+            navigate('/');
+        }
     }, [user, navigate]);
 
     const handleRegisterWithMailAndPassword = (e) => {

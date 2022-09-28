@@ -23,7 +23,7 @@ export default function ResetPassword() {
         await makeRequest(sendPasswordReset, email);
 
         if (!error) {
-            navigate('/dashboard');
+            navigate('/');
         }
     }
 

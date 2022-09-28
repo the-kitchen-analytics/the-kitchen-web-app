@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import DataTable from "../../components/DataTable";
 import DailyDataLayout from "../../components/layouts/DailyDataLayout";
+import { getTableDataByDay } from "../../services/tableDataFilterService";
 
 const DailyTableView = () => {
 
-    const { getTableDataByDay, workedDays } = useOutletContext();
+    const { receiptsByDay, workedDays } = useOutletContext();
     const [selectedDay, setSelectedDay] = useState(workedDays[0]);
 
     return (
@@ -18,7 +19,7 @@ const DailyTableView = () => {
                 component={DailyTableView}
             >
                 <DataTable
-                    data={[getTableDataByDay(selectedDay)]}
+                    data={[getTableDataByDay(selectedDay, receiptsByDay)]}
                 />
             </DailyDataLayout>
         </div>

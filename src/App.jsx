@@ -17,16 +17,16 @@ import SubmitData from "./pages/SubmitData";
 
 import { routes } from './data/routePaths';
 import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
-import WithCurrentUser from "./hoc/withCurrentUser";
+import WithCurrentUser from "./hoc/WithCurrentUser";
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard);
 
 const App = () => (
     <div className="app">
         <ApplicationSettingsContextProvider>
-            <Router basename='the-kitchen-analytics-react-app'>
+            <Router>
                 <Routes>
-                    <Route index element={<Navigate to={`/dashboard/`} />} />
+                    <Route index element={<Navigate to={`/dashboard/table/daily`} />} />
 
                     <Route path={routes.LOGIN} element={<Login />} />
                     <Route path={routes.REGISTER} element={<CreateAccount />} />

@@ -1,13 +1,10 @@
 import _ from "lodash";
-import { useMemo } from "react";
 import { Grid } from "semantic-ui-react";
 import { MonthSelect, YearSelect } from "../../shared/dropdown";
 import Carosel from "../../ui/Carosel";
 import GenericLayout from "../GenericLayout/GenericLayout";
 
-const MonthlyDataLayout = ({ icon, content, children, selectedDate, setSelectedDate }) => {
-
-    const initialSelectedDate = useMemo(() => selectedDate, [])
+const MonthlyDataLayout = ({ icon, content, children, defaultSelectedDate, selectedDate, setSelectedDate }) => {
 
     const setSelectedMonth = (month) => {
         setSelectedDate((selectedDate) => ({ ...selectedDate, month }));
@@ -54,8 +51,8 @@ const MonthlyDataLayout = ({ icon, content, children, selectedDate, setSelectedD
                         }}
                         resetButtonProps={{
                             content: 'Текущий месяц',
-                            disabled: _.isEqual(initialSelectedDate, selectedDate),
-                            onClick: () => setSelectedDate(initialSelectedDate)
+                            disabled: _.isEqual(defaultSelectedDate, selectedDate),
+                            onClick: () => setSelectedDate(defaultSelectedDate)
                         }}
                         nextItemProps={{
                             disabled: selectedDate.month >= 12,

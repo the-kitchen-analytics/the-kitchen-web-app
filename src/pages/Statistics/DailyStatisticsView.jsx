@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import DailyDataLayout from "../../components/layouts/DailyDataLayout/DailyDataLayout";
 import Statistics from "../../components/Statistics";
+import { getStaisticsDataByDay } from "../../services/statisticsDataFilterService";
 
 const DailyStatisticsView = () => {
 
-    const { getStaisticsDataByDay, workedDays } = useOutletContext();
+    const { workedDays, receiptsByDay } = useOutletContext();
     const [selectedDay, setSelectedDay] = useState(workedDays[0])
 
     return (
@@ -18,7 +19,7 @@ const DailyStatisticsView = () => {
             {
                 selectedDay && (
                     <Statistics
-                        data={getStaisticsDataByDay(selectedDay)}
+                        data={getStaisticsDataByDay(selectedDay, receiptsByDay)}
                     />
                 )
             }

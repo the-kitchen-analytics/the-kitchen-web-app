@@ -16,7 +16,7 @@ const NoTableContent = () => (
 
 const DataTableRow = ({ data }) => data
     .map(({ date, dateCreated, procedures, totalPriceBeforeTaxes, totalPriceAfterTaxes }, i) => (
-        <Table.Row key={dateCreated} verticalAlign='top'>
+        <Table.Row key={dateCreated.getTime()} verticalAlign='top'>
             {
                 i === 0 ? (
                     <Table.Cell rowSpan={data.length}>
@@ -55,13 +55,14 @@ const DataTableRow = ({ data }) => data
 
 
 const DataTableBody = ({ data }) => {
-    if (_.isEmpty(data)) {
+    if (_.isEmpty(data.flat())) {
+        console.debug(data)
         return <NoTableContent />
     }
 
     return data.map(rowData => (
         <DataTableRow
-            key={rowData.map(({ date }) => date)[0]}
+            key={rowData.map(({ date }) => date.getTime())[0]}
             data={rowData}
         />
     ))

@@ -1,66 +1,32 @@
 import { Outlet } from "react-router-dom";
-import { Container, Grid, Segment } from 'semantic-ui-react';
+import { Container, Grid, Loader, Segment } from 'semantic-ui-react';
 import NavigationBar from "../../components/NavigationBar";
-
 import { navigationBarOptions } from "../../data/ui/navigationBar";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 import logo from "../../assets/images/logo.svg";
 import { UserSettingsContextProvider } from "../../context/UserSettingsContext";
-import { useState } from "react";
-import { useEffect, useCallback } from "react";
-import { streamReceiptsByUid } from "../../services/receiptService";
-import _ from "lodash";
-import { formatDate } from "../../utils/date";
-import { useDataFilters, useStatisticsFilters, useTableFilters } from "../../hooks";
+import { useStreamReceiptData } from "../../hooks";
 
 const Dashboard = ({ user: currentUser }) => {
 
-    const [data, setData] = useState([]);
-    const [groupedData, setGroupedData] = useState({});
-    const [workedDays, setWorkedDays] = useState([]);
+    const [data, isLoading, error] = useStreamReceiptData({ uid: currentUser.uid });
 
-    const dataFilters = useDataFilters(data, groupedData);
-
-    const {
-        getAllTableData,
-        getTableDataByDay,
-        getTableDataByMonthAndYear,
-    } = useTableFilters(dataFilters);
-
-    const {
-        getAllStatisticsData,
-        getStatisticsDataByMonthAndYear: getStatisticsDataByMonthAndYear,
-        getStaisticsDataByDay,
-    } = useStatisticsFilters(dataFilters);
-
-    const convertFirebaseData = useCallback((firebaseDataEntry) => {
-        const entryData = firebaseDataEntry.data()
-        return {
-            ...entryData,
-            dateCreated: entryData.dateCreated.toDate(),
-            date: entryData.date.toDate(),
-            dateFormatted: formatDate(entryData.date.toDate()),
-        }
-    }, []);
-
-    useEffect(() => {
-        const unsubscribe = streamReceiptsByUid(currentUser.uid,
-            (querySnapshot) => {
-                const receipts = querySnapshot.docs.map(convertFirebaseData);
-
-                setData(receipts);
-                const receiptsByDay = _.groupBy(receipts, 'dateFormatted');
-                setGroupedData(receiptsByDay);
-                setWorkedDays(Object.keys(receiptsByDay));
-            },
-            (error) => console.error(error),
-        );
-        return unsubscribe;
-    }, [convertFirebaseData, currentUser.uid, setData]);
+    const outlet = () => (
+        <Outlet
+            context={{
+                ...data,
+                currentUser,
+            }}
+        />
+    )
 
     return (
         <UserSettingsContextProvider>
             <Container>
                 <Grid centered padded stackable>
+                    {
+                        error && <ErrorMessage message={error} />
+                    }
                     <Grid.Row>
                         <Grid.Column widescreen={4}>
                             <NavigationBar
@@ -76,18 +42,11 @@ const Dashboard = ({ user: currentUser }) => {
                             <Grid.Row>
                                 <Grid.Column>
                                     <Segment padded>
-                                        <Outlet
-                                            context={{
-                                                getAllTableData,
-                                                getTableDataByDay,
-                                                getTableDataByMonthAndYear,
-                                                getAllStatisticsData,
-                                                getStatisticsDataByMonthAndYear,
-                                                getStaisticsDataByDay,
-                                                workedDays,
-                                                currentUser,
-                                            }}
-                                        />
+                                        {
+                                            isLoading
+                                                ? <Loader content="Загрузка данных" />
+                                                : outlet()
+                                        }
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>

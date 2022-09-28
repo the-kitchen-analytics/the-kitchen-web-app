@@ -15,7 +15,7 @@ import {
 import _ from "lodash";
 import { db } from "../config/firebase"
 import { RECEIPTS } from "../data/firebaseCollectionNames"
-import { parseDateFromDropdown } from "../utils/date";
+import { formatDate, parseDateFromDropdown } from "../utils/date";
 
 const collectionWrapper = () => {
     return collection(db, RECEIPTS);
@@ -82,4 +82,14 @@ export const convertFormDataToReceipt = (formData) => {
     });
 
     return data;
+}
+
+export const convertFirebaseData = (firebaseDataEntry) => {
+    const entryData = firebaseDataEntry.data();
+    return {
+        ...entryData,
+        dateCreated: entryData.dateCreated.toDate(),
+        date: entryData.date.toDate(),
+        dateFormatted: formatDate(entryData.date.toDate()),
+    }
 }
