@@ -5,8 +5,6 @@ import CreateAccount from './pages/CreateAccount';
 import ResetPassword from './pages/ResetPassword';
 import RequireAuth from './components/RequireAuth';
 
-import NoContent from './pages/NoContent';
-
 import Dashboard from './pages/Dashboard';
 import ErrorPage from './pages/ErrorPage';
 
@@ -18,6 +16,7 @@ import SubmitData from "./pages/SubmitData";
 import { routes } from './data/routePaths';
 import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
 import WithCurrentUser from "./hoc/WithCurrentUser";
+import PageNotFound from "./pages/PageNotFound";
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard);
 
@@ -80,7 +79,7 @@ const App = () => (
                             element={<Settings />}
                         />
                     </Route>
-                    <Route path="*" element={<NoContent />} />
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </Router>
         </ApplicationSettingsContextProvider>
