@@ -1,27 +1,27 @@
 import _ from "lodash";
 import { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Segment, Grid } from "semantic-ui-react";
 import EditUserForm from "../../components/EditUserForm";
-import { auth } from "../../config/firebase";
 import { usePostData } from "../../hooks";
 import { useMemo } from "react";
 import Profile from "../../components/Profile";
 import { toggleSetter } from "../../utils/ui";
 import { updateProfile } from "firebase/auth";
 import ErrorMessage from "../../components/ui/ErrorMessage";
+import { useOutletContext } from "react-router-dom";
 
 const UserAccountSettings = () => {
 
-    const [authState] = useAuthState(auth);
+    const { currentUser } = useOutletContext();
+
     const [isLoading, error, postData] = usePostData();
 
     const initialFormData = useMemo(() => ({
-        email: authState.email,
-        displayName: authState.displayName,
+        email: currentUser.email,
+        displayName: currentUser.displayName,
         // description: '',
-        photoURL: authState.photoURL,
-    }), [authState.email, authState.displayName, authState.photoURL]);
+        photoURL: currentUser.photoURL,
+    }), [currentUser.email, currentUser.displayName, currentUser.photoURL]);
 
     const [formData, setFormData] = useState(initialFormData);
     const [shouldDisplayEditProfileForm, setShouldDisplayEditProfileForm] = useState(false);
@@ -40,7 +40,7 @@ const UserAccountSettings = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        await postData(updateProfile, authState, formData);
+        await postData(updateProfile, currentUser, formData);
         setShouldDisplayEditProfileForm(false);
         // resetFormData();
     }
@@ -57,7 +57,7 @@ const UserAccountSettings = () => {
                 <Grid.Row>
                     <Grid.Column>
                         <Profile
-                            userData={authState}
+                            userData={currentUser}
                             handleEdit={() => toggleSetter(setShouldDisplayEditProfileForm)}
                             logout
                         />

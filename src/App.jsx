@@ -17,6 +17,9 @@ import SubmitData from "./pages/SubmitData";
 
 import { routes } from './data/routePaths';
 import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
+import WithCurrentUser from "./hoc/withCurrentUser";
+
+const DashboardWithCurrentUser = WithCurrentUser(Dashboard);
 
 const App = () => (
     <div className="app">
@@ -33,7 +36,7 @@ const App = () => (
                         path={routes.DASHBOARD}
                         element={
                             <RequireAuth>
-                                <Dashboard />
+                                <DashboardWithCurrentUser />
                             </RequireAuth>
                         }
                         errorElement={<ErrorPage />}

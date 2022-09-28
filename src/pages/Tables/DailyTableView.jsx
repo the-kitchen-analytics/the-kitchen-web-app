@@ -5,8 +5,8 @@ import DailyDataLayout from "../../components/layouts/DailyDataLayout";
 
 const DailyTableView = () => {
 
-    const { getDataByDay, workedDays } = useOutletContext();
-    const [selectedDay, setSelectedDay] = useState('');
+    const { getTableDataByDay, workedDays } = useOutletContext();
+    const [selectedDay, setSelectedDay] = useState(workedDays[0]);
 
     return (
         <div className="view">
@@ -18,7 +18,7 @@ const DailyTableView = () => {
                 component={DailyTableView}
             >
                 <DataTable
-                    data={getDataByDay(selectedDay)}
+                    data={[getTableDataByDay(selectedDay)]}
                 />
             </DailyDataLayout>
         </div>

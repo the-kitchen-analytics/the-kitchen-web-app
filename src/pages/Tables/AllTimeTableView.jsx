@@ -4,14 +4,14 @@ import AllTimeDataLayout from "../../components/layouts/AllTimeDataLayout";
 
 const AllTimeTableView = () => {
 
-    const { getAllData } = useOutletContext();
+    const { getAllTableData } = useOutletContext();
 
     return (
         <AllTimeDataLayout
             icon="table"
         >
             <DataTable
-                data={getAllData()}
+                data={getAllTableData()}
             />
         </AllTimeDataLayout>
     );

@@ -5,8 +5,8 @@ import Statistics from "../../components/Statistics";
 
 const DailyStatisticsView = () => {
 
-    const { getDataByDay, workedDays } = useOutletContext();
-    const [selectedDay, setSelectedDay] = useState('')
+    const { getStaisticsDataByDay, workedDays } = useOutletContext();
+    const [selectedDay, setSelectedDay] = useState(workedDays[0])
 
     return (
         <DailyDataLayout
@@ -18,7 +18,7 @@ const DailyStatisticsView = () => {
             {
                 selectedDay && (
                     <Statistics
-                        data={getDataByDay(selectedDay)}
+                        data={getStaisticsDataByDay(selectedDay)}
                     />
                 )
             }

@@ -1,9 +1,8 @@
-
-const useTableFilters = ({ getAllData, getDataByDay, getDataByMonth }) => {
+const useTableFilters = ({ getAllData, getDataByDay, getDataByMonthAndYear }) => {
     return {
         getAllTableData: () => getAllData(),
         getTableDataByDay: (day) => getDataByDay(day),
-        getTableDataByMonth: (month, year) => getDataByMonth(month, year)
+        getTableDataByMonthAndYear: (month, year) => getDataByMonthAndYear(month, year)
     }
 }
 

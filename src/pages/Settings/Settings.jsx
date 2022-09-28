@@ -7,6 +7,7 @@ import UserAccountSettings from "./UserAccountSettings.jsx";
 import { useColorNames } from "../../hooks";
 
 import contactOptions from "../../data/contactOptions.json";
+import DeleteData from "./DeleteData";
 
 const Settings = () => {
 
@@ -36,6 +37,10 @@ const Settings = () => {
         {
             key: 'clear-cache',
             element: <ClearCache />
+        },
+        {
+            key: 'delete-data',
+            element: <DeleteData />
         },
     ]
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import { Container, Grid, Segment } from 'semantic-ui-react';
 import NavigationBar from "../../components/NavigationBar";
@@ -7,28 +6,56 @@ import { navigationBarOptions } from "../../data/ui/navigationBar";
 import logo from "../../assets/images/logo.svg";
 import { UserSettingsContextProvider } from "../../context/UserSettingsContext";
 import { useState } from "react";
-import { useCallback } from "react";
+import { useEffect, useCallback } from "react";
+import { streamReceiptsByUid } from "../../services/receiptService";
+import _ from "lodash";
+import { formatDate } from "../../utils/date";
+import { useDataFilters, useStatisticsFilters, useTableFilters } from "../../hooks";
 
-const Dashboard = () => {
-
-    // retrive data
-    // transform data
+const Dashboard = ({ user: currentUser }) => {
 
     const [data, setData] = useState([]);
+    const [groupedData, setGroupedData] = useState({});
+    const [workedDays, setWorkedDays] = useState([]);
 
-    const workedDays = []
+    const dataFilters = useDataFilters(data, groupedData);
 
-    const getDataByDay = useCallback(() => {
-        return data;
-    }, [data])
+    const {
+        getAllTableData,
+        getTableDataByDay,
+        getTableDataByMonthAndYear,
+    } = useTableFilters(dataFilters);
 
-    const getDataByMonthAndYear = useCallback(() => {
-        return data;
-    }, [data]);
+    const {
+        getAllStatisticsData,
+        getStatisticsDataByMonthAndYear: getStatisticsDataByMonthAndYear,
+        getStaisticsDataByDay,
+    } = useStatisticsFilters(dataFilters);
 
-    const getAllData = useCallback(() => {
-        return data;
-    }, [data])
+    const convertFirebaseData = useCallback((firebaseDataEntry) => {
+        const entryData = firebaseDataEntry.data()
+        return {
+            ...entryData,
+            dateCreated: entryData.dateCreated.toDate(),
+            date: entryData.date.toDate(),
+            dateFormatted: formatDate(entryData.date.toDate()),
+        }
+    }, []);
+
+    useEffect(() => {
+        const unsubscribe = streamReceiptsByUid(currentUser.uid,
+            (querySnapshot) => {
+                const receipts = querySnapshot.docs.map(convertFirebaseData);
+
+                setData(receipts);
+                const receiptsByDay = _.groupBy(receipts, 'dateFormatted');
+                setGroupedData(receiptsByDay);
+                setWorkedDays(Object.keys(receiptsByDay));
+            },
+            (error) => console.error(error),
+        );
+        return unsubscribe;
+    }, [convertFirebaseData, currentUser.uid, setData]);
 
     return (
         <UserSettingsContextProvider>
@@ -51,10 +78,14 @@ const Dashboard = () => {
                                     <Segment padded>
                                         <Outlet
                                             context={{
-                                                getDataByDay,
-                                                getDataByMonthAndYear,
-                                                getAllData,
-                                                workedDays
+                                                getAllTableData,
+                                                getTableDataByDay,
+                                                getTableDataByMonthAndYear,
+                                                getAllStatisticsData,
+                                                getStatisticsDataByMonthAndYear,
+                                                getStaisticsDataByDay,
+                                                workedDays,
+                                                currentUser,
                                             }}
                                         />
                                     </Segment>

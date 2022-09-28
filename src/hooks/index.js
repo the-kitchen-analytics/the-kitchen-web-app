@@ -27,5 +27,5 @@ export {
     usePostData,
     useColorNames,
     useApplicationSettings,
-    useUserSettings
+    useUserSettings,
 }

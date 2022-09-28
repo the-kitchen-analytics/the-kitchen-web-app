@@ -7,7 +7,7 @@ import { getCurrentMonthAndYear } from "../../utils/date";
 
 const MonthlyTableView = () => {
 
-    const { getDataByMonthAndYear } = useOutletContext();
+    const { getTableDataByMonthAndYear } = useOutletContext();
     const [selectedDate, setSelectedDate] = useState(getCurrentMonthAndYear());
 
     return (
@@ -17,7 +17,7 @@ const MonthlyTableView = () => {
             setSelectedDate={setSelectedDate}
         >
             <DataTable
-                data={getDataByMonthAndYear(selectedDate)}
+                data={getTableDataByMonthAndYear(selectedDate.month, selectedDate.year)}
             />
         </MonthlyDataLayout>
     );

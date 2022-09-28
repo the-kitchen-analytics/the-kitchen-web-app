@@ -4,14 +4,14 @@ import Statistics from "../../components/Statistics";
 
 const AllTimeStatisticsView = () => {
 
-    const { getAllData } = useOutletContext();
+    const { getAllStatisticsData } = useOutletContext();
 
     return (
         <AllTimeDataLayout
             icon="chart bar"
         >
             <Statistics
-                data={getAllData()}
+                data={getAllStatisticsData()}
             />
         </AllTimeDataLayout>
     );

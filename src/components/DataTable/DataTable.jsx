@@ -15,8 +15,8 @@ const NoTableContent = () => (
 );
 
 const DataTableRow = ({ data }) => data
-    .map(({ id, date, operations, totalPriceBeforeTaxes, totalPriceAfterTaxes }, i) => (
-        <Table.Row key={id} verticalAlign='top'>
+    .map(({ date, dateCreated, procedures, totalPriceBeforeTaxes, totalPriceAfterTaxes }, i) => (
+        <Table.Row key={dateCreated} verticalAlign='top'>
             {
                 i === 0 ? (
                     <Table.Cell rowSpan={data.length}>
@@ -32,7 +32,7 @@ const DataTableRow = ({ data }) => data
 
             <Table.Cell>
                 <OperationsCell>
-                    {operations}
+                    {procedures}
                 </OperationsCell>
             </Table.Cell>
 
@@ -59,7 +59,12 @@ const DataTableBody = ({ data }) => {
         return <NoTableContent />
     }
 
-    return data.map(rowData => <DataTableRow data={rowData} />)
+    return data.map(rowData => (
+        <DataTableRow
+            key={rowData.map(({ date }) => date)[0]}
+            data={rowData}
+        />
+    ))
 }
 
 const DataTable = ({ data }) => {

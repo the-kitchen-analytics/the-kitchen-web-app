@@ -7,7 +7,7 @@ import { getCurrentMonthAndYear } from "../../utils/date";
 const MonthlyStatisticsView = () => {
 
     const [selectedDate, setSelectedDate] = useState(getCurrentMonthAndYear());
-    const { getDataByMonthAndYear } = useOutletContext();
+    const { getStatisticsDataByMonthAndYear } = useOutletContext();
 
     return (
         <MonthlyDataLayout
@@ -18,7 +18,7 @@ const MonthlyStatisticsView = () => {
             {
                 selectedDate && (
                     <Statistics
-                        data={getDataByMonthAndYear(selectedDate)}
+                        data={getStatisticsDataByMonthAndYear(selectedDate.month, selectedDate.year)}
                     />
                 )
             }

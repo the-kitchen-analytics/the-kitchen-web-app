@@ -1,20 +1,20 @@
 import { useCallback } from "react";
 import { buildStatisticsData } from "../utils/statistics";
 
-const useStatisticsFilters = ({ getAllData, getDataByDay, getDataByMonth }) => {
+const useStatisticsFilters = ({ getAllData, getDataByDay, getDataByMonthAndYear }) => {
 
     const getAllStatisticsData = useCallback(() => buildStatisticsData(getAllData()), [getAllData])
 
-    const getStatisticsDataByMonth = useCallback((month, year) =>
-        buildStatisticsData(getDataByMonth(month, year)), [getDataByMonth])
+    const getStatisticsDataByMonthAndYear = useCallback((month, year) =>
+        buildStatisticsData(getDataByMonthAndYear(month, year)), [getDataByMonthAndYear])
 
     const getStaisticsDataByDay = useCallback((day) =>
         buildStatisticsData(getDataByDay(day)), [getDataByDay])
 
     return {
         getAllStatisticsData,
-        getStatisticsDataByMonth,
-        getStaisticsDataByDay
+        getStatisticsDataByMonthAndYear,
+        getStaisticsDataByDay,
     }
 }
 

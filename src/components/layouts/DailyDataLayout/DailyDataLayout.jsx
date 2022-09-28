@@ -2,6 +2,7 @@ import React from "react";
 import { Grid } from "semantic-ui-react";
 import GenericLayout from "../GenericLayout";
 import { DaySelect } from "../../shared/dropdown";
+import { buildDropdownOptions } from "../../../utils/ui/dropdown";
 
 const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children }) => (
     <GenericLayout
@@ -18,7 +19,7 @@ const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children 
             >
                 <DaySelect
                     value={selectedDay}
-                    options={options}
+                    options={buildDropdownOptions(options)}
                     handleChange={(e, { value }) => setSelectedDay(value)}
                 />
             </Grid.Column>
