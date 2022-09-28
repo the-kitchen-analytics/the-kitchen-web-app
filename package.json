@@ -1,7 +1,6 @@
 {
   "name": "the-kitchen-analytics-react-app",
   "version": "0.1.0",
-  "homepage": "https://glebremniov.github.io/the-kitchen-analytics-react-app",
   "private": true,
   "dependencies": {
     "@semantic-ui-react/css-patch": "^1.1.2",
