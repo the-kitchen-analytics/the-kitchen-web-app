@@ -1,23 +1,34 @@
+import { useMemo } from "react";
 import { Outlet } from "react-router-dom";
-import { Container, Grid, Loader, Segment } from 'semantic-ui-react';
+import { Container, Grid, Segment } from 'semantic-ui-react';
 import NavigationBar from "../../components/NavigationBar";
-import { navigationBarOptions } from "../../data/ui/navigationBar";
-import ErrorMessage from "../../components/ui/ErrorMessage";
+import { Loader, ErrorMessage } from "../../components/ui";
 import { UserSettingsContextProvider } from "../../context/UserSettingsContext";
 import { useStreamReceiptData } from "../../hooks";
+import { navigationBarOptions } from "../../data/ui/navigationBar";
 
 const Dashboard = ({ user: currentUser }) => {
 
     const [data, isLoading, error] = useStreamReceiptData({ uid: currentUser.uid });
 
-    const outlet = () => (
-        <Outlet
-            context={{
-                ...data,
-                currentUser,
-            }}
-        />
-    )
+    const outlet = useMemo(() => {
+        if (isLoading) {
+            return (
+                <Container style={{ minHeight: '50vh' }}>
+                    <Loader content="Загрузка данных" />
+                </Container>
+            )
+        }
+
+        return (
+            <Outlet
+                context={{
+                    ...data,
+                    currentUser,
+                }}
+            />
+        )
+    }, [isLoading, data, currentUser])
 
     return (
         <UserSettingsContextProvider>
@@ -41,9 +52,7 @@ const Dashboard = ({ user: currentUser }) => {
                                 <Grid.Column>
                                     <Segment padded>
                                         {
-                                            isLoading
-                                                ? <Loader content="Загрузка данных" />
-                                                : outlet()
+                                            outlet
                                         }
                                     </Segment>
                                 </Grid.Column>
