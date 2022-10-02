@@ -3,7 +3,6 @@ import { Container, Grid, Loader, Segment } from 'semantic-ui-react';
 import NavigationBar from "../../components/NavigationBar";
 import { navigationBarOptions } from "../../data/ui/navigationBar";
 import ErrorMessage from "../../components/ui/ErrorMessage";
-import logo from "../../assets/images/logo.svg";
 import { UserSettingsContextProvider } from "../../context/UserSettingsContext";
 import { useStreamReceiptData } from "../../hooks";
 
@@ -30,7 +29,6 @@ const Dashboard = ({ user: currentUser }) => {
                     <Grid.Row>
                         <Grid.Column widescreen={4}>
                             <NavigationBar
-                                logo={logo}
                                 title={(
                                     <strong>The Kitchen App</strong>
                                 )}

@@ -1,9 +1,9 @@
-import React from 'react'
-import { Menu, Image } from 'semantic-ui-react'
-import { useUserSettings } from '../../hooks'
-import { createNavigationBarElement } from '../../utils/ui/navigationBar'
+import { Menu } from 'semantic-ui-react';
+import { useUserSettings } from '../../hooks';
+import { createNavigationBarElement } from '../../utils/ui/navigationBar';
+import Logo from '../Logo';
 
-const NavigationBar = ({ logo, title, options }) => {
+const NavigationBar = ({ title, options }) => {
 
     const { settings: { accentColor } } = useUserSettings();
 
@@ -18,10 +18,7 @@ const NavigationBar = ({ logo, title, options }) => {
                 color={accentColor || 'black'}
             >
                 <Menu.Item>
-                    <Image
-                        avatar
-                        src={logo}
-                    /> {title}
+                    <Logo avatar /> {title}
                 </Menu.Item>
 
                 {
