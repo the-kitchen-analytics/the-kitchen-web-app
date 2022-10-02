@@ -6,7 +6,7 @@ import useWindowStorage from "./useWindowStorage"
  * @returns 
  */
 const useLocalStorage = (key, initialValue) => {
-    return useWindowStorage(window.sessionStorage, key, initialValue);
+    return useWindowStorage(window.localStorage, key, initialValue);
 }
 
 export default useLocalStorage;

@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-export const getAllData = (data) => groupAsArray(data)
+export const getAllData = (data) => groupAsArray(data);
 
 export const getDataByDay = (selectedDay, data) => {
     const result = data
