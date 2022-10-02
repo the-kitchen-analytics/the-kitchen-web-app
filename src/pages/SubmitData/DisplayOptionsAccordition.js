@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Accordion, Form, Divider } from "semantic-ui-react";
-import { toggleSetter } from "../../utils/ui";
+import { useToggleState } from "../../hooks";
 
 const DisplayOptionsAccordition = ({ options }) => {
 
-    const [shouldDisplayOptions, setShouldDisplayOptions] = useState(false);
+    const [shouldDisplayOptions, toggleShouldDisplayOptions] = useToggleState(false);
 
     return (
         <Accordion fluid>
@@ -13,7 +13,7 @@ const DisplayOptionsAccordition = ({ options }) => {
                 icon='setting'
                 content='Параметры'
                 active={shouldDisplayOptions}
-                onClick={() => toggleSetter(setShouldDisplayOptions)}
+                onClick={toggleShouldDisplayOptions}
             />
 
             <Accordion.Content active={shouldDisplayOptions}>

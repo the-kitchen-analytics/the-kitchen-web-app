@@ -2,10 +2,9 @@ import _ from "lodash";
 import { useState } from "react";
 import { Segment, Grid } from "semantic-ui-react";
 import EditUserForm from "../../components/EditUserForm";
-import { usePostData } from "../../hooks";
+import { usePostData, useToggleState } from "../../hooks";
 import { useMemo } from "react";
 import Profile from "../../components/Profile";
-import { toggleSetter } from "../../utils/ui";
 import { updateProfile } from "firebase/auth";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import { useOutletContext } from "react-router-dom";
@@ -24,7 +23,11 @@ const UserAccountSettings = () => {
     }), [currentUser.email, currentUser.displayName, currentUser.photoURL]);
 
     const [formData, setFormData] = useState(initialFormData);
-    const [shouldDisplayEditProfileForm, setShouldDisplayEditProfileForm] = useState(false);
+    const [
+        shouldDisplayEditProfileForm,
+        toggleShouldDisplayEditProfileForm,
+        setShouldDisplayEditProfileForm,
+    ] = useToggleState(false);
 
     const shouldDisableSubmitButton = () => {
         return isLoading || _.isEqual(initialFormData, formData);
@@ -58,7 +61,7 @@ const UserAccountSettings = () => {
                     <Grid.Column>
                         <Profile
                             userData={currentUser}
-                            handleEdit={() => toggleSetter(setShouldDisplayEditProfileForm)}
+                            handleEdit={toggleShouldDisplayEditProfileForm}
                             logout
                         />
                     </Grid.Column>

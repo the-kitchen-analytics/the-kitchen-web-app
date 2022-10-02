@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Form, Divider } from "semantic-ui-react";
 import DisplayOptionsAccordition from "./DisplayOptionsAccordition";
 import SelectedProceduresLabelGroup from "./SelectedProceduresLabelGroup";
 import _ from "lodash";
 import proceduresData from "../../data/operations.json";
 import { TYPE_MANICURE, TYPE_PEDICURE, TYPE_SPA } from "../../data/procedureTypes";
-import { useLocalStorage } from "../../hooks";
+import { useLocalStorage, useToggleState } from "../../hooks";
 import { toggleSetter } from "../../utils/ui";
 import ProceduresAccordition from "./ProceduresAccordition";
 
@@ -13,7 +13,7 @@ const SelectProcedures = ({ formData, setFormData, accorditionActiveIndex, setAc
 
     const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures]);
 
-    const [shouldDisplayHalfPartProcedures, setShouldDisplayHalfPartProcedures] = useState(false);
+    const [shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures] = useToggleState(false);
 
     const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', false);
 
@@ -36,7 +36,7 @@ const SelectProcedures = ({ formData, setFormData, accorditionActiveIndex, setAc
             key: 'shouldDisplayHalfPartProcedures',
             label: 'Показывать 1/2 услуги',
             checked: shouldDisplayHalfPartProcedures,
-            onChange: () => toggleSetter(setShouldDisplayHalfPartProcedures)
+            onChange: toggleShouldDisplayHalfPartProcedures,
         },
         {
             key: 'shouldDisplayProcedurePrice',
@@ -50,7 +50,7 @@ const SelectProcedures = ({ formData, setFormData, accorditionActiveIndex, setAc
             checked: shouldDisplaySelectedProcedures,
             onChange: () => toggleSetter(setShouldDisplaySelectedProcedures)
         }
-    ]), [setShouldDisplayProcedurePrice, setShouldDisplaySelectedProcedures, shouldDisplayHalfPartProcedures, shouldDisplayProcedurePrice, shouldDisplaySelectedProcedures])
+    ]), [setShouldDisplayProcedurePrice, setShouldDisplaySelectedProcedures, shouldDisplayHalfPartProcedures, shouldDisplayProcedurePrice, shouldDisplaySelectedProcedures, toggleShouldDisplayHalfPartProcedures])
 
     const addProcedure = useCallback((procedure) => {
         setFormData((prevData) => ({

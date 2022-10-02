@@ -13,6 +13,9 @@ import useColorNames from "./useColorNames";
 import useApplicationSettings from "./useSystemSettings";
 import useUserSettings from "./useUserSettings";
 import useStreamReceiptData from './useStreamReceiptData';
+import useToggleState from './useToggleState';
+import useDailyData from './useDailyData';
+import useMonthlyData from './useMonthlyData';
 
 export {
     useDataFilters,
@@ -30,4 +33,7 @@ export {
     useApplicationSettings,
     useUserSettings,
     useStreamReceiptData,
+    useToggleState,
+    useDailyData,
+    useMonthlyData,
 }

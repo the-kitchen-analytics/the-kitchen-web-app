@@ -1,10 +1,16 @@
 import _ from "lodash";
+import { useMemo } from "react";
 import { Grid } from "semantic-ui-react";
+import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from "../../../data/monthIndexes";
 import { MonthSelect, YearSelect } from "../../shared/dropdown";
 import Carosel from "../../ui/Carosel";
 import GenericLayout from "../GenericLayout/GenericLayout";
 
-const MonthlyDataLayout = ({ icon, content, children, defaultSelectedDate, selectedDate, setSelectedDate }) => {
+const MonthlyDataLayout = ({
+    icon, content, children,
+    defaultSelectedDate, selectedDate, setSelectedDate,
+    yearOptions,
+}) => {
 
     const setSelectedMonth = (month) => {
         setSelectedDate((selectedDate) => ({ ...selectedDate, month }));
@@ -13,6 +19,12 @@ const MonthlyDataLayout = ({ icon, content, children, defaultSelectedDate, selec
     const setSelectedYear = (year) => {
         setSelectedDate((selectedDate) => ({ ...selectedDate, year }));
     }
+
+    const yearSelectOptions = useMemo(() => yearOptions.map(year => ({
+        key: year,
+        text: year,
+        value: year
+    })), [yearOptions]);
 
     return (
         <GenericLayout
@@ -27,6 +39,7 @@ const MonthlyDataLayout = ({ icon, content, children, defaultSelectedDate, selec
                     <MonthSelect
                         value={selectedDate.month}
                         handleChange={(e, { value }) => setSelectedMonth(value)}
+                        disabled={yearSelectOptions <= 1}
                     />
                 </Grid.Column>
 
@@ -36,6 +49,8 @@ const MonthlyDataLayout = ({ icon, content, children, defaultSelectedDate, selec
                     <YearSelect
                         value={selectedDate.year}
                         handleChange={(e, { value }) => setSelectedYear(value)}
+                        options={yearSelectOptions}
+                        disabled={yearSelectOptions <= 1}
                     />
                 </Grid.Column>
 
@@ -46,7 +61,7 @@ const MonthlyDataLayout = ({ icon, content, children, defaultSelectedDate, selec
                 >
                     <Carosel
                         previousItemProps={{
-                            disabled: selectedDate.month <= 1,
+                            disabled: selectedDate.month <= FIRST_MONTH_INDEX,
                             onClick: () => setSelectedMonth(selectedDate.month - 1)
                         }}
                         resetButtonProps={{
@@ -55,7 +70,7 @@ const MonthlyDataLayout = ({ icon, content, children, defaultSelectedDate, selec
                             onClick: () => setSelectedDate(defaultSelectedDate)
                         }}
                         nextItemProps={{
-                            disabled: selectedDate.month >= 12,
+                            disabled: selectedDate.month >= LAST_MONTH_INDEX,
                             onClick: () => setSelectedMonth(selectedDate.month + 1)
                         }}
                     />

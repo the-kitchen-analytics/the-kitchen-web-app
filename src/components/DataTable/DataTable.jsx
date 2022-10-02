@@ -56,7 +56,6 @@ const DataTableRow = ({ data }) => data
 
 const DataTableBody = ({ data }) => {
     if (_.isEmpty(data.flat())) {
-        console.debug(data)
         return <NoTableContent />
     }
 
