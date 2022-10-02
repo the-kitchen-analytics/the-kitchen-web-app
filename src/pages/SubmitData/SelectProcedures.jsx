@@ -1,15 +1,18 @@
-import React, { useCallback, useMemo } from "react";
+import _ from "lodash";
+import { useCallback, useMemo } from "react";
 import { Form, Divider } from "semantic-ui-react";
 import DisplayOptionsAccordition from "./DisplayOptionsAccordition";
 import SelectedProceduresLabelGroup from "./SelectedProceduresLabelGroup";
-import _ from "lodash";
-import proceduresData from "../../data/operations.json";
 import { TYPE_MANICURE, TYPE_PEDICURE, TYPE_SPA } from "../../data/procedureTypes";
 import { useLocalStorage, useToggleState } from "../../hooks";
 import { toggleSetter } from "../../utils/ui";
 import ProceduresAccordition from "./ProceduresAccordition";
 
-const SelectProcedures = ({ formData, setFormData, accorditionActiveIndex, setAccorditionActiveIndex }) => {
+const SelectProcedures = ({
+    formData, setFormData,
+    accorditionActiveIndex, setAccorditionActiveIndex,
+    procedures
+}) => {
 
     const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures]);
 
@@ -86,24 +89,24 @@ const SelectProcedures = ({ formData, setFormData, accorditionActiveIndex, setAc
     const accorditionItems = useMemo(() => ([
         createAccorditionItem(
             'Маникюр',
-            proceduresData
+            procedures
                 .filter(getTypeFilter(TYPE_MANICURE))
                 .filter(halfPartProceduresFilter)
         ),
 
         createAccorditionItem(
             'Педикюр',
-            proceduresData
+            procedures
                 .filter(getTypeFilter(TYPE_PEDICURE))
                 .filter(halfPartProceduresFilter),
         ),
 
         createAccorditionItem(
             'SPA-услуги',
-            proceduresData
+            procedures
                 .filter(getTypeFilter(TYPE_SPA))
         )
-    ]), [createAccorditionItem, getTypeFilter, halfPartProceduresFilter])
+    ]), [createAccorditionItem, getTypeFilter, halfPartProceduresFilter, procedures])
 
     return (
         <Form.Group grouped required>

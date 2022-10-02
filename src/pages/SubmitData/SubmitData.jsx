@@ -52,13 +52,16 @@ const SubmitData = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
 
-        const receipt = await postData(createReceipt, convertFormDataToReceipt(formData));
+        if (!shouldDisableSubmitFormButton()) {
+            setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
 
-        if (receipt.id) {
-            clearForm();
-            navigate('/');
+            const receipt = await postData(createReceipt, convertFormDataToReceipt(formData));
+
+            if (receipt.id) {
+                clearForm();
+                navigate('/');
+            }
         }
     }
 

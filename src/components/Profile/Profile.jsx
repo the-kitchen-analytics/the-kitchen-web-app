@@ -6,7 +6,7 @@ import { useUserSettings } from "../../hooks";
 
 const Profile = ({ userData, handleEdit, logout }) => {
 
-    const defaultProfileUrl = '';
+    const defaultProfileUrl = 'https://react.semantic-ui.com/images/wireframe/square-image.png';
 
     const { photoURL, displayName, email, metadata, description } = userData;
     const { settings: { controlsSize } } = useUserSettings();
