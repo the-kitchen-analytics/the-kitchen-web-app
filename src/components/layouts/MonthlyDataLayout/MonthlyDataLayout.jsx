@@ -50,7 +50,6 @@ const MonthlyDataLayout = ({
                         value={selectedDate.year}
                         handleChange={(e, { value }) => setSelectedYear(value)}
                         options={yearSelectOptions}
-                        disabled={yearSelectOptions <= 1}
                     />
                 </Grid.Column>
 
@@ -61,7 +60,7 @@ const MonthlyDataLayout = ({
                 >
                     <Carosel
                         previousItemProps={{
-                            disabled: selectedDate.month <= FIRST_MONTH_INDEX,
+                            disabled: yearSelectOptions.length === 0 || selectedDate.month <= FIRST_MONTH_INDEX,
                             onClick: () => setSelectedMonth(selectedDate.month - 1)
                         }}
                         resetButtonProps={{
@@ -70,7 +69,7 @@ const MonthlyDataLayout = ({
                             onClick: () => setSelectedDate(defaultSelectedDate)
                         }}
                         nextItemProps={{
-                            disabled: selectedDate.month >= LAST_MONTH_INDEX,
+                            disabled: yearSelectOptions.length === 0 || selectedDate.month >= LAST_MONTH_INDEX,
                             onClick: () => setSelectedMonth(selectedDate.month + 1)
                         }}
                     />

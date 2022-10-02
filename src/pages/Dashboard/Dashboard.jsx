@@ -55,7 +55,7 @@ const Dashboard = ({ user: currentUser }) => {
                 </Grid>
             </Container>
         </UserSettingsContextProvider>
-    )
+    );
 }
 
-export default Dashboard
+export default Dashboard;
