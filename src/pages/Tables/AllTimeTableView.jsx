@@ -5,14 +5,14 @@ import { getAllTableData } from "../../services/tableDataFilterService";
 
 const AllTimeTableView = () => {
 
-    const { receiptsByDay } = useOutletContext();
+    const { receipts } = useOutletContext();
 
     return (
         <AllTimeDataLayout
             icon="table"
         >
             <DataTable
-                data={getAllTableData(receiptsByDay)}
+                data={getAllTableData(receipts)}
             />
         </AllTimeDataLayout>
     );

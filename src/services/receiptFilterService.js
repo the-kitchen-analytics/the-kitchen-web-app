@@ -1,11 +1,13 @@
 import _ from "lodash";
 
-export const getAllData = (groupedData) => Object.values(groupedData)
+export const getAllData = (data) => groupAsArray(data)
 
-export const getDataByDay = (selectedDay, groupedData) => {
-    const result = groupedData[selectedDay]
+export const getDataByDay = (selectedDay, data) => {
+    const result = data
+        .flat()
+        .filter(({ dateFormatted }) => dateFormatted === selectedDay);
 
-    return result || [];
+    return result ? groupAsArray(result) : result;
 }
 
 export const getDataByMonthAndYear = (selectedMonth, selectedYear, data) => {
@@ -13,5 +15,14 @@ export const getDataByMonthAndYear = (selectedMonth, selectedYear, data) => {
         .flat()
         .filter(({ date }) => (date.getFullYear() === selectedYear && date.getMonth() === selectedMonth))
 
-    return result ? Object.values(_.groupBy(result, 'dateFormatted')) : result;
+    return result ? groupAsArray(result) : result;
+}
+
+const groupAsObject = (data) => {
+    return _.groupBy(data, 'dateFormatted');
+}
+
+const groupAsArray = (data) => {
+    return Object.values(groupAsObject(data))
+        .map(dataByDay => _.sortBy(dataByDay, 'dateCreated'));
 }

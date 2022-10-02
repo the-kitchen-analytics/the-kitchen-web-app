@@ -5,14 +5,14 @@ import { getAllStatisticsData } from "../../services/statisticsDataFilterService
 
 const AllTimeStatisticsView = () => {
 
-    const { receiptsByDay } = useOutletContext();
+    const { receipts } = useOutletContext();
 
     return (
         <AllTimeDataLayout
             icon="chart bar"
         >
             <Statistics
-                data={getAllStatisticsData(receiptsByDay)}
+                data={getAllStatisticsData(receipts)}
             />
         </AllTimeDataLayout>
     );

@@ -13,15 +13,17 @@ const useStreamReceiptData = (options) => {
         const unsubscribe = streamReceiptsByUid(uid,
             (querySnapshot) => {
                 setIsLoading(true);
+
                 const receipts = querySnapshot.docs.map(convertFirebaseData);
-                const receiptsByDay = _.groupBy(receipts, 'dateFormatted');
-                const workedDays = Object.keys(receiptsByDay);
+                const workedDays = _.uniq(receipts.map(({ dateFormatted }) => dateFormatted));
+                const workedYears = _.uniq(receipts.map(({ date }) => date.getFullYear()));
 
                 setData({
                     receipts,
-                    receiptsByDay,
                     workedDays,
+                    workedYears,
                 });
+
                 setIsLoading(false);
             },
             error => {

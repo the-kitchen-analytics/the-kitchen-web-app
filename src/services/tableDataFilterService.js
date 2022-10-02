@@ -1,5 +1,5 @@
 import { getDataByDay, getAllData, getDataByMonthAndYear } from "./receiptFilterService";
 
 export const getAllTableData = getAllData;
-export const getTableDataByDay = (...args) => [getDataByDay(...args)];
+export const getTableDataByDay = getDataByDay;
 export const getTableDataByMonthAndYear = getDataByMonthAndYear;

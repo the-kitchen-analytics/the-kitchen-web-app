@@ -15,7 +15,7 @@ const Profile = ({ userData, handleEdit, logout }) => {
         <Card fluid>
             <Card.Content>
                 <Card.Header>
-                    <Header as='h2'>
+                    <Header as='h3'>
                         <Image
                             rounded
                             src={photoURL || defaultProfileUrl}

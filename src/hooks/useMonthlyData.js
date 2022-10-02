@@ -1,25 +1,14 @@
 import _ from "lodash";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
 
 import { getCurrentMonthAndYear } from "../utils/date";
-
 
 const useMonthlyData = (getData) => {
 
     const initialSelectedDate = useMemo(getCurrentMonthAndYear, []);
     const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
-    const { receipts } = useOutletContext();
-    const [yearOptions, setYearOptions] = useState([]);
-
-    useEffect(() => {
-
-        if (!_.isEmpty(receipts)) {
-            const years = _.uniq(receipts.map(({ date }) => date.getFullYear()));
-            setYearOptions(years);
-        }
-
-    }, [receipts]);
+    const { receipts, workedYears } = useOutletContext();
 
     const filteredData = useMemo(() => {
         if (_.isEmpty(receipts) || !_.isInteger(selectedDate.month) || !_.isInteger(selectedDate.year)) {
@@ -31,7 +20,7 @@ const useMonthlyData = (getData) => {
 
     return [
         filteredData,
-        yearOptions,
+        workedYears,
         initialSelectedDate,
         selectedDate,
         setSelectedDate,
