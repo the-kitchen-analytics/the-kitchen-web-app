@@ -32,7 +32,7 @@
     "eject": "react-scripts eject",
     "postinstall": "semantic-ui-css-patch",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "firebase deploy"
   },
   "eslintConfig": {
     "extends": [
