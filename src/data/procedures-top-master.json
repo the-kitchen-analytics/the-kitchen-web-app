@@ -1,7 +1,7 @@
 [
     {
         "priceBeforeTaxes": 35,
-        "name": "GASTRO SET-TOP MASTER",
+        "name": "GASTRO SET TOP MASTER",
         "id": 1,
         "priceAfterTaxes": 14,
         "types": [
@@ -36,7 +36,7 @@
         ]
     },
     {
-        "priceBeforeTaxes": 28.999999999999996,
+        "priceBeforeTaxes": 34,
         "name": "EASY FOOD. Снятие, экспресс маникюр, гель-лак",
         "id": 5,
         "priceAfterTaxes": 11.6,
