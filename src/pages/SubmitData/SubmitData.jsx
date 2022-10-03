@@ -1,9 +1,9 @@
 import _ from "lodash";
-import { Grid } from "semantic-ui-react";
+import { Grid, Message } from "semantic-ui-react";
 import GenericLayout from "../../components/layouts/GenericLayout";
 import SubmitDataForm from "./SubmitDataForm";
 import ErrorMessage from "../../components/ui/ErrorMessage";
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useLocalStorage, usePostData } from "../../hooks";
 import { formatDateForDatePicker, getCurrentDate } from "../../utils/date";
@@ -17,11 +17,15 @@ const SubmitData = () => {
     const navigate = useNavigate();
     const [isLoading, error, postData] = usePostData();
 
+    const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMesage] = useState(false);
+
     const initialFormData = useMemo(() => ({
         date: formatDateForDatePicker(getCurrentDate()),
         uid: currentUser.uid,
         procedures: []
     }), [currentUser.uid]);
+
+    const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] = useLocalStorage(false);
 
     const [formData, setFormData] = useLocalStorage('submitDataForm', initialFormData);
     const [accorditionActiveIndex, setAccorditionActiveIndex] = useLocalStorage(INITIAL_ACORDITION_INDEX);
@@ -48,10 +52,12 @@ const SubmitData = () => {
 
     const clearForm = () => {
         setFormData(initialFormData);
+        setShouldDisplaySuccessMesage(false);
     }
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+        setShouldDisplaySuccessMesage(false);
 
         if (!shouldDisableSubmitFormButton()) {
             setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
@@ -60,7 +66,11 @@ const SubmitData = () => {
 
             if (receipt.id) {
                 clearForm();
-                navigate('/');
+                setShouldDisplaySuccessMesage(true);
+
+                if (shouldRedirectToHomePageAfterSubmit) {
+                    navigate('/');
+                }
             }
         }
     }
@@ -87,6 +97,15 @@ const SubmitData = () => {
             <Grid.Row>
                 <Grid.Column>
                     {
+                        shouldDisplaySuccessMessage && (
+                            <Message
+                                positive
+                                icon="save"
+                                content="Данные успешно сохранены."
+                            />
+                        )
+                    }
+                    {
                         error && (
                             <ErrorMessage message={error.message} />
                         )
@@ -96,6 +115,8 @@ const SubmitData = () => {
                         setFormData={setFormData}
                         accorditionActiveIndex={accorditionActiveIndex}
                         setAccorditionActiveIndex={setAccorditionActiveIndex}
+                        shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
+                        setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
                         isLoading={isLoading}
                         handleFormSubmit={handleFormSubmit}
                         handleClearFromButtonClick={handleClearFromButtonClick}

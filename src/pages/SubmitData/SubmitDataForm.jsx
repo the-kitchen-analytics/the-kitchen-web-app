@@ -25,6 +25,8 @@ const SubmitDataForm = ({
     setFormData,
     accorditionActiveIndex,
     setAccorditionActiveIndex,
+    shouldRedirectToHomePageAfterSubmit,
+    setShouldRedirectToHomePageAfterSubmit,
     isLoading,
     handleFormSubmit,
     handleClearFromButtonClick,
@@ -91,6 +93,8 @@ const SubmitDataForm = ({
                         setFormData={setFormData}
                         accorditionActiveIndex={accorditionActiveIndex}
                         setAccorditionActiveIndex={setAccorditionActiveIndex}
+                        shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
+                        setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
                     />
                 )
             }

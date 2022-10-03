@@ -72,13 +72,16 @@ export const deleteAllReceiptByUid = (uid) => {
 export const convertFormDataToReceipt = (formData) => {
     const { date, procedures, uid } = formData;
 
+    console.debug(date, procedures, uid)
+
     const data = Object.freeze({
         uid,
         procedures,
         date: parseDateFromDropdown(date),
         totalPriceBeforeTaxes: _.sumBy(procedures, 'priceBeforeTaxes'),
         totalPriceAfterTaxes: _.sumBy(procedures, 'priceAfterTaxes'),
-        dateCreated: serverTimestamp(),
+        // dateCreated: serverTimestamp(),
+        dateCreated: new Date(),
     });
 
     return data;

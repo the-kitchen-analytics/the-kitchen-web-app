@@ -11,7 +11,9 @@ import ProceduresAccordition from "./ProceduresAccordition";
 const SelectProcedures = ({
     formData, setFormData,
     accorditionActiveIndex, setAccorditionActiveIndex,
-    procedures
+    procedures,
+    shouldRedirectToHomePageAfterSubmit,
+    setShouldRedirectToHomePageAfterSubmit,
 }) => {
 
     const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures]);
@@ -52,8 +54,19 @@ const SelectProcedures = ({
             label: 'Показывать выбранные услуги',
             checked: shouldDisplaySelectedProcedures,
             onChange: () => toggleSetter(setShouldDisplaySelectedProcedures)
-        }
-    ]), [setShouldDisplayProcedurePrice, setShouldDisplaySelectedProcedures, shouldDisplayHalfPartProcedures, shouldDisplayProcedurePrice, shouldDisplaySelectedProcedures, toggleShouldDisplayHalfPartProcedures])
+        },
+        {
+            key: 'shouldRedirectToHomePageAfterSubmit',
+            label: 'Переходить на главную после отправки формы',
+            checked: shouldRedirectToHomePageAfterSubmit,
+            onChange: () => toggleSetter(setShouldRedirectToHomePageAfterSubmit)
+        },
+    ]), [
+        shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures,
+        shouldDisplayProcedurePrice, shouldDisplaySelectedProcedures,
+        setShouldDisplayProcedurePrice, setShouldDisplaySelectedProcedures,
+        shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit,
+    ])
 
     const addProcedure = useCallback((procedure) => {
         setFormData((prevData) => ({
