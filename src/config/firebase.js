@@ -52,6 +52,7 @@ const registerWithEmailAndPassword = async (name, email, password, workerCategor
     await Promise.all(
         updateProfile(user, { displayName: name }),
         createUserDetails({
+            uid: user.uid,
             name,
             displayName: name,
             email,
