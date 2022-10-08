@@ -34,9 +34,17 @@ const SubmitDataForm = ({
     }, [formData.procedures]);
 
     const proceduresData = useMemo(() => {
+
+        const addIdProp = (procedure, i) => ({
+            id: i,
+            ...procedure
+        });
+
         switch (workerCategory) {
-            case 'master': return proceduresForMasterJson;
-            case 'top-master': return proceduresForTopMasterJson;
+            case 'master':
+                return proceduresForMasterJson.map(addIdProp);
+            case 'top-master':
+                return proceduresForTopMasterJson.map(addIdProp);
             default: return [];
         }
     }, [workerCategory])

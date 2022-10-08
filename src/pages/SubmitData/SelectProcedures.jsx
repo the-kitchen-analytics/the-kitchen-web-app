@@ -33,8 +33,8 @@ const SelectProcedures = ({
     }, [shouldDisplayHalfPartProcedures]);
 
     const getTypeFilter = useCallback((type) => {
-        return it => it.types.includes(type)
-    }, [])
+        return it => it.type === type
+    }, []);
 
     const displayOptions = useMemo(() => ([
         {

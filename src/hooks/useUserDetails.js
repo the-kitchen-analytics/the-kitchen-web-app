@@ -14,7 +14,8 @@ const useUserDetails = (uid) => {
     const [isUpdating, updateError, update] = usePostData();
 
     const updateDetails = async (payload) => {
-        await update(updateUserDetails, doc.ref, payload)
+        await update(updateUserDetails, doc.ref, payload);
+        localStorage.removeItem('submitDataForm');
         refresh();
     }
 
