@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { Form } from "semantic-ui-react";
 import { useUserSettings } from "../../hooks";
 import { handleInputChange } from "../../utils/ui/form";
+import { WorkerCategorySelect } from "../shared/dropdown";
 
 const EditUserForm = ({
     formData,
@@ -18,13 +19,19 @@ const EditUserForm = ({
     const {
         displayName,
         email,
-        photoURL,
-        // description,
+        workerCategory
     } = formData;
 
     const handleInputChangeWrapper = useCallback((e) => {
         handleInputChange(e, setFormData)
     }, [setFormData]);
+
+    const handleWorkerCategoryChange = (e, { value: workerCategory }) => {
+        setFormData(prev => ({
+            ...prev,
+            workerCategory
+        }));
+    }
 
     return (
         <Form
@@ -34,8 +41,6 @@ const EditUserForm = ({
         >
             <Form.Input
                 required
-                icon="address card"
-                iconPosition="left"
                 name="displayName"
                 type="text"
                 label="Имя"
@@ -57,20 +62,9 @@ const EditUserForm = ({
                 onChange={handleInputChangeWrapper}
             />
 
-            {/* <Form.TextArea
-                name="description"
-                label="О себе"
-                placeholder="Введите пару слов о себе"
-                value={description}
-                onChange={handleInputChangeWrapper}
-            /> */}
-
-            <Form.TextArea
-                name="photoURL"
-                label="URL-адрес аватара"
-                placeholder="https://example.com/avatar.jpg"
-                value={photoURL}
-                onChange={handleInputChangeWrapper}
+            <WorkerCategorySelect
+                value={workerCategory}
+                handleChange={handleWorkerCategoryChange}
             />
 
             <Form.Group widths='equal'>

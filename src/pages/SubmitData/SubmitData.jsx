@@ -4,16 +4,18 @@ import GenericLayout from "../../components/layouts/GenericLayout";
 import SubmitDataForm from "./SubmitDataForm";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import { useState, useMemo } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useLocalStorage, usePostData } from "../../hooks";
 import { formatDateForDatePicker, getCurrentDate } from "../../utils/date";
 import { convertFormDataToReceipt, createReceipt } from "../../services/receiptService";
+import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 
 const INITIAL_ACORDITION_INDEX = -1;
 
 const SubmitData = () => {
 
-    const { currentUser } = useOutletContext();
+    const { userDetails: { uid, workerCategory } } = useOutletContext();
+
     const navigate = useNavigate();
     const [isLoading, error, postData] = usePostData();
 
@@ -21,9 +23,9 @@ const SubmitData = () => {
 
     const initialFormData = useMemo(() => ({
         date: formatDateForDatePicker(getCurrentDate()),
-        uid: currentUser.uid,
+        uid: uid,
         procedures: []
-    }), [currentUser.uid]);
+    }), [uid]);
 
     const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] = useLocalStorage(false);
 
@@ -96,6 +98,12 @@ const SubmitData = () => {
         >
             <Grid.Row>
                 <Grid.Column>
+                    <Message>
+                        <Message.Content>
+                            Вы <strong>{getWorkerCategoryDisplayName(workerCategory)}</strong>? Если нет, пожалуйста измените это в <Link to="/dashboard/settings#userProfileSettings">настройках</Link>.
+                        </Message.Content>
+                    </Message>
+
                     {
                         shouldDisplaySuccessMessage && (
                             <Message
@@ -113,6 +121,7 @@ const SubmitData = () => {
                     <SubmitDataForm
                         formData={formData}
                         setFormData={setFormData}
+                        workerCategory={workerCategory}
                         accorditionActiveIndex={accorditionActiveIndex}
                         setAccorditionActiveIndex={setAccorditionActiveIndex}
                         shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
@@ -126,7 +135,7 @@ const SubmitData = () => {
                     />
                 </Grid.Column>
             </Grid.Row>
-        </GenericLayout>
+        </GenericLayout >
     )
 }
 

@@ -16,6 +16,7 @@ import useStreamReceiptData from './useStreamReceiptData';
 import useToggleState from './useToggleState';
 import useDailyData from './useDailyData';
 import useMonthlyData from './useMonthlyData';
+import useUserDetails from './useUserDetails';
 
 export {
     useDataFilters,
@@ -36,4 +37,5 @@ export {
     useToggleState,
     useDailyData,
     useMonthlyData,
+    useUserDetails,
 }

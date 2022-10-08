@@ -1,16 +1,17 @@
 import { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Form, Divider } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
+import { WorkerCategorySelect } from "../../components/shared/dropdown";
 import { useApplicationSettings } from "../../hooks";
 import { handleInputChange } from "../../utils/ui/form";
 
 const CreateAccountForm = ({
-    formData: { name, email, password },
+    formData: { name, email, password, workerCategory },
     setFormData,
     isLoading,
     error,
     handleRegisterWithMailAndPassword,
-    handleSignUpWithGoogle
+    // handleSignUpWithGoogle
 }) => {
 
     const { settings: { controlsSize } } = useApplicationSettings();
@@ -20,7 +21,14 @@ const CreateAccountForm = ({
     }, [setFormData]);
 
     const shouldDisableSubmitButton = () => {
-        return isLoading || !(name && email && password);
+        return isLoading || !(name && email && password && workerCategory);
+    }
+
+    const handleWorkerCategoryChange = (e, { value: workerCategory }) => {
+        setFormData(prev => ({
+            ...prev,
+            workerCategory
+        }));
     }
 
     return (
@@ -65,6 +73,11 @@ const CreateAccountForm = ({
                 onChange={handleInputChangeWrapper}
             />
 
+            <WorkerCategorySelect
+                value={workerCategory}
+                handleChange={handleWorkerCategoryChange}
+            />
+
             <Form.Button
                 fluid
                 size={controlsSize}
@@ -74,7 +87,7 @@ const CreateAccountForm = ({
                 disabled={shouldDisableSubmitButton()}
             />
 
-            <Divider horizontal>Или</Divider>
+            {/* <Divider horizontal>Или</Divider>
 
             <Form.Button
                 fluid
@@ -86,7 +99,7 @@ const CreateAccountForm = ({
                 onClick={handleSignUpWithGoogle}
                 content="Войти с Google"
                 size={controlsSize}
-            />
+            /> */}
 
             <Form.Field>
                 Уже есть аккаунт? <Link to="/">Войти</Link>.

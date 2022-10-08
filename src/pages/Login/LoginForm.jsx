@@ -9,7 +9,7 @@ const LoginForm = ({
     formData: { email, password },
     setFormData,
     handleLoginWithEmailAndPassword,
-    handleLoginWithGoogle,
+    // handleLoginWithGoogle,
     isLoading,
     error
 }) => {
@@ -69,7 +69,7 @@ const LoginForm = ({
                     size={controlsSize}
                 />
             </Form.Field>
-
+            {/* 
             <Divider horizontal>Или</Divider>
 
             <Form.Field>
@@ -84,7 +84,7 @@ const LoginForm = ({
                     content="Войти с Google"
                     size={controlsSize}
                 />
-            </Form.Field>
+            </Form.Field> */}
 
             <Divider />
 

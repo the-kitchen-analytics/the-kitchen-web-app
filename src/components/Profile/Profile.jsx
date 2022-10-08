@@ -8,7 +8,7 @@ const Profile = ({ userData, handleEdit, logout }) => {
 
     const defaultProfileUrl = 'https://react.semantic-ui.com/images/wireframe/square-image.png';
 
-    const { photoURL, displayName, email, metadata, description } = userData;
+    const { photoURL, displayName, email, workerCategory } = userData;
     const { settings: { controlsSize } } = useUserSettings();
 
     return (
@@ -24,18 +24,12 @@ const Profile = ({ userData, handleEdit, logout }) => {
                 </Card.Header>
                 <Divider />
                 <Card.Meta>
-                    <div>
-                        Последний вход:
-                    </div>
                     {
-                        metadata.lastSignInTime
+                        workerCategory
                     }
                 </Card.Meta>
                 <Card.Description>
                     <Email to={email} />
-                    {
-                        description
-                    }
                 </Card.Description>
             </Card.Content>
 

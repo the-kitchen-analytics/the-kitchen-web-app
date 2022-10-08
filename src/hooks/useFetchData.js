@@ -4,7 +4,7 @@ import { useCallback, useState, useEffect } from "react"
 const useFetchData = (fetchFunction) => {
 
     const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({});
     const [hasError, setHasError] = useState(false);
 
     const fetchData = useCallback(async () => {

@@ -15,7 +15,8 @@ export default function CreateAccount() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        password: ''
+        password: '',
+        workerCategory: '',
     });
 
     const [isLoading, error, makeRequest] = usePostData();
@@ -31,8 +32,8 @@ export default function CreateAccount() {
 
     const handleRegisterWithMailAndPassword = (e) => {
         e.preventDefault();
-        const { name, email, password } = formData;
-        makeRequest(registerWithEmailAndPassword, name, email, password);
+        const { name, email, password, workerCategory } = formData;
+        makeRequest(registerWithEmailAndPassword, name, email, password, workerCategory);
     }
 
     const handleSignUpWithGoogle = (e) => {
