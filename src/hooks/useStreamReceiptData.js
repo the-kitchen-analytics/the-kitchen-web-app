@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { useState, useEffect } from "react";
-import { streamReceiptsByUid, convertFirebaseData } from "../services/receiptService";
+import { streamReceiptsByUid } from "../services/receiptService";
+import { convertFirebaseData } from "../utils/receipt";
 
 const useStreamReceiptData = (options) => {
     const { uid } = options;

@@ -4,8 +4,9 @@ import { Container, Grid, Segment } from 'semantic-ui-react';
 import NavigationBar from "../../components/NavigationBar";
 import { Loader, ErrorMessage } from "../../components/ui";
 import { UserSettingsContextProvider } from "../../context/UserSettingsContext";
-import { useStreamReceiptData, useUserDetails } from "../../hooks";
+import { useProcedures, useStreamReceiptData, useUserDetails } from "../../hooks";
 import { navigationBarOptions } from "../../data/ui/navigationBar";
+
 
 const Dashboard = ({ user: currentUser }) => {
 
@@ -16,6 +17,8 @@ const Dashboard = ({ user: currentUser }) => {
         updateUserDetails,
         isLoading: isUserDetailsLoading
     } = useUserDetails(currentUser.uid);
+
+    const procedures = useProcedures(userDetails.workerCategory);
 
     const outlet = useMemo(() => {
         if (isLoading) {
@@ -39,12 +42,20 @@ const Dashboard = ({ user: currentUser }) => {
                 context={{
                     ...data,
                     userDetails,
+                    procedures,
                     isUserDetailsLoading,
                     updateUserDetails,
                 }}
             />
         )
-    }, [isLoading, isUserDetailsLoading, data, userDetails, updateUserDetails])
+    }, [
+        isLoading,
+        isUserDetailsLoading,
+        data,
+        userDetails,
+        procedures,
+        updateUserDetails,
+    ]);
 
     return (
         <UserSettingsContextProvider>

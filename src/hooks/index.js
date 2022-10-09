@@ -17,6 +17,7 @@ import useToggleState from './useToggleState';
 import useDailyData from './useDailyData';
 import useMonthlyData from './useMonthlyData';
 import useUserDetails from './useUserDetails';
+import useProcedures from './useProcedures';
 
 export {
     useDataFilters,
@@ -38,4 +39,5 @@ export {
     useDailyData,
     useMonthlyData,
     useUserDetails,
+    useProcedures,
 }

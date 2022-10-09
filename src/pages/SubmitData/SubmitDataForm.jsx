@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { useCallback } from "react";
 import { Form, Button } from "semantic-ui-react";
 import { DatePicker } from "../../components/ui/Input";
@@ -5,18 +6,19 @@ import { LoadableButton } from "../../components/ui/Button";
 import { handleInputChange } from "../../utils/ui/form";
 import { useUserSettings } from "../../hooks";
 import SelectProcedures from "./SelectProcedures";
-import proceduresForMasterJson from "../../data/procedures-master.json";
-import proceduresForTopMasterJson from "../../data/procedures-top-master.json";
-import { useMemo } from "react";
+import Preview from "./Preview";
+import { useOutletContext } from "react-router-dom";
 
 const SubmitDataForm = ({
     formData,
     setFormData,
-    workerCategory,
+    convertedFormData,
     accorditionActiveIndex,
     setAccorditionActiveIndex,
     shouldRedirectToHomePageAfterSubmit,
     setShouldRedirectToHomePageAfterSubmit,
+    shouldDisplayPreview,
+    setShouldDisplayPreview,
     isLoading,
     handleFormSubmit,
     handleClearFromButtonClick,
@@ -33,21 +35,7 @@ const SubmitDataForm = ({
         return 'Сохранить ' + (formData.procedures.length > 0 ? `(${formData.procedures.length})` : '')
     }, [formData.procedures]);
 
-    const proceduresData = useMemo(() => {
-
-        const addIdProp = (procedure, i) => ({
-            id: i,
-            ...procedure
-        });
-
-        switch (workerCategory) {
-            case 'master':
-                return proceduresForMasterJson.map(addIdProp);
-            case 'top-master':
-                return proceduresForTopMasterJson.map(addIdProp);
-            default: return [];
-        }
-    }, [workerCategory])
+    const { procedures } = useOutletContext();
 
     return (
         <Form
@@ -66,17 +54,25 @@ const SubmitDataForm = ({
                 />
             </Form.Field>
 
+            <SelectProcedures
+                procedures={procedures}
+                formData={formData}
+                setFormData={setFormData}
+                accorditionActiveIndex={accorditionActiveIndex}
+                setAccorditionActiveIndex={setAccorditionActiveIndex}
+                shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
+                setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
+                shouldDisplayPreview={shouldDisplayPreview}
+                setShouldDisplayPreview={setShouldDisplayPreview}
+            />
+
             {
-                workerCategory && (
-                    <SelectProcedures
-                        procedures={proceduresData}
-                        formData={formData}
-                        setFormData={setFormData}
-                        accorditionActiveIndex={accorditionActiveIndex}
-                        setAccorditionActiveIndex={setAccorditionActiveIndex}
-                        shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
-                        setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
-                    />
+                shouldDisplayPreview && !_.isEmpty(formData.procedures) && (
+                    <Form.Field>
+                        <Preview
+                            data={[[convertedFormData]]}
+                        />
+                    </Form.Field>
                 )
             }
 

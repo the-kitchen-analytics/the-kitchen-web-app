@@ -2,11 +2,11 @@ import _ from "lodash";
 import { useCallback, useMemo } from "react";
 import { Form, Divider } from "semantic-ui-react";
 import DisplayOptionsAccordition from "./DisplayOptionsAccordition";
-import SelectedProceduresLabelGroup from "./SelectedProceduresLabelGroup";
-import { TYPE_MANICURE, TYPE_PEDICURE, TYPE_SPA } from "../../data/procedureTypes";
 import { useLocalStorage, useToggleState } from "../../hooks";
 import { toggleSetter } from "../../utils/ui";
 import ProceduresAccordition from "./ProceduresAccordition";
+
+import procedureTypes from "../../data/procedure-types.json";
 
 const SelectProcedures = ({
     formData, setFormData,
@@ -14,6 +14,8 @@ const SelectProcedures = ({
     procedures,
     shouldRedirectToHomePageAfterSubmit,
     setShouldRedirectToHomePageAfterSubmit,
+    shouldDisplayPreview,
+    setShouldDisplayPreview,
 }) => {
 
     const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures]);
@@ -21,8 +23,6 @@ const SelectProcedures = ({
     const [shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures] = useToggleState(false);
 
     const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', false);
-
-    const [shouldDisplaySelectedProcedures, setShouldDisplaySelectedProcedures] = useLocalStorage('shouldDisplaySelectedProcedures', false);
 
     const halfPartProceduresFilter = useCallback((procedure) => {
         if (!shouldDisplayHalfPartProcedures) {
@@ -44,16 +44,16 @@ const SelectProcedures = ({
             onChange: toggleShouldDisplayHalfPartProcedures,
         },
         {
+            key: 'shouldDisplayPreview',
+            label: 'Показывать превью выбранных услуг',
+            checked: shouldDisplayPreview,
+            onChange: () => toggleSetter(setShouldDisplayPreview)
+        },
+        {
             key: 'shouldDisplayProcedurePrice',
             label: 'Показывать стоимость услуги',
             checked: shouldDisplayProcedurePrice,
             onChange: () => toggleSetter(setShouldDisplayProcedurePrice)
-        },
-        {
-            key: 'shouldDisplaySelectedProcedures',
-            label: 'Показывать выбранные услуги',
-            checked: shouldDisplaySelectedProcedures,
-            onChange: () => toggleSetter(setShouldDisplaySelectedProcedures)
         },
         {
             key: 'shouldRedirectToHomePageAfterSubmit',
@@ -63,9 +63,9 @@ const SelectProcedures = ({
         },
     ]), [
         shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures,
-        shouldDisplayProcedurePrice, shouldDisplaySelectedProcedures,
-        setShouldDisplayProcedurePrice, setShouldDisplaySelectedProcedures,
+        shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice,
         shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit,
+        shouldDisplayPreview, setShouldDisplayPreview,
     ])
 
     const addProcedure = useCallback((procedure) => {
@@ -97,29 +97,16 @@ const SelectProcedures = ({
             data,
             count
         }
-    }, [selectedIds])
+    }, [selectedIds]);
 
-    const accorditionItems = useMemo(() => ([
-        createAccorditionItem(
-            'Маникюр',
+    const accorditionItems = useMemo(() => {
+        return procedureTypes.map(procedureType => createAccorditionItem(
+            procedureType.displayName,
             procedures
-                .filter(getTypeFilter(TYPE_MANICURE))
+                .filter(getTypeFilter(procedureType.name))
                 .filter(halfPartProceduresFilter)
-        ),
-
-        createAccorditionItem(
-            'Педикюр',
-            procedures
-                .filter(getTypeFilter(TYPE_PEDICURE))
-                .filter(halfPartProceduresFilter),
-        ),
-
-        createAccorditionItem(
-            'SPA-услуги',
-            procedures
-                .filter(getTypeFilter(TYPE_SPA))
-        )
-    ]), [createAccorditionItem, getTypeFilter, halfPartProceduresFilter, procedures])
+        ));
+    }, [createAccorditionItem, getTypeFilter, halfPartProceduresFilter, procedures])
 
     return (
         <Form.Group grouped required>
@@ -143,16 +130,6 @@ const SelectProcedures = ({
                 />
                 <Divider hidden />
             </Form.Field>
-
-            {
-                shouldDisplaySelectedProcedures && (
-                    <SelectedProceduresLabelGroup
-                        procedures={formData.procedures}
-                        handleRemove={removeProcedure}
-                        shouldDisplayProcedurePrice={shouldDisplayProcedurePrice}
-                    />
-                )
-            }
 
         </Form.Group>
     )

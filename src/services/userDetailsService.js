@@ -5,12 +5,14 @@ import {
     where,
     getDocs,
     updateDoc,
+    deleteDoc,
 } from "firebase/firestore";
 
 import { db } from "../config/firebase";
+import { USER_DETAILS } from "../config/firebaseCollectionNames";
 
-export const getCollection = () => {
-    return collection(db, "userDetails");
+const getCollection = () => {
+    return collection(db, USER_DETAILS);
 }
 
 export const getUserDetailsByUid = async (uid) => {
@@ -31,6 +33,10 @@ export const createUserDetails = (userDetails) => {
     return addDoc(getCollection(), userDetails);
 }
 
-export const updateUserDetails = async (ref, payload) => {
+export const updateUserDetails = (ref, payload) => {
     return updateDoc(ref, payload);
+}
+
+export const deleteUserDetails = (ref) => {
+    return deleteDoc(ref);
 }

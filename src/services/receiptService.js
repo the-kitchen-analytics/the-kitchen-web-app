@@ -8,16 +8,13 @@ import {
     doc,
     setDoc,
     deleteDoc,
-    // serverTimestamp,
     orderBy,
     onSnapshot,
 } from "firebase/firestore"
-import _ from "lodash";
 import { db } from "../config/firebase"
-import { RECEIPTS } from "../data/firebaseCollectionNames"
-import { formatDate, parseDateFromDropdown } from "../utils/date";
+import { RECEIPTS } from "../config/firebaseCollectionNames"
 
-const collectionWrapper = () => {
+const getCollection = () => {
     return collection(db, RECEIPTS);
 }
 
@@ -27,13 +24,13 @@ const docWrapper = (id) => {
 
 export const streamReceiptsByUid = (uid, snapshot, error) => {
     console.debug('streamReceiptsByUid', uid);
-    const q = query(collectionWrapper(), where("uid", "==", uid), orderBy('date', 'desc'));
+    const q = query(getCollection(), where("uid", "==", uid), orderBy('date', 'desc'));
     return onSnapshot(q, snapshot, error);
 };
 
 export const getAllReceiptsByUid = (uid) => {
     console.debug('getAllReceiptsByMasterUid', uid);
-    const q = query(collectionWrapper(), where("uid", "==", uid), orderBy('date', 'desc'));
+    const q = query(getCollection(), where("uid", "==", uid), orderBy('date', 'desc'));
     return getDocs(q);
 }
 
@@ -44,7 +41,7 @@ export const getReceipt = (id) => {
 
 export const createReceipt = (data) => {
     console.debug('createReceipt', data);
-    return addDoc(collectionWrapper(), data);
+    return addDoc(getCollection(), data);
 }
 
 export const updateReceipt = (id, payload) => {
@@ -67,32 +64,4 @@ export const deleteAllReceiptByUid = (uid) => {
 
     getAllReceiptsByUid(uid)
         .then((resultSet) => deleteReceipts(resultSet.docs));
-}
-
-export const convertFormDataToReceipt = (formData) => {
-    const { date, procedures, uid } = formData;
-
-    console.debug(date, procedures, uid)
-
-    const data = Object.freeze({
-        uid,
-        procedures,
-        date: parseDateFromDropdown(date),
-        totalPriceBeforeTaxes: _.sumBy(procedures, 'priceBeforeTaxes'),
-        totalPriceAfterTaxes: _.sumBy(procedures, 'priceAfterTaxes'),
-        // dateCreated: serverTimestamp(),
-        dateCreated: new Date(),
-    });
-
-    return data;
-}
-
-export const convertFirebaseData = (firebaseDataEntry) => {
-    const entryData = firebaseDataEntry.data();
-    return {
-        ...entryData,
-        dateCreated: entryData.dateCreated.toDate(),
-        date: entryData.date.toDate(),
-        dateFormatted: formatDate(entryData.date.toDate()),
-    }
 }

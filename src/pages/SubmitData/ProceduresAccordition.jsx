@@ -51,7 +51,7 @@ const ProceduresAccordition = (props) => {
                 name={procedure.name}
                 label={
                     shouldDisplayProcedurePrice
-                        ? buildPriceString(procedure.name, procedure.priceBeforeTaxes)
+                        ? buildPriceString(procedure.name, procedure.price)
                         : procedure.name
                 }
                 onChange={(event, { checked }) => handleProcedureItemChange(procedure, checked)}

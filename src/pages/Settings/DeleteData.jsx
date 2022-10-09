@@ -7,7 +7,7 @@ import { deleteAllReceiptByUid } from "../../services/receiptService";
 const DeleteData = () => {
 
     const navigate = useNavigate();
-    const { currentUser } = useOutletContext();
+    const { userDetails } = useOutletContext();
     const { settings: { controlsSize } } = useUserSettings();
 
     const handleDeleteDataButtonClick = async (e) => {
@@ -16,7 +16,7 @@ const DeleteData = () => {
         if (window.confirm('Вы уверены, что хотите стереть все данные?')) {
             localStorage.clear();
 
-            deleteAllReceiptByUid(currentUser.uid);
+            deleteAllReceiptByUid(userDetails.uid);
 
             navigate('/');
         }

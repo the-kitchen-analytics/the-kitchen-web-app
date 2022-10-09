@@ -1,9 +1,9 @@
+import _ from "lodash";
 import { Table, Icon } from "semantic-ui-react";
 import DateCell from "./DateCell";
 import OperationsCell from "./OperationsCell";
 import PriceCell from "./PriceCell";
 import { getTotalIncomePerADay } from "../../utils/money";
-import _ from "lodash";
 
 const NoTableContent = () => (
     <Table.Row>

@@ -7,7 +7,8 @@ import { useState, useMemo } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useLocalStorage, usePostData } from "../../hooks";
 import { formatDateForDatePicker, getCurrentDate } from "../../utils/date";
-import { convertFormDataToReceipt, createReceipt } from "../../services/receiptService";
+import { createReceipt } from "../../services/receiptService";
+import { convertFormDataToReceipt } from "../../utils/receipt";
 import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 
 const INITIAL_ACORDITION_INDEX = -1;
@@ -27,10 +28,21 @@ const SubmitData = () => {
         procedures: []
     }), [uid]);
 
-    const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] = useLocalStorage(false);
+    const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] =
+        useLocalStorage('shouldRedirectToHomePageAfterSubmit', false);
 
-    const [formData, setFormData] = useLocalStorage('submitDataForm', initialFormData);
-    const [accorditionActiveIndex, setAccorditionActiveIndex] = useLocalStorage(INITIAL_ACORDITION_INDEX);
+    const [shouldDisplayPreview, setShouldDisplayPreview] =
+        useLocalStorage('shouldDisplayPreview', true);
+
+    const [formData, setFormData] =
+        useLocalStorage('submitDataForm', initialFormData);
+
+    const [accorditionActiveIndex, setAccorditionActiveIndex] =
+        useLocalStorage('accorditionActiveIndex', INITIAL_ACORDITION_INDEX);
+
+    const convertedFormData = useMemo(() => {
+        return convertFormDataToReceipt(formData);
+    }, [formData]);
 
     const isDateFieldValid = () => {
         return !!formData.date;
@@ -64,7 +76,7 @@ const SubmitData = () => {
         if (!shouldDisableSubmitFormButton()) {
             setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX);
 
-            const receipt = await postData(createReceipt, convertFormDataToReceipt(formData));
+            const receipt = await postData(createReceipt, convertedFormData);
 
             if (receipt.id) {
                 clearForm();
@@ -121,11 +133,14 @@ const SubmitData = () => {
                     <SubmitDataForm
                         formData={formData}
                         setFormData={setFormData}
+                        convertedFormData={convertedFormData}
                         workerCategory={workerCategory}
                         accorditionActiveIndex={accorditionActiveIndex}
                         setAccorditionActiveIndex={setAccorditionActiveIndex}
                         shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
                         setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
+                        shouldDisplayPreview={shouldDisplayPreview}
+                        setShouldDisplayPreview={setShouldDisplayPreview}
                         isLoading={isLoading}
                         handleFormSubmit={handleFormSubmit}
                         handleClearFromButtonClick={handleClearFromButtonClick}
@@ -139,5 +154,4 @@ const SubmitData = () => {
     )
 }
 
-SubmitData.displayName = 'SubmitDataView'
-export default SubmitData
+export default SubmitData;
