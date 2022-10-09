@@ -12,6 +12,7 @@ const Logout = (props) => {
     const handleLogOut = () => {
         if (window.confirm(CONFIRM_LOGOUT_MESSAGE)) {
             console.debug('log out');
+            localStorage.clear();
             logout();
         }
     }
