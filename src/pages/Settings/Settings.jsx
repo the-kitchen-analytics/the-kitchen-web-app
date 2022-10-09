@@ -8,6 +8,10 @@ import DeleteData from "./DeleteData";
 import { useColorNames } from "../../hooks";
 import contactOptions from "../../data/contactOptions.json";
 import RestoreProceduresData from "./RestoreProceduresData";
+import Info from "./Info";
+import WithCurrentUser from "../../hoc/WithCurrentUser";
+
+const InfoWithUser = WithCurrentUser(Info);
 
 const Settings = () => {
 
@@ -43,9 +47,13 @@ const Settings = () => {
             element: <DeleteData />
         },
         {
+            key: 'app-info',
+            element: <InfoWithUser />
+        },
+        {
             key: 'restore-procedures-data',
             element: <RestoreProceduresData />
-        }
+        },
     ]
 
     const content = settingsOptions.map(({ key, element }) => (
