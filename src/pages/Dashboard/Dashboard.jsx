@@ -6,6 +6,7 @@ import { Loader, ErrorMessage } from "../../components/ui";
 import { UserSettingsContextProvider } from "../../context/UserSettingsContext";
 import { useProcedures, useStreamReceiptData, useUserDetails } from "../../hooks";
 import { navigationBarOptions } from "../../data/ui/navigationBar";
+import { useCallback } from "react";
 
 
 const Dashboard = ({ user: currentUser }) => {
@@ -19,6 +20,10 @@ const Dashboard = ({ user: currentUser }) => {
     } = useUserDetails(currentUser.uid);
 
     const procedures = useProcedures(userDetails.workerCategory);
+
+    const getProcedureById = useCallback((id) => {
+        return procedures.find(procedure => procedure.id === id);
+    }, [procedures]);
 
     const outlet = useMemo(() => {
         if (isLoading) {
@@ -45,6 +50,7 @@ const Dashboard = ({ user: currentUser }) => {
                     procedures,
                     isUserDetailsLoading,
                     updateUserDetails,
+                    getProcedureById,
                 }}
             />
         )
@@ -55,6 +61,7 @@ const Dashboard = ({ user: currentUser }) => {
         userDetails,
         procedures,
         updateUserDetails,
+        getProcedureById,
     ]);
 
     return (

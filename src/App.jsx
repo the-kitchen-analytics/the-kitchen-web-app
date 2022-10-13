@@ -12,12 +12,14 @@ import { DailyTableView, MonthlyTableView, AllTimeTableView } from "./pages/Tabl
 import { DailyStatisticsView, MonthlyStatisticsView, AllTimeStatisticsView } from "./pages/Statistics";
 import Settings from "./pages/Settings";
 import SubmitData from "./pages/SubmitData";
-import WithCurrentUser from "./hoc/WithCurrentUser";
+import { WithCurrentUser } from "./hoc";
 import PageNotFound from "./pages/PageNotFound";
 import Footer from "./components/Footer";
 
 import { routes } from './data/routePaths';
 import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
+import EditProcedures from "./pages/EditProcedures/EditProcedures";
+import EditProcedure from "./pages/EditProcedure";
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard);
 
@@ -78,6 +80,15 @@ const App = () => (
                         <Route
                             path={'settings'}
                             element={<Settings />}
+                        />
+
+                        <Route
+                            path={'procedures'}
+                            element={<EditProcedures />}
+                        />
+                        <Route
+                            path={'procedures/:id'}
+                            element={<EditProcedure />}
                         />
                     </Route>
                     <Route path="*" element={<PageNotFound />} />
