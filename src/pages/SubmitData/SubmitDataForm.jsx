@@ -35,7 +35,7 @@ const SubmitDataForm = ({
         return 'Сохранить ' + (formData.procedures.length > 0 ? `(${formData.procedures.length})` : '')
     }, [formData.procedures]);
 
-    const { procedures } = useOutletContext();
+    const { proceduresForSubmitData } = useOutletContext();
 
     return (
         <Form
@@ -55,7 +55,7 @@ const SubmitDataForm = ({
             </Form.Field>
 
             <SelectProcedures
-                procedures={procedures}
+                procedures={proceduresForSubmitData}
                 formData={formData}
                 setFormData={setFormData}
                 accorditionActiveIndex={accorditionActiveIndex}

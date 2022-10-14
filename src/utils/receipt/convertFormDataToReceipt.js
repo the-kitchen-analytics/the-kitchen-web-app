@@ -6,7 +6,7 @@ const convertFormDataToReceipt = (formData) => {
     const procedures = formData.procedures.map(procedure => ({
         name: procedure.name,
         priceBeforeTaxes: procedure.price,
-        priceAfterTaxes: parseFloat((procedure.price * procedure.workerRate).toFixed(2)),
+        priceAfterTaxes: procedure.workerIncome || parseFloat((procedure.price * procedure.workerRate).toFixed(2)),
         type: procedure.type,
     }));
 

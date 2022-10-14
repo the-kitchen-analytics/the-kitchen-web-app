@@ -20,6 +20,8 @@ const Dashboard = ({ user: currentUser }) => {
     } = useUserDetails(currentUser.uid);
 
     const procedures = useProcedures(userDetails.workerCategory);
+    const proceduresForSubmitData = procedures
+        .filter(({ workerCategory }) => workerCategory === userDetails.workerCategory);
 
     const getProcedureById = useCallback((id) => {
         return procedures.find(procedure => procedure.id === id);
@@ -48,6 +50,7 @@ const Dashboard = ({ user: currentUser }) => {
                     ...data,
                     userDetails,
                     procedures,
+                    proceduresForSubmitData,
                     isUserDetailsLoading,
                     updateUserDetails,
                     getProcedureById,
@@ -60,6 +63,7 @@ const Dashboard = ({ user: currentUser }) => {
         data,
         userDetails,
         procedures,
+        proceduresForSubmitData,
         updateUserDetails,
         getProcedureById,
     ]);
