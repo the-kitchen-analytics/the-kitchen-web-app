@@ -1,3 +1,5 @@
+import _ from "lodash";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Form, Grid } from "semantic-ui-react";
@@ -12,37 +14,67 @@ const EditProcedures = () => {
     const { procedures } = useOutletContext();
 
     const [filteredProcedures, setFilteredProcedures] = useState(procedures);
+    const [order, setOrder] = useState('');
+
+    useEffect(() => {
+        switch (order) {
+            case 'asc':
+                setFilteredProcedures(prev => _.orderBy(prev, 'name', order));
+                break;
+            case 'desc':
+                setFilteredProcedures(prev => _.orderBy(prev, 'name', order));
+                break;
+            default:
+                break;
+        }
+    }, [order]);
 
     const handleFilterChange = (e, { value }) => {
+
+        let filteredProcedures = [];
+
         switch (value) {
             case 'manicure':
-                setFilteredProcedures(procedures.filter(procedure => procedure.type === 'manicure'));
+                filteredProcedures = procedures.filter(procedure => procedure.type === 'manicure');
                 break;
 
             case 'pedicure':
-                setFilteredProcedures(procedures.filter(procedure => procedure.type === 'pedicure'));
+                filteredProcedures = procedures.filter(procedure => procedure.type === 'pedicure');
                 break;
 
             case 'spa':
-                setFilteredProcedures(procedures.filter(procedure => procedure.type === 'spa'));
+                filteredProcedures = procedures.filter(procedure => procedure.type === 'spa');
                 break;
 
             case 'master':
-                setFilteredProcedures(procedures.filter(procedure => procedure.workerCategory === 'master'));
+                filteredProcedures = procedures.filter(procedure => procedure.workerCategory === 'master');
                 break;
 
             case 'top-master':
-                setFilteredProcedures(procedures.filter(procedure => procedure.workerCategory === 'top-master'));
+                filteredProcedures = procedures.filter(procedure => procedure.workerCategory === 'top-master');
+                break;
+
+            case '1/2':
+                filteredProcedures = procedures.filter(procedure => _.startsWith(procedure.name, '1/2'));
                 break;
 
             case 'all':
-                setFilteredProcedures(procedures);
+                filteredProcedures = procedures;
                 break;
 
             default:
-                setFilteredProcedures([]);
                 break;
         }
+
+        if (order) {
+            setFilteredProcedures(_.orderBy(filteredProcedures, 'name', order));
+        } else {
+            setFilteredProcedures(filteredProcedures);
+        }
+    }
+
+    const sort = (order) => {
+        setOrder(order);
     }
 
     return (
@@ -65,6 +97,8 @@ const EditProcedures = () => {
                             <Form.Field>
                                 <ProceduresFilter
                                     handleChange={handleFilterChange}
+                                    order={order}
+                                    sort={sort}
                                 />
                             </Form.Field>
                         </Form.Group>

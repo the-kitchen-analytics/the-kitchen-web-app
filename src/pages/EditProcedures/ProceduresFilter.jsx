@@ -1,4 +1,4 @@
-import { Dropdown } from "semantic-ui-react";
+import { Icon, Button, Dropdown } from "semantic-ui-react";
 
 const tagOptions = [
     {
@@ -11,13 +11,13 @@ const tagOptions = [
         key: 'manicure',
         text: 'Маникюр',
         value: 'manicure',
-        icon: { name: 'american sign language interpreting', color: 'grey' },
+        label: { color: 'blue', empty: true, circular: true }
     },
     {
         key: 'pedicure',
         text: 'Педикюр',
         value: 'pedicure',
-        icon: { name: 'paw', color: 'grey' },
+        label: { color: 'red', empty: true, circular: true }
     },
     {
         key: 'spa',
@@ -37,18 +37,22 @@ const tagOptions = [
         value: 'top-master',
         icon: { name: 'star', color: 'yellow' },
     },
+    {
+        key: '1/2',
+        text: '1/2 Услуги',
+        value: '1/2',
+        label: { color: 'grey', empty: true, circular: true }
+    }
 ];
 
-const ProceduresFilter = ({ handleChange }) => {
-
-    return (
+const ProceduresFilter = ({ handleChange, order, sort }) => (
+    <Button.Group fluid>
         <Dropdown
             text='Фильтр'
             icon='filter'
             floating
             labeled
             button
-            fluid
             className='icon'
         >
             <Dropdown.Menu>
@@ -59,7 +63,22 @@ const ProceduresFilter = ({ handleChange }) => {
                 </Dropdown.Menu>
             </Dropdown.Menu>
         </Dropdown>
-    )
-}
+
+        <Button
+            icon
+            active={order === 'desc'}
+            onClick={() => sort('desc')}
+        >
+            <Icon name='sort content descending' />
+        </Button>
+        <Button
+            icon
+            active={order === 'asc'}
+            onClick={() => sort('asc')}
+        >
+            <Icon name='sort content ascending' />
+        </Button>
+    </Button.Group >
+);
 
 export default ProceduresFilter;
