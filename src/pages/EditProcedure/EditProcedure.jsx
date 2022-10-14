@@ -34,7 +34,7 @@ const EditProcedure = () => {
 
         setProcedure(prev => ({
             ...prev,
-            price: value,
+            price: parseFloat(value),
             workerIncome: value * prev.workerRate
         }));
     }
@@ -42,10 +42,12 @@ const EditProcedure = () => {
     const handleWorkerRateChange = (e) => {
         const value = e.target.value;
 
+        console.debug(value)
+
         setProcedure(prev => ({
             ...prev,
-            workerRate: value / 100,
-            workerIncome: prev.price / 100 * value
+            workerRate: value ? value / 100 : '',
+            workerIncome: prev.price / 100 * value,
         }));
     }
 
@@ -54,8 +56,8 @@ const EditProcedure = () => {
 
         setProcedure(prev => ({
             ...prev,
-            workerIncome: parseFloat(value) || 0,
-            workerRate: value / prev.price
+            workerRate: value / prev.price,
+            workerIncome: parseFloat(value) || '',
         }));
     }
 

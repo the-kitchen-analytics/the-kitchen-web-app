@@ -2,6 +2,7 @@ import { Form, Button } from "semantic-ui-react";
 import { LoadableButton } from "../../components/ui/Button";
 import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 import { useUserSettings } from "../../hooks";
+import { useMemo } from "react";
 
 const EditProcedureForm = (props) => {
 
@@ -17,6 +18,40 @@ const EditProcedureForm = (props) => {
     } = props;
 
     const { settings: { controlsSize, accentColor } } = useUserSettings();
+
+    const workerRateInputProps = useMemo(() => {
+        const workerRateInPercent = formData.workerRate ? (formData.workerRate * 100).toFixed(0) : 0;
+
+        return {
+            value: workerRateInPercent > 0 ? workerRateInPercent : '',
+            placeholder: workerRateInPercent,
+            min: 0,
+            max: 100,
+            type: 'number',
+            icon: 'percent',
+            iconPosition: 'left',
+            label: 'Заработок мастера (%)',
+            name: 'workerRate',
+            onChange: handleWorkerRateChange,
+        }
+
+    }, [formData.workerRate, handleWorkerRateChange]);
+
+    const workerIncomeInputProps = useMemo(() => {
+        return {
+            value: formData.workerIncome,
+            placeholder: formData.workerIncome ? formData.workerIncome.toFixed(2) : 0,
+            min: 0,
+            max: formData.price,
+            type: 'number',
+            icon: 'euro',
+            iconPosition: 'left',
+            label: 'Заработок мастера (€)',
+            name: 'workerIncome',
+            onChange: handleWorkerIncomeChange,
+        }
+
+    }, [formData.workerIncome, formData.price, handleWorkerIncomeChange]);
 
     return (
         <Form size={controlsSize} onSubmit={handleSubmit}>
@@ -54,29 +89,11 @@ const EditProcedureForm = (props) => {
                 />
 
                 <Form.Input
-                    min={0}
-                    max={100}
-                    type="number"
-                    icon="percent"
-                    iconPosition="left"
-                    label="Заработок мастера (%)"
-                    placeholder="Заработок мастера (%)"
-                    value={(formData.workerRate * 100).toFixed(0)}
-                    name="workerRate"
-                    onChange={handleWorkerRateChange}
+                    {...workerRateInputProps}
                 />
 
                 <Form.Input
-                    min={0}
-                    max={formData.price}
-                    type="number"
-                    icon="euro"
-                    iconPosition="left"
-                    label="Заработок мастера (€)"
-                    placeholder="Заработок мастера (€)"
-                    value={formData.workerIncome.toFixed(2)}
-                    name="workerIncome"
-                    onChange={handleWorkerIncomeChange}
+                    {...workerIncomeInputProps}
                 />
             </Form.Group>
 
