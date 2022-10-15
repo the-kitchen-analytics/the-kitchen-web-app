@@ -1,7 +1,9 @@
-import getTotalIncomePerADay from "./getTotalIncomePerADay";
 import buildPriceString from "./buildPriceString";
+import calculateTotalPrice from './calculateTotalPrice';
+import calculateTotalWorkerIncome from './calculateTotalWorkerIncome';
 
 export {
-    getTotalIncomePerADay,
-    buildPriceString
+    buildPriceString,
+    calculateTotalPrice,
+    calculateTotalWorkerIncome,
 }

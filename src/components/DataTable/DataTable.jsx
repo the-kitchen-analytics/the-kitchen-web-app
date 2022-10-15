@@ -3,7 +3,7 @@ import { Table, Icon } from "semantic-ui-react";
 import DateCell from "./DateCell";
 import OperationsCell from "./OperationsCell";
 import PriceCell from "./PriceCell";
-import { getTotalIncomePerADay } from "../../utils/money";
+import { calculateTotalWorkerIncome, calculateTotalPrice } from "../../utils/money";
 
 const NoTableContent = () => (
     <Table.Row>
@@ -15,14 +15,14 @@ const NoTableContent = () => (
 );
 
 const DataTableRow = ({ data }) => data
-    .map(({ date, dateCreated, procedures, totalPriceBeforeTaxes, totalPriceAfterTaxes }, i) => (
+    .map(({ date, dateCreated, procedures }, i) => (
         <Table.Row key={dateCreated.getTime()} verticalAlign='top'>
             {
                 i === 0 ? (
                     <Table.Cell rowSpan={data.length}>
                         <DateCell
                             date={date}
-                            price={getTotalIncomePerADay(data)}
+                            price={calculateTotalWorkerIncome(procedures)}
                         >
                             {date}
                         </DateCell>
@@ -38,14 +38,14 @@ const DataTableRow = ({ data }) => data
 
             <Table.Cell textAlign="right">
                 <PriceCell euro>
-                    {totalPriceBeforeTaxes}
+                    {calculateTotalPrice(procedures)}
                 </PriceCell>
             </Table.Cell>
 
             <Table.Cell textAlign="right">
                 <strong>
                     <PriceCell euro>
-                        {totalPriceAfterTaxes}
+                        {calculateTotalWorkerIncome(procedures)}
                     </PriceCell>
                 </strong>
             </Table.Cell>
@@ -69,7 +69,12 @@ const DataTableBody = ({ data }) => {
 
 const DataTable = ({ data }) => {
 
-    const totalIncome = getTotalIncomePerADay(data.flat());
+    const allProcedures = data
+        .flat()
+        .map(({ procedures }) => procedures)
+        .flat();
+
+    const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures);
 
     return (
         <Table structured celled>
@@ -93,7 +98,7 @@ const DataTable = ({ data }) => {
                         <strong>
                             <PriceCell>
                                 {
-                                    totalIncome
+                                    totalWorkerIncome
                                 }
                             </PriceCell>
                         </strong>

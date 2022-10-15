@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { parseDateFromDropdown } from "../date";
 
 const convertFormDataToReceipt = (formData) => {
@@ -10,15 +9,10 @@ const convertFormDataToReceipt = (formData) => {
         type: procedure.type,
     }));
 
-    const totalPriceBeforeTaxes = _.sumBy(procedures, 'priceBeforeTaxes');
-    const totalPriceAfterTaxes = _.sumBy(procedures, 'priceAfterTaxes');
-
     const data = Object.freeze({
         uid: formData.uid,
         procedures: procedures,
         date: parseDateFromDropdown(formData.date),
-        totalPriceBeforeTaxes,
-        totalPriceAfterTaxes,
         dateCreated: new Date(),
     });
 

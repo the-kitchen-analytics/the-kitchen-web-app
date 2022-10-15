@@ -1,9 +1,16 @@
 import _ from "lodash";
 
 import Price from "../../components/ui/Price";
+import { calculateTotalWorkerIncome } from "../money";
 
 const buildStatisticsData = (rawData) => {
-    const totalIncome = _.sum(rawData.flat().map(({ totalPriceAfterTaxes }) => totalPriceAfterTaxes));
+
+    const allProcedures = rawData
+        .flat()
+        .map(({ procedures }) => procedures)
+        .flat()
+
+    const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures);
     const operationsCount = rawData.flat().length;
     const workedDays = _.uniq(rawData.flat().map(it => it.dateFormatted))
     const daysCount = workedDays.length;
@@ -30,7 +37,7 @@ const buildStatisticsData = (rawData) => {
             renderValue: () => (
                 <Price euro>
                     {
-                        totalIncome
+                        totalWorkerIncome
                     }
                 </Price>
             )
@@ -54,7 +61,7 @@ const buildStatisticsData = (rawData) => {
                     renderValue: () => (
                         <Price euro>
                             {
-                                totalIncome / daysCount
+                                totalWorkerIncome / daysCount
                             }
                         </Price>
                     )
@@ -67,7 +74,7 @@ const buildStatisticsData = (rawData) => {
                     renderValue: () => (
                         <Price euro>
                             {
-                                totalIncome / operationsCount
+                                totalWorkerIncome / operationsCount
                             }
                         </Price>
                     )
