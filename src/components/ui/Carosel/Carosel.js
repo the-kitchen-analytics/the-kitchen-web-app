@@ -1,9 +1,17 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
+import { useUserSettings } from "../../../hooks";
 
 const Carosel = ({ previousItemProps, nextItemProps, resetButtonProps }) => {
+
+    const { settings: { controlsSize } } = useUserSettings();
+
     return (
-        <Button.Group basic fluid>
+        <Button.Group
+            size={controlsSize}
+            basic
+            fluid
+        >
             <Button
                 icon='left arrow'
                 {...previousItemProps}

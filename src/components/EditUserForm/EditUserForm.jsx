@@ -49,23 +49,25 @@ const EditUserForm = ({
                 onChange={handleInputChangeWrapper}
             />
 
-            <Form.Input
-                required
-                disabled
-                icon="at"
-                iconPosition="left"
-                name="email"
-                type="email"
-                label="Электронная почта"
-                placeholder="Эл. почта"
-                value={email}
-                onChange={handleInputChangeWrapper}
-            />
+            <Form.Group widths='equal'>
+                <Form.Input
+                    required
+                    disabled
+                    icon="at"
+                    iconPosition="left"
+                    name="email"
+                    type="email"
+                    label="Электронная почта"
+                    placeholder="Эл. почта"
+                    value={email}
+                    onChange={handleInputChangeWrapper}
+                />
 
-            <WorkerCategorySelect
-                value={workerCategory}
-                handleChange={handleWorkerCategoryChange}
-            />
+                <WorkerCategorySelect
+                    value={workerCategory}
+                    handleChange={handleWorkerCategoryChange}
+                />
+            </Form.Group>
 
             <Form.Group widths='equal'>
                 <Form.Button

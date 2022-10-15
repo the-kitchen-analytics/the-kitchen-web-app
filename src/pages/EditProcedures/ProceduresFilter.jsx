@@ -1,4 +1,4 @@
-import { Icon, Button, Dropdown } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 
 const tagOptions = [
     {
@@ -45,40 +45,25 @@ const tagOptions = [
     }
 ];
 
-const ProceduresFilter = ({ handleChange, order, sort }) => (
-    <Button.Group fluid>
-        <Dropdown
-            text='Фильтр'
-            icon='filter'
-            floating
-            labeled
-            button
-            className='icon'
-        >
-            <Dropdown.Menu>
-                <Dropdown.Menu scrolling>
-                    {tagOptions.map((option) => (
-                        <Dropdown.Item key={option.value} {...option} onClick={handleChange} />
-                    ))}
-                </Dropdown.Menu>
+const ProceduresFilter = ({ handleChange, size }) => (
+    <Dropdown
+        text='Фильтр'
+        icon='filter'
+        floating
+        labeled
+        button
+        fluid
+        size={size}
+        className={`icon ${size}`}
+    >
+        <Dropdown.Menu>
+            <Dropdown.Menu scrolling>
+                {tagOptions.map((option) => (
+                    <Dropdown.Item key={option.value} {...option} onClick={handleChange} />
+                ))}
             </Dropdown.Menu>
-        </Dropdown>
-
-        <Button
-            icon
-            active={order === 'desc'}
-            onClick={() => sort('desc')}
-        >
-            <Icon name='sort content descending' />
-        </Button>
-        <Button
-            icon
-            active={order === 'asc'}
-            onClick={() => sort('asc')}
-        >
-            <Icon name='sort content ascending' />
-        </Button>
-    </Button.Group >
+        </Dropdown.Menu>
+    </Dropdown>
 );
 
 export default ProceduresFilter;

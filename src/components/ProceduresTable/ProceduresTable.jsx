@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Icon, Table } from "semantic-ui-react";
 import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 import PriceCell from "../DataTable/PriceCell";
@@ -6,12 +6,6 @@ import PriceCell from "../DataTable/PriceCell";
 const TableRow = (props) => {
 
     const { procedure: { id, name, price, workerCategory, workerRate, workerIncome } } = props;
-
-    const navigate = useNavigate();
-
-    const handleRowClick = (id) => {
-        navigate(id);
-    }
 
     const getWorkerCategoryContent = (workerCategory) => {
         return (
@@ -24,7 +18,7 @@ const TableRow = (props) => {
     }
 
     return (
-        <Table.Row onClick={() => handleRowClick(id)}>
+        <Table.Row>
             <Table.Cell>
                 <Link to={`/dashboard/procedures/${id}`}>
                     {name}
@@ -57,7 +51,6 @@ const ProceduresTable = ({ tableData = [] }) => {
             celled
             striped
             padded
-            selectable
         >
             <Table.Header>
                 <Table.Row>

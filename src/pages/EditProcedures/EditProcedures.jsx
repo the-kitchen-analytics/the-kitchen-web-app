@@ -2,7 +2,7 @@ import _ from "lodash";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import { Form, Grid } from "semantic-ui-react";
+import { Form, Grid, Button } from "semantic-ui-react";
 import GenericLayout from "../../components/layouts/GenericLayout";
 import ProceduresTable from "../../components/ProceduresTable";
 import { useUserSettings } from "../../hooks";
@@ -87,20 +87,38 @@ const EditProcedures = () => {
                 <Grid.Column>
                     <Form size={controlsSize}>
                         <Form.Group widths="equal">
+                            <Form.Field>
+                                <ProceduresFilter
+                                    handleChange={handleFilterChange}
+                                    size={controlsSize}
+                                />
+                            </Form.Field>
+
+                            <Form.Field>
+                                <Button.Group
+                                    fluid
+                                    size={controlsSize}
+                                >
+                                    <Button
+                                        icon="sort content descending"
+                                        active={order === 'desc'}
+                                        onClick={() => sort('desc')}
+                                    />
+                                    <Button
+                                        icon="sort content ascending"
+                                        active={order === 'asc'}
+                                        onClick={() => sort('asc')}
+                                    />
+                                </Button.Group>
+                            </Form.Field>
+
                             <Form.Button
                                 fluid
                                 icon="plus"
                                 content="Добавить"
                                 color={accentColor}
+                                size={controlsSize}
                             />
-
-                            <Form.Field>
-                                <ProceduresFilter
-                                    handleChange={handleFilterChange}
-                                    order={order}
-                                    sort={sort}
-                                />
-                            </Form.Field>
                         </Form.Group>
                     </Form>
 
