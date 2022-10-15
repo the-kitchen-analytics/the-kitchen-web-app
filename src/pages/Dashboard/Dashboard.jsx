@@ -27,6 +27,14 @@ const Dashboard = ({ user: currentUser }) => {
         return procedures.find(procedure => procedure.id === id);
     }, [procedures]);
 
+    const getReceiptById = useCallback((id) => {
+        if (data) {
+            return data.receipts.find(receipt => receipt.id === id);
+        }
+
+        return null;
+    }, [data]);
+
     const outlet = useMemo(() => {
         if (isLoading) {
             return (
@@ -54,6 +62,7 @@ const Dashboard = ({ user: currentUser }) => {
                     isUserDetailsLoading,
                     updateUserDetails,
                     getProcedureById,
+                    getReceiptById,
                 }}
             />
         )
@@ -66,6 +75,7 @@ const Dashboard = ({ user: currentUser }) => {
         proceduresForSubmitData,
         updateUserDetails,
         getProcedureById,
+        getReceiptById,
     ]);
 
     return (

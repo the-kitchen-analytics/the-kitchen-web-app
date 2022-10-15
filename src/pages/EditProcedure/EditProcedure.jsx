@@ -67,10 +67,6 @@ const EditProcedure = () => {
         navigate(-1);
     }
 
-    const handleCancelButtonClick = () => {
-        navigate(-1);
-    }
-
     const subheader = useMemo(() => {
         return `${originalProcedure.name} | ${getWorkerCategoryDisplayName(originalProcedure.workerCategory)}`
     }, [originalProcedure.name, originalProcedure.workerCategory]);
@@ -91,7 +87,6 @@ const EditProcedure = () => {
                         isLoading={isLoading}
                         formData={procedure}
                         handleSubmit={handleFormSubmit}
-                        handleCancelButtonClick={handleCancelButtonClick}
                         handleInputChangeWrapper={handleInputChangeWrapper}
                         handlePriceChange={handlePriceChange}
                         handleWorkerRateChange={handleWorkerRateChange}

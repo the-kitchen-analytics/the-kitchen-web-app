@@ -1,5 +1,5 @@
-import { Form, Button } from "semantic-ui-react";
-import { LoadableButton } from "../../components/ui/Button";
+import { Form } from "semantic-ui-react";
+import { GoBackButton, LoadableButton } from "../../components/ui/Button";
 import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 import { useUserSettings } from "../../hooks";
 import { useMemo } from "react";
@@ -10,7 +10,6 @@ const EditProcedureForm = (props) => {
         isLoading,
         formData,
         handleSubmit,
-        handleCancelButtonClick,
         handleInputChangeWrapper,
         handlePriceChange,
         handleWorkerRateChange,
@@ -99,15 +98,7 @@ const EditProcedureForm = (props) => {
 
             <Form.Group widths='equal'>
                 <Form.Field>
-                    <Button
-                        fluid
-                        icon="arrow left"
-                        labelPosition='left'
-                        content="Назад"
-                        type="button"
-                        size={controlsSize}
-                        onClick={handleCancelButtonClick}
-                    />
+                    <GoBackButton />
                 </Form.Field>
 
                 <Form.Field>

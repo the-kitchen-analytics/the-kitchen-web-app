@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { Table, Icon } from "semantic-ui-react";
 import DateCell from "./DateCell";
-import OperationsCell from "./OperationsCell";
+import ProceduresCell from "./ProceduresCell";
 import PriceCell from "./PriceCell";
 import { calculateTotalWorkerIncome, calculateTotalPrice } from "../../utils/money";
 
@@ -15,7 +15,7 @@ const NoTableContent = () => (
 );
 
 const DataTableRow = ({ data }) => data
-    .map(({ date, dateCreated, procedures }, i) => (
+    .map(({ id, date, dateCreated, procedures }, i) => (
         <Table.Row key={dateCreated.getTime()} verticalAlign='top'>
             {
                 i === 0 ? (
@@ -31,9 +31,10 @@ const DataTableRow = ({ data }) => data
             }
 
             <Table.Cell>
-                <OperationsCell>
-                    {procedures}
-                </OperationsCell>
+                <ProceduresCell
+                    id={id}
+                    procedures={procedures}
+                />
             </Table.Cell>
 
             <Table.Cell textAlign="right">

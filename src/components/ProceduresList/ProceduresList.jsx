@@ -1,37 +1,46 @@
-import { List, Grid } from "semantic-ui-react";
-import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
+import { List } from "semantic-ui-react";
 import { Price } from "../ui";
+import { Link } from "react-router-dom";
 
-const ListItem = ({ procedure: { price, name, workerCategory } }) => (
+
+const ListItem = ({ linkTo, procedure: { name, priceBeforeTaxes } }) => (
     <List.Item>
-        {/* <List.Icon name='star' size='large' verticalAlign='middle' /> */}
         <List.Content>
-            <List.Header as='a'>{name}</List.Header>
+            <List.Header>
+                {
+                    linkTo
+                        ? <Link to={linkTo}>{name}</Link>
+                        : name
+                }
+            </List.Header>
             <List.Description>
-                {getWorkerCategoryDisplayName(workerCategory)} |
-                <Price euro>{price}</Price>
+                <Price euro>
+                    {priceBeforeTaxes}
+                </Price>
             </List.Description>
         </List.Content>
     </List.Item>
-);
+)
 
-const ProceduresList = ({ procedires }) => {
+const ProceduresList = ({ linkTo, procedures }) => {
 
     return (
-        <Grid.Row>
-            <Grid.Column>
-                <List divided relaxed bulleted>
-                    {
-                        procedires.map(procedure => (
-                            <ListItem
-                                key={procedure.id}
-                                procedure={procedure}
-                            />
-                        ))
-                    }
-                </List>
-            </Grid.Column>
-        </Grid.Row>
+        <List
+            divided
+            relaxed
+            bulleted
+            size="medium"
+        >
+            {
+                procedures.map(procedure => (
+                    <ListItem
+                        key={procedure.id || procedure.name}
+                        linkTo={linkTo}
+                        procedure={procedure}
+                    />
+                ))
+            }
+        </List>
     );
 }
 

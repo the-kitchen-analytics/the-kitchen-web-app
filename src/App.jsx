@@ -20,6 +20,7 @@ import { routes } from './data/routePaths';
 import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
 import EditProcedures from "./pages/EditProcedures/EditProcedures";
 import EditProcedure from "./pages/EditProcedure";
+import { ReceiptEdit } from "./pages/Receipt";
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard);
 
@@ -89,6 +90,11 @@ const App = () => (
                         <Route
                             path={'procedures/:id'}
                             element={<EditProcedure />}
+                        />
+
+                        <Route
+                            path={'receipts/:id'}
+                            element={<ReceiptEdit />}
                         />
                     </Route>
                     <Route path="*" element={<PageNotFound />} />

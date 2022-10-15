@@ -3,9 +3,7 @@ import {
     where,
     addDoc,
     collection,
-    getDoc,
     getDocs,
-    doc,
     setDoc,
     deleteDoc,
     orderBy,
@@ -13,13 +11,10 @@ import {
 } from "firebase/firestore"
 import { db } from "../config/firebase"
 import { RECEIPTS } from "../config/firebaseCollectionNames"
+import { getDoc } from "../utils/firebase";
 
 const getCollection = () => {
     return collection(db, RECEIPTS);
-}
-
-const docWrapper = (id) => {
-    return doc(db, RECEIPTS, id);
 }
 
 export const streamReceiptsByUid = (uid, snapshot, error) => {
@@ -36,7 +31,7 @@ export const getAllReceiptsByUid = (uid) => {
 
 export const getReceipt = (id) => {
     console.debug('getReceipt', id);
-    return getDoc(docWrapper(id));
+    return getDoc(RECEIPTS, id);
 }
 
 export const createReceipt = (data) => {
@@ -46,12 +41,17 @@ export const createReceipt = (data) => {
 
 export const updateReceipt = (id, payload) => {
     console.debug('updateReceipt', id, payload);
-    setDoc(docWrapper(id), payload);
+    setDoc(getDoc(RECEIPTS, id), payload);
 }
 
 export const deleteReceipt = (receipt) => {
     console.debug('deleteReceipt', receipt);
     return deleteDoc(receipt);
+}
+
+export const deleteReceiptById = (id) => {
+    console.debug('deleteReceipt by id', id);
+    return deleteDoc(getDoc(RECEIPTS, id));
 }
 
 export const deleteReceipts = (receipts) => {
