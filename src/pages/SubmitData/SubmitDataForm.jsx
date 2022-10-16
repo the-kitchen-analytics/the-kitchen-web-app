@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { useCallback } from "react";
-import { Form, Button } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import { DatePicker } from "../../components/ui/Input";
 import { LoadableButton } from "../../components/ui/Button";
 import { handleInputChange } from "../../utils/ui/form";
@@ -76,31 +76,32 @@ const SubmitDataForm = ({
                 )
             }
 
-            <Form.Field>
-                <Button
+            <Form.Group widths="equal">
+                <Form.Button
                     fluid
                     size={controlsSize}
+                    icon="trash"
                     type="button"
                     content="Очистить"
                     disabled={shouldDisableClearFormButton()}
-                    icon="trash"
                     onClick={handleClearFromButtonClick}
                 />
-            </Form.Field>
 
-            <Form.Field>
-                <LoadableButton
-                    loading={isLoading}
-                    fluid
-                    size={controlsSize}
-                    icon="save"
-                    type="submit"
-                    color={accentColor}
-                    onClick={handleFormSubmit}
-                    content={getSubmitButtonLabel()}
-                    disabled={shouldDisableSubmitFormButton()}
-                />
-            </Form.Field>
+                <Form.Field>
+                    <LoadableButton
+                        loading={isLoading}
+                        fluid
+                        size={controlsSize}
+                        icon="save"
+                        type="submit"
+                        content={getSubmitButtonLabel()}
+                        color={accentColor}
+                        onClick={handleFormSubmit}
+                        disabled={shouldDisableSubmitFormButton()}
+                    />
+                </Form.Field>
+            </Form.Group>
+
         </Form>
     )
 }

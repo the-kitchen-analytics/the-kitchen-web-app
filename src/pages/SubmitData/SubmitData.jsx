@@ -4,12 +4,11 @@ import GenericLayout from "../../components/layouts/GenericLayout";
 import SubmitDataForm from "./SubmitDataForm";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import { useState, useMemo } from "react";
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
-import { useLocalStorage, usePostData } from "../../hooks";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { useLocalStorage, usePostData, useSessionStorage } from "../../hooks";
 import { formatDateForDatePicker, getCurrentDate } from "../../utils/date";
 import { createReceipt } from "../../services/receiptService";
 import { convertFormDataToReceipt } from "../../utils/receipt";
-import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 
 const INITIAL_ACORDITION_INDEX = -1;
 
@@ -25,7 +24,7 @@ const SubmitData = () => {
     const initialFormData = useMemo(() => ({
         date: formatDateForDatePicker(getCurrentDate()),
         uid: uid,
-        procedures: []
+        procedures: [],
     }), [uid]);
 
     const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] =
@@ -34,10 +33,11 @@ const SubmitData = () => {
     const [shouldDisplayPreview, setShouldDisplayPreview] =
         useLocalStorage('shouldDisplayPreview', true);
 
-    const [formData, setFormData] = useState(initialFormData);
+    const [formData, setFormData] = useSessionStorage(
+        'submitFormData', initialFormData);
 
     const [accorditionActiveIndex, setAccorditionActiveIndex] =
-        useLocalStorage('accorditionActiveIndex', INITIAL_ACORDITION_INDEX);
+        useSessionStorage('accorditionActiveIndex', INITIAL_ACORDITION_INDEX);
 
     const convertedFormData = useMemo(() => {
         return convertFormDataToReceipt(formData);
@@ -109,12 +109,6 @@ const SubmitData = () => {
         >
             <Grid.Row>
                 <Grid.Column>
-                    <Message>
-                        <Message.Content>
-                            Вы <strong>{getWorkerCategoryDisplayName(workerCategory)}</strong>? Если нет, пожалуйста измените это в <Link to="/dashboard/settings#userProfileSettings">настройках</Link>.
-                        </Message.Content>
-                    </Message>
-
                     {
                         shouldDisplaySuccessMessage && (
                             <Message
