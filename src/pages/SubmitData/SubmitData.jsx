@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Grid, Message } from "semantic-ui-react";
-import GenericLayout from "../../components/layouts/GenericLayout";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
 import SubmitDataForm from "./SubmitDataForm";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import { useState, useMemo } from "react";
@@ -102,7 +102,7 @@ const SubmitData = () => {
     }
 
     return (
-        <GenericLayout
+        <DashboardLayout
             icon="cloud upload"
             header="Отправить данные"
             subheader="Сохраните ваши данные в облаке"
@@ -143,7 +143,7 @@ const SubmitData = () => {
                     />
                 </Grid.Column>
             </Grid.Row>
-        </GenericLayout >
+        </DashboardLayout >
     )
 }
 

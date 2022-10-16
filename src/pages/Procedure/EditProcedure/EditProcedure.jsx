@@ -1,13 +1,14 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
-import GenericLayout from "../../../components/layouts/GenericLayout"
+import DashboardLayout from "../../../components/layouts/DashboardLayout"
 import { usePostData } from "../../../hooks";
 import { handleInputChange } from "../../../utils/ui/form";
 import { getWorkerCategoryDisplayName } from "../../../utils/workerCategory";
 import { updateProcedure } from "../../../services/proceduresService";
 import { ErrorMessage } from "../../../components/ui";
 import EditProcedureForm from "./EditProcedureForm";
+import { getProcedureTypeDisplayName } from "../../../utils/procedures";
 
 const EditProcedure = () => {
 
@@ -68,11 +69,11 @@ const EditProcedure = () => {
     }
 
     const subheader = useMemo(() => {
-        return `${originalProcedure.name} | ${getWorkerCategoryDisplayName(originalProcedure.workerCategory)}`
-    }, [originalProcedure.name, originalProcedure.workerCategory]);
+        return `${originalProcedure.name} – ${getProcedureTypeDisplayName(originalProcedure.type)} | ${getWorkerCategoryDisplayName(originalProcedure.workerCategory)}`
+    }, [originalProcedure.name, originalProcedure.type, originalProcedure.workerCategory]);
 
     return (
-        <GenericLayout
+        <DashboardLayout
             icon="edit"
             header="Редактировать процедуру"
             subheader={subheader}
@@ -95,7 +96,7 @@ const EditProcedure = () => {
                 </Grid.Column>
             </Grid.Row>
 
-        </GenericLayout>
+        </DashboardLayout>
     );
 }
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import GenericLayout from "../GenericLayout";
+import DashboardLayout from "../DashboardLayout";
 
 const AllTimeDataLayout = ({ component, icon, content, children }) => (
-    <GenericLayout
+    <DashboardLayout
         icon={icon}
         header="За всё время"
         subheader="Ваши данные за всё время"
@@ -15,7 +15,7 @@ const AllTimeDataLayout = ({ component, icon, content, children }) => (
                 }
             </Grid.Column>
         </Grid.Row>
-    </GenericLayout>
+    </DashboardLayout>
 
 );
 

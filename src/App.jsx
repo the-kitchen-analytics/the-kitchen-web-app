@@ -89,6 +89,7 @@ const App = () => (
                                 path={'procedures'}
                                 element={<EditProcedures />}
                             />
+
                             <Route
                                 path={'procedures/:id'}
                                 element={<EditProcedure />}

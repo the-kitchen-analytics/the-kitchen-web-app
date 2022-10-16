@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Form, Grid, Button } from "semantic-ui-react";
-import GenericLayout from "../../../components/layouts/GenericLayout";
+import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import ProceduresTable from "../../../components/ProceduresTable";
 import { useSessionStorage, useUserSettings } from "../../../hooks";
 import ProceduresFilter from "./ProceduresFilter";
@@ -80,8 +80,8 @@ const EditProcedures = () => {
     }
 
     return (
-        <GenericLayout
-            icon="heart"
+        <DashboardLayout
+            icon="clipboard list"
             header="Список услуг"
             subheader="Управляйте конфигурацией услуг"
         >
@@ -134,7 +134,7 @@ const EditProcedures = () => {
                 </Grid.Column>
             </Grid.Row>
 
-        </GenericLayout>
+        </DashboardLayout>
     );
 }
 

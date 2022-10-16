@@ -59,9 +59,9 @@ const ProceduresList = ({ linkTo, procedures, listProps, shouldDisplayProcedureP
         size="medium"
     >
         {
-            procedures.map(procedure => (
+            procedures.map((procedure, i) => (
                 <ListItem
-                    key={procedure.id || procedure.name}
+                    key={`${procedure.name}-${i}`}
                     linkTo={linkTo}
                     procedure={procedure}
                     shouldDisplayProcedurePriceInTable={shouldDisplayProcedurePriceInTable}

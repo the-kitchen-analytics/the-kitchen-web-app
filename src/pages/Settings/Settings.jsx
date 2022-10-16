@@ -1,5 +1,5 @@
 import { Grid, List, Segment } from "semantic-ui-react";
-import GenericLayout from "../../components/layouts/GenericLayout";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
 import ClearCache from "./ClearCache.jsx";
 import ContactUs from "./ContactUs.jsx";
 import SelectAccentColor from "./SelectAccentColorSetting.jsx";
@@ -81,7 +81,7 @@ const Settings = () => {
     ))
 
     return (
-        <GenericLayout
+        <DashboardLayout
             icon="settings"
             header="Настройки"
             subheader="Управляйте вашими настройками"

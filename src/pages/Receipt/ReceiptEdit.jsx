@@ -1,13 +1,13 @@
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
-import { Divider, Form, Grid, Segment, Table } from "semantic-ui-react";
+import { Form, Grid, Table } from "semantic-ui-react";
 import PriceCell from "../../components/DataTable/PriceCell";
-import GenericLayout from "../../components/layouts/GenericLayout"
-import ProceduresList from "../../components/ProceduresList/ProceduresList";
-import { ErrorMessage } from "../../components/ui";
+import DashboardLayout from "../../components/layouts/DashboardLayout"
+import { ErrorMessage, Price } from "../../components/ui";
 import { GoBackButton } from "../../components/ui/Button";
 import { usePostData, useUserSettings } from "../../hooks";
 import { deleteReceiptById } from "../../services/receiptService";
 import { calculateTotalPrice, calculateTotalWorkerIncome } from "../../utils/money";
+import { getProcedureTypeDisplayName } from "../../utils/procedures";
 import NoContent from "../NoContent";
 
 const ReceiptEdit = () => {
@@ -25,19 +25,6 @@ const ReceiptEdit = () => {
 
     const header = `Запись от ${receipt.dateFormatted}`;
 
-    const tableData = [
-        {
-            key: 'totalPrice',
-            title: 'Стоимость услуги',
-            price: calculateTotalPrice(receipt.procedures)
-        },
-        {
-            key: 'totalWorkerIncome',
-            title: 'Заработок мастера',
-            price: calculateTotalWorkerIncome(receipt.procedures)
-        },
-    ];
-
     const handleDeleteButtonClick = async () => {
         if (window.confirm('Вы действительно хотите удалить запись?')) {
             await postData(deleteReceiptById, id);
@@ -46,7 +33,7 @@ const ReceiptEdit = () => {
     }
 
     return (
-        <GenericLayout
+        <DashboardLayout
             header={header}
             subheader="Детализация записи клиента"
         >
@@ -56,48 +43,98 @@ const ReceiptEdit = () => {
                         error && <ErrorMessage message={error.message} />
                     }
 
-                    <Segment>
-                        <ProceduresList
-                            listProps={{
-                                // divided: true,
-                                relaxed: true,
-                                bulleted: true,
-                            }}
-                            procedures={receipt.procedures}
-                            shouldDisplayProcedurePriceInTable
-                        />
-                    </Segment>
-
-                    <Divider hidden />
-
                     <Table celled>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell colSpan='2'>
-                                    Итого
-                                </Table.HeaderCell>
+                                <Table.HeaderCell
+                                    content="Название услуги"
+                                />
+                                <Table.HeaderCell
+                                    collapsing
+                                    content="Тип"
+                                />
+                                <Table.HeaderCell
+                                    collapsing
+                                    content="Стоимость услуги"
+                                />
+                                <Table.HeaderCell
+                                    collapsing
+                                    content="Заработок мастера"
+                                />
                             </Table.Row>
                         </Table.Header>
 
                         <Table.Body>
                             {
-                                tableData.map(({ key, title, price }) => (
-                                    <Table.Row key={key}>
-                                        <Table.Cell>
-                                            {title}
-                                        </Table.Cell>
-                                        <Table.Cell collapsing>
-                                            <strong>
-                                                <PriceCell>
-                                                    {price}
-                                                </PriceCell>
-                                            </strong>
-                                        </Table.Cell>
+                                receipt.procedures.map((procedure, i) => (
+                                    <Table.Row key={`${procedure.name}-${i}`}>
+                                        <Table.Cell
+                                            content={procedure.name}
+                                        />
+
+                                        <Table.Cell
+                                            content={getProcedureTypeDisplayName(procedure.type)}
+                                        />
+
+                                        <Table.Cell
+                                            textAlign="right"
+                                            content={(
+                                                <Price euro>
+                                                    {procedure.priceBeforeTaxes}
+                                                </Price>
+                                            )}
+                                        />
+
+                                        <Table.Cell
+                                            textAlign="right"
+                                            content={(
+                                                <strong>
+                                                    <Price euro>
+                                                        {procedure.priceAfterTaxes}
+                                                    </Price>
+                                                </strong>
+                                            )}
+                                        />
                                     </Table.Row>
                                 ))
                             }
                         </Table.Body>
+                        <Table.Footer>
+                            <Table.Row>
+                                <Table.HeaderCell
+                                    colSpan={2}
+                                    content={
+                                        <strong>
+                                            Итого
+                                        </strong>
+                                    }
+                                />
+
+                                <Table.HeaderCell
+                                    textAlign="right"
+                                    content={
+                                        <strong>
+                                            <PriceCell>
+                                                {calculateTotalPrice(receipt.procedures)}
+                                            </PriceCell>
+                                        </strong>
+                                    }
+                                />
+
+                                <Table.HeaderCell
+                                    textAlign="right"
+                                    content={
+                                        <strong>
+                                            <PriceCell>
+                                                {calculateTotalWorkerIncome(receipt.procedures)}
+                                            </PriceCell>
+                                        </strong>
+                                    }
+                                />
+                            </Table.Row>
+                        </Table.Footer>
                     </Table>
+
                 </Grid.Column>
 
             </Grid.Row>
@@ -124,7 +161,7 @@ const ReceiptEdit = () => {
                 </Grid.Column>
             </Grid.Row>
 
-        </GenericLayout>
+        </DashboardLayout >
     );
 }
 

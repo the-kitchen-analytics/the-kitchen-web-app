@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import GenericLayout from "../GenericLayout";
+import DashboardLayout from "../DashboardLayout";
 import { DaySelect } from "../../shared/dropdown";
 import { buildDropdownOptions } from "../../../utils/ui/dropdown";
 
 const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children }) => (
-    <GenericLayout
+    <DashboardLayout
         icon={icon}
         header="За день"
         subheader="Выберите день"
@@ -32,7 +32,7 @@ const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children 
                 }
             </Grid.Column>
         </Grid.Row>
-    </GenericLayout>
+    </DashboardLayout>
 );
 
 

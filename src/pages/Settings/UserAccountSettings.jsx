@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { useState, useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
-import { Segment, Header, Loader, Form, Label, Icon } from "semantic-ui-react";
+import { Segment, Header, Loader, Form, Icon } from "semantic-ui-react";
 import EditUserForm from "../../components/EditUserForm";
 import { usePostData, useUserSettings } from "../../hooks";
 import ErrorMessage from "../../components/ui/ErrorMessage";
@@ -16,7 +16,7 @@ const UserAccountSettings = () => {
         isUserDetailsLoading,
     } = useOutletContext();
 
-    const { settings: { controlsSize, accentColor } } = useUserSettings();
+    const { settings: { controlsSize } } = useUserSettings();
 
     const initialFormData = useMemo(() => userDetails, [userDetails]);
 
@@ -68,12 +68,9 @@ const UserAccountSettings = () => {
                 <Header.Content>
                     {userDetails.displayName}
                 </Header.Content>
+
                 <Header.Subheader>
-                    {userDetails.email}
-                    <Label
-                        color={accentColor}
-                        content={getWorkerCategoryDisplayName(userDetails.workerCategory)}
-                    />
+                    {userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}
                 </Header.Subheader>
             </Header>
 

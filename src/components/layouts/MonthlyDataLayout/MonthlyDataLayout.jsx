@@ -4,7 +4,7 @@ import { Grid } from "semantic-ui-react";
 import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from "../../../data/monthIndexes";
 import { MonthSelect, YearSelect } from "../../shared/dropdown";
 import Carosel from "../../ui/Carosel";
-import GenericLayout from "../GenericLayout/GenericLayout";
+import DashboardLayout from "../DashboardLayout/DashboardLayout";
 
 const MonthlyDataLayout = ({
     icon, content, children,
@@ -27,7 +27,7 @@ const MonthlyDataLayout = ({
     })), [yearOptions]);
 
     return (
-        <GenericLayout
+        <DashboardLayout
             icon={icon}
             header="За месяц"
             subheader="Выберите месяц и год"
@@ -83,7 +83,7 @@ const MonthlyDataLayout = ({
                     }
                 </Grid.Column>
             </Grid.Row>
-        </GenericLayout>
+        </DashboardLayout>
     )
 }
 

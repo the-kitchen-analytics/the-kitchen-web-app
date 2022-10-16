@@ -8,11 +8,13 @@ import { useUserSettings } from "../../hooks";
 import SelectProcedures from "./SelectProcedures";
 import Preview from "./Preview";
 import { useOutletContext } from "react-router-dom";
+import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 
 const SubmitDataForm = ({
     formData,
     setFormData,
     convertedFormData,
+    workerCategory,
     accorditionActiveIndex,
     setAccorditionActiveIndex,
     shouldRedirectToHomePageAfterSubmit,
@@ -43,16 +45,25 @@ const SubmitDataForm = ({
             onSubmit={handleFormSubmit}
             loading={isLoading}
         >
-            <Form.Field required>
-                <DatePicker
-                    required={true}
-                    isInvalid={!isDateFieldValid()}
-                    label="Выберите день"
-                    name="date"
-                    value={formData.date}
-                    handleChange={handleInputChangeWrapper}
+            <Form.Group widths="equal">
+                <Form.Field required>
+                    <DatePicker
+                        required={true}
+                        isInvalid={!isDateFieldValid()}
+                        label="Выберите день"
+                        name="date"
+                        value={formData.date}
+                        handleChange={handleInputChangeWrapper}
+                    />
+                </Form.Field>
+                <Form.Input
+                    fluid
+                    required
+                    disabled
+                    label="Выберите квалификацию мастера"
+                    value={getWorkerCategoryDisplayName(workerCategory)}
                 />
-            </Form.Field>
+            </Form.Group>
 
             <SelectProcedures
                 procedures={proceduresForSubmitData}

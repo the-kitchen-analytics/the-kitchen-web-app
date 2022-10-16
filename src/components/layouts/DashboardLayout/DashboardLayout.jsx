@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Header, Icon } from "semantic-ui-react";
 
-const GenericLayout = ({ header, subheader, icon, content, children }) => (
+const DashboardLayout = ({ header, subheader, icon, content, children }) => (
     <Grid stackable>
         <Grid.Row>
             <Grid.Column>
@@ -26,4 +26,4 @@ const GenericLayout = ({ header, subheader, icon, content, children }) => (
     </Grid>
 )
 
-export default GenericLayout
+export default DashboardLayout
