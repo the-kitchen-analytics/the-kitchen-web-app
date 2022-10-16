@@ -15,7 +15,6 @@ const useUserDetails = (uid) => {
 
     const updateDetails = async (payload) => {
         await update(updateUserDetails, doc.ref, payload);
-        localStorage.removeItem('submitDataForm');
         refresh();
     }
 

@@ -34,8 +34,7 @@ const SubmitData = () => {
     const [shouldDisplayPreview, setShouldDisplayPreview] =
         useLocalStorage('shouldDisplayPreview', true);
 
-    const [formData, setFormData] =
-        useLocalStorage('submitDataForm', initialFormData);
+    const [formData, setFormData] = useState(initialFormData);
 
     const [accorditionActiveIndex, setAccorditionActiveIndex] =
         useLocalStorage('accorditionActiveIndex', INITIAL_ACORDITION_INDEX);
