@@ -4,7 +4,7 @@ import ClearCache from "./ClearCache.jsx";
 import ContactUs from "./ContactUs.jsx";
 import SelectAccentColor from "./SelectAccentColorSetting.jsx";
 import UserAccountSettings from "./UserAccountSettings.jsx";
-import DeleteData from "./DeleteData";
+// import DeleteData from "./DeleteData";
 import { useColorNames } from "../../hooks";
 import contactOptions from "../../data/contactOptions.json";
 // import RestoreProceduresData from "./RestoreProceduresData";
@@ -40,17 +40,17 @@ const Settings = () => {
             )
         },
         {
-            key: 'clear-cache',
-            element: <ClearCache />
-        },
-        {
-            key: 'delete-data',
-            element: <DeleteData />
-        },
-        {
             key: 'app-info',
             element: <InfoWithUser />
         },
+        {
+            key: 'clear-cache',
+            element: <ClearCache />
+        },
+        // {
+        //     key: 'delete-data',
+        //     element: <DeleteData />
+        // },
         {
             key: 'links',
             element: (

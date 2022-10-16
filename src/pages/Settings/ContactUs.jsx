@@ -4,7 +4,7 @@ import { Header, List, Segment, Message } from "semantic-ui-react";
 const ContactUs = ({ options }) => (
     <Segment>
         <Header
-            icon="info circle"
+            icon="talk"
             content="Связаться с нами"
         />
 

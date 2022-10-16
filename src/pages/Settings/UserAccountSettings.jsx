@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { useState, useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
-import { Segment, Header, Loader, Form } from "semantic-ui-react";
+import { Segment, Header, Loader, Form, Label, Icon } from "semantic-ui-react";
 import EditUserForm from "../../components/EditUserForm";
 import { usePostData, useUserSettings } from "../../hooks";
 import ErrorMessage from "../../components/ui/ErrorMessage";
@@ -16,7 +16,7 @@ const UserAccountSettings = () => {
         isUserDetailsLoading,
     } = useOutletContext();
 
-    const { settings: { controlsSize } } = useUserSettings();
+    const { settings: { controlsSize, accentColor } } = useUserSettings();
 
     const initialFormData = useMemo(() => userDetails, [userDetails]);
 
@@ -63,11 +63,19 @@ const UserAccountSettings = () => {
     return (
         <Segment loading={isLoading || isUserDetailsLoading}>
 
-            <Header
-                icon="user"
-                content={userDetails.displayName}
-                subheader={`${userDetails.email} | ${getWorkerCategoryDisplayName(userDetails.workerCategory)}`}
-            />
+            <Header icon textAlign="center">
+                <Icon name="user circle" />
+                <Header.Content>
+                    {userDetails.displayName}
+                </Header.Content>
+                <Header.Subheader>
+                    {userDetails.email}
+                    <Label
+                        color={accentColor}
+                        content={getWorkerCategoryDisplayName(userDetails.workerCategory)}
+                    />
+                </Header.Subheader>
+            </Header>
 
             {
                 shouldDisplayEditProfileForm ?
