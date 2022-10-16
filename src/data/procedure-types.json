@@ -13,5 +13,10 @@
         "id": "spa",
         "name": "spa",
         "displayName": "SPA-услуги"
+    },
+    {
+        "id": "brows",
+        "name": "brows",
+        "displayName": "Брови"
     }
 ]

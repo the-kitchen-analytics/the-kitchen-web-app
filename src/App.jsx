@@ -18,8 +18,8 @@ import Footer from "./components/Footer";
 
 import { routes } from './data/routePaths';
 import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
-import EditProcedures from "./pages/EditProcedures/EditProcedures";
-import EditProcedure from "./pages/EditProcedure";
+import EditProcedures from "./pages/Procedure/EditProcedures";
+import EditProcedure from "./pages/Procedure/EditProcedure";
 import { ReceiptEdit } from "./pages/Receipt";
 import ScrollToTop from "./components/ScrollToTop";
 

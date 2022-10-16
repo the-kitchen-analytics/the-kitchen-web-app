@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
-import GenericLayout from "../../components/layouts/GenericLayout"
-import { usePostData } from "../../hooks";
-import { handleInputChange } from "../../utils/ui/form";
-import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
-import { updateProcedure } from "../../services/proceduresService";
-import { ErrorMessage } from "../../components/ui";
+import GenericLayout from "../../../components/layouts/GenericLayout"
+import { usePostData } from "../../../hooks";
+import { handleInputChange } from "../../../utils/ui/form";
+import { getWorkerCategoryDisplayName } from "../../../utils/workerCategory";
+import { updateProcedure } from "../../../services/proceduresService";
+import { ErrorMessage } from "../../../components/ui";
 import EditProcedureForm from "./EditProcedureForm";
 
 const EditProcedure = () => {
@@ -62,9 +62,9 @@ const EditProcedure = () => {
     }
 
     const handleFormSubmit = async (e) => {
-        // e.preventdefault();
+        e.preventDefault();
         await postData(updateProcedure, id, procedure)
-        navigate(-1);
+        navigate('/dashboard/procedures');
     }
 
     const subheader = useMemo(() => {

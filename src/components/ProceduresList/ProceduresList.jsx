@@ -1,7 +1,7 @@
 import { Label, List } from "semantic-ui-react";
-import { Price } from "../ui";
 import { Link } from "react-router-dom";
 import { useUserSettings } from "../../hooks";
+import { getProcedureTypeDisplayName } from "../../utils/procedures";
 
 
 const ListItem = (props) => {
@@ -12,10 +12,13 @@ const ListItem = (props) => {
         shouldDisplayProcedurePriceInTable,
         procedure: {
             name,
+            type,
             priceBeforeTaxes,
             priceAfterTaxes,
         },
     } = props;
+
+    const displayName = `${name} (${getProcedureTypeDisplayName(type)})`;
 
     return (
         <List.Item>
@@ -23,25 +26,24 @@ const ListItem = (props) => {
                 <List.Header>
                     {
                         linkTo
-                            ? <Link to={linkTo}>{name}</Link>
-                            : name
+                            ? <Link to={linkTo}>{displayName}</Link>
+                            : displayName
                     }
                 </List.Header>
                 {
                     shouldDisplayProcedurePriceInTable && (
                         <List.Description>
-                            <Label.Group>
-                                <Label>
-                                    <Price euro>
-                                        {priceBeforeTaxes}
-                                    </Price>
-                                </Label>
-
-                                <Label color={accentColor}>
-                                    <Price euro>
-                                        {priceAfterTaxes}
-                                    </Price>
-                                </Label>
+                            <Label.Group size="small">
+                                <Label
+                                    pointing
+                                    icon="euro"
+                                    content={priceBeforeTaxes.toFixed(2)}
+                                />
+                                <Label
+                                    icon="euro"
+                                    color={accentColor}
+                                    content={priceAfterTaxes.toFixed(2)}
+                                />
                             </Label.Group>
                         </List.Description>
                     )

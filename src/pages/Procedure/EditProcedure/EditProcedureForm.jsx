@@ -1,8 +1,9 @@
 import { Form } from "semantic-ui-react";
-import { GoBackButton, LoadableButton } from "../../components/ui/Button";
-import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
-import { useUserSettings } from "../../hooks";
+import { GoBackButton } from "../../../components/ui/Button";
+import { getWorkerCategoryDisplayName } from "../../../utils/workerCategory";
+import { useUserSettings } from "../../../hooks";
 import { useMemo } from "react";
+import _ from "lodash";
 
 const EditProcedureForm = (props) => {
 
@@ -26,6 +27,7 @@ const EditProcedureForm = (props) => {
             placeholder: workerRateInPercent,
             min: 0,
             max: 100,
+            step: 'any',
             type: 'number',
             icon: 'percent',
             iconPosition: 'left',
@@ -41,7 +43,8 @@ const EditProcedureForm = (props) => {
             value: formData.workerIncome,
             placeholder: formData.workerIncome ? formData.workerIncome.toFixed(2) : 0,
             min: 0,
-            max: formData.price,
+            max: _.isNaN(formData.price) ? 0 : formData.price,
+            step: 'any',
             type: 'number',
             icon: 'euro',
             iconPosition: 'left',
@@ -77,6 +80,7 @@ const EditProcedureForm = (props) => {
                 <Form.Input
                     min={0}
                     max={999}
+                    step="any"
                     type="number"
                     icon="euro"
                     iconPosition="left"
@@ -101,19 +105,16 @@ const EditProcedureForm = (props) => {
                     <GoBackButton />
                 </Form.Field>
 
-                <Form.Field>
-                    <LoadableButton
-                        loading={isLoading}
-                        fluid
-                        size={controlsSize}
-                        icon="save"
-                        type="submit"
-                        color={accentColor}
-                        onClick={handleSubmit}
-                        content="Сохранить"
-                    // disabled={shouldDisableSubmitFormButton()}
-                    />
-                </Form.Field>
+                <Form.Button
+                    loading={isLoading}
+                    fluid
+                    size={controlsSize}
+                    icon="save"
+                    type="submit"
+                    color={accentColor}
+                    content="Сохранить"
+                    disabled={isLoading}
+                />
             </Form.Group>
 
         </Form>

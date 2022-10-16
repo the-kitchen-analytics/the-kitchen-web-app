@@ -1,11 +1,12 @@
 import _ from "lodash";
+import { useCallback } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Form, Grid, Button } from "semantic-ui-react";
-import GenericLayout from "../../components/layouts/GenericLayout";
-import ProceduresTable from "../../components/ProceduresTable";
-import { useUserSettings } from "../../hooks";
+import GenericLayout from "../../../components/layouts/GenericLayout";
+import ProceduresTable from "../../../components/ProceduresTable";
+import { useSessionStorage, useUserSettings } from "../../../hooks";
 import ProceduresFilter from "./ProceduresFilter";
 
 const EditProcedures = () => {
@@ -14,44 +15,36 @@ const EditProcedures = () => {
     const { procedures } = useOutletContext();
 
     const [filteredProcedures, setFilteredProcedures] = useState(procedures);
-    const [order, setOrder] = useState('');
+    const [order, setOrder] = useSessionStorage('procedures-edit-order', '');
+    const [filter, setFilter] = useSessionStorage('procedures-edit-filter', '');
 
-    useEffect(() => {
-        switch (order) {
-            case 'asc':
-                setFilteredProcedures(prev => _.orderBy(prev, 'name', order));
-                break;
-            case 'desc':
-                setFilteredProcedures(prev => _.orderBy(prev, 'name', order));
-                break;
-            default:
-                break;
-        }
-    }, [order]);
+    const filterProcedures = useCallback((procedures, filter, order) => {
 
-    const handleFilterChange = (e, { value }) => {
+        let filteredProcedures;
 
-        let filteredProcedures = [];
-
-        switch (value) {
+        switch (filter) {
             case 'manicure':
-                filteredProcedures = procedures.filter(procedure => procedure.type === 'manicure');
+                filteredProcedures = procedures.filter(procedure => procedure.type === filter);
                 break;
 
             case 'pedicure':
-                filteredProcedures = procedures.filter(procedure => procedure.type === 'pedicure');
+                filteredProcedures = procedures.filter(procedure => procedure.type === filter);
+                break;
+
+            case 'brows':
+                filteredProcedures = procedures.filter(procedure => procedure.type === filter);
                 break;
 
             case 'spa':
-                filteredProcedures = procedures.filter(procedure => procedure.type === 'spa');
+                filteredProcedures = procedures.filter(procedure => procedure.type === filter);
                 break;
 
             case 'master':
-                filteredProcedures = procedures.filter(procedure => procedure.workerCategory === 'master');
+                filteredProcedures = procedures.filter(procedure => procedure.workerCategory === filter);
                 break;
 
             case 'top-master':
-                filteredProcedures = procedures.filter(procedure => procedure.workerCategory === 'top-master');
+                filteredProcedures = procedures.filter(procedure => procedure.workerCategory === filter);
                 break;
 
             case '1/2':
@@ -62,16 +55,25 @@ const EditProcedures = () => {
                 filteredProcedures = procedures;
                 break;
 
+            case '':
+                filteredProcedures = procedures;
+                break;
+
             default:
+                filteredProcedures = [];
                 break;
         }
 
         if (order) {
-            setFilteredProcedures(_.orderBy(filteredProcedures, 'name', order));
+            return _.orderBy(filteredProcedures, 'name', order);
         } else {
-            setFilteredProcedures(filteredProcedures);
+            return filteredProcedures;
         }
-    }
+    }, []);
+
+    useEffect(() => {
+        setFilteredProcedures(filterProcedures(procedures, filter, order))
+    }, [procedures, filter, order, filterProcedures]);
 
     const sort = (order) => {
         setOrder(order);
@@ -89,7 +91,8 @@ const EditProcedures = () => {
                         <Form.Group widths="equal">
                             <Form.Field>
                                 <ProceduresFilter
-                                    handleChange={handleFilterChange}
+                                    filter={filter}
+                                    handleChange={(e, { value }) => setFilter(value)}
                                     size={controlsSize}
                                 />
                             </Form.Field>

@@ -1,4 +1,5 @@
 import { Dropdown } from "semantic-ui-react";
+import { getProcedureTypeDisplayName } from "../../../utils/procedures";
 
 const tagOptions = [
     {
@@ -9,19 +10,25 @@ const tagOptions = [
     },
     {
         key: 'manicure',
-        text: 'Маникюр',
+        text: getProcedureTypeDisplayName('manicure'),
         value: 'manicure',
         label: { color: 'blue', empty: true, circular: true }
     },
     {
         key: 'pedicure',
-        text: 'Педикюр',
+        text: getProcedureTypeDisplayName('pedicure'),
         value: 'pedicure',
         label: { color: 'red', empty: true, circular: true }
     },
     {
+        key: 'brows',
+        text: getProcedureTypeDisplayName('brows'),
+        value: 'brows',
+        label: { color: 'brown', empty: true, circular: true }
+    },
+    {
         key: 'spa',
-        text: 'SPA',
+        text: getProcedureTypeDisplayName('spa'),
         value: 'spa',
         icon: { name: 'heart', color: 'pink' },
     },
@@ -45,9 +52,9 @@ const tagOptions = [
     }
 ];
 
-const ProceduresFilter = ({ handleChange, size }) => (
+const ProceduresFilter = ({ filter, handleChange, size }) => (
     <Dropdown
-        text='Фильтр'
+        text={'Фильтр'}
         icon='filter'
         floating
         labeled
@@ -59,7 +66,12 @@ const ProceduresFilter = ({ handleChange, size }) => (
         <Dropdown.Menu>
             <Dropdown.Menu scrolling>
                 {tagOptions.map((option) => (
-                    <Dropdown.Item key={option.value} {...option} onClick={handleChange} />
+                    <Dropdown.Item
+                        key={option.value}
+                        active={option.value === filter}
+                        {...option}
+                        onClick={handleChange}
+                    />
                 ))}
             </Dropdown.Menu>
         </Dropdown.Menu>
