@@ -27,3 +27,7 @@ body {
     height: 100vh;
     margin-top: 1rem;
 }
+
+* {
+    scroll-behavior: smooth;
+}

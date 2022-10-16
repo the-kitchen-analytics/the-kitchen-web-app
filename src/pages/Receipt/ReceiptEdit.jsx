@@ -59,7 +59,7 @@ const ReceiptEdit = () => {
                     <Segment>
                         <ProceduresList
                             listProps={{
-                                divided: true,
+                                // divided: true,
                                 relaxed: true,
                                 bulleted: true,
                             }}
