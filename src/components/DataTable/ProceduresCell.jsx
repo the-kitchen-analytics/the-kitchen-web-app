@@ -3,7 +3,11 @@ import ProceduresList from "../ProceduresList/ProceduresList";
 
 const ProceduresCell = ({ id, procedures }) => (
     <ProceduresList
-        linkTo={`/dashboard/receipts/${id}`}
+        listProps={{
+            relaxed: true,
+            bulleted: true,
+        }}
+        linkTo={id ? `/dashboard/receipts/${id}` : null}
         procedures={procedures}
     />
 );

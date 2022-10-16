@@ -23,7 +23,7 @@ const ReceiptEdit = () => {
         return <NoContent />
     }
 
-    const header = `Клиент ${receipt.dateFormatted}`;
+    const header = `Запись от ${receipt.dateFormatted}`;
 
     const tableData = [
         {
@@ -58,7 +58,13 @@ const ReceiptEdit = () => {
 
                     <Segment>
                         <ProceduresList
+                            listProps={{
+                                divided: true,
+                                relaxed: true,
+                                bulleted: true,
+                            }}
                             procedures={receipt.procedures}
+                            shouldDisplayProcedurePriceInTable
                         />
                     </Segment>
 

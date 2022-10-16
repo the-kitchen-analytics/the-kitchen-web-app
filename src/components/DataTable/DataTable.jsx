@@ -14,45 +14,54 @@ const NoTableContent = () => (
     </Table.Row>
 );
 
-const DataTableRow = ({ data }) => data
-    .map(({ id, date, dateCreated, procedures }, i) => (
-        <Table.Row key={dateCreated.getTime()} verticalAlign='top'>
-            {
-                i === 0 ? (
-                    <Table.Cell rowSpan={data.length}>
-                        <DateCell
-                            date={date}
-                            price={calculateTotalWorkerIncome(procedures)}
-                        >
-                            {date}
-                        </DateCell>
-                    </Table.Cell>
-                ) : ''
-            }
+const DataTableRow = ({ data }) => {
 
-            <Table.Cell>
-                <ProceduresCell
-                    id={id}
-                    procedures={procedures}
-                />
-            </Table.Cell>
+    const allProcedures = data
+        .map(({ procedures }) => procedures)
+        .flat();
 
-            <Table.Cell textAlign="right">
-                <PriceCell euro>
-                    {calculateTotalPrice(procedures)}
-                </PriceCell>
-            </Table.Cell>
+    const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures);
 
-            <Table.Cell textAlign="right">
-                <strong>
+    return data
+        .map(({ id, date, dateCreated, procedures }, i) => (
+            <Table.Row key={dateCreated.getTime()} verticalAlign='top'>
+                {
+                    i === 0 ? (
+                        <Table.Cell rowSpan={data.length}>
+                            <DateCell
+                                date={date}
+                                price={totalWorkerIncome}
+                            >
+                                {date}
+                            </DateCell>
+                        </Table.Cell>
+                    ) : ''
+                }
+
+                <Table.Cell>
+                    <ProceduresCell
+                        id={id}
+                        procedures={procedures}
+                    />
+                </Table.Cell>
+
+                <Table.Cell textAlign="right">
                     <PriceCell euro>
-                        {calculateTotalWorkerIncome(procedures)}
+                        {calculateTotalPrice(procedures)}
                     </PriceCell>
-                </strong>
-            </Table.Cell>
+                </Table.Cell>
 
-        </Table.Row>
-    ));
+                <Table.Cell textAlign="right">
+                    <strong>
+                        <PriceCell euro>
+                            {calculateTotalWorkerIncome(procedures)}
+                        </PriceCell>
+                    </strong>
+                </Table.Cell>
+
+            </Table.Row>
+        ));
+}
 
 
 const DataTableBody = ({ data }) => {
