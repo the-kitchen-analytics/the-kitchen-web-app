@@ -7,6 +7,7 @@ const Info = ({ user }) => (
             content="О приложении"
         />
         <List
+            relaxed
             bulleted
         >
             <List.Item>

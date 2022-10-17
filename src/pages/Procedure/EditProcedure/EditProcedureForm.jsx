@@ -1,9 +1,10 @@
-import { Form } from "semantic-ui-react";
+import _ from "lodash";
+import { Form, Message } from "semantic-ui-react";
 import { GoBackButton } from "../../../components/ui/Button";
 import { getWorkerCategoryDisplayName } from "../../../utils/workerCategory";
 import { useUserSettings } from "../../../hooks";
 import { useMemo } from "react";
-import _ from "lodash";
+import { formatFirebaseDate } from "../../../utils/firebase";
 
 const EditProcedureForm = (props) => {
 
@@ -57,6 +58,20 @@ const EditProcedureForm = (props) => {
 
     return (
         <Form size={controlsSize} onSubmit={handleSubmit}>
+
+            {
+                formData.lastUpdated && (
+                    <Message info>
+                        <Message.Content>
+                            Дата последнего обновления:
+                            <strong>
+                                {' ' + formatFirebaseDate(formData.lastUpdated)}
+                            </strong>
+                        </Message.Content>
+                    </Message>
+                )
+            }
+
             <Form.Group widths='equal'>
                 <Form.Input
                     label="Название"

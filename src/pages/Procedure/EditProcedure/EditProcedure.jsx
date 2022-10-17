@@ -64,7 +64,10 @@ const EditProcedure = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        await postData(updateProcedure, id, procedure)
+        await postData(updateProcedure, id, {
+            ...procedure,
+            lastUpdated: new Date(),
+        });
         navigate('/dashboard/procedures');
     }
 
