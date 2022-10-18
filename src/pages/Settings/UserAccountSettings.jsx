@@ -84,7 +84,6 @@ const UserAccountSettings = () => {
                                     <ErrorMessage message={error.message} />
                                 )
                             }
-
                             <EditUserForm
                                 isLoading={isLoading}
                                 formData={formData}

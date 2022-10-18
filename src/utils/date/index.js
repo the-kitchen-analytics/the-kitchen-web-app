@@ -7,6 +7,7 @@ import getCurrentMonth from "./getCurrentMonth";
 import getCurrentMonthAndYear from "./getCurrentMonthAndYear";
 import formatDateForDatePicker from "./formatDateForDatePicker";
 import parseDateFromDropdown from "./parseDateFromDropdown";
+import formatDateAndTime from './formatDateAndTime';
 
 export {
     parseDate,
@@ -17,5 +18,6 @@ export {
     getCurrentMonth,
     getCurrentMonthAndYear,
     formatDateForDatePicker,
+    formatDateAndTime,
     parseDateFromDropdown,
 }

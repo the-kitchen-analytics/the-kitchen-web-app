@@ -4,11 +4,12 @@ import DashboardLayout from "../../components/layouts/DashboardLayout";
 import SubmitDataForm from "./SubmitDataForm";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import { useState, useMemo } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useLocalStorage, usePostData, useSessionStorage } from "../../hooks";
 import { formatDateForDatePicker, getCurrentDate } from "../../utils/date";
 import { createReceipt } from "../../services/receiptService";
 import { convertFormDataToReceipt } from "../../utils/receipt";
+import { TABLE_DAILY } from "../../data/routePaths";
 
 const INITIAL_ACORDITION_INDEX = -1;
 
@@ -104,7 +105,7 @@ const SubmitData = () => {
     return (
         <DashboardLayout
             icon="cloud upload"
-            header="Отправить данные"
+            header="Сохранить запись"
             subheader="Сохраните ваши данные в облаке"
         >
             <Grid.Row>
@@ -113,8 +114,11 @@ const SubmitData = () => {
                         shouldDisplaySuccessMessage && (
                             <Message
                                 positive
-                                icon="save"
-                                content="Данные успешно сохранены."
+                                icon="check circle"
+                                header="Данные успешно сохранены"
+                                content={
+                                    <>Перейдите в раздел <Link to={TABLE_DAILY}>Таблицы -{">"} За день</Link>, чтобы просмотреть запись</>
+                                }
                             />
                         )
                     }

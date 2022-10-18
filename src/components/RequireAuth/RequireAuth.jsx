@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../config/firebase";
 import { Loader } from "../ui";
 import { Message } from "semantic-ui-react";
+import { LOGIN } from "../../data/routePaths";
 
 const RequireAuth = ({ children }) => {
 
@@ -33,7 +34,7 @@ const RequireAuth = ({ children }) => {
         // trying to go to when they were redirected. This allows us to send them
         // along to that page after they login, which is a nicer user experience
         // than dropping them off on the home page.
-        return <Navigate to="/login" state={{ from: location }} replace />;
+        return <Navigate to={LOGIN} state={{ from: location }} replace />;
     }
 
     return children;

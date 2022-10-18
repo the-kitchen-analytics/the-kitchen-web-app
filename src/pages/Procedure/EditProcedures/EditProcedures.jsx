@@ -121,6 +121,7 @@ const EditProcedures = () => {
                                 content="Добавить"
                                 color={accentColor}
                                 size={controlsSize}
+                                disabled
                             />
                         </Form.Group>
                     </Form>

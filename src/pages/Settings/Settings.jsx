@@ -1,16 +1,15 @@
-import { Grid, List, Segment } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import ClearCache from "./ClearCache.jsx";
 import ContactUs from "./ContactUs.jsx";
 import SelectAccentColor from "./SelectAccentColorSetting.jsx";
 import UserAccountSettings from "./UserAccountSettings.jsx";
-// import DeleteData from "./DeleteData";
-import { useColorNames } from "../../hooks";
 import contactOptions from "../../data/contactOptions.json";
-// import RestoreProceduresData from "./RestoreProceduresData";
 import Info from "./Info";
 import WithCurrentUser from "../../hoc/WithCurrentUser";
-import { Link } from "react-router-dom";
+import AdminSettings from "./AdminSettings";
+import { useColorNames } from "../../hooks";
+
 
 const InfoWithUser = WithCurrentUser(Info);
 
@@ -47,27 +46,10 @@ const Settings = () => {
             key: 'clear-cache',
             element: <ClearCache />
         },
-        // {
-        //     key: 'delete-data',
-        //     element: <DeleteData />
-        // },
         {
-            key: 'links',
-            element: (
-                <Segment>
-                    <List bulleted>
-                        <List.Item
-                            icon="edit"
-                            content={<Link to="/dashboard/procedures">Редактировать процедуры</Link>}
-                        />
-                    </List>
-                </Segment>
-            )
+            key: 'admin-settings',
+            element: <AdminSettings />
         },
-        //        {
-        //            key: 'restore-procedures-data',
-        //            element: <RestoreProceduresData />
-        //        },
     ]
 
     const content = settingsOptions.map(({ key, element }) => (
@@ -84,7 +66,7 @@ const Settings = () => {
         <DashboardLayout
             icon="settings"
             header="Настройки"
-            subheader="Управляйте вашими настройками"
+            subheader="Управляйте настройками приложения"
             content={content}
         />
     )

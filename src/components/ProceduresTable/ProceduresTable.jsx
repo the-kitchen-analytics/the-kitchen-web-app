@@ -1,44 +1,40 @@
 import { Link } from "react-router-dom";
-import { Icon, Table } from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
+import { PROCEDURES } from "../../data/routePaths";
 import { getProcedureTypeDisplayName } from "../../utils/procedures";
 import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 import PriceCell from "../DataTable/PriceCell";
 
 const TableRow = (props) => {
 
-    const { procedure: { id, name, price, type, workerCategory, workerRate, workerIncome } } = props;
-
-    const getWorkerCategoryContent = (workerCategory) => {
-        return (
-            <>
-                <Icon name="star" color="yellow" />
-                {workerCategory === 'top-master' && <Icon name="star" color="yellow" />}
-                <strong>{getWorkerCategoryDisplayName(workerCategory)}</strong>
-            </>
-        );
-    }
+    const {
+        procedure: {
+            id, name, price, type,
+            workerCategory, workerRate, workerIncome,
+        }
+    } = props;
 
     return (
         <Table.Row>
             <Table.Cell>
-                <Link to={`/dashboard/procedures/${id}`}>
+                <Link to={`${PROCEDURES}/${id}`}>
                     {name}
                 </Link>
             </Table.Cell>
 
-            <Table.Cell>
+            <Table.Cell collapsing>
                 {getProcedureTypeDisplayName(type)}
             </Table.Cell>
 
-            <Table.Cell singleLine>
-                {getWorkerCategoryContent(workerCategory)}
+            <Table.Cell collapsing>
+                {getWorkerCategoryDisplayName(workerCategory)}
             </Table.Cell>
 
-            <Table.Cell textAlign='right'>
+            <Table.Cell textAlign='right' collapsing>
                 <PriceCell>{price}</PriceCell>
             </Table.Cell>
 
-            <Table.Cell textAlign='right'>
+            <Table.Cell textAlign='right' collapsing>
                 <PriceCell>{workerIncome || price * workerRate}</PriceCell>
             </Table.Cell>
         </Table.Row>
@@ -48,7 +44,10 @@ const TableRow = (props) => {
 const ProceduresTable = ({ tableData = [] }) => {
 
     const getTableRow = (procedure) => (
-        <TableRow key={procedure.id} procedure={procedure} />
+        <TableRow
+            key={procedure.id}
+            procedure={procedure}
+        />
     );
 
     return (
@@ -56,6 +55,7 @@ const ProceduresTable = ({ tableData = [] }) => {
             celled
             striped
             padded
+        // sortable
         >
             <Table.Header>
                 <Table.Row>

@@ -1,4 +1,5 @@
 import React from "react";
+import { RECEIPTS } from "../../data/routePaths";
 import ProceduresList from "../ProceduresList/ProceduresList";
 
 const ProceduresCell = ({ id, procedures }) => (
@@ -7,7 +8,7 @@ const ProceduresCell = ({ id, procedures }) => (
             relaxed: true,
             bulleted: true,
         }}
-        linkTo={id ? `/dashboard/receipts/${id}` : null}
+        linkTo={id ? `${RECEIPTS}/${id}` : null}
         procedures={procedures}
     />
 );

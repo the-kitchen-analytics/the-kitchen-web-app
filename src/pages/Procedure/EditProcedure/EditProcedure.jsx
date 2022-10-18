@@ -9,6 +9,7 @@ import { updateProcedure } from "../../../services/proceduresService";
 import { ErrorMessage } from "../../../components/ui";
 import EditProcedureForm from "./EditProcedureForm";
 import { getProcedureTypeDisplayName } from "../../../utils/procedures";
+import { PROCEDURES } from "../../../data/routePaths";
 
 const EditProcedure = () => {
 
@@ -64,8 +65,11 @@ const EditProcedure = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        await postData(updateProcedure, id, procedure)
-        navigate('/dashboard/procedures');
+        await postData(updateProcedure, id, {
+            ...procedure,
+            lastUpdated: new Date(),
+        });
+        navigate(PROCEDURES);
     }
 
     const subheader = useMemo(() => {
