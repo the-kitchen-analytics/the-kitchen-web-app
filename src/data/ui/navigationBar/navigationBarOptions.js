@@ -3,7 +3,7 @@ import {
     TABLE_ALL, TABLE_DAILY, TABLE_MONTHLY,
     SETTINGS, SUBMIT_DATA,
 } from "../../routePaths";
-import { TYPE_DIVIDER, TYPE_ITEM, TYPE_PARENT } from "./elementTypes";
+import { TYPE_ITEM, TYPE_PARENT } from "./elementTypes";
 
 const tableElements = Object.freeze([
     {
@@ -81,31 +81,33 @@ const navigationBarOptions = Object.freeze([
     },
 
     {
-        type: TYPE_DIVIDER,
+        type: TYPE_PARENT,
         itemProps: {
-            key: 'divider',
-            fitted: true,
+            key: 'more-parent',
         },
-    },
+        icon: 'th',
+        text: 'Ещё',
+        items: [
+            {
+                type: TYPE_ITEM,
+                itemProps: {
+                    key: SUBMIT_DATA,
+                    to: SUBMIT_DATA,
+                },
+                icon: 'save',
+                text: 'Сохранить запись',
+            },
 
-    {
-        type: TYPE_ITEM,
-        itemProps: {
-            key: SUBMIT_DATA,
-            to: SUBMIT_DATA,
-        },
-        icon: 'save',
-        text: 'Сохранить запись',
-    },
-
-    {
-        type: TYPE_ITEM,
-        itemProps: {
-            key: SETTINGS,
-            to: SETTINGS,
-        },
-        icon: 'setting',
-        text: 'Настройки',
+            {
+                type: TYPE_ITEM,
+                itemProps: {
+                    key: SETTINGS,
+                    to: SETTINGS,
+                },
+                icon: 'setting',
+                text: 'Настройки',
+            }
+        ],
     },
 ]);
 

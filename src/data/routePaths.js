@@ -22,6 +22,7 @@ export const SUBMIT_DATA = `${DASHBOARD}/submitData`;
 export const SETTINGS = `${DASHBOARD}/settings`;
 export const PROCEDURES = `${DASHBOARD}/procedures`;
 export const RECEIPTS = `${DASHBOARD}/receipts`;
+export const USER_PROFILE = `${DASHBOARD}/profile`;
 
 export const routes = Object.freeze({
     DASHBOARD,
@@ -36,5 +37,5 @@ export const routes = Object.freeze({
     LOGIN, REGISTER, RESET_PASSWORD,
 
     // OTHER ROUTES
-    SUBMIT_DATA, SETTINGS, PROCEDURES, RECEIPTS
+    SUBMIT_DATA, SETTINGS, PROCEDURES, RECEIPTS, USER_PROFILE
 });

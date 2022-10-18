@@ -3,12 +3,12 @@ import DashboardLayout from "../../components/layouts/DashboardLayout";
 import ClearCache from "./ClearCache.jsx";
 import ContactUs from "./ContactUs.jsx";
 import SelectAccentColor from "./SelectAccentColorSetting.jsx";
-import UserAccountSettings from "./UserAccountSettings.jsx";
 import contactOptions from "../../data/contactOptions.json";
 import Info from "./Info";
 import WithCurrentUser from "../../hoc/WithCurrentUser";
 import AdminSettings from "./AdminSettings";
 import { useColorNames } from "../../hooks";
+import UserProfile from "../UserProfile";
 
 
 const InfoWithUser = WithCurrentUser(Info);
@@ -20,7 +20,7 @@ const Settings = () => {
     const settingsOptions = [
         {
             key: 'user-account',
-            element: <UserAccountSettings />
+            element: <UserProfile />
         },
         {
             key: 'select-accent-color',

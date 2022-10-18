@@ -8,25 +8,22 @@ const NavigationBar = ({ title, options }) => {
     const { settings: { accentColor } } = useUserSettings();
 
     return (
-        <div className='navigation-bar'>
-            <Menu
-                defaultActiveIndex={0}
-                stackable
-                fluid
-                vertical
-                size='massive'
-                color={accentColor || 'black'}
-            >
-                <Menu.Item>
-                    <Logo avatar /> {title}
-                </Menu.Item>
+        <Menu
+            fluid
+            defaultActiveIndex={0}
+            vertical
+            size='massive'
+            color={accentColor || 'black'}
+        >
+            <Menu.Item>
+                <Logo avatar /> {title}
+            </Menu.Item>
 
-                {
-                    options && options.map(createNavigationBarElement)
-                }
+            {
+                options && options.map(createNavigationBarElement)
+            }
 
-            </Menu>
-        </div>
+        </Menu>
     )
 }
 

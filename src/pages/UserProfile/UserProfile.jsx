@@ -1,14 +1,14 @@
 import _ from "lodash";
+import { Segment, Header, Icon, Form } from "semantic-ui-react";
+import { ErrorMessage, Loader } from "../../components/ui";
+import LogoutButton from "../../components/LogoutButton";
 import { useState, useMemo } from "react";
 import { useOutletContext } from "react-router-dom";
-import { Segment, Header, Loader, Form, Icon } from "semantic-ui-react";
-import EditUserForm from "../../components/EditUserForm";
-import { usePostData, useUserSettings } from "../../hooks";
-import ErrorMessage from "../../components/ui/ErrorMessage";
-import Logout from '../../components/Logout';
+import { useUserSettings, usePostData } from "../../hooks";
 import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
+import EditUserForm from "../../components/EditUserForm";
 
-const UserAccountSettings = () => {
+const UserProfile = () => {
 
     const {
         userDetails,
@@ -62,8 +62,10 @@ const UserAccountSettings = () => {
 
     return (
         <Segment loading={isLoading || isUserDetailsLoading}>
-
-            <Header icon textAlign="center">
+            <Header
+                icon
+                textAlign="center"
+                size={controlsSize}>
                 <Icon name="user circle" />
                 <Header.Content>
                     {userDetails.displayName}
@@ -107,11 +109,8 @@ const UserAccountSettings = () => {
                                 />
 
                                 <Form.Field>
-                                    <Logout
-                                        fluid
-                                    />
+                                    <LogoutButton fluid />
                                 </Form.Field>
-
                             </Form.Group>
                         </Form>
                     )
@@ -121,4 +120,4 @@ const UserAccountSettings = () => {
     )
 }
 
-export default UserAccountSettings;
+export default UserProfile;

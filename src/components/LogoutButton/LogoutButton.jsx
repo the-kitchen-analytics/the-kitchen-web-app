@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
-import { LoadableButton } from "../ui/Button";
+import { useMemo } from "react";
 import { logout } from "../../config/firebase";
 import { useUserSettings } from "../../hooks";
+import { Button } from "semantic-ui-react";
 
 const CONFIRM_LOGOUT_MESSAGE = 'Вы действительно хотите выйти?';
 
-const Logout = (props) => {
+const LogoutButton = (props) => {
 
     const { settings: { controlsSize } } = useUserSettings();
 
@@ -28,10 +28,10 @@ const Logout = (props) => {
     }), [props, controlsSize]);
 
     return (
-        <LoadableButton
+        <Button
             {...defultProps}
         />
     )
 }
 
-export default Logout;
+export default LogoutButton;

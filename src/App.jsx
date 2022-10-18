@@ -22,6 +22,7 @@ import EditProcedures from "./pages/Procedure/EditProcedures";
 import EditProcedure from "./pages/Procedure/EditProcedure";
 import { ReceiptEdit } from "./pages/Receipt";
 import ScrollToTop from "./components/ScrollToTop";
+import UserProfile from "./pages/UserProfile";
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard);
 
@@ -99,7 +100,13 @@ const App = () => (
                                 path={'receipts/:id'}
                                 element={<ReceiptEdit />}
                             />
+
+                            <Route
+                                path={'profile'}
+                                element={<UserProfile />}
+                            />
                         </Route>
+
                         <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </ScrollToTop>
