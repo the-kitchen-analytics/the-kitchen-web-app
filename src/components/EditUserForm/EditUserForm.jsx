@@ -19,7 +19,8 @@ const EditUserForm = ({
     const {
         displayName,
         email,
-        workerCategory
+        workerCategory,
+        description
     } = formData;
 
     const handleInputChangeWrapper = useCallback((e) => {
@@ -69,7 +70,26 @@ const EditUserForm = ({
                 />
             </Form.Group>
 
+            <Form.TextArea
+                label="Обо мне"
+                name="description"
+                type="text"
+                placeholder="Обо мне"
+                value={description}
+                maxLength={250}
+                onChange={handleInputChangeWrapper}
+            />
+
             <Form.Group widths='equal'>
+                <Form.Button
+                    fluid
+                    icon="cancel"
+                    type="button"
+                    disabled={shouldDisableResetButton()}
+                    onClick={handleResetButtonClick}
+                    size={controlsSize}
+                    content="Отменить"
+                />
                 <Form.Button
                     fluid
                     icon="save"
@@ -79,16 +99,6 @@ const EditUserForm = ({
                     size={controlsSize}
                     color={accentColor}
                     content="Сохранить"
-                />
-
-                <Form.Button
-                    fluid
-                    icon="cancel"
-                    type="button"
-                    disabled={shouldDisableResetButton()}
-                    onClick={handleResetButtonClick}
-                    size={controlsSize}
-                    content="Отменить"
                 />
             </Form.Group>
 

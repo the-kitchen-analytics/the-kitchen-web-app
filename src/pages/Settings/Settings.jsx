@@ -66,7 +66,7 @@ const Settings = () => {
         <DashboardLayout
             icon="settings"
             header="Настройки"
-            subheader="Управляйте вашими настройками"
+            subheader="Управляйте настройками приложения"
             content={content}
         />
     )

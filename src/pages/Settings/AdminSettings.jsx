@@ -1,5 +1,6 @@
 import { Segment, List, Header, Message } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { PROCEDURES } from "../../data/routePaths";
 
 const AdminSettings = () => {
 
@@ -7,7 +8,7 @@ const AdminSettings = () => {
         {
             key: 'edit-procedures',
             // icon: 'edit',
-            content: <Link to="/dashboard/procedures" > Редактировать процедуры</Link>,
+            content: <Link to={PROCEDURES}> Редактировать процедуры</Link>,
         },
     ]
 

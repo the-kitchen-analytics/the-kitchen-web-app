@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Table } from "semantic-ui-react";
+import { PROCEDURES } from "../../data/routePaths";
 import { getProcedureTypeDisplayName } from "../../utils/procedures";
 import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
 import PriceCell from "../DataTable/PriceCell";
@@ -7,7 +8,6 @@ import PriceCell from "../DataTable/PriceCell";
 const TableRow = (props) => {
 
     const {
-        index,
         procedure: {
             id, name, price, type,
             workerCategory, workerRate, workerIncome,
@@ -16,11 +16,8 @@ const TableRow = (props) => {
 
     return (
         <Table.Row>
-            <Table.Cell collapsing textAlign="center">
-                {index + 1}.
-            </Table.Cell>
             <Table.Cell>
-                <Link to={`/dashboard/procedures/${id}`}>
+                <Link to={`${PROCEDURES}/${id}`}>
                     {name}
                 </Link>
             </Table.Cell>
@@ -46,9 +43,8 @@ const TableRow = (props) => {
 
 const ProceduresTable = ({ tableData = [] }) => {
 
-    const getTableRow = (procedure, i) => (
+    const getTableRow = (procedure) => (
         <TableRow
-            index={i}
             key={procedure.id}
             procedure={procedure}
         />
@@ -63,7 +59,6 @@ const ProceduresTable = ({ tableData = [] }) => {
         >
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>№</Table.HeaderCell>
                     <Table.HeaderCell>Название</Table.HeaderCell>
                     <Table.HeaderCell>Тип</Table.HeaderCell>
                     <Table.HeaderCell>Категория мастера</Table.HeaderCell>
@@ -80,7 +75,7 @@ const ProceduresTable = ({ tableData = [] }) => {
 
             <Table.Footer>
                 <Table.Row>
-                    <Table.HeaderCell colSpan={5}>Количество услуг</Table.HeaderCell>
+                    <Table.HeaderCell colSpan={4}>Количество услуг</Table.HeaderCell>
                     <Table.HeaderCell collapsing textAlign="right">
                         {tableData.length}
                     </Table.HeaderCell>

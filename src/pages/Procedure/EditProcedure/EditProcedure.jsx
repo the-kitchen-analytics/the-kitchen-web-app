@@ -9,6 +9,7 @@ import { updateProcedure } from "../../../services/proceduresService";
 import { ErrorMessage } from "../../../components/ui";
 import EditProcedureForm from "./EditProcedureForm";
 import { getProcedureTypeDisplayName } from "../../../utils/procedures";
+import { PROCEDURES } from "../../../data/routePaths";
 
 const EditProcedure = () => {
 
@@ -68,7 +69,7 @@ const EditProcedure = () => {
             ...procedure,
             lastUpdated: new Date(),
         });
-        navigate('/dashboard/procedures');
+        navigate(PROCEDURES);
     }
 
     const subheader = useMemo(() => {
