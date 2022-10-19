@@ -1,15 +1,14 @@
 import _ from "lodash";
-import { useCallback } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { Link, useOutletContext } from "react-router-dom";
 import { Form, Grid, Button } from "semantic-ui-react";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import ProceduresTable from "../../../components/ProceduresTable";
-import { useSessionStorage, useUserSettings } from "../../../hooks";
 import ProceduresFilter from "./ProceduresFilter";
+import { useSessionStorage, useUserSettings } from "../../../hooks";
+import { CREATE_PROCEDURE } from "../../../data/routePaths";
 
-const EditProcedures = () => {
+const ProceduresList = () => {
 
     const { settings: { controlsSize, accentColor } } = useUserSettings();
     const { procedures } = useOutletContext();
@@ -115,17 +114,19 @@ const EditProcedures = () => {
                                 </Button.Group>
                             </Form.Field>
 
-                            <Form.Button
-                                fluid
-                                icon="plus"
-                                content="Добавить"
-                                color={accentColor}
-                                size={controlsSize}
-                                disabled
-                            />
+                            <Form.Field>
+                                <Link to={CREATE_PROCEDURE}>
+                                    <Button
+                                        fluid
+                                        icon="plus"
+                                        content="Добавить"
+                                        color={accentColor}
+                                        size={controlsSize}
+                                    />
+                                </Link>
+                            </Form.Field>
                         </Form.Group>
                     </Form>
-
                 </Grid.Column>
             </Grid.Row>
 
@@ -139,4 +140,4 @@ const EditProcedures = () => {
     );
 }
 
-export default EditProcedures;
+export default ProceduresList;

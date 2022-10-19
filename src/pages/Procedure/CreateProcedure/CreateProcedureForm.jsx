@@ -4,7 +4,7 @@ import { ProcedureTypeSelect, WorkerCategorySelect } from "../../../components/s
 import { GoBackButton } from "../../../components/ui/Button";
 import { useUserSettings } from "../../../hooks";
 
-const EditProcedureForm = (props) => {
+const CreateProcedureForm = (props) => {
 
     const {
         isLoading,
@@ -14,8 +14,7 @@ const EditProcedureForm = (props) => {
         handleInputChangeWrapper,
         handlePriceChange,
         handleWorkerRateChange,
-        handleWorkerIncomeChange,
-        handleDeleteButtonClick
+        handleWorkerIncomeChange
     } = props;
 
     const { settings: { controlsSize, accentColor } } = useUserSettings();
@@ -114,19 +113,8 @@ const EditProcedureForm = (props) => {
                 />
             </Form.Group>
 
-            <Form.Button
-                loading={isLoading}
-                fluid
-                size={controlsSize}
-                icon="delete"
-                type="button"
-                negative
-                content="Удалить"
-                onClick={handleDeleteButtonClick}
-            />
-
         </Form>
     );
 }
 
-export default EditProcedureForm;
+export default CreateProcedureForm;

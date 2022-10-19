@@ -1,7 +1,7 @@
 import {
     STATISTICS_ALL, STATISTICS_DAILY, STATISTICS_MONTHLY,
     TABLE_ALL, TABLE_DAILY, TABLE_MONTHLY,
-    SETTINGS, SUBMIT_DATA,
+    SETTINGS, CREATE_RECEIPT,
 } from "../../routePaths";
 import { TYPE_ITEM, TYPE_PARENT } from "./elementTypes";
 
@@ -91,8 +91,8 @@ const navigationBarOptions = Object.freeze([
             {
                 type: TYPE_ITEM,
                 itemProps: {
-                    key: SUBMIT_DATA,
-                    to: SUBMIT_DATA,
+                    key: CREATE_RECEIPT,
+                    to: CREATE_RECEIPT,
                 },
                 icon: 'save',
                 text: 'Сохранить запись',

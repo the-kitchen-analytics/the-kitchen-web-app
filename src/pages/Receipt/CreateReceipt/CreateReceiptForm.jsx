@@ -1,16 +1,16 @@
 import _ from "lodash";
 import { useCallback } from "react";
 import { Form } from "semantic-ui-react";
-import { DatePicker } from "../../components/ui/Input";
-import { LoadableButton } from "../../components/ui/Button";
-import { handleInputChange } from "../../utils/ui/form";
-import { useUserSettings } from "../../hooks";
+import { DatePicker } from "../../../components/ui/Input";
+import { LoadableButton } from "../../../components/ui/Button";
+import { handleInputChange } from "../../../utils/ui/form";
+import { useUserSettings } from "../../../hooks";
 import SelectProcedures from "./SelectProcedures";
 import Preview from "./Preview";
 import { useOutletContext } from "react-router-dom";
-import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
+import { getWorkerCategoryDisplayName } from "../../../utils/workerCategory";
 
-const SubmitDataForm = ({
+const CreateReceiptForm = ({
     formData,
     setFormData,
     convertedFormData,
@@ -26,7 +26,6 @@ const SubmitDataForm = ({
     handleClearFromButtonClick,
     shouldDisableClearFormButton,
     shouldDisableSubmitFormButton,
-    isDateFieldValid,
 }) => {
 
     const { settings: { accentColor, controlsSize } } = useUserSettings();
@@ -49,7 +48,6 @@ const SubmitDataForm = ({
                 <Form.Field required>
                     <DatePicker
                         required={true}
-                        isInvalid={!isDateFieldValid()}
                         label="Выберите день"
                         name="date"
                         value={formData.date}
@@ -117,4 +115,4 @@ const SubmitDataForm = ({
     )
 }
 
-export default SubmitDataForm;
+export default CreateReceiptForm;

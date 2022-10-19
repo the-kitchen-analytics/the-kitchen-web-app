@@ -1,19 +1,20 @@
 import _ from "lodash";
 import { Grid, Message } from "semantic-ui-react";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
-import SubmitDataForm from "./SubmitDataForm";
-import ErrorMessage from "../../components/ui/ErrorMessage";
+import DashboardLayout from "../../../components/layouts/DashboardLayout";
+import CreateReceiptForm from "./CreateReceiptForm";
+import ErrorMessage from "../../../components/ui/ErrorMessage";
 import { useState, useMemo } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
-import { useLocalStorage, usePostData, useSessionStorage } from "../../hooks";
-import { formatDateForDatePicker, getCurrentDate } from "../../utils/date";
-import { createReceipt } from "../../services/receiptService";
-import { convertFormDataToReceipt } from "../../utils/receipt";
-import { TABLE_DAILY } from "../../data/routePaths";
+import { useLocalStorage, usePostData, useSessionStorage } from "../../../hooks";
+import { formatDateForDatePicker, getCurrentDate } from "../../../utils/date";
+import { createReceipt } from "../../../services/receiptService";
+import { TABLE_DAILY } from "../../../data/routePaths";
+import { mapReceiptToFirebaseEntity } from "../../../mappers/receipt";
+import validateReceipt from "../../../validators/receipt/validateReceipt";
 
 const INITIAL_ACORDITION_INDEX = -1;
 
-const SubmitData = () => {
+const CreateReceipt = () => {
 
     const { userDetails: { uid, workerCategory } } = useOutletContext();
 
@@ -22,11 +23,14 @@ const SubmitData = () => {
 
     const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMesage] = useState(false);
 
-    const initialFormData = useMemo(() => ({
+    const initialReceipt = useMemo(() => ({
         date: formatDateForDatePicker(getCurrentDate()),
         uid: uid,
         procedures: [],
     }), [uid]);
+
+    const [receipt, setReceipt] = useSessionStorage(
+        'submitFormData', initialReceipt);
 
     const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] =
         useLocalStorage('shouldRedirectToHomePageAfterSubmit', false);
@@ -34,38 +38,17 @@ const SubmitData = () => {
     const [shouldDisplayPreview, setShouldDisplayPreview] =
         useLocalStorage('shouldDisplayPreview', true);
 
-    const [formData, setFormData] = useSessionStorage(
-        'submitFormData', initialFormData);
-
     const [accorditionActiveIndex, setAccorditionActiveIndex] =
         useSessionStorage('accorditionActiveIndex', INITIAL_ACORDITION_INDEX);
 
+    const isReceiptValid = useMemo(() => validateReceipt(receipt), [receipt]);
+
     const convertedFormData = useMemo(() => {
-        return convertFormDataToReceipt(formData);
-    }, [formData]);
-
-    const isDateFieldValid = () => {
-        return !!formData.date;
-    }
-
-    const isProceduresFieldValid = () => {
-        return !_.isEmpty(formData.procedures);
-    }
-
-    const isFormDataValid = () => {
-        if (!isDateFieldValid()) {
-            return false;
-        }
-
-        if (!isProceduresFieldValid()) {
-            return false;
-        }
-
-        return true;
-    }
+        return mapReceiptToFirebaseEntity(receipt);
+    }, [receipt]);
 
     const clearForm = () => {
-        setFormData(initialFormData);
+        setReceipt(initialReceipt);
         setShouldDisplaySuccessMesage(false);
     }
 
@@ -95,11 +78,11 @@ const SubmitData = () => {
     }
 
     const shouldDisableClearFormButton = () => {
-        return _.isEqual(formData, initialFormData) || isLoading
+        return _.isEqual(receipt, initialReceipt) || isLoading
     };
 
     const shouldDisableSubmitFormButton = () => {
-        return isLoading || !isFormDataValid()
+        return isLoading || !isReceiptValid
     }
 
     return (
@@ -127,9 +110,9 @@ const SubmitData = () => {
                             <ErrorMessage message={error.message} />
                         )
                     }
-                    <SubmitDataForm
-                        formData={formData}
-                        setFormData={setFormData}
+                    <CreateReceiptForm
+                        formData={receipt}
+                        setFormData={setReceipt}
                         convertedFormData={convertedFormData}
                         workerCategory={workerCategory}
                         accorditionActiveIndex={accorditionActiveIndex}
@@ -143,7 +126,6 @@ const SubmitData = () => {
                         handleClearFromButtonClick={handleClearFromButtonClick}
                         shouldDisableSubmitFormButton={shouldDisableSubmitFormButton}
                         shouldDisableClearFormButton={shouldDisableClearFormButton}
-                        isDateFieldValid={isDateFieldValid}
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -151,4 +133,4 @@ const SubmitData = () => {
     )
 }
 
-export default SubmitData;
+export default CreateReceipt;

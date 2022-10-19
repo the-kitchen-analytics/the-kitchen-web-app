@@ -1,6 +1,6 @@
 import React, { useCallback, Fragment } from "react";
 import { Accordion, Icon, Divider, Form } from "semantic-ui-react";
-import { buildPriceString } from "../../utils/money";
+import { buildPriceString } from "../../../utils/money";
 
 
 const AccordionItem = ({ title, index, activeIndex, handleToggle, count, children }) => {

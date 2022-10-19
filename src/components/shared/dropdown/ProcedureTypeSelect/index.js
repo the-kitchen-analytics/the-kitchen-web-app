@@ -1,18 +1,18 @@
 import { Form } from "semantic-ui-react";
 import { buildDropdownOptions } from "../../../../utils/ui/dropdown";
-import workerCategoriesJson from "../../../../data/workerCategories.json";
+import procedureTypesJson from "../../../../data/procedure-types.json";
 
-const workerCategoryOptions = buildDropdownOptions(
-    workerCategoriesJson,
-    ({ name }) => name,
+const procedureTypeOptions = buildDropdownOptions(
+    procedureTypesJson,
+    ({ id }) => id,
     ({ displayName }) => displayName,
     ({ name }) => name
 )
 
-const WorkerCategorySelect = ({ value, options = workerCategoryOptions, handleChange }) => (
+const ProcedureTypeSelect = ({ value, options = procedureTypeOptions, handleChange }) => (
     <Form.Select
         required
-        label="Выберите квалификацию мастера"
+        label="Выберите тип процедуры"
         placeholder='Нажмите, чтобы выбрать'
         fluid
         selection
@@ -22,4 +22,4 @@ const WorkerCategorySelect = ({ value, options = workerCategoryOptions, handleCh
     />
 );
 
-export default WorkerCategorySelect;
+export default ProcedureTypeSelect;

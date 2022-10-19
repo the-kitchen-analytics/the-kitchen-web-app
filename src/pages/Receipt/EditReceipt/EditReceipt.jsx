@@ -1,16 +1,16 @@
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { Form, Grid, Table } from "semantic-ui-react";
-import PriceCell from "../../components/DataTable/PriceCell";
-import DashboardLayout from "../../components/layouts/DashboardLayout"
-import { ErrorMessage, Price } from "../../components/ui";
-import { GoBackButton } from "../../components/ui/Button";
-import { usePostData, useUserSettings } from "../../hooks";
-import { deleteReceiptById } from "../../services/receiptService";
-import { calculateTotalPrice, calculateTotalWorkerIncome } from "../../utils/money";
-import { getProcedureTypeDisplayName } from "../../utils/procedures";
-import NoContent from "../NoContent";
+import PriceCell from "../../../components/DataTable/PriceCell";
+import DashboardLayout from "../../../components/layouts/DashboardLayout"
+import { ErrorMessage, Price } from "../../../components/ui";
+import { GoBackButton } from "../../../components/ui/Button";
+import { usePostData, useUserSettings } from "../../../hooks";
+import { deleteReceiptById } from "../../../services/receiptService";
+import { calculateTotalPrice, calculateTotalWorkerIncome } from "../../../utils/money";
+import { getProcedureTypeDisplayName } from "../../../utils/procedures";
+import NoContent from "../../NoContent";
 
-const ReceiptEdit = () => {
+const EditReceipt = () => {
 
     const { id } = useParams();
     const { getReceiptById } = useOutletContext();
@@ -165,4 +165,4 @@ const ReceiptEdit = () => {
     );
 }
 
-export default ReceiptEdit;
+export default EditReceipt;

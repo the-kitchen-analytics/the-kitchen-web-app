@@ -2,11 +2,11 @@ import _ from "lodash";
 import { useCallback, useMemo } from "react";
 import { Form, Divider } from "semantic-ui-react";
 import DisplayOptionsAccordition from "./DisplayOptionsAccordition";
-import { useLocalStorage, useToggleState } from "../../hooks";
-import { toggleSetter } from "../../utils/ui";
+import { useLocalStorage, useToggleState } from "../../../hooks";
+import { toggleSetter } from "../../../utils/ui";
 import ProceduresAccordition from "./ProceduresAccordition";
 
-import procedureTypes from "../../data/procedure-types.json";
+import procedureTypes from "../../../data/procedure-types.json";
 
 const SelectProcedures = ({
     formData, setFormData,

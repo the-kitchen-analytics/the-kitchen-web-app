@@ -1,8 +1,7 @@
-import { parseDateFromDropdown } from "../date";
+import { parseDateFromDropdown } from "../../utils/date";
 
-const convertFormDataToReceipt = (formData) => {
-
-    const procedures = formData.procedures.map(procedure => ({
+const mapReceiptToFirebaseEntity = (receipt) => {
+    const procedures = receipt.procedures.map(procedure => ({
         name: procedure.name,
         priceBeforeTaxes: procedure.price,
         priceAfterTaxes: procedure.workerIncome || parseFloat((procedure.price * procedure.workerRate).toFixed(2)),
@@ -10,13 +9,13 @@ const convertFormDataToReceipt = (formData) => {
     }));
 
     const data = Object.freeze({
-        uid: formData.uid,
+        uid: receipt.uid,
         procedures: procedures,
-        date: parseDateFromDropdown(formData.date),
+        date: parseDateFromDropdown(receipt.date),
         dateCreated: new Date(),
     });
 
     return data;
 }
 
-export default convertFormDataToReceipt;
+export default mapReceiptToFirebaseEntity;
