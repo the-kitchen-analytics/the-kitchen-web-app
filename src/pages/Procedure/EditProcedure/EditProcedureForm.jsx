@@ -32,6 +32,7 @@ const EditProcedureForm = (props) => {
         <Form size={controlsSize} onSubmit={handleSubmit}>
 
             <Form.Input
+                required
                 label="Название"
                 placeholder="Название"
                 value={formData.name}
@@ -55,6 +56,7 @@ const EditProcedureForm = (props) => {
 
             <Form.Group widths='equal'>
                 <Form.Input
+                    required
                     min={0}
                     max={999}
                     step="any"
@@ -83,6 +85,7 @@ const EditProcedureForm = (props) => {
                 />
 
                 <Form.Input
+                    required
                     value={formData.workerIncome}
                     placeholder={formData.workerIncome || 0}
                     min={0}
