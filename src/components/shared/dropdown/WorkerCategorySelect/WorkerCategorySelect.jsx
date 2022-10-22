@@ -12,7 +12,7 @@ const workerCategoryOptions = buildDropdownOptions(
 const WorkerCategorySelect = ({ value, options = workerCategoryOptions, handleChange }) => (
     <Form.Select
         required
-        label="Выберите квалификацию мастера"
+        label="Квалификация мастера"
         placeholder='Нажмите, чтобы выбрать'
         fluid
         selection
