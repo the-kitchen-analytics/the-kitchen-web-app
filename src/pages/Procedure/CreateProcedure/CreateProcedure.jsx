@@ -1,35 +1,30 @@
 import _ from "lodash";
-import { useMemo, useState } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { usePostData } from "../../../hooks";
 import { Grid } from "semantic-ui-react";
 import DashboardLayout from "../../../components/layouts/DashboardLayout"
-import { usePostData } from "../../../hooks";
-import { handleInputChange } from "../../../utils/ui/form";
-import { getWorkerCategoryDisplayName } from "../../../utils/workerCategory";
-import { deleteProcedure, updateProcedure } from "../../../services/proceduresService";
+import CreateProcedureForm from "./CreateProcedureForm";
 import { ErrorMessage } from "../../../components/ui";
-import EditProcedureForm from "./EditProcedureForm";
-import { getProcedureTypeDisplayName } from "../../../utils/procedures";
+import { handleInputChange } from "../../../utils/ui/form";
+import { addProcedure } from "../../../services/proceduresService";
 import validateProcedure from "../../../validators/procedure";
 import { PROCEDURES } from "../../../data/routePaths";
-import NoContent from "../../NoContent";
 
-const adjustWithWorkerRate = (procedure) => {
-    return {
-        ...procedure,
-        workerRate: _.round(procedure.workerIncome / procedure.price * 100, 2) || 0
-    }
-}
-
-const EditProcedure = () => {
+const CreateProcedure = () => {
 
     const navigate = useNavigate();
     const [isLoading, error, postData] = usePostData();
 
-    const { id } = useParams();
-    const { getProcedureById } = useOutletContext();
+    const initialProcedureData = useMemo(() => ({
+        name: '',
+        type: '',
+        workerCategory: '',
+        price: 0,
+        workerRate: 40,
+        workerIncome: 0
+    }), []);
 
-    const initialProcedureData = useMemo(() => adjustWithWorkerRate(getProcedureById(id)), [getProcedureById, id]);
     const [procedure, setProcedure] = useState(initialProcedureData);
 
     const isProcedureValid = useMemo(() => validateProcedure(procedure), [procedure]);
@@ -82,32 +77,18 @@ const EditProcedure = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        await postData(updateProcedure, id, procedure);
+        await postData(addProcedure, {
+            ...procedure,
+            lastUpdated: new Date(),
+        });
         navigate(PROCEDURES);
-    }
-
-    const handleDeleteButtonClick = async (e) => {
-        if (window.confirm('Вы действительно хотите удалить данную процедуру?')) {
-            await postData(deleteProcedure, id);
-            navigate(PROCEDURES);
-        }
-    }
-
-    const subheader = useMemo(() => {
-        if (initialProcedureData) {
-            return `${initialProcedureData.name} – ${getProcedureTypeDisplayName(initialProcedureData.type)} | ${getWorkerCategoryDisplayName(initialProcedureData.workerCategory)}`
-        }
-    }, [initialProcedureData]);
-
-    if (!initialProcedureData) {
-        return <NoContent />
     }
 
     return (
         <DashboardLayout
-            icon="edit"
-            header="Редактировать процедуру"
-            subheader={subheader}
+            icon="cloud upload"
+            header="Добавить процедуру"
+            subheader="После того как вы добавите процедуру, она станет доступна мастерам"
         >
             <Grid.Row>
                 <Grid.Column>
@@ -115,7 +96,7 @@ const EditProcedure = () => {
                         error && <ErrorMessage message={error.message} />
                     }
 
-                    <EditProcedureForm
+                    <CreateProcedureForm
                         isLoading={isLoading}
                         formData={procedure}
                         shouldDisableSubmitButton={isLoading || !isProcedureValid}
@@ -124,7 +105,6 @@ const EditProcedure = () => {
                         handlePriceChange={handlePriceChange}
                         handleWorkerRateChange={handleWorkerRateChange}
                         handleWorkerIncomeChange={handleWorkerIncomeChange}
-                        handleDeleteButtonClick={handleDeleteButtonClick}
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -133,4 +113,4 @@ const EditProcedure = () => {
     );
 }
 
-export default EditProcedure;
+export default CreateProcedure;

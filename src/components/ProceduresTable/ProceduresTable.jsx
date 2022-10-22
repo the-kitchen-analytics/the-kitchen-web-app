@@ -10,7 +10,7 @@ const TableRow = (props) => {
     const {
         procedure: {
             id, name, price, type,
-            workerCategory, workerRate, workerIncome,
+            workerCategory, workerIncome,
         }
     } = props;
 
@@ -35,7 +35,7 @@ const TableRow = (props) => {
             </Table.Cell>
 
             <Table.Cell textAlign='right' collapsing>
-                <PriceCell>{workerIncome || price * workerRate}</PriceCell>
+                <PriceCell>{workerIncome}</PriceCell>
             </Table.Cell>
         </Table.Row>
     );

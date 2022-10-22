@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { useState, useEffect } from "react";
+import { mapFirebaseEntityToReceipt } from "../mappers/receipt";
 import { streamReceiptsByUid } from "../services/receiptService";
-import { convertFirebaseData } from "../utils/receipt";
 
 const useStreamReceiptData = (options) => {
     const { uid } = options;
@@ -15,7 +15,7 @@ const useStreamReceiptData = (options) => {
             (querySnapshot) => {
                 setIsLoading(true);
 
-                const receipts = querySnapshot.docs.map(convertFirebaseData);
+                const receipts = querySnapshot.docs.map(mapFirebaseEntityToReceipt);
                 const workedDays = _.uniq(receipts.map(({ dateFormatted }) => dateFormatted));
                 const workedYears = _.uniq(receipts.map(({ date }) => date.getFullYear()));
 

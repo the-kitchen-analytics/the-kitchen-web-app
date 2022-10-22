@@ -11,17 +11,16 @@ import ErrorPage from './pages/ErrorPage';
 import { DailyTableView, MonthlyTableView, AllTimeTableView } from "./pages/Tables";
 import { DailyStatisticsView, MonthlyStatisticsView, AllTimeStatisticsView } from "./pages/Statistics";
 import Settings from "./pages/Settings";
-import SubmitData from "./pages/SubmitData";
 import { WithCurrentUser } from "./hoc";
 import PageNotFound from "./pages/PageNotFound";
 import Footer from "./components/Footer";
 
-import { routes } from './data/routePaths';
+import { CREATE_PROCEDURE, CREATE_RECEIPT, EDIT_PROCEDURE, EDIT_RECEIPT, PROCEDURES, routes } from './data/routePaths';
 import { ApplicationSettingsContextProvider } from "./context/ApplicationSettingsContext";
-import EditProcedures from "./pages/Procedure/EditProcedures";
-import EditProcedure from "./pages/Procedure/EditProcedure";
-import { ReceiptEdit } from "./pages/Receipt";
+import { CreateProcedure, EditProcedure, EditProcedures } from "./pages/Procedure/";
+import { CreateReceipt, EditReceipt } from "./pages/Receipt";
 import ScrollToTop from "./components/ScrollToTop";
+import UserProfile from "./pages/UserProfile";
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard);
 
@@ -77,29 +76,41 @@ const App = () => (
                             </Route>
 
                             <Route
-                                path={'submitData'}
-                                element={<SubmitData />}
+                                path={EDIT_RECEIPT}
+                                element={<EditReceipt />}
                             />
+
+                            <Route
+                                path={CREATE_RECEIPT}
+                                element={<CreateReceipt />}
+                            />
+
+                            <Route
+                                path={PROCEDURES}
+                                element={<EditProcedures />}
+                            />
+
+                            <Route
+                                path={CREATE_PROCEDURE}
+                                element={<CreateProcedure />}
+                            />
+
+                            <Route
+                                path={EDIT_PROCEDURE}
+                                element={<EditProcedure />}
+                            />
+
                             <Route
                                 path={'settings'}
                                 element={<Settings />}
                             />
 
                             <Route
-                                path={'procedures'}
-                                element={<EditProcedures />}
-                            />
-
-                            <Route
-                                path={'procedures/:id'}
-                                element={<EditProcedure />}
-                            />
-
-                            <Route
-                                path={'receipts/:id'}
-                                element={<ReceiptEdit />}
+                                path={'profile'}
+                                element={<UserProfile />}
                             />
                         </Route>
+
                         <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </ScrollToTop>

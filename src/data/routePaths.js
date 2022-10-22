@@ -17,11 +17,19 @@ export const LOGIN = '/login';
 export const REGISTER = '/register';
 export const RESET_PASSWORD = '/resetPassword';
 
-// OTHER ROUTES
-export const SUBMIT_DATA = `${DASHBOARD}/submitData`;
-export const SETTINGS = `${DASHBOARD}/settings`;
-export const PROCEDURES = `${DASHBOARD}/procedures`;
+// RECEIPTS
 export const RECEIPTS = `${DASHBOARD}/receipts`;
+export const CREATE_RECEIPT = `${RECEIPTS}/create`;
+export const EDIT_RECEIPT = `${RECEIPTS}/:id`;
+
+// PROCEDURES
+export const PROCEDURES = `${DASHBOARD}/procedures`;
+export const CREATE_PROCEDURE = `${PROCEDURES}/create`;
+export const EDIT_PROCEDURE = `${PROCEDURES}/:id`;
+
+// OTHER ROUTES
+export const SETTINGS = `${DASHBOARD}/settings`;
+export const USER_PROFILE = `${DASHBOARD}/profile`;
 
 export const routes = Object.freeze({
     DASHBOARD,
@@ -35,6 +43,12 @@ export const routes = Object.freeze({
     // AUTH ROUTES
     LOGIN, REGISTER, RESET_PASSWORD,
 
+    // RECEIPTS
+    RECEIPTS, CREATE_RECEIPT, EDIT_RECEIPT,
+
+    // PROCEDURES
+    PROCEDURES, CREATE_PROCEDURE, EDIT_PROCEDURE,
+
     // OTHER ROUTES
-    SUBMIT_DATA, SETTINGS, PROCEDURES, RECEIPTS
+    SETTINGS, USER_PROFILE
 });

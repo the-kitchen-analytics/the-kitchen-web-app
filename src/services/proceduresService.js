@@ -7,10 +7,12 @@ import {
     onSnapshot,
     orderBy,
     updateDoc,
+    deleteDoc,
 } from "firebase/firestore";
 
 import { db } from "../config/firebase";
 import { PROCEDURES } from "../config/firebaseCollectionNames";
+import { mapProcedureToFirebaseEntity } from "../mappers/procedure";
 import { deleteAll, getDoc, getDocsData } from "../utils/firebase";
 
 const getCollection = () => {
@@ -33,7 +35,7 @@ export const getAllProcedures = async () => {
 
 export const addProcedure = (procedure) => {
     console.debug('addProcedure', procedure);
-    return addDoc(getCollection(), procedure);
+    return addDoc(getCollection(), mapProcedureToFirebaseEntity(procedure));
 }
 
 export const addAllProcedures = (procedures) => {
@@ -56,7 +58,13 @@ export const getProceduresByWorkerCategory = async (workerCategory) => {
 export const updateProcedure = (id, payload) => {
     console.debug('updateProcedure', id, payload);
 
-    updateDoc(getDoc(PROCEDURES, id), payload);
+    updateDoc(getDoc(PROCEDURES, id), mapProcedureToFirebaseEntity(payload));
+}
+
+export const deleteProcedure = (id) => {
+    console.debug('deleteProcedure', id);
+
+    deleteDoc(getDoc(PROCEDURES, id));
 }
 
 export const deleteAllProcedures = async () => {
