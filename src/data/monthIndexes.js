@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const JANUARY = 0;
 export const FEBRUARY = 1;
 export const MARCH = 2;
@@ -18,6 +20,7 @@ const monthIndexes = Object.freeze([
 ]);
 
 export const FIRST_MONTH_INDEX = monthIndexes[0];
-export const LAST_MONTH_INDEX = monthIndexes.at(-1);
+// export const LAST_MONTH_INDEX = monthIndexes.at(-1);
+export const LAST_MONTH_INDEX = _.last(monthIndexes);
 
 export default monthIndexes;
