@@ -2,6 +2,7 @@ import { Form } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useApplicationSettings } from "../../hooks";
 import { handleInputChange } from "../../utils/ui/form";
+import { REGISTER } from "../../data/routePaths";
 
 const ResetPasswordForm = ({
     formData: { email },
@@ -48,7 +49,7 @@ const ResetPasswordForm = ({
 
             <Form.Field>
                 <div>
-                    Нет аккаута? <Link to="/register">Зарегистрироваться</Link>.
+                    Нет аккаута? <Link to={REGISTER}>Зарегистрироваться</Link>.
                 </div>
             </Form.Field>
         </Form>

@@ -1,83 +1,62 @@
-import { Form } from "semantic-ui-react";
-import { GoBackButton } from "../../../components/ui/Button";
-import { getWorkerCategoryDisplayName } from "../../../utils/workerCategory";
-import { useUserSettings } from "../../../hooks";
-import { useMemo } from "react";
 import _ from "lodash";
+import { Form } from "semantic-ui-react";
+import { ProcedureTypeSelect, WorkerCategorySelect } from "../../../components/shared/dropdown";
+import { GoBackButton } from "../../../components/ui/Button";
+import { useUserSettings } from "../../../hooks";
 
 const EditProcedureForm = (props) => {
 
     const {
         isLoading,
         formData,
+        shouldDisableSubmitButton,
         handleSubmit,
         handleInputChangeWrapper,
         handlePriceChange,
         handleWorkerRateChange,
-        handleWorkerIncomeChange
+        handleWorkerIncomeChange,
+        handleDeleteButtonClick
     } = props;
 
     const { settings: { controlsSize, accentColor } } = useUserSettings();
 
-    const workerRateInputProps = useMemo(() => {
-        const workerRateInPercent = formData.workerRate ? (formData.workerRate * 100).toFixed(0) : 0;
+    const handleProcedureTypeChange = (e, { value }) => {
+        handleInputChangeWrapper({ target: { name: 'type', value } });
+    }
 
-        return {
-            value: workerRateInPercent > 0 ? workerRateInPercent : '',
-            placeholder: workerRateInPercent,
-            min: 0,
-            max: 100,
-            step: 'any',
-            type: 'number',
-            icon: 'percent',
-            iconPosition: 'left',
-            label: 'Заработок мастера (%)',
-            name: 'workerRate',
-            onChange: handleWorkerRateChange,
-        }
-
-    }, [formData.workerRate, handleWorkerRateChange]);
-
-    const workerIncomeInputProps = useMemo(() => {
-        return {
-            value: formData.workerIncome,
-            placeholder: formData.workerIncome ? formData.workerIncome.toFixed(2) : 0,
-            min: 0,
-            max: _.isNaN(formData.price) ? 0 : formData.price,
-            step: 'any',
-            type: 'number',
-            icon: 'euro',
-            iconPosition: 'left',
-            label: 'Заработок мастера (€)',
-            name: 'workerIncome',
-            onChange: handleWorkerIncomeChange,
-        }
-
-    }, [formData.workerIncome, formData.price, handleWorkerIncomeChange]);
+    const handleWorkerCategoryChange = (e, { value }) => {
+        handleInputChangeWrapper({ target: { name: 'workerCategory', value } });
+    }
 
     return (
         <Form size={controlsSize} onSubmit={handleSubmit}>
+
+            <Form.Input
+                required
+                label="Название"
+                placeholder="Название"
+                value={formData.name}
+                name="name"
+                onChange={handleInputChangeWrapper}
+            />
+
             <Form.Group widths='equal'>
-                <Form.Input
-                    label="Название"
-                    placeholder="Название"
-                    value={formData.name}
-                    name="name"
-                    onChange={handleInputChangeWrapper}
+
+                <ProcedureTypeSelect
+                    handleChange={handleProcedureTypeChange}
+                    value={formData.type}
                 />
 
-                <Form.Input
-                    icon="user"
-                    iconPosition="left"
-                    label="Категория мастера"
-                    placeholder="Категория мастера"
-                    value={getWorkerCategoryDisplayName(formData.workerCategory)}
-                    disabled
+                <WorkerCategorySelect
+                    handleChange={handleWorkerCategoryChange}
+                    value={formData.workerCategory}
                 />
+
             </Form.Group>
 
             <Form.Group widths='equal'>
                 <Form.Input
+                    required
                     min={0}
                     max={999}
                     step="any"
@@ -92,11 +71,32 @@ const EditProcedureForm = (props) => {
                 />
 
                 <Form.Input
-                    {...workerRateInputProps}
+                    value={formData.workerRate}
+                    placeholder={formData.workerRate || 0}
+                    min={0}
+                    max={100}
+                    step={'any'}
+                    type={'number'}
+                    icon={'percent'}
+                    iconPosition={'left'}
+                    label={'Заработок мастера (%)'}
+                    name={'workerRate'}
+                    onChange={handleWorkerRateChange}
                 />
 
                 <Form.Input
-                    {...workerIncomeInputProps}
+                    required
+                    value={formData.workerIncome}
+                    placeholder={formData.workerIncome || 0}
+                    min={0}
+                    max={_.isNaN(formData.price) ? 0 : formData.price}
+                    step={'any'}
+                    type={'number'}
+                    icon={'euro'}
+                    iconPosition={'left'}
+                    label={'Заработок мастера (€)'}
+                    name={'workerIncome'}
+                    onChange={handleWorkerIncomeChange}
                 />
             </Form.Group>
 
@@ -113,9 +113,20 @@ const EditProcedureForm = (props) => {
                     type="submit"
                     color={accentColor}
                     content="Сохранить"
-                    disabled={isLoading}
+                    disabled={shouldDisableSubmitButton}
                 />
             </Form.Group>
+
+            <Form.Button
+                loading={isLoading}
+                fluid
+                size={controlsSize}
+                icon="delete"
+                type="button"
+                negative
+                content="Удалить"
+                onClick={handleDeleteButtonClick}
+            />
 
         </Form>
     );

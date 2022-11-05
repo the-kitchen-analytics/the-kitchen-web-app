@@ -1,9 +1,9 @@
 import { Form } from "semantic-ui-react";
 import { buildDropdownOptions } from "../../../../utils/ui/dropdown";
-import workerCatgoriesJson from "../../../../data/workerCategories.json";
+import workerCategoriesJson from "../../../../data/workerCategories.json";
 
 const workerCategoryOptions = buildDropdownOptions(
-    workerCatgoriesJson,
+    workerCategoriesJson,
     ({ name }) => name,
     ({ displayName }) => displayName,
     ({ name }) => name
@@ -12,7 +12,7 @@ const workerCategoryOptions = buildDropdownOptions(
 const WorkerCategorySelect = ({ value, options = workerCategoryOptions, handleChange }) => (
     <Form.Select
         required
-        label="Выберите квалификацию мастера"
+        label="Квалификация мастера"
         placeholder='Нажмите, чтобы выбрать'
         fluid
         selection

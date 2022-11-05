@@ -1,16 +1,16 @@
 import {
     STATISTICS_ALL, STATISTICS_DAILY, STATISTICS_MONTHLY,
     TABLE_ALL, TABLE_DAILY, TABLE_MONTHLY,
-    SETTINGS, SUBMIT_DATA
+    SETTINGS, CREATE_RECEIPT,
 } from "../../routePaths";
-import { TYPE_DIVIDER, TYPE_ITEM, TYPE_PARENT } from "./elementTypes";
+import { TYPE_ITEM, TYPE_PARENT } from "./elementTypes";
 
 const tableElements = Object.freeze([
     {
         type: TYPE_ITEM,
         itemProps: {
             key: TABLE_DAILY,
-            to: '/dashboard/table/daily',
+            to: TABLE_DAILY,
         },
         text: 'За день'
     },
@@ -18,7 +18,7 @@ const tableElements = Object.freeze([
         type: TYPE_ITEM,
         itemProps: {
             key: TABLE_MONTHLY,
-            to: '/dashboard/table/monthly',
+            to: TABLE_MONTHLY,
         },
         text: 'За месяц'
     },
@@ -26,7 +26,7 @@ const tableElements = Object.freeze([
         type: TYPE_ITEM,
         itemProps: {
             key: TABLE_ALL,
-            to: '/dashboard/table',
+            to: TABLE_ALL,
         },
         text: 'За всё время'
     }
@@ -37,26 +37,26 @@ const statisticsElements = Object.freeze([
         type: TYPE_ITEM,
         itemProps: {
             key: STATISTICS_DAILY,
-            to: '/dashboard/statistics/daily',
+            to: STATISTICS_DAILY,
         },
-        text: 'За день'
+        text: 'За день',
     },
     {
         type: TYPE_ITEM,
         itemProps: {
             key: STATISTICS_MONTHLY,
-            to: '/dashboard/statistics/monthly',
+            to: STATISTICS_MONTHLY,
         },
-        text: 'За месяц'
+        text: 'За месяц',
     },
     {
         type: TYPE_ITEM,
         itemProps: {
             key: STATISTICS_ALL,
-            to: '/dashboard/statistics',
+            to: STATISTICS_ALL,
         },
-        text: 'За всё время'
-    }
+        text: 'За всё время',
+    },
 ]);
 
 const navigationBarOptions = Object.freeze([
@@ -67,7 +67,7 @@ const navigationBarOptions = Object.freeze([
         },
         icon: 'table',
         text: 'Таблицы',
-        items: tableElements
+        items: tableElements,
     },
 
     {
@@ -77,36 +77,38 @@ const navigationBarOptions = Object.freeze([
         },
         icon: 'chart bar',
         text: 'Статистика',
-        items: statisticsElements
+        items: statisticsElements,
     },
 
     {
-        type: TYPE_DIVIDER,
+        type: TYPE_PARENT,
         itemProps: {
-            key: 'divider',
-            fitted: true,
+            key: 'more-parent',
         },
-    },
+        icon: 'th',
+        text: 'Ещё',
+        items: [
+            {
+                type: TYPE_ITEM,
+                itemProps: {
+                    key: CREATE_RECEIPT,
+                    to: CREATE_RECEIPT,
+                },
+                icon: 'save',
+                text: 'Сохранить запись',
+            },
 
-    {
-        type: TYPE_ITEM,
-        itemProps: {
-            key: SUBMIT_DATA,
-            to: '/dashboard/submitData',
-        },
-        icon: 'upload',
-        text: 'Отправить данные'
+            {
+                type: TYPE_ITEM,
+                itemProps: {
+                    key: SETTINGS,
+                    to: SETTINGS,
+                },
+                icon: 'setting',
+                text: 'Настройки',
+            }
+        ],
     },
-
-    {
-        type: TYPE_ITEM,
-        itemProps: {
-            key: SETTINGS,
-            to: '/dashboard/settings',
-        },
-        icon: 'setting',
-        text: 'Настройки'
-    }
 ]);
 
 export default navigationBarOptions;
