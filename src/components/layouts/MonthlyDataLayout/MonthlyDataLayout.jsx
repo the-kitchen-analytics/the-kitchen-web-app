@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { Grid } from 'semantic-ui-react'
 import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
 import { MonthSelect, YearSelect } from '../../shared/dropdown'
-import Carosel from '../../ui/Carosel'
+import { Carousel } from '../../ui'
 import DashboardLayout from '../DashboardLayout/DashboardLayout'
 
 const MonthlyDataLayout = ({
@@ -58,7 +58,7 @@ const MonthlyDataLayout = ({
           textAlign="right"
           floated="right"
         >
-          <Carosel
+          <Carousel
             previousItemProps={{
               disabled: yearSelectOptions.length === 0 || selectedDate.month <= FIRST_MONTH_INDEX,
               onClick: () => setSelectedMonth(selectedDate.month - 1)

@@ -2,7 +2,7 @@
 import { Button } from 'semantic-ui-react'
 import { useUserSettings } from '../../../hooks'
 
-const Carosel = ({ previousItemProps, nextItemProps, resetButtonProps }) => {
+const Carousel = ({ previousItemProps, nextItemProps, resetButtonProps }) => {
 
   const { settings: { controlsSize } } = useUserSettings()
 
@@ -29,4 +29,4 @@ const Carosel = ({ previousItemProps, nextItemProps, resetButtonProps }) => {
   )
 }
 
-export default Carosel
+export default Carousel
