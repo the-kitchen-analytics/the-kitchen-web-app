@@ -1,5 +1,5 @@
 const parseFirebaseDate = (firebasDate) => {
-    return new Date(firebasDate.seconds * 1000);
+  return new Date(firebasDate.seconds * 1000)
 }
 
-export default parseFirebaseDate;
+export default parseFirebaseDate

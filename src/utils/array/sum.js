@@ -1,5 +1,5 @@
-import _ from "lodash";
+import _ from 'lodash'
 
-const sum = (array) => _.sum(array);
+const sum = (array) => _.sum(array)
 
-export default sum;
+export default sum

@@ -1,7 +1,7 @@
-import LoadableButton from "./LoadableButton";
-import GoBackButton from './GoBackButton';
+import LoadableButton from './LoadableButton'
+import GoBackButton from './GoBackButton'
 
 export {
-    LoadableButton,
-    GoBackButton,
+  LoadableButton,
+  GoBackButton,
 }

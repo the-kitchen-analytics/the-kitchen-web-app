@@ -1,5 +1,5 @@
 const validateProcedureWorkerCategory = (procedure) => {
-    return !!procedure.workerCategory;
+  return !!procedure.workerCategory
 }
 
-export default validateProcedureWorkerCategory;
+export default validateProcedureWorkerCategory

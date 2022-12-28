@@ -1,10 +1,10 @@
-import React from "react";
-import Price from "../ui/Price";
+
+import Price from '../ui/Price'
 
 const PriceCell = ({ children }) => (
-    <Price euro>
-        {children}
-    </Price>
+  <Price euro>
+    {children}
+  </Price>
 )
 
-export default PriceCell;
+export default PriceCell

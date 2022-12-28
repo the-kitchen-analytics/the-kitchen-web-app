@@ -1,7 +1,7 @@
-import _ from "lodash";
+import _ from 'lodash'
 
 const validateProcedureName = (procedure) => {
-    return !_.isEmpty(procedure.name);
+  return !_.isEmpty(procedure.name)
 }
 
-export default validateProcedureName;
+export default validateProcedureName

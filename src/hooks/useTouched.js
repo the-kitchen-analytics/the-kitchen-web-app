@@ -1,20 +1,20 @@
-import _ from "lodash";
-import { useState } from "react";
+import _ from 'lodash'
+import { useState } from 'react'
 
 const useTouched = (handleChange) => {
-    const [isTouched, setIsTouched] = useState(false);
+  const [isTouched, setIsTouched] = useState(false)
 
-    const handleInputChangeWrapper = (...args) => {
-        setIsTouched(true);
+  const handleInputChangeWrapper = (...args) => {
+    setIsTouched(true)
 
-        if (_.isFunction(handleChange)) {
-            handleChange(...args);
-        }
+    if (_.isFunction(handleChange)) {
+      handleChange(...args)
     }
+  }
 
-    return {
-        isTouched, handleInputChangeWrapper
-    }
-};
+  return {
+    isTouched, handleInputChangeWrapper
+  }
+}
 
-export default useTouched;
+export default useTouched

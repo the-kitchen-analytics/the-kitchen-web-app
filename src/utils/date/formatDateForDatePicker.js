@@ -1,5 +1,5 @@
-import { formatISO } from "date-fns";
+import { formatISO } from 'date-fns'
 
-const formatDateForDatePicker = (date) => formatISO(date, { representation: 'date' });
+const formatDateForDatePicker = (date) => formatISO(date, { representation: 'date' })
 
-export default formatDateForDatePicker;
+export default formatDateForDatePicker

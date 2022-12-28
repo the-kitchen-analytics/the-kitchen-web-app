@@ -1,5 +1,5 @@
-import _ from "lodash";
+import _ from 'lodash'
 
 export default function calculateTotalWorkerIncome(procedures = []) {
-    return _.sumBy(procedures, 'priceAfterTaxes');
+  return _.sumBy(procedures, 'priceAfterTaxes')
 }

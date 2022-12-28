@@ -1,7 +1,7 @@
-import _ from "lodash";
+import _ from 'lodash'
 
 const sortProcedures = (procedures) => {
-    return _.sortBy(procedures, 'name');
+  return _.sortBy(procedures, 'name')
 }
 
-export default sortProcedures;
+export default sortProcedures

@@ -1,8 +1,8 @@
-import { formatDate } from "../date"
-import parseFirebaseDate from "./parseFirebaseDate"
+import { formatDate } from '../date'
+import parseFirebaseDate from './parseFirebaseDate'
 
 const formatFirebaseDate = (firebaseDate) => {
-    return formatDate(parseFirebaseDate(firebaseDate));
+  return formatDate(parseFirebaseDate(firebaseDate))
 }
 
-export default formatFirebaseDate;
+export default formatFirebaseDate

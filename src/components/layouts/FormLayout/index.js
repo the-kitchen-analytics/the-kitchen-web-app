@@ -1,2 +1,2 @@
-import FormLayout from "./FormLayout";
-export default FormLayout;
+import FormLayout from './FormLayout'
+export default FormLayout

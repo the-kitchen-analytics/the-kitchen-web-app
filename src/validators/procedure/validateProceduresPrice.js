@@ -1,5 +1,5 @@
 const validateProcedurePrice = (procedure) => {
-    return procedure.price >= 0;
+  return procedure.price >= 0
 }
 
-export default validateProcedurePrice;
+export default validateProcedurePrice

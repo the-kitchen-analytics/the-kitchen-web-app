@@ -1,4 +1,4 @@
-import getWorkerCategoryDisplayName from './getWorkerCategoryDisplayName';
+import getWorkerCategoryDisplayName from './getWorkerCategoryDisplayName'
 export {
-    getWorkerCategoryDisplayName,
+  getWorkerCategoryDisplayName,
 }

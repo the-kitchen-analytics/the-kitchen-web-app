@@ -1,7 +1,7 @@
-import { parse } from "date-fns";
+import { parse } from 'date-fns'
 
 const parseDate = (dateStr, formatPattern = 'dd.MM.yyyy') => {
-    return parse(dateStr, formatPattern, new Date())
+  return parse(dateStr, formatPattern, new Date())
 }
 
-export default parseDate;
+export default parseDate

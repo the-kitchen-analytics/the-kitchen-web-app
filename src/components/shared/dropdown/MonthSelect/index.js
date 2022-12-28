@@ -1,2 +1,2 @@
-import MonthSelect from "./MonthSelect";
-export default MonthSelect;
+import MonthSelect from './MonthSelect'
+export default MonthSelect

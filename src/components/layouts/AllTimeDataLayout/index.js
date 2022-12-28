@@ -1,2 +1,2 @@
-import AllTimeDataLayout from "./AllDataView";
-export default AllTimeDataLayout;
+import AllTimeDataLayout from './AllDataView'
+export default AllTimeDataLayout

@@ -1,2 +1,2 @@
-import WorkerCategorySelect from './WorkerCategorySelect';
-export default WorkerCategorySelect;
+import WorkerCategorySelect from './WorkerCategorySelect'
+export default WorkerCategorySelect

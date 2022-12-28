@@ -1,5 +1,5 @@
 const validateProcedureType = ({ type }) => {
-    return !!type;
+  return !!type
 }
 
-export default validateProcedureType;
+export default validateProcedureType

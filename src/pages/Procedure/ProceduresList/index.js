@@ -1,2 +1,2 @@
-import ProceduresList from "./ProceduresList";
-export default ProceduresList;
+import ProceduresList from './ProceduresList'
+export default ProceduresList

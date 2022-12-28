@@ -1,16 +1,16 @@
-import React from "react";
-import { RECEIPTS } from "../../data/routePaths";
-import ProceduresList from "../ProceduresList/ProceduresList";
+
+import { RECEIPTS } from '../../data/routePaths'
+import ProceduresList from '../ProceduresList/ProceduresList'
 
 const ProceduresCell = ({ id, procedures }) => (
-    <ProceduresList
-        listProps={{
-            relaxed: true,
-            bulleted: true,
-        }}
-        linkTo={id ? `${RECEIPTS}/${id}` : null}
-        procedures={procedures}
-    />
-);
+  <ProceduresList
+    listProps={{
+      relaxed: true,
+      bulleted: true,
+    }}
+    linkTo={id ? `${RECEIPTS}/${id}` : null}
+    procedures={procedures}
+  />
+)
 
-export default ProceduresCell;
+export default ProceduresCell

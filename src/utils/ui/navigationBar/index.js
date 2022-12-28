@@ -1,4 +1,4 @@
-import createNavigationBarElement from "./createNavigationBarElement";
+import createNavigationBarElement from './createNavigationBarElement'
 export {
-    createNavigationBarElement
+  createNavigationBarElement
 }

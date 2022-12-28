@@ -1,6 +1,6 @@
-import { useContext } from "react"
-import { UserSettingsContext } from "../context/UserSettingsContext"
+import { useContext } from 'react'
+import { UserSettingsContext } from '../context/UserSettingsContext'
 
 export default function useUserSettings() {
-    return useContext(UserSettingsContext);
+  return useContext(UserSettingsContext)
 }

@@ -1,5 +1,5 @@
 const buildPriceString = (text, price, currencySymbol = '€') => {
-    return `${text} (${currencySymbol}${price.toFixed(2)})`
+  return `${text} (${currencySymbol}${price.toFixed(2)})`
 }
 
-export default buildPriceString;
+export default buildPriceString

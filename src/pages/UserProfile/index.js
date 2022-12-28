@@ -1,2 +1,2 @@
-import UserProfile from './UserProfile';
-export default UserProfile;
+import UserProfile from './UserProfile'
+export default UserProfile

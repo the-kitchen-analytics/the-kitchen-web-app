@@ -1,2 +1,1 @@
-import DataTable from "./DataTable.jsx";
-export default DataTable;
+export { default } from './DataTable.jsx'

@@ -1,11 +1,11 @@
-import getDocData from "./getDocData";
+import getDocData from './getDocData'
 
 const getDocsData = (snapshot) => {
-    if (snapshot.empty) {
-        return [];
-    }
+  if (snapshot.empty) {
+    return []
+  }
 
-    return snapshot.docs.map(getDocData)
+  return snapshot.docs.map(getDocData)
 }
 
-export default getDocsData;
+export default getDocsData

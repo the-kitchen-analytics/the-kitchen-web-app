@@ -1,7 +1,7 @@
-import _ from "lodash";
+import _ from 'lodash'
 
 const validateReceiptProcedures = ({ procedures }) => {
-    return !_.isEmpty(procedures);
+  return !_.isEmpty(procedures)
 }
 
-export default validateReceiptProcedures;
+export default validateReceiptProcedures

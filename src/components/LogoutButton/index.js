@@ -1,2 +1,2 @@
-import LogoutButton from './LogoutButton';
-export default LogoutButton;
+import LogoutButton from './LogoutButton'
+export default LogoutButton

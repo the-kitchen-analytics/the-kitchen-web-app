@@ -1,2 +1,2 @@
-import CreateReceipt from "./CreateReceipt";
-export default CreateReceipt;
+import CreateReceipt from './CreateReceipt'
+export default CreateReceipt

@@ -1,2 +1,2 @@
-import ProceduresTable from './ProceduresTable';
-export default ProceduresTable;
+import ProceduresTable from './ProceduresTable'
+export default ProceduresTable

@@ -1,7 +1,7 @@
-import workerCatgoriesJson from "../../data/workerCategories.json";
+import workerCatgoriesJson from '../../data/workerCategories.json'
 
 const getWorkerCategoryDisplayName = (name) => {
-    return workerCatgoriesJson.find(it => it.name === name)?.displayName;
+  return workerCatgoriesJson.find(it => it.name === name)?.displayName
 }
 
-export default getWorkerCategoryDisplayName;
+export default getWorkerCategoryDisplayName

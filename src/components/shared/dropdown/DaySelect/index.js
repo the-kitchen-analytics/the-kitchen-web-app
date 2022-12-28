@@ -1,2 +1,2 @@
-import DaySelect from "./DaySelect";
-export default DaySelect;
+import DaySelect from './DaySelect'
+export default DaySelect

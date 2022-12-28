@@ -1,4 +1,4 @@
-import useWindowStorage from "./useWindowStorage"
+import useWindowStorage from './useWindowStorage'
 
 /**
  * @param {string} key 
@@ -6,7 +6,7 @@ import useWindowStorage from "./useWindowStorage"
  * @returns 
  */
 const useLocalStorage = (key, initialValue) => {
-    return useWindowStorage(window.localStorage, key, initialValue);
+  return useWindowStorage(window.localStorage, key, initialValue)
 }
 
-export default useLocalStorage;
+export default useLocalStorage

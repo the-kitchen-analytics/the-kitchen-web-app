@@ -1,48 +1,48 @@
-import { Form, Header, Segment } from "semantic-ui-react";
-import { addAllProcedures, deleteAllProcedures } from "../../services/proceduresService";
-import procedures from "../../data/procedures.json";
-import { useUserSettings } from "../../hooks";
+import { Form, Header, Segment } from 'semantic-ui-react'
+import { addAllProcedures, deleteAllProcedures } from '../../services/proceduresService'
+import procedures from '../../data/procedures.json'
+import { useUserSettings } from '../../hooks'
 
 const RestoreProceduresData = () => {
 
-    const { settings: { shouldDisplayAdminActions } } = useUserSettings();
+  const { settings: { shouldDisplayAdminActions } } = useUserSettings()
 
-    const handleRestoreProceduresButtonClick = async () => {
-        await deleteAllProcedures();
+  const handleRestoreProceduresButtonClick = async () => {
+    await deleteAllProcedures()
 
-        addAllProcedures(procedures);
-    }
+    addAllProcedures(procedures)
+  }
 
-    const handleRestoreGoodsButtonClick = () => {
+  const handleRestoreGoodsButtonClick = () => {
 
-    }
+  }
 
-    return shouldDisplayAdminActions && (
-        <Segment>
-            <Header
-                icon="redo"
-                content="Восстановить значения по умолчанию"
-            />
+  return shouldDisplayAdminActions && (
+    <Segment>
+      <Header
+        icon="redo"
+        content="Восстановить значения по умолчанию"
+      />
 
-            <Form>
-                <Form.Button
-                    fluid
-                    type="button"
-                    icon="redo"
-                    content="Восстановить процедуры"
-                    onClick={handleRestoreProceduresButtonClick}
-                />
-                <Form.Button
-                    fluid
-                    type="button"
-                    icon="redo"
-                    content="Восстановить товары"
-                    onClick={handleRestoreGoodsButtonClick}
-                />
-            </Form>
+      <Form>
+        <Form.Button
+          fluid
+          type="button"
+          icon="redo"
+          content="Восстановить процедуры"
+          onClick={handleRestoreProceduresButtonClick}
+        />
+        <Form.Button
+          fluid
+          type="button"
+          icon="redo"
+          content="Восстановить товары"
+          onClick={handleRestoreGoodsButtonClick}
+        />
+      </Form>
 
-        </Segment>
-    )
+    </Segment>
+  )
 }
 
-export default RestoreProceduresData;
+export default RestoreProceduresData

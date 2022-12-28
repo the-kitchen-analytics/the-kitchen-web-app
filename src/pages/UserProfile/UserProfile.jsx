@@ -1,123 +1,123 @@
-import _ from "lodash";
-import { Segment, Header, Icon, Form } from "semantic-ui-react";
-import { ErrorMessage, Loader } from "../../components/ui";
-import LogoutButton from "../../components/LogoutButton";
-import { useState, useMemo } from "react";
-import { useOutletContext } from "react-router-dom";
-import { useUserSettings, usePostData } from "../../hooks";
-import { getWorkerCategoryDisplayName } from "../../utils/workerCategory";
-import EditUserForm from "../../components/EditUserForm";
+import _ from 'lodash'
+import { Segment, Header, Icon, Form } from 'semantic-ui-react'
+import { ErrorMessage, Loader } from '../../components/ui'
+import LogoutButton from '../../components/LogoutButton'
+import { useState, useMemo } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { useUserSettings, usePostData } from '../../hooks'
+import { getWorkerCategoryDisplayName } from '../../utils/workerCategory'
+import EditUserForm from '../../components/EditUserForm'
 
 const UserProfile = () => {
 
-    const {
-        userDetails,
-        updateUserDetails,
-        isUserDetailsLoading,
-    } = useOutletContext();
+  const {
+    userDetails,
+    updateUserDetails,
+    isUserDetailsLoading,
+  } = useOutletContext()
 
-    const { settings: { controlsSize } } = useUserSettings();
+  const { settings: { controlsSize } } = useUserSettings()
 
-    const initialFormData = useMemo(() => userDetails, [userDetails]);
+  const initialFormData = useMemo(() => userDetails, [userDetails])
 
-    const [formData, setFormData] = useState(userDetails);
+  const [formData, setFormData] = useState(userDetails)
 
-    const [
-        shouldDisplayEditProfileForm,
-        setShouldDisplayEditProfileForm,
-    ] = useState(false);
+  const [
+    shouldDisplayEditProfileForm,
+    setShouldDisplayEditProfileForm,
+  ] = useState(false)
 
-    const [isLoading, error, postData] = usePostData();
+  const [isLoading, error, postData] = usePostData()
 
-    const shouldDisableSubmitButton = () => {
-        return isLoading || _.isEqual(initialFormData, formData);
+  const shouldDisableSubmitButton = () => {
+    return isLoading || _.isEqual(initialFormData, formData)
+  }
+
+  const shouldDisableResetButton = () => {
+    return isLoading
+  }
+
+  const resetFormData = () => {
+    setFormData(initialFormData)
+  }
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    await postData(updateUserDetails, formData)
+
+    if (!error) {
+      setShouldDisplayEditProfileForm(false)
     }
+  }
 
-    const shouldDisableResetButton = () => {
-        return isLoading
-    }
+  const handleResetButtonClick = (e) => {
+    e.preventDefault()
+    setShouldDisplayEditProfileForm(false)
+    resetFormData()
+  }
 
-    const resetFormData = () => {
-        setFormData(initialFormData);
-    }
+  if (isUserDetailsLoading) {
+    return <Loader />
+  }
 
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        await postData(updateUserDetails, formData);
+  return (
+    <Segment loading={isLoading || isUserDetailsLoading}>
+      <Header
+        icon
+        textAlign="center"
+        size={controlsSize}>
+        <Icon name="user circle" />
+        <Header.Content>
+          {userDetails.displayName}
+        </Header.Content>
 
-        if (!error) {
-            setShouldDisplayEditProfileForm(false);
-        }
-    }
+        <Header.Subheader>
+          {userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}
+        </Header.Subheader>
+      </Header>
 
-    const handleResetButtonClick = (e) => {
-        e.preventDefault();
-        setShouldDisplayEditProfileForm(false);
-        resetFormData();
-    }
+      {
+        shouldDisplayEditProfileForm ?
 
-    if (isUserDetailsLoading) {
-        return <Loader />
-    }
+          (
+            <>
+              {
+                error && (
+                  <ErrorMessage message={error.message} />
+                )
+              }
+              <EditUserForm
+                isLoading={isLoading}
+                formData={formData}
+                setFormData={setFormData}
+                handleSubmit={handleFormSubmit}
+                handleResetButtonClick={handleResetButtonClick}
+                shouldDisableSubmitButton={shouldDisableSubmitButton}
+                shouldDisableResetButton={shouldDisableResetButton}
+              />
+            </>
+          ) : (
+            <Form>
+              <Form.Group widths='equal'>
+                <Form.Button
+                  fluid
+                  icon="edit"
+                  size={controlsSize}
+                  type="button"
+                  onClick={() => setShouldDisplayEditProfileForm(true)}
+                  content="Редактировать"
+                />
 
-    return (
-        <Segment loading={isLoading || isUserDetailsLoading}>
-            <Header
-                icon
-                textAlign="center"
-                size={controlsSize}>
-                <Icon name="user circle" />
-                <Header.Content>
-                    {userDetails.displayName}
-                </Header.Content>
+                <Form.Field>
+                  <LogoutButton fluid />
+                </Form.Field>
+              </Form.Group>
+            </Form>
+          )
+      }
 
-                <Header.Subheader>
-                    {userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}
-                </Header.Subheader>
-            </Header>
-
-            {
-                shouldDisplayEditProfileForm ?
-
-                    (
-                        <>
-                            {
-                                error && (
-                                    <ErrorMessage message={error.message} />
-                                )
-                            }
-                            <EditUserForm
-                                isLoading={isLoading}
-                                formData={formData}
-                                setFormData={setFormData}
-                                handleSubmit={handleFormSubmit}
-                                handleResetButtonClick={handleResetButtonClick}
-                                shouldDisableSubmitButton={shouldDisableSubmitButton}
-                                shouldDisableResetButton={shouldDisableResetButton}
-                            />
-                        </>
-                    ) : (
-                        <Form>
-                            <Form.Group widths='equal'>
-                                <Form.Button
-                                    fluid
-                                    icon="edit"
-                                    size={controlsSize}
-                                    type="button"
-                                    onClick={() => setShouldDisplayEditProfileForm(true)}
-                                    content="Редактировать"
-                                />
-
-                                <Form.Field>
-                                    <LogoutButton fluid />
-                                </Form.Field>
-                            </Form.Group>
-                        </Form>
-                    )
-            }
-
-        </Segment>
-    )
+    </Segment>
+  )
 }
 
-export default UserProfile;
+export default UserProfile
