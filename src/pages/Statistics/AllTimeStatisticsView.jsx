@@ -1,21 +1,21 @@
-import { useOutletContext } from "react-router-dom";
-import AllTimeDataLayout from "../../components/layouts/AllTimeDataLayout";
-import Statistics from "../../components/Statistics";
-import { getAllStatisticsData } from "../../services/statisticsDataFilterService";
+import { useOutletContext } from 'react-router-dom'
+import AllTimeDataLayout from '../../components/layouts/AllTimeDataLayout'
+import Statistics from '../../components/Statistics'
+import { getAllStatisticsData } from '../../services/statisticsDataFilterService'
 
 const AllTimeStatisticsView = () => {
 
-    const { receipts } = useOutletContext();
+  const { receipts } = useOutletContext()
 
-    return (
-        <AllTimeDataLayout
-            icon="chart bar"
-        >
-            <Statistics
-                data={getAllStatisticsData(receipts)}
-            />
-        </AllTimeDataLayout>
-    );
+  return (
+    <AllTimeDataLayout
+      icon="chart bar"
+    >
+      <Statistics
+        data={getAllStatisticsData(receipts)}
+      />
+    </AllTimeDataLayout>
+  )
 }
 
-export default AllTimeStatisticsView;
+export default AllTimeStatisticsView

@@ -1,5 +1,5 @@
 const getDocData = (doc) => {
-    return { id: doc.id, ...doc.data() };
+  return { id: doc.id, ...doc.data() }
 }
 
-export default getDocData;
+export default getDocData

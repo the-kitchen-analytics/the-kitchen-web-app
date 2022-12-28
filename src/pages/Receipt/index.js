@@ -1,7 +1,7 @@
-import CreateReceipt from './CreateReceipt';
-import EditReceipt from './EditReceipt/EditReceipt';
+import CreateReceipt from './CreateReceipt'
+import EditReceipt from './EditReceipt/EditReceipt'
 
 export {
-    CreateReceipt,
-    EditReceipt,
+  CreateReceipt,
+  EditReceipt,
 }

@@ -1,5 +1,5 @@
-import DatePicker from "./DatePicker";
+import DatePicker from './DatePicker.jsx'
 
 export {
-    DatePicker,
+  DatePicker,
 }

@@ -1,7 +1,7 @@
 import mapFirebaseEntityToProcedure from './mapFirebaseEntityToProcedure'
-import mapProcedureToFirebaseEntity from './mapProcedureToFirebaseEntity';
+import mapProcedureToFirebaseEntity from './mapProcedureToFirebaseEntity'
 
 export {
-    mapFirebaseEntityToProcedure,
-    mapProcedureToFirebaseEntity,
+  mapFirebaseEntityToProcedure,
+  mapProcedureToFirebaseEntity,
 }

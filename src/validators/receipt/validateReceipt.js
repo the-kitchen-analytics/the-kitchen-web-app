@@ -1,14 +1,14 @@
-import validate from "../common/validate";
-import validateReceiptDate from "./validateReceiptDate";
-import validateReceiptProcedures from "./validateReceiptProcedures";
+import validate from '../common/validate'
+import validateReceiptDate from './validateReceiptDate'
+import validateReceiptProcedures from './validateReceiptProcedures'
 
 const validators = Object.freeze([
-    validateReceiptDate,
-    validateReceiptProcedures,
-]);
+  validateReceiptDate,
+  validateReceiptProcedures,
+])
 
 const validateReceipt = (procedure) => {
-    return validate(procedure, validators);
+  return validate(procedure, validators)
 }
 
-export default validateReceipt;
+export default validateReceipt

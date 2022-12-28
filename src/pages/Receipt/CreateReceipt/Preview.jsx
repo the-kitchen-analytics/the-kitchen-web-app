@@ -1,11 +1,11 @@
-import DataTable from "../../../components/DataTable"
+import DataTable from '../../../components/DataTable'
 
 const Preview = ({ data }) => {
-    return (
-        <DataTable
-            data={data}
-        />
-    );
+  return (
+    <DataTable
+      data={data}
+    />
+  )
 }
 
-export default Preview;
+export default Preview

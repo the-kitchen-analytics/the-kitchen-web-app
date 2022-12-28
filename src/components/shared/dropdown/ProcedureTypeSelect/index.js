@@ -1,2 +1,2 @@
-import ProcedureTypeSelect from "./ProcedureTypeSelect";
-export default ProcedureTypeSelect;
+import ProcedureTypeSelect from './ProcedureTypeSelect'
+export default ProcedureTypeSelect

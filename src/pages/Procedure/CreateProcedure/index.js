@@ -1,2 +1,2 @@
-import CreateProcedure from './CreateProcedure';
-export default CreateProcedure;
+import CreateProcedure from './CreateProcedure'
+export default CreateProcedure

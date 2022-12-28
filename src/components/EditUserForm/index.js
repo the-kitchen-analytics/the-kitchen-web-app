@@ -1,2 +1,1 @@
-import EditUserForm from './EditUserForm';
-export default EditUserForm;
+export { default } from './EditUserForm'

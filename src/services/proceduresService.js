@@ -1,77 +1,77 @@
 import {
-    addDoc,
-    collection,
-    query,
-    where,
-    getDocs,
-    onSnapshot,
-    orderBy,
-    updateDoc,
-    deleteDoc,
-} from "firebase/firestore";
+  addDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore'
 
-import { db } from "../config/firebase";
-import { PROCEDURES } from "../config/firebaseCollectionNames";
-import { mapProcedureToFirebaseEntity } from "../mappers/procedure";
-import { deleteAll, getDoc, getDocsData } from "../utils/firebase";
+import { db } from '../config/firebase'
+import { PROCEDURES } from '../config/firebaseCollectionNames'
+import { mapProcedureToFirebaseEntity } from '../mappers/procedure'
+import { deleteAll, getDoc, getDocsData } from '../utils/firebase'
 
 const getCollection = () => {
-    return collection(db, PROCEDURES);
+  return collection(db, PROCEDURES)
 }
 
 export const streamProcedures = (snapshot, error) => {
-    console.debug('streamProcedures');
-    const q = query(getCollection(), orderBy('name'));
-    return onSnapshot(q, snapshot, error);
-};
+  console.debug('streamProcedures')
+  const q = query(getCollection(), orderBy('name'))
+  return onSnapshot(q, snapshot, error)
+}
 
 export const getAllProcedures = async () => {
-    console.debug('getAllProcedures');
+  console.debug('getAllProcedures')
 
-    const snapshot = await getCollection().get();
+  const snapshot = await getCollection().get()
 
-    return getDocsData(snapshot);
+  return getDocsData(snapshot)
 }
 
 export const addProcedure = (procedure) => {
-    console.debug('addProcedure', procedure);
-    return addDoc(getCollection(), mapProcedureToFirebaseEntity(procedure));
+  console.debug('addProcedure', procedure)
+  return addDoc(getCollection(), mapProcedureToFirebaseEntity(procedure))
 }
 
 export const addAllProcedures = (procedures) => {
-    console.debug('addAllProcedures', procedures);
+  console.debug('addAllProcedures', procedures)
 
-    const collection = getCollection();
+  const collection = getCollection()
 
-    return procedures.map(procedure => addDoc(collection, procedure));
+  return procedures.map(procedure => addDoc(collection, procedure))
 }
 
 export const getProceduresByWorkerCategory = async (workerCategory) => {
-    console.debug('getProceduresByWorkerCategory', workerCategory);
+  console.debug('getProceduresByWorkerCategory', workerCategory)
 
-    const q = query(getCollection(), where("workerCategory", "==", workerCategory));
-    const snapshot = await getDocs(q);
+  const q = query(getCollection(), where('workerCategory', '==', workerCategory))
+  const snapshot = await getDocs(q)
 
-    return getDocsData(snapshot);
+  return getDocsData(snapshot)
 }
 
 export const updateProcedure = (id, payload) => {
-    console.debug('updateProcedure', id, payload);
+  console.debug('updateProcedure', id, payload)
 
-    updateDoc(getDoc(PROCEDURES, id), mapProcedureToFirebaseEntity(payload));
+  updateDoc(getDoc(PROCEDURES, id), mapProcedureToFirebaseEntity(payload))
 }
 
 export const deleteProcedure = (id) => {
-    console.debug('deleteProcedure', id);
+  console.debug('deleteProcedure', id)
 
-    deleteDoc(getDoc(PROCEDURES, id));
+  deleteDoc(getDoc(PROCEDURES, id))
 }
 
 export const deleteAllProcedures = async () => {
-    console.debug('deleteAllProcedures');
+  console.debug('deleteAllProcedures')
 
-    const q = query(getCollection());
-    const resultSet = await getDocs(q);
+  const q = query(getCollection())
+  const resultSet = await getDocs(q)
 
-    deleteAll(resultSet.docs);
+  deleteAll(resultSet.docs)
 }

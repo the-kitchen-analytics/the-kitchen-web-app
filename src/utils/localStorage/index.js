@@ -1,4 +1,4 @@
-import getLocalStorageSize from './getLocalStorageSize';
+import getLocalStorageSize from './getLocalStorageSize'
 export {
-    getLocalStorageSize,
+  getLocalStorageSize,
 }

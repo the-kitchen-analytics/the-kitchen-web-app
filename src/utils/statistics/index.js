@@ -1,4 +1,4 @@
-import buildStatisticsData from "./buildStatisticsData";
+import buildStatisticsData from './buildStatisticsData'
 export {
-    buildStatisticsData
+  buildStatisticsData
 }

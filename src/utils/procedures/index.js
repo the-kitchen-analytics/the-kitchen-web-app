@@ -1,5 +1,5 @@
-import getProcedureTypeDisplayName from './getProcedureTypeDisplayName';
+import getProcedureTypeDisplayName from './getProcedureTypeDisplayName'
 
 export {
-    getProcedureTypeDisplayName,
+  getProcedureTypeDisplayName,
 }

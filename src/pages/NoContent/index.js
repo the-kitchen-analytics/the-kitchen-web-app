@@ -1,2 +1,2 @@
-import NoContent from "./NoContent.jsx";
-export default NoContent;
+import NoContent from './NoContent.jsx'
+export default NoContent

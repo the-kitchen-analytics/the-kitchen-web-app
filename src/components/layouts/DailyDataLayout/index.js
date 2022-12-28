@@ -1,2 +1,2 @@
-import DailyDataLayout from "./DailyDataLayout";
-export default DailyDataLayout;
+import DailyDataLayout from './DailyDataLayout'
+export default DailyDataLayout

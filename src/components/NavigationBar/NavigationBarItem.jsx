@@ -1,19 +1,20 @@
-import React from "react";
-import { Link, useMatch } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+
+import { Link, useMatch } from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
 
 const NavigationBarItem = ({ to, children }) => {
 
-    const isActive = !!useMatch(to);
+  const isActive = !!useMatch(to)
 
-    return (
-        <Link to={to}>
-            <Menu.Item
-                active={isActive}
-                children={children}
-            />
-        </Link>
-    )
+  return (
+    <Link to={to}>
+      <Menu.Item
+        active={isActive}
+      >
+        {children}
+      </Menu.Item>
+    </Link>
+  )
 }
 
-export default NavigationBarItem;
+export default NavigationBarItem

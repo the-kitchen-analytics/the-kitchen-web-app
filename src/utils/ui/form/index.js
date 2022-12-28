@@ -1,4 +1,4 @@
-import handleInputChange from "./handleInputChange";
+import handleInputChange from './handleInputChange'
 export {
-    handleInputChange
+  handleInputChange
 }

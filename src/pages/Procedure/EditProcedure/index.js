@@ -1,2 +1,2 @@
-import EditProcedure from './EditProcedure';
-export default EditProcedure;
+import EditProcedure from './EditProcedure'
+export default EditProcedure

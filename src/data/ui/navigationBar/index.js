@@ -1,5 +1,5 @@
-import navigationBarOptions from "./navigationBarOptions";
+import navigationBarOptions from './navigationBarOptions'
 
 export {
-    navigationBarOptions
+  navigationBarOptions
 }

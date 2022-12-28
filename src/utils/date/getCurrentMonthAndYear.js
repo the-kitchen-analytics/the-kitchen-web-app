@@ -1,10 +1,10 @@
-import { getCurrentDate } from "../../utils/date";
+import { getCurrentDate } from '../../utils/date'
 
 export default function getCurrentMonthAndYear() {
-    const now = getCurrentDate();
+  const now = getCurrentDate()
 
-    return Object.freeze({
-        month: now.getMonth(),
-        year: now.getFullYear()
-    });
+  return Object.freeze({
+    month: now.getMonth(),
+    year: now.getFullYear()
+  })
 }

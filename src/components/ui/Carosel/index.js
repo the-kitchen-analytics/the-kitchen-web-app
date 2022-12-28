@@ -1,3 +1,2 @@
-import Carosel from "./Carosel";
-
+import Carosel from './Carosel'
 export default Carosel

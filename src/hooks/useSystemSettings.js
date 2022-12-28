@@ -1,6 +1,6 @@
-import { useContext } from "react"
-import { ApplicationSettingsContext } from "../context/ApplicationSettingsContext"
+import { useContext } from 'react'
+import { ApplicationSettingsContext } from '../context/ApplicationSettingsContext'
 
 export default function useApplicationSettings() {
-    return useContext(ApplicationSettingsContext);
+  return useContext(ApplicationSettingsContext)
 }

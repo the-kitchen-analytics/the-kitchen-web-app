@@ -1,2 +1,2 @@
-import MonthlyDataLayout from "./MonthlyDataLayout";
-export default MonthlyDataLayout;
+import MonthlyDataLayout from './MonthlyDataLayout'
+export default MonthlyDataLayout
