@@ -5,7 +5,7 @@ import ContactUs from "./ContactUs.jsx";
 import SelectAccentColor from "./SelectAccentColorSetting.jsx";
 import contactOptions from "../../data/contactOptions.json";
 import Info from "./Info";
-import WithCurrentUser from "../../hoc/WithCurrentUser";
+import { WithCurrentUser } from "../../hoc";
 import AdminSettings from "./AdminSettings";
 import { useColorNames } from "../../hooks";
 import UserProfile from "../UserProfile";
