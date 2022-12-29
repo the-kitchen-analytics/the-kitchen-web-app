@@ -1,12 +1,12 @@
 import Avatar from './Avatar'
-import Carosel from './Carosel'
+import Carousel from './Carousel'
 import Loader from './Loader'
 import Price from './Price'
 import ErrorMessage from './ErrorMessage'
 
 export {
   Avatar,
-  Carosel,
+  Carousel,
   Loader,
   Price,
   ErrorMessage
