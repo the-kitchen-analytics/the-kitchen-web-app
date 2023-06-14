@@ -85,6 +85,7 @@ const DataTable = ({ data }) => {
     .flat()
 
   const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures)
+  const totalPrice = calculateTotalPrice(allProcedures)
 
   return (
     <Table structured celled>
@@ -103,7 +104,16 @@ const DataTable = ({ data }) => {
 
       <Table.Footer>
         <Table.Row>
-          <Table.HeaderCell colSpan={3}>Итого</Table.HeaderCell>
+          <Table.HeaderCell colSpan={2}>Итого</Table.HeaderCell>
+          <Table.HeaderCell collapsing textAlign="right">
+            <strong>
+              <PriceCell>
+                {
+                  totalPrice
+                }
+              </PriceCell>
+            </strong>
+          </Table.HeaderCell>
           <Table.HeaderCell collapsing textAlign="right">
             <strong>
               <PriceCell>
