@@ -1,5 +1,6 @@
 import { Grid } from 'semantic-ui-react'
 import DashboardLayout from '../DashboardLayout'
+import TimelinePicker from '../../TimelinePicker'
 
 const AllTimeDataLayout = ({ icon, content, children }) => (
   <DashboardLayout
@@ -7,6 +8,11 @@ const AllTimeDataLayout = ({ icon, content, children }) => (
     header="За всё время"
     subheader="Ваши данные за всё время"
   >
+    <Grid.Row>
+      <Grid.Column>
+        <TimelinePicker />
+      </Grid.Column>
+    </Grid.Row>
     <Grid.Row>
       <Grid.Column>
         {

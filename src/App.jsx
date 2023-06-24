@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
 
 import Login from './pages/Login'
 import CreateAccount from './pages/CreateAccount'
@@ -8,19 +8,34 @@ import RequireAuth from './components/RequireAuth'
 import Dashboard from './pages/Dashboard'
 import ErrorPage from './pages/ErrorPage'
 
-import { DailyTableView, MonthlyTableView, AllTimeTableView } from './pages/Tables'
-import { DailyStatisticsView, MonthlyStatisticsView, AllTimeStatisticsView } from './pages/Statistics'
+import { AllTimeTableView, DailyTableView, MonthlyTableView } from './pages/Tables'
+import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from './pages/Statistics'
 import Settings from './pages/Settings'
 import { WithCurrentUser } from './hoc'
 import PageNotFound from './pages/PageNotFound'
 import Footer from './components/Footer'
 
-import { CREATE_PROCEDURE, CREATE_RECEIPT, EDIT_PROCEDURE, EDIT_RECEIPT, PROCEDURES, routes } from './data/routePaths'
+import {
+  CREATE_PROCEDURE,
+  CREATE_RECEIPT,
+  EDIT_PROCEDURE,
+  EDIT_RECEIPT,
+  INFO,
+  PROCEDURES,
+  routes,
+  STATISTICS_ALL,
+  STATISTICS_DAILY,
+  STATISTICS_MONTHLY,
+  TABLE_ALL,
+  TABLE_DAILY,
+  TABLE_MONTHLY
+} from './data/routePaths'
 import { ApplicationSettingsContextProvider } from './context/ApplicationSettingsContext'
 import { CreateProcedure, EditProcedure, EditProcedures } from './pages/Procedure/'
 import { CreateReceipt, EditReceipt } from './pages/Receipt'
 import ScrollToTop from './components/ScrollToTop'
 import UserProfile from './pages/UserProfile'
+import InfoPage from './pages/InfoPage'
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard)
 
@@ -45,32 +60,32 @@ const App = () => (
               }
               errorElement={<ErrorPage />}
             >
-              <Route path='table'>
+              <Route path="table">
                 <Route
-                  index
+                  path={TABLE_ALL}
                   element={<AllTimeTableView />}
                 />
                 <Route
-                  path={'daily'}
+                  path={TABLE_DAILY}
                   element={<DailyTableView />}
                 />
                 <Route
-                  path={'monthly'}
+                  path={TABLE_MONTHLY}
                   element={<MonthlyTableView />}
                 />
               </Route>
 
-              <Route path='statistics'>
+              <Route path="statistics">
                 <Route
-                  index
+                  path={STATISTICS_ALL}
                   element={<AllTimeStatisticsView />}
                 />
                 <Route
-                  path={'daily'}
+                  path={STATISTICS_DAILY}
                   element={<DailyStatisticsView />}
                 />
                 <Route
-                  path={'monthly'}
+                  path={STATISTICS_MONTHLY}
                   element={<MonthlyStatisticsView />}
                 />
               </Route>
@@ -103,6 +118,11 @@ const App = () => (
               <Route
                 path={'settings'}
                 element={<Settings />}
+              />
+
+              <Route
+                path={INFO}
+                element={<InfoPage />}
               />
 
               <Route

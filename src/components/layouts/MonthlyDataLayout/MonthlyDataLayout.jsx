@@ -5,11 +5,12 @@ import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
 import { MonthSelect, YearSelect } from '../../shared/dropdown'
 import { Carousel } from '../../ui'
 import DashboardLayout from '../DashboardLayout/DashboardLayout'
+import TimelinePicker from '../../TimelinePicker'
 
 const MonthlyDataLayout = ({
   icon, content, children,
   defaultSelectedDate, selectedDate, setSelectedDate,
-  yearOptions,
+  yearOptions
 }) => {
 
   const setSelectedMonth = (month) => {
@@ -32,7 +33,12 @@ const MonthlyDataLayout = ({
       header="За месяц"
       subheader="Выберите месяц и год"
     >
-      <Grid.Row columns='equal'>
+      <Grid.Row>
+        <Grid.Column>
+          <TimelinePicker />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row columns="equal">
         <Grid.Column
           width={4}
         >

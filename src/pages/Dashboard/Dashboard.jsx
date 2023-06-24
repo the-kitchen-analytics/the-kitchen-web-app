@@ -1,17 +1,15 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Container, Grid, Segment } from 'semantic-ui-react'
-import NavigationBar from '../../components/NavigationBar'
-import { Loader, ErrorMessage } from '../../components/ui'
+import { ErrorMessage, Loader } from '../../components/ui'
 import { UserSettingsContextProvider } from '../../context/UserSettingsContext'
 import { useProcedures, useStreamReceiptData, useUserDetails } from '../../hooks'
-import { navigationBarOptions } from '../../data/ui/navigationBar'
-import { useCallback } from 'react'
-
+import NavigationMenu from '../../components/NavigationMenu'
 
 const Dashboard = ({ user: currentUser }) => {
-
-  const [data, isLoading, error] = useStreamReceiptData({ uid: currentUser.uid })
+  const [data, isLoading, error] = useStreamReceiptData({
+    uid: currentUser.uid
+  })
 
   const {
     userDetails,
@@ -20,20 +18,27 @@ const Dashboard = ({ user: currentUser }) => {
   } = useUserDetails(currentUser.uid)
 
   const procedures = useProcedures(userDetails.workerCategory)
-  const proceduresForSubmitData = procedures
-    .filter(({ workerCategory }) => workerCategory === userDetails.workerCategory)
+  const proceduresForSubmitData = procedures.filter(
+    ({ workerCategory }) => workerCategory === userDetails.workerCategory
+  )
 
-  const getProcedureById = useCallback((id) => {
-    return procedures.find(procedure => procedure.id === id)
-  }, [procedures])
+  const getProcedureById = useCallback(
+    (id) => {
+      return procedures.find((procedure) => procedure.id === id)
+    },
+    [procedures]
+  )
 
-  const getReceiptById = useCallback((id) => {
-    if (data) {
-      return data.receipts.find(receipt => receipt.id === id)
-    }
+  const getReceiptById = useCallback(
+    (id) => {
+      if (data) {
+        return data.receipts.find((receipt) => receipt.id === id)
+      }
 
-    return null
-  }, [data])
+      return null
+    },
+    [data]
+  )
 
   const outlet = useMemo(() => {
     if (isLoading) {
@@ -62,7 +67,7 @@ const Dashboard = ({ user: currentUser }) => {
           isUserDetailsLoading,
           updateUserDetails,
           getProcedureById,
-          getReceiptById,
+          getReceiptById
         }}
       />
     )
@@ -75,34 +80,20 @@ const Dashboard = ({ user: currentUser }) => {
     proceduresForSubmitData,
     updateUserDetails,
     getProcedureById,
-    getReceiptById,
+    getReceiptById
   ])
 
   return (
     <UserSettingsContextProvider>
+      <NavigationMenu />
       <Container>
         <Grid centered padded stackable>
-          {
-            error && <ErrorMessage message={error} />
-          }
+          {error && <ErrorMessage message={error} />}
           <Grid.Row>
-            <Grid.Column widescreen={4}>
-              <NavigationBar
-                title={(
-                  <strong>The Kitchen App</strong>
-                )}
-                options={navigationBarOptions}
-              />
-            </Grid.Column>
-
-            <Grid.Column stretched width={12}>
+            <Grid.Column stretched>
               <Grid.Row>
                 <Grid.Column>
-                  <Segment padded>
-                    {
-                      outlet
-                    }
-                  </Segment>
+                  <Segment padded>{outlet}</Segment>
                 </Grid.Column>
               </Grid.Row>
             </Grid.Column>
