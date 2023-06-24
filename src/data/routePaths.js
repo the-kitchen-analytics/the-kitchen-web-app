@@ -4,13 +4,13 @@ export const DASHBOARD = '/dashboard'
 const TABLE_BASE_ROUTE = `${DASHBOARD}/table`
 export const TABLE_DAILY = `${TABLE_BASE_ROUTE}/daily`
 export const TABLE_MONTHLY = `${TABLE_BASE_ROUTE}/monthly`
-export const TABLE_ALL = `${TABLE_BASE_ROUTE}`
+export const TABLE_ALL = `${TABLE_BASE_ROUTE}/all`
 
 // STATISTICS ROUTES
 const STATISTICS_BASE_ROUTE = `${DASHBOARD}/statistics`
 export const STATISTICS_DAILY = `${STATISTICS_BASE_ROUTE}/daily`
 export const STATISTICS_MONTHLY = `${STATISTICS_BASE_ROUTE}/monthly`
-export const STATISTICS_ALL = `${STATISTICS_BASE_ROUTE}`
+export const STATISTICS_ALL = `${STATISTICS_BASE_ROUTE}/all`
 
 // AUTH ROUTES
 export const LOGIN = '/login'
@@ -30,6 +30,7 @@ export const EDIT_PROCEDURE = `${PROCEDURES}/:id`
 // OTHER ROUTES
 export const SETTINGS = `${DASHBOARD}/settings`
 export const USER_PROFILE = `${DASHBOARD}/profile`
+export const INFO = `${DASHBOARD}/info`
 
 export const routes = Object.freeze({
   DASHBOARD,
@@ -50,5 +51,5 @@ export const routes = Object.freeze({
   PROCEDURES, CREATE_PROCEDURE, EDIT_PROCEDURE,
 
   // OTHER ROUTES
-  SETTINGS, USER_PROFILE
+  SETTINGS, USER_PROFILE, INFO
 })

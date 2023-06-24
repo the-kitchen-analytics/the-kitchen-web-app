@@ -4,6 +4,7 @@ import { DaySelect } from '../../shared/dropdown'
 import { buildDropdownOptions } from '../../../utils/ui/dropdown'
 import { Carousel } from '../../ui'
 import _ from 'lodash'
+import TimelinePicker from '../../TimelinePicker'
 
 const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children }) => {
 
@@ -15,7 +16,10 @@ const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children 
       header="За день"
       subheader="Выберите день"
     >
-      <Grid.Row columns='equal'>
+      <Grid.Row columns="equal">
+        <Grid.Column>
+          <TimelinePicker />
+        </Grid.Column>
         <Grid.Column
           tablet={4}
           largeScreen={4}
@@ -29,7 +33,8 @@ const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children 
           />
         </Grid.Column>
 
-        <Grid.Column width={8}
+        <Grid.Column
+          width={8}
           textAlign="right"
           floated="right"
         >
@@ -61,6 +66,5 @@ const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children 
     </DashboardLayout>
   )
 }
-
 
 export default DailyDataLayout
