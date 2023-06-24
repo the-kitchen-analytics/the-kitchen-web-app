@@ -36,8 +36,21 @@
       "error",
       "never"
     ],
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/jsx-tag-spacing": [
+      "warn",
+      {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never",
+        "beforeClosing": "allow"
+      }
+    ]
   }
 }
