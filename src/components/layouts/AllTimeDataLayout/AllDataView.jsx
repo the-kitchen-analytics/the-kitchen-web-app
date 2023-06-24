@@ -12,6 +12,8 @@ const AllTimeDataLayout = ({ icon, content, children }) => (
       <Grid.Column>
         <TimelinePicker />
       </Grid.Column>
+    </Grid.Row>
+    <Grid.Row>
       <Grid.Column>
         {
           content || children

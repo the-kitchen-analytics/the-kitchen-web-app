@@ -16,10 +16,12 @@ const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children 
       header="За день"
       subheader="Выберите день"
     >
-      <Grid.Row columns="equal">
+      <Grid.Row>
         <Grid.Column>
           <TimelinePicker />
         </Grid.Column>
+      </Grid.Row>
+      <Grid.Row columns="equal">
         <Grid.Column
           tablet={4}
           largeScreen={4}
