@@ -8,7 +8,7 @@ const MonthlyStatisticsView = () => {
   const [
     filteredData, yearOptions,
     initialSelectedDate,
-    selectedDate, setSelectedDate,
+    selectedDate, setSelectedDate
   ] = useMonthlyData(getStatisticsDataByMonthAndYear)
 
   return (
@@ -21,7 +21,7 @@ const MonthlyStatisticsView = () => {
     >
       {
         <Statistics
-          data={filteredData}
+          statisticsData={filteredData}
         />
       }
     </MonthlyDataLayout>

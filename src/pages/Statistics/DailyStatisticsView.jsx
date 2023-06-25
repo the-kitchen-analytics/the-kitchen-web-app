@@ -1,11 +1,11 @@
 import DailyDataLayout from '../../components/layouts/DailyDataLayout/DailyDataLayout'
 import Statistics from '../../components/Statistics'
-import { getStaisticsDataByDay } from '../../services/statisticsDataFilterService'
+import { getStatisticsDataByDay } from '../../services/statisticsDataFilterService'
 import { useDailyData } from '../../hooks'
 
 const DailyStatisticsView = () => {
 
-  const [statisticsData, workedDays, selectedDay, setSelectedDay] = useDailyData(getStaisticsDataByDay)
+  const [statisticsData, workedDays, selectedDay, setSelectedDay] = useDailyData(getStatisticsDataByDay)
 
   return (
     <DailyDataLayout
@@ -14,13 +14,9 @@ const DailyStatisticsView = () => {
       setSelectedDay={setSelectedDay}
       options={workedDays}
     >
-      {
-
-        <Statistics
-          data={statisticsData}
-        />
-
-      }
+      <Statistics
+        statisticsData={statisticsData}
+      />
     </DailyDataLayout>
   )
 }

@@ -1,12 +1,11 @@
-
+import _ from 'lodash'
 import { Grid, Segment, Statistic } from 'semantic-ui-react'
 import NoContent from '../../pages/NoContent'
+import StatisticsProgress from './StatisticsProgress'
 
-import _ from 'lodash'
+const Statistics = ({ progressData = [], statisticsData = [] }) => {
 
-const Statistics = ({ data = [] }) => {
-
-  if (_.isEmpty(data.flat())) {
+  if (_.isEmpty(statisticsData.flat())) {
     return (
       <Segment>
         <NoContent />
@@ -29,7 +28,7 @@ const Statistics = ({ data = [] }) => {
       <Grid padded stackable>
         <Grid.Row columns={2}>
           {
-            data.map((entries) => (
+            statisticsData.map((entries) => (
               <Grid.Column
                 key={entries.map(it => it.name).join()}
               >
@@ -45,6 +44,15 @@ const Statistics = ({ data = [] }) => {
             ))
           }
         </Grid.Row>
+        {
+          !_.isEmpty(progressData) && (
+            <Grid.Row>
+              <Grid.Column>
+                <StatisticsProgress data={progressData} />
+              </Grid.Column>
+            </Grid.Row>
+          )
+        }
       </Grid>
     </div>
   )
