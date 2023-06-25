@@ -1,4 +1,4 @@
-import { useDataFilters, useTableFilters, useStatisticsFilters } from '../hooks'
+import { useDataFilters, useStatisticsFilters, useTableFilters } from '../hooks'
 
 export default function WithDataFilters(Component, data) {
 
@@ -9,13 +9,13 @@ export default function WithDataFilters(Component, data) {
     const {
       getAllTableData,
       getTableDataByDay,
-      getTableDataByMonthAndYear,
+      getTableDataByMonthAndYear
     } = useTableFilters(dataFilters)
 
     const {
       getAllStatisticsData,
       getStatisticsDataByMonthAndYear,
-      getStaisticsDataByDay,
+      getStatisticsDataByDay
     } = useStatisticsFilters(dataFilters)
 
     const newProps = {
@@ -25,7 +25,7 @@ export default function WithDataFilters(Component, data) {
       getTableDataByMonthAndYear,
       getAllStatisticsData,
       getStatisticsDataByMonthAndYear,
-      getStaisticsDataByDay,
+      getStatisticsDataByDay
     }
 
     return (

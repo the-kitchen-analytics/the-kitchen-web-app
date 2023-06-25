@@ -1,4 +1,4 @@
-import { getDataByDay, getAllData, getDataByMonthAndYear } from './receiptFilterService'
+import { getAllData, getDataByDay, getDataByMonthAndYear } from './receiptFilterService'
 import { buildStatisticsData } from '../utils/statistics'
 
 export const getAllStatisticsData = (groupedData) =>
@@ -7,5 +7,5 @@ export const getAllStatisticsData = (groupedData) =>
 export const getStatisticsDataByMonthAndYear = (month, year, data) =>
   buildStatisticsData(getDataByMonthAndYear(month, year, data))
 
-export const getStaisticsDataByDay = (day, groupedData) =>
+export const getStatisticsDataByDay = (day, groupedData) =>
   buildStatisticsData(getDataByDay(day, groupedData))

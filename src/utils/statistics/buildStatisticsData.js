@@ -11,7 +11,7 @@ const buildStatisticsData = (rawData) => {
     .flat()
 
   const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures)
-  const operationsCount = rawData.flat().length
+  const operationCount = rawData.flat().length
   const workedDays = _.uniq(rawData.flat().map(it => it.dateFormatted))
   const daysCount = workedDays.length
 
@@ -27,7 +27,7 @@ const buildStatisticsData = (rawData) => {
       color: 'teal',
       name: 'operationsCount',
       renderLabel: () => 'Процедур произведено',
-      renderValue: () => operationsCount
+      renderValue: () => operationCount
     },
 
     {
@@ -51,7 +51,7 @@ const buildStatisticsData = (rawData) => {
           color: 'orange',
           name: 'operationsCountPerDay',
           renderLabel: () => 'Процедур в среднем за день',
-          renderValue: () => (operationsCount / daysCount).toFixed(0)
+          renderValue: () => (operationCount / daysCount).toFixed(0)
         },
 
         {
@@ -74,7 +74,7 @@ const buildStatisticsData = (rawData) => {
           renderValue: () => (
             <Price euro>
               {
-                totalWorkerIncome / operationsCount
+                totalWorkerIncome / operationCount
               }
             </Price>
           )

@@ -1,18 +1,26 @@
 import { useOutletContext } from 'react-router-dom'
 import AllTimeDataLayout from '../../components/layouts/AllTimeDataLayout'
 import Statistics from '../../components/Statistics'
-import { getAllStatisticsData } from '../../services/statisticsDataFilterService'
+import { getAllData } from '../../services/receiptFilterService'
+import buildProgressData from '../../utils/statistics/buildProgressData'
+import { buildStatisticsData } from '../../utils/statistics'
+import { getProceduresFromReceipts } from '../../utils/procedures'
 
 const AllTimeStatisticsView = () => {
 
   const { receipts } = useOutletContext()
+  const data = getAllData(receipts)
+  const procedures = getProceduresFromReceipts(data)
+  const statisticsData = buildStatisticsData(data)
+  const progressData = buildProgressData(procedures)
 
   return (
     <AllTimeDataLayout
       icon="chart bar"
     >
       <Statistics
-        data={getAllStatisticsData(receipts)}
+        progressData={progressData}
+        statisticsData={statisticsData}
       />
     </AllTimeDataLayout>
   )
