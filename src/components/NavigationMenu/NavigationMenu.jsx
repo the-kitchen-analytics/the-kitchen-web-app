@@ -36,25 +36,28 @@ const menuItems = [
 
 const NavigationMenu = () => {
   const [activeItem, setActiveItem] = useState('home')
-  const {
-    settings: { accentColor }
-  } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettings()
 
   const isActive = (item) => item.name === activeItem
 
   const handleItemClick = (item) => {
     if (isActive(item)) {
-      scrollToTop(0)
+      scrollToTop()
     }
+
     setActiveItem(item.name)
   }
 
   return (
     <Menu
       className="navigation-menu"
+      icon
       borderless
+      fluid
+      defaultActiveIndex={1}
       color={accentColor || 'black'}
       fixed="bottom"
+      size="large"
       widths={menuItems.length}
     >
       {
@@ -63,7 +66,6 @@ const NavigationMenu = () => {
             key={item.name}
             {...item}
             active={isActive(item)}
-            activeItem={activeItem}
             handleItemClick={() => handleItemClick(item)}
           />
         ))
