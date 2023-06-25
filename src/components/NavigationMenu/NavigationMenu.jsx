@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { useUserSettings } from '../../hooks'
-import { CREATE_RECEIPT, INFO, SETTINGS, STATISTICS_MONTHLY, TABLE_MONTHLY } from '../../data/routePaths'
+import { CREATE_RECEIPT, INFO, SETTINGS, STATISTICS_DAILY, TABLE_DAILY } from '../../data/routePaths'
 import NavigationMenuItem from './NavigationMenuItem'
 import './NavigationMenu.css'
 import { scrollToTop } from '../../utils/ui'
@@ -10,12 +10,12 @@ const menuItems = [
   {
     name: 'home',
     icon: 'home',
-    to: TABLE_MONTHLY
+    to: TABLE_DAILY
   },
   {
     name: 'statistics',
     icon: 'chart pie',
-    to: STATISTICS_MONTHLY
+    to: STATISTICS_DAILY
   },
   {
     name: 'create-receipt',
