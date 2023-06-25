@@ -17,6 +17,7 @@ const AllTimeStatisticsView = () => {
   return (
     <AllTimeDataLayout
       icon="chart bar"
+      header="Статистика"
     >
       <Statistics
         progressData={progressData}

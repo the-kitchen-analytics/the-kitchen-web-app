@@ -8,7 +8,7 @@ import DashboardLayout from '../DashboardLayout/DashboardLayout'
 import TimelinePicker from '../../TimelinePicker'
 
 const MonthlyDataLayout = ({
-  icon, content, children,
+  icon, header, content, children,
   defaultSelectedDate, selectedDate, setSelectedDate,
   yearOptions
 }) => {
@@ -30,8 +30,7 @@ const MonthlyDataLayout = ({
   return (
     <DashboardLayout
       icon={icon}
-      header="За месяц"
-      subheader="Выберите месяц и год"
+      header={header}
     >
       <Grid.Row>
         <Grid.Column>

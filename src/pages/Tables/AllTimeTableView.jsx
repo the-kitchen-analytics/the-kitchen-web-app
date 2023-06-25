@@ -9,7 +9,8 @@ const AllTimeTableView = () => {
 
   return (
     <AllTimeDataLayout
-      icon="table"
+      icon="home"
+      header="Главная"
     >
       <DataTable
         data={getAllTableData(receipts)}

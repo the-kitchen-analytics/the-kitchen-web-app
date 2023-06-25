@@ -7,12 +7,13 @@ const MonthlyTableView = () => {
 
   const [
     filteredData, yearOptions, initialSelectedDate,
-    selectedDate, setSelectedDate,
+    selectedDate, setSelectedDate
   ] = useMonthlyData(getTableDataByMonthAndYear)
 
   return (
     <MonthlyDataLayout
-      icon="table"
+      icon="home"
+      header="Главная"
       yearOptions={yearOptions}
       defaultSelectedDate={initialSelectedDate}
       selectedDate={selectedDate}
