@@ -71,17 +71,7 @@ const Dashboard = ({ user: currentUser }) => {
         }}
       />
     )
-  }, [
-    isLoading,
-    isUserDetailsLoading,
-    data,
-    userDetails,
-    procedures,
-    proceduresForSubmitData,
-    updateUserDetails,
-    getProcedureById,
-    getReceiptById
-  ])
+  }, [isLoading, isUserDetailsLoading, data, userDetails, procedures, updateUserDetails, getProcedureById, getReceiptById])
 
   return (
     <UserSettingsContextProvider>

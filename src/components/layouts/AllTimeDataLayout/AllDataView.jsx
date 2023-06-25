@@ -2,11 +2,10 @@ import { Grid } from 'semantic-ui-react'
 import DashboardLayout from '../DashboardLayout'
 import TimelinePicker from '../../TimelinePicker'
 
-const AllTimeDataLayout = ({ icon, content, children }) => (
+const AllTimeDataLayout = ({ icon, header, content, children }) => (
   <DashboardLayout
     icon={icon}
-    header="За всё время"
-    subheader="Ваши данные за всё время"
+    header={header}
   >
     <Grid.Row>
       <Grid.Column>

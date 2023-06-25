@@ -3,7 +3,7 @@ import { Grid, Message } from 'semantic-ui-react'
 import DashboardLayout from '../../../components/layouts/DashboardLayout'
 import CreateReceiptForm from './CreateReceiptForm'
 import ErrorMessage from '../../../components/ui/ErrorMessage'
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import { useLocalStorage, usePostData, useSessionStorage } from '../../../hooks'
 import { formatDateForDatePicker, getCurrentDate } from '../../../utils/date'
@@ -26,7 +26,7 @@ const CreateReceipt = () => {
   const initialReceipt = useMemo(() => ({
     date: formatDateForDatePicker(getCurrentDate()),
     uid: uid,
-    procedures: [],
+    procedures: []
   }), [uid])
 
   const [receipt, setReceipt] = useSessionStorage(
@@ -89,7 +89,6 @@ const CreateReceipt = () => {
     <DashboardLayout
       icon="cloud upload"
       header="Сохранить запись"
-      subheader="Сохраните ваши данные в облаке"
     >
       <Grid.Row>
         <Grid.Column>
@@ -129,7 +128,7 @@ const CreateReceipt = () => {
           />
         </Grid.Column>
       </Grid.Row>
-    </DashboardLayout >
+    </DashboardLayout>
   )
 }
 

@@ -37,7 +37,6 @@ const InfoPage = () => {
     <DashboardLayout
       icon="question circle"
       header="Информация"
-      subheader="Здесь вы можете найти способы связи и ответы на частозадаваемые вопросы"
       content={content}
     />
   )

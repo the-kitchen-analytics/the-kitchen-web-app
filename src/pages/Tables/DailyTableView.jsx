@@ -10,7 +10,8 @@ const DailyTableView = () => {
   return (
     <div className="view">
       <DailyDataLayout
-        icon="table"
+        icon="home"
+        header="Главная"
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
         options={workedDays}

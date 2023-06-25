@@ -10,6 +10,7 @@ const DailyStatisticsView = () => {
   return (
     <DailyDataLayout
       icon="chart bar"
+      header="Статистика"
       selectedDay={selectedDay}
       setSelectedDay={setSelectedDay}
       options={workedDays}

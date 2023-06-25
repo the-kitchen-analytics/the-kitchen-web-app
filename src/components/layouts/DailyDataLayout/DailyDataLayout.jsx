@@ -6,15 +6,14 @@ import { Carousel } from '../../ui'
 import _ from 'lodash'
 import TimelinePicker from '../../TimelinePicker'
 
-const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, children }) => {
+const DailyDataLayout = ({ selectedDay, setSelectedDay, options, icon, header, children }) => {
 
   const selectedDayIndex = _.indexOf(options, selectedDay)
 
   return (
     <DashboardLayout
       icon={icon}
-      header="За день"
-      subheader="Выберите день"
+      header={header}
     >
       <Grid.Row>
         <Grid.Column>
