@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
-import { Form, Divider } from 'semantic-ui-react'
+import { Divider, Form } from 'semantic-ui-react'
 import DisplayOptionsAccordition from './DisplayOptionsAccordition'
-import { useLocalStorage, useToggleState } from '../../../hooks'
+import { useLocalStorage, useToggleState, useUserSettings } from '../../../hooks'
 import { toggleSetter } from '../../../utils/ui'
 import ProceduresAccordition from './ProceduresAccordition'
 
@@ -10,12 +10,13 @@ import procedureTypes from '../../../data/procedure-types.json'
 
 const SelectProcedures = ({
   formData, setFormData,
-  accorditionActiveIndex, setAccorditionActiveIndex,
+  accorditionActiveIndex,
+  setAccorditionActiveIndex,
   procedures,
   shouldRedirectToHomePageAfterSubmit,
   setShouldRedirectToHomePageAfterSubmit,
   shouldDisplayPreview,
-  setShouldDisplayPreview,
+  setShouldDisplayPreview
 }) => {
 
   const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures])
@@ -23,6 +24,11 @@ const SelectProcedures = ({
   const [shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures] = useToggleState(false)
 
   const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', false)
+  const { settings: { useNewProcedures }, setSetting } = useUserSettings()
+
+  const toggleShouldUseNewProcedures = () => {
+    setSetting('useNewProcedures', !useNewProcedures)
+  }
 
   const halfPartProceduresFilter = useCallback((procedure) => {
     if (!shouldDisplayHalfPartProcedures) {
@@ -38,10 +44,16 @@ const SelectProcedures = ({
 
   const displayOptions = useMemo(() => ([
     {
+      key: 'shouldUseNewProcedures',
+      label: 'Показывать новые цены',
+      checked: useNewProcedures,
+      onChange: toggleShouldUseNewProcedures
+    },
+    {
       key: 'shouldDisplayHalfPartProcedures',
       label: 'Показывать 1/2 услуги',
       checked: shouldDisplayHalfPartProcedures,
-      onChange: toggleShouldDisplayHalfPartProcedures,
+      onChange: toggleShouldDisplayHalfPartProcedures
     },
     {
       key: 'shouldDisplayPreview',
@@ -60,12 +72,12 @@ const SelectProcedures = ({
       label: 'Переходить на главную после отправки формы',
       checked: shouldRedirectToHomePageAfterSubmit,
       onChange: () => toggleSetter(setShouldRedirectToHomePageAfterSubmit)
-    },
+    }
   ]), [
     shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures,
     shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice,
     shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit,
-    shouldDisplayPreview, setShouldDisplayPreview,
+    shouldDisplayPreview, setShouldDisplayPreview
   ])
 
   const addProcedure = useCallback((procedure) => {
