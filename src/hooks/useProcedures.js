@@ -1,32 +1,19 @@
-import { useState, useEffect } from 'react'
-import { mapFirebaseEntityToProcedure } from '../mappers/procedure'
-import { streamProcedures } from '../services/proceduresService'
+import { useMemo } from 'react'
+import { useFetchData } from './index'
+import { getProceduresByWorkerCategory } from '../services/proceduresService'
+import { getProceduresV2ByWorkerCategory } from '../services/proceduresServiceV2'
 
+const useProcedures = (workerCategory, useNewProcedures = false) => {
+  const fetchFunction = useMemo(() => useNewProcedures
+    ? () => getProceduresV2ByWorkerCategory(workerCategory)
+    : () => getProceduresByWorkerCategory(workerCategory),
+  [useNewProcedures, workerCategory])
 
-const useProcedures = () => {
+  const { data } = useFetchData(fetchFunction)
 
-  const [procedures, setProcedures] = useState([])
-  const [, setIsLoading] = useState(false)
-  const [, setError] = useState()
-
-  useEffect(() => {
-    const unsubscribe = streamProcedures(
-      (querySnapshot) => {
-        setIsLoading(true)
-
-        setProcedures(querySnapshot.docs.map(mapFirebaseEntityToProcedure))
-
-        setIsLoading(false)
-      },
-      error => {
-        setError(error)
-        setIsLoading(false)
-      }
-    )
-    return unsubscribe
-  }, [])
-
-  return procedures
+  return Array.isArray(data)
+    ? data
+    : []
 }
 
 export default useProcedures

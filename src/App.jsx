@@ -36,106 +36,109 @@ import { CreateReceipt, EditReceipt } from './pages/Receipt'
 import ScrollToTop from './components/ScrollToTop'
 import UserProfile from './pages/UserProfile'
 import InfoPage from './pages/InfoPage'
+import { UserSettingsContextProvider } from './context/UserSettingsContext'
 
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard)
 
 const App = () => (
   <div className="app">
     <ApplicationSettingsContextProvider>
-      <Router>
-        <ScrollToTop>
-          <Routes>
-            <Route index element={<Navigate to={'/dashboard/table/daily'} />} />
+      <UserSettingsContextProvider>
+        <Router>
+          <ScrollToTop>
+            <Routes>
+              <Route index element={<Navigate to={'/dashboard/table/daily'} />} />
 
-            <Route path={routes.LOGIN} element={<Login />} />
-            <Route path={routes.REGISTER} element={<CreateAccount />} />
-            <Route path={routes.RESET_PASSWORD} element={<ResetPassword />} />
+              <Route path={routes.LOGIN} element={<Login />} />
+              <Route path={routes.REGISTER} element={<CreateAccount />} />
+              <Route path={routes.RESET_PASSWORD} element={<ResetPassword />} />
 
-            <Route
-              path={routes.DASHBOARD}
-              element={
-                <RequireAuth>
-                  <DashboardWithCurrentUser />
-                </RequireAuth>
-              }
-              errorElement={<ErrorPage />}
-            >
-              <Route path="table">
+              <Route
+                path={routes.DASHBOARD}
+                element={
+                  <RequireAuth>
+                    <DashboardWithCurrentUser />
+                  </RequireAuth>
+                }
+                errorElement={<ErrorPage />}
+              >
+                <Route path="table">
+                  <Route
+                    path={TABLE_ALL}
+                    element={<AllTimeTableView />}
+                  />
+                  <Route
+                    path={TABLE_DAILY}
+                    element={<DailyTableView />}
+                  />
+                  <Route
+                    path={TABLE_MONTHLY}
+                    element={<MonthlyTableView />}
+                  />
+                </Route>
+
+                <Route path="statistics">
+                  <Route
+                    path={STATISTICS_ALL}
+                    element={<AllTimeStatisticsView />}
+                  />
+                  <Route
+                    path={STATISTICS_DAILY}
+                    element={<DailyStatisticsView />}
+                  />
+                  <Route
+                    path={STATISTICS_MONTHLY}
+                    element={<MonthlyStatisticsView />}
+                  />
+                </Route>
+
                 <Route
-                  path={TABLE_ALL}
-                  element={<AllTimeTableView />}
+                  path={EDIT_RECEIPT}
+                  element={<EditReceipt />}
                 />
+
                 <Route
-                  path={TABLE_DAILY}
-                  element={<DailyTableView />}
+                  path={CREATE_RECEIPT}
+                  element={<CreateReceipt />}
                 />
+
                 <Route
-                  path={TABLE_MONTHLY}
-                  element={<MonthlyTableView />}
+                  path={PROCEDURES}
+                  element={<EditProcedures />}
+                />
+
+                <Route
+                  path={CREATE_PROCEDURE}
+                  element={<CreateProcedure />}
+                />
+
+                <Route
+                  path={EDIT_PROCEDURE}
+                  element={<EditProcedure />}
+                />
+
+                <Route
+                  path={'settings'}
+                  element={<Settings />}
+                />
+
+                <Route
+                  path={INFO}
+                  element={<InfoPage />}
+                />
+
+                <Route
+                  path={'profile'}
+                  element={<UserProfile />}
                 />
               </Route>
 
-              <Route path="statistics">
-                <Route
-                  path={STATISTICS_ALL}
-                  element={<AllTimeStatisticsView />}
-                />
-                <Route
-                  path={STATISTICS_DAILY}
-                  element={<DailyStatisticsView />}
-                />
-                <Route
-                  path={STATISTICS_MONTHLY}
-                  element={<MonthlyStatisticsView />}
-                />
-              </Route>
-
-              <Route
-                path={EDIT_RECEIPT}
-                element={<EditReceipt />}
-              />
-
-              <Route
-                path={CREATE_RECEIPT}
-                element={<CreateReceipt />}
-              />
-
-              <Route
-                path={PROCEDURES}
-                element={<EditProcedures />}
-              />
-
-              <Route
-                path={CREATE_PROCEDURE}
-                element={<CreateProcedure />}
-              />
-
-              <Route
-                path={EDIT_PROCEDURE}
-                element={<EditProcedure />}
-              />
-
-              <Route
-                path={'settings'}
-                element={<Settings />}
-              />
-
-              <Route
-                path={INFO}
-                element={<InfoPage />}
-              />
-
-              <Route
-                path={'profile'}
-                element={<UserProfile />}
-              />
-            </Route>
-
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </ScrollToTop>
-      </Router>
-      <Footer />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </ScrollToTop>
+        </Router>
+        <Footer />
+      </UserSettingsContextProvider>
     </ApplicationSettingsContextProvider>
   </div>
 )

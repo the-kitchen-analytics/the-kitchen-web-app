@@ -2,8 +2,7 @@ import { useCallback, useMemo } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Container, Grid, Segment } from 'semantic-ui-react'
 import { ErrorMessage, Loader } from '../../components/ui'
-import { UserSettingsContextProvider } from '../../context/UserSettingsContext'
-import { useProcedures, useStreamReceiptData, useUserDetails } from '../../hooks'
+import { useProcedures, useStreamReceiptData, useUserDetails, useUserSettings } from '../../hooks'
 import NavigationMenu from '../../components/NavigationMenu'
 
 const Dashboard = ({ user: currentUser }) => {
@@ -17,7 +16,10 @@ const Dashboard = ({ user: currentUser }) => {
     isLoading: isUserDetailsLoading
   } = useUserDetails(currentUser.uid)
 
-  const procedures = useProcedures(userDetails.workerCategory)
+  const { settings: { useNewProcedures } } = useUserSettings()
+  const procedures = useProcedures(userDetails.workerCategory, useNewProcedures)
+
+  console.debug('procedures', procedures)
   const proceduresForSubmitData = procedures.filter(
     ({ workerCategory }) => workerCategory === userDetails.workerCategory
   )
@@ -74,7 +76,7 @@ const Dashboard = ({ user: currentUser }) => {
   }, [isLoading, isUserDetailsLoading, data, userDetails, procedures, updateUserDetails, getProcedureById, getReceiptById])
 
   return (
-    <UserSettingsContextProvider>
+    <>
       <NavigationMenu />
       <Container>
         <Grid centered padded stackable>
@@ -90,7 +92,7 @@ const Dashboard = ({ user: currentUser }) => {
           </Grid.Row>
         </Grid>
       </Container>
-    </UserSettingsContextProvider>
+    </>
   )
 }
 

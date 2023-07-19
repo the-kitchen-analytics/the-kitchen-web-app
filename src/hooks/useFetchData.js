@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from 'react'
 
 
-const useFetchData = (fetchFunction) => {
+const useFetchData = (fetchFunction, deps = []) => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState({})
@@ -22,7 +22,7 @@ const useFetchData = (fetchFunction) => {
       setIsLoading(false)
     }
 
-  }, [fetchFunction])
+  }, [...deps, fetchFunction])
 
   useEffect(() => {
     fetchData()

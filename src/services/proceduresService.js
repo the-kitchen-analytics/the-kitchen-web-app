@@ -49,7 +49,10 @@ export const addAllProcedures = (procedures) => {
 export const getProceduresByWorkerCategory = async (workerCategory) => {
   console.debug('getProceduresByWorkerCategory', workerCategory)
 
-  const q = query(getCollection(), where('workerCategory', '==', workerCategory))
+  const q = query(
+    getCollection(),
+    where('workerCategory', '==', workerCategory),
+    orderBy('name'))
   const snapshot = await getDocs(q)
 
   return getDocsData(snapshot)
