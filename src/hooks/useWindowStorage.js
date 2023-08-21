@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * refence: https://usehooks.com/useLocalStorage/
- * @param {string} key 
- * @param {*} initialValue 
- * @returns 
+ * @param {Storage} windowStorage
+ * @param {string} key
+ * @param {*} initialValue
+ * @returns
  */
 const useWindowStorage = (windowStorage, key, initialValue) => {
+
+  useEffect(() => {
+    setInitialValue(windowStorage, key, initialValue)
+  }, [windowStorage, key, initialValue])
+
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState(() => {
@@ -44,6 +50,20 @@ const useWindowStorage = (windowStorage, key, initialValue) => {
   }
 
   return [storedValue, setValue]
+}
+
+const setInitialValue = (windowStorage, key, value) => {
+  if ([windowStorage, key, value].some(v => typeof v === 'undefined')) {
+    return
+  }
+
+  try {
+    if (windowStorage.getItem(key) == null) {
+      windowStorage.setItem(key, JSON.stringify(value))
+    }
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export default useWindowStorage

@@ -23,7 +23,7 @@ const SelectProcedures = ({
 
   const [shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures] = useToggleState(false)
 
-  const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', false)
+  const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', true)
   const { settings: { useNewProcedures }, setSetting } = useUserSettings()
 
   const toggleShouldUseNewProcedures = () => {
