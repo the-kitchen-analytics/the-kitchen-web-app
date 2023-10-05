@@ -1,17 +1,14 @@
-import { useEffect } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import LoginForm from './LoginForm'
-
-import { auth, signInWithGoogle, signInWithEmailAndPassword } from '../../config/firebase'
-import { useState } from 'react'
 import FormLayout from '../../components/layouts/FormLayout'
-import { usePostData } from '../../hooks'
+import { useAuth, usePostData } from '../../hooks'
+import { logIn } from '../../services/authenticationService'
 
 const Login = () => {
 
-  const [user] = useAuthState(auth)
+  const [user] = useAuth()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -28,16 +25,11 @@ const Login = () => {
     }
   }, [user, navigate])
 
-  const handleLoginWithEmailAndPassword = (e) => {
+  const handleLoginWithEmailAndPassword = async (e) => {
     e.preventDefault()
 
     const { email, password } = formData
-    makeRequest(signInWithEmailAndPassword, email, password)
-  }
-
-  const handleLoginWithGoogle = (e) => {
-    e.preventDefault()
-    makeRequest(signInWithGoogle)
+    await makeRequest(logIn, email, password)
   }
 
   return (
@@ -51,7 +43,6 @@ const Login = () => {
           formData={formData}
           setFormData={setFormData}
           handleLoginWithEmailAndPassword={handleLoginWithEmailAndPassword}
-          handleLoginWithGoogle={handleLoginWithGoogle}
           isLoading={isLoading}
           hasError={error}
         />

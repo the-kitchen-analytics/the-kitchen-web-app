@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { logout } from '../../config/firebase'
 import { useUserSettings } from '../../hooks'
 import { Button } from 'semantic-ui-react'
+import { logOut } from '../../services/authenticationService'
 
 const CONFIRM_LOGOUT_MESSAGE = 'Вы действительно хотите выйти?'
 
@@ -9,11 +9,11 @@ const LogoutButton = (props) => {
 
   const { settings: { controlsSize } } = useUserSettings()
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
     if (window.confirm(CONFIRM_LOGOUT_MESSAGE)) {
       console.debug('log out')
       localStorage.clear()
-      logout()
+      await logOut()
     }
   }
 

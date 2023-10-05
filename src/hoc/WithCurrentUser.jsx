@@ -1,11 +1,10 @@
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '../config/firebase'
+import { useAuth } from '../hooks'
 
 export default function WithCurrentUser(Component) {
 
   return function WithLoadingComponent({ ...props }) {
 
-    const [user, loading, error] = useAuthState(auth)
+    const [user, loading, error] = useAuth()
 
     if (loading) {
       return (

@@ -9,7 +9,6 @@ const LoginForm = ({
   formData: { email, password },
   setFormData,
   handleLoginWithEmailAndPassword,
-  // handleLoginWithGoogle,
   isLoading,
   error
 }) => {
@@ -33,27 +32,27 @@ const LoginForm = ({
     >
       <Form.Field>
         <Form.Input
-          icon='at'
-          iconPosition='left'
+          icon="at"
+          iconPosition="left"
           label="Электронная почта"
           name="email"
           value={email}
           onChange={handleInputChangeWrapper}
-          placeholder='Эл. почта'
-          autoComplete='email'
+          placeholder="Эл. почта"
+          autoComplete="email"
         />
       </Form.Field>
       <Form.Field>
         <Form.Input
-          icon='key'
-          iconPosition='left'
+          icon="key"
+          iconPosition="left"
           label="Пароль"
           type="password"
           name="password"
           value={password}
           onChange={handleInputChangeWrapper}
-          placeholder='Пароль'
-          autoComplete='current-password'
+          placeholder="Пароль"
+          autoComplete="current-password"
         />
       </Form.Field>
 
@@ -62,29 +61,13 @@ const LoginForm = ({
           fluid
           loading={isLoading}
           disabled={shouldDisableSubmitButton()}
-          icon='sign in'
-          type='submit'
+          icon="sign in"
+          type="submit"
           onClick={handleLoginWithEmailAndPassword}
-          content='Войти'
+          content="Войти"
           size={controlsSize}
         />
       </Form.Field>
-      {/* 
-            <Divider horizontal>Или</Divider>
-
-            <Form.Field>
-                <LoadableButton
-                    fluid
-                    primary
-                    loading={isLoading}
-                    disabled={isLoading}
-                    icon='google'
-                    type='button'
-                    onClick={handleLoginWithGoogle}
-                    content="Войти с Google"
-                    size={controlsSize}
-                />
-            </Form.Field> */}
 
       <Divider />
 

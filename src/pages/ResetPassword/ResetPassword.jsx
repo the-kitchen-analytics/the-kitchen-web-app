@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import FormLayout from '../../components/layouts/FormLayout'
-import { sendPasswordReset } from '../../config/firebase'
 import ResetPasswordForm from './ResetPasswordForm'
 import { usePostData } from '../../hooks'
+import { resetPassword } from '../../services/authenticationService'
 
 export default function ResetPassword() {
 
@@ -20,7 +20,7 @@ export default function ResetPassword() {
     e.preventDefault()
     const { email } = formData
 
-    await makeRequest(sendPasswordReset, email)
+    await makeRequest(resetPassword, email)
 
     if (!error) {
       navigate('/')

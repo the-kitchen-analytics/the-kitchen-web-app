@@ -1,14 +1,12 @@
-
 import { Navigate, useLocation } from 'react-router-dom'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '../../config/firebase'
 import { Loader } from '../ui'
 import { Message } from 'semantic-ui-react'
 import { LOGIN } from '../../data/routePaths'
+import { useAuth } from '../../hooks'
 
 const RequireAuth = ({ children }) => {
 
-  const [user, loading, error] = useAuthState(auth)
+  const [user, loading, error] = useAuth()
   const location = useLocation()
 
   if (loading) {
