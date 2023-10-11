@@ -5,7 +5,6 @@ import {
   where,
   getDocs,
   updateDoc,
-  deleteDoc,
 } from 'firebase/firestore'
 
 import { db } from '../config/firebase'
@@ -35,8 +34,4 @@ export const createUserDetails = (userDetails) => {
 
 export const updateUserDetails = (ref, payload) => {
   return updateDoc(ref, payload)
-}
-
-export const deleteUserDetails = (ref) => {
-  return deleteDoc(ref)
 }
