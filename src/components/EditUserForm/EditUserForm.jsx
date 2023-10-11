@@ -11,13 +11,13 @@ const EditUserForm = ({
   isLoading,
   handleResetButtonClick,
   shouldDisableSubmitButton,
-  shouldDisableResetButton,
+  shouldDisableResetButton
 }) => {
 
   const { settings: { controlsSize, accentColor } } = useUserSettings()
 
   const {
-    displayName,
+    name,
     email,
     workerCategory,
     description
@@ -42,15 +42,15 @@ const EditUserForm = ({
     >
       <Form.Input
         required
-        name="displayName"
+        name="name"
         type="text"
         label="Имя"
         placeholder="Имя"
-        value={displayName}
+        value={name}
         onChange={handleInputChangeWrapper}
       />
 
-      <Form.Group widths='equal'>
+      <Form.Group widths="equal">
         <Form.Input
           required
           disabled
@@ -80,7 +80,7 @@ const EditUserForm = ({
         onChange={handleInputChangeWrapper}
       />
 
-      <Form.Group widths='equal'>
+      <Form.Group widths="equal">
         <Form.Button
           fluid
           icon="cancel"

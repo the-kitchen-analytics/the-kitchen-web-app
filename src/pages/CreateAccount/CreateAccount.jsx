@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import FormLayout from '../../components/layouts/FormLayout'
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../config/firebase'
-import { usePostData } from '../../hooks'
+import { useAuth, usePostData } from '../../hooks'
 import CreateAccountForm from './CreateAccountForm'
+import { register } from '../../services/authenticationService'
 
 export default function CreateAccount() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    workerCategory: '',
+    workerCategory: ''
   })
 
   const [isLoading, error, makeRequest] = usePostData()
 
-  const [user] = useAuthState(auth)
+  const [user] = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -30,15 +25,9 @@ export default function CreateAccount() {
     }
   }, [user, navigate])
 
-  const handleRegisterWithMailAndPassword = (e) => {
+  const handleRegisterWithMailAndPassword = async (e) => {
     e.preventDefault()
-    const { name, email, password, workerCategory } = formData
-    makeRequest(registerWithEmailAndPassword, name, email, password, workerCategory)
-  }
-
-  const handleSignUpWithGoogle = (e) => {
-    e.preventDefault()
-    makeRequest(signInWithGoogle)
+    await makeRequest(register, formData)
   }
 
   return (
@@ -54,9 +43,7 @@ export default function CreateAccount() {
           isLoading={isLoading}
           error={error}
           handleRegisterWithMailAndPassword={handleRegisterWithMailAndPassword}
-          handleSignUpWithGoogle={handleSignUpWithGoogle}
         />
-
       </FormLayout>
     </Container>
   )

@@ -1,21 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-  onAuthStateChanged,
-  updateProfile,
-} from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 
-import {
-  getFirestore,
-} from 'firebase/firestore'
-import { createUserDetails } from '../services/userDetailsService'
+import { getFirestore } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,46 +23,7 @@ const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const db = getFirestore(app)
 
-const googleProvider = new GoogleAuthProvider()
-
-const signInWithGoogle = async () => {
-  await signInWithPopup(auth, googleProvider)
-}
-
-const logInWithEmailAndPassword = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password)
-}
-
-const registerWithEmailAndPassword = async (name, email, password, workerCategory) => {
-  const { user } = await createUserWithEmailAndPassword(auth, email, password)
-
-  await Promise.all(
-    updateProfile(user, { displayName: name }),
-    createUserDetails({
-      uid: user.uid,
-      name,
-      displayName: name,
-      email,
-      workerCategory,
-    })
-  )
-}
-
-const sendPasswordReset = (email) => {
-  return sendPasswordResetEmail(auth, email)
-}
-
-const logout = () => {
-  signOut(auth)
-}
-
 export {
   auth,
-  db,
-  signInWithGoogle,
-  logInWithEmailAndPassword as signInWithEmailAndPassword,
-  registerWithEmailAndPassword,
-  sendPasswordReset,
-  logout,
-  onAuthStateChanged
+  db
 }

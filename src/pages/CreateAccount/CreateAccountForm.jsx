@@ -10,8 +10,7 @@ const CreateAccountForm = ({
   setFormData,
   isLoading,
   error,
-  handleRegisterWithMailAndPassword,
-  // handleSignUpWithGoogle
+  handleRegisterWithMailAndPassword
 }) => {
 
   const { settings: { controlsSize } } = useApplicationSettings()
@@ -86,20 +85,6 @@ const CreateAccountForm = ({
         loading={isLoading}
         disabled={shouldDisableSubmitButton()}
       />
-
-      {/* <Divider horizontal>Или</Divider>
-
-            <Form.Button
-                fluid
-                primary
-                loading={isLoading}
-                disabled={isLoading}
-                icon='google'
-                type='button'
-                onClick={handleSignUpWithGoogle}
-                content="Войти с Google"
-                size={controlsSize}
-            /> */}
 
       <Form.Field>
         Уже есть аккаунт? <Link to="/">Войти</Link>.

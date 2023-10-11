@@ -68,7 +68,7 @@ const UserProfile = () => {
         size={controlsSize}>
         <Icon name="user circle" />
         <Header.Content>
-          {userDetails.displayName}
+          {userDetails.name}
         </Header.Content>
 
         <Header.Subheader>

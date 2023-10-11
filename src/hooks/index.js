@@ -18,6 +18,7 @@ import useDailyData from './useDailyData'
 import useMonthlyData from './useMonthlyData'
 import useUserDetails from './useUserDetails'
 import useProcedures from './useProcedures'
+import useAuth from './useAuth'
 
 export {
   useDataFilters,
@@ -40,4 +41,5 @@ export {
   useMonthlyData,
   useUserDetails,
   useProcedures,
+  useAuth
 }
