@@ -7,6 +7,7 @@ import { toggleSetter } from '../../../utils/ui'
 import ProceduresAccordition from './ProceduresAccordition'
 
 import procedureTypes from '../../../data/procedure-types.json'
+import { halfPartProceduresMapper } from '../../../utils/procedures'
 
 const SelectProcedures = ({
   formData, setFormData,
@@ -25,13 +26,13 @@ const SelectProcedures = ({
 
   const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', true)
 
-  const halfPartProceduresFilter = useCallback((procedure) => {
-    if (!shouldDisplayHalfPartProcedures) {
-      return !procedure.name.startsWith('1/2')
+  const halfPartProceduresMapperFn = useCallback((procedure) => {
+    if (selectedIds.includes(procedure.id)) {
+      return { ...formData.procedures.find(({ id }) => procedure.id === id) }
     }
 
-    return true
-  }, [shouldDisplayHalfPartProcedures])
+    return halfPartProceduresMapper(procedure, shouldDisplayHalfPartProcedures)
+  }, [shouldDisplayHalfPartProcedures, formData.procedures])
 
   const getTypeFilter = useCallback((type) => {
     return it => it.type === type
@@ -105,9 +106,9 @@ const SelectProcedures = ({
       procedureType.displayName,
       procedures
         .filter(getTypeFilter(procedureType.name))
-        .filter(halfPartProceduresFilter)
+        .map(halfPartProceduresMapperFn)
     ))
-  }, [createAccorditionItem, getTypeFilter, halfPartProceduresFilter, procedures])
+  }, [createAccorditionItem, getTypeFilter, halfPartProceduresMapperFn, procedures])
 
   return (
     <Form.Group grouped required>
