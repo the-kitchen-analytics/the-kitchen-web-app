@@ -2,7 +2,6 @@ import { Grid } from 'semantic-ui-react'
 import DashboardLayout from '../../components/layouts/DashboardLayout'
 import ClearCache from './ClearCache.jsx'
 import SelectAccentColor from './SelectAccentColorSetting.jsx'
-import AdminSettings from './AdminSettings'
 import { useColorNames } from '../../hooks'
 import UserProfile from '../UserProfile'
 
@@ -26,10 +25,6 @@ const Settings = () => {
     {
       key: 'clear-cache',
       element: <ClearCache />
-    },
-    {
-      key: 'admin-settings',
-      element: <AdminSettings />
     }
   ]
 

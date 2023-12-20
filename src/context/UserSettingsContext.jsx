@@ -9,8 +9,7 @@ const UserSettingsContextProvider = ({ children }) => {
   const { settings: systemSettings } = useApplicationSettings()
 
   const [settings, setSettings] = useLocalStorage('userSettings', {
-    accentColor: getRandomFancyColorName(),
-    useNewProcedures: false
+    accentColor: getRandomFancyColorName()
   })
 
   const setSettingsWrapper = (name, value) => {

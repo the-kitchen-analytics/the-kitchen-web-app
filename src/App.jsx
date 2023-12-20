@@ -16,12 +16,9 @@ import PageNotFound from './pages/PageNotFound'
 import Footer from './components/Footer'
 
 import {
-  CREATE_PROCEDURE,
   CREATE_RECEIPT,
-  EDIT_PROCEDURE,
   EDIT_RECEIPT,
   INFO,
-  PROCEDURES,
   routes,
   STATISTICS_ALL,
   STATISTICS_DAILY,
@@ -31,7 +28,6 @@ import {
   TABLE_MONTHLY
 } from './data/routePaths'
 import { ApplicationSettingsContextProvider } from './context/ApplicationSettingsContext'
-import { CreateProcedure, EditProcedure, EditProcedures } from './pages/Procedure/'
 import { CreateReceipt, EditReceipt } from './pages/Receipt'
 import ScrollToTop from './components/ScrollToTop'
 import UserProfile from './pages/UserProfile'
@@ -100,21 +96,6 @@ const App = () => (
                 <Route
                   path={CREATE_RECEIPT}
                   element={<CreateReceipt />}
-                />
-
-                <Route
-                  path={PROCEDURES}
-                  element={<EditProcedures />}
-                />
-
-                <Route
-                  path={CREATE_PROCEDURE}
-                  element={<CreateProcedure />}
-                />
-
-                <Route
-                  path={EDIT_PROCEDURE}
-                  element={<EditProcedure />}
                 />
 
                 <Route

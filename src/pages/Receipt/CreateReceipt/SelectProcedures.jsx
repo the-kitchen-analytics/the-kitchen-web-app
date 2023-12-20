@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
 import DisplayOptionsAccordition from './DisplayOptionsAccordition'
-import { useLocalStorage, useToggleState, useUserSettings } from '../../../hooks'
+import { useLocalStorage, useToggleState } from '../../../hooks'
 import { toggleSetter } from '../../../utils/ui'
 import ProceduresAccordition from './ProceduresAccordition'
 
@@ -24,11 +24,6 @@ const SelectProcedures = ({
   const [shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures] = useToggleState(false)
 
   const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', true)
-  const { settings: { useNewProcedures }, setSetting } = useUserSettings()
-
-  const toggleShouldUseNewProcedures = () => {
-    setSetting('useNewProcedures', !useNewProcedures)
-  }
 
   const halfPartProceduresFilter = useCallback((procedure) => {
     if (!shouldDisplayHalfPartProcedures) {
@@ -43,12 +38,6 @@ const SelectProcedures = ({
   }, [])
 
   const displayOptions = useMemo(() => ([
-    {
-      key: 'shouldUseNewProcedures',
-      label: 'Показывать новые цены',
-      checked: useNewProcedures,
-      onChange: toggleShouldUseNewProcedures
-    },
     {
       key: 'shouldDisplayHalfPartProcedures',
       label: 'Показывать 1/2 услуги',
