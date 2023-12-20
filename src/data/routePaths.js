@@ -24,8 +24,6 @@ export const EDIT_RECEIPT = `${RECEIPTS}/:id`
 
 // PROCEDURES
 export const PROCEDURES = `${DASHBOARD}/procedures`
-export const CREATE_PROCEDURE = `${PROCEDURES}/create`
-export const EDIT_PROCEDURE = `${PROCEDURES}/:id`
 
 // OTHER ROUTES
 export const SETTINGS = `${DASHBOARD}/settings`
@@ -46,9 +44,6 @@ export const routes = Object.freeze({
 
   // RECEIPTS
   RECEIPTS, CREATE_RECEIPT, EDIT_RECEIPT,
-
-  // PROCEDURES
-  PROCEDURES, CREATE_PROCEDURE, EDIT_PROCEDURE,
 
   // OTHER ROUTES
   SETTINGS, USER_PROFILE, INFO

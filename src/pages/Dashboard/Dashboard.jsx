@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Container, Grid, Segment } from 'semantic-ui-react'
 import { ErrorMessage, Loader } from '../../components/ui'
-import { useProcedures, useStreamReceiptData, useUserDetails, useUserSettings } from '../../hooks'
+import { useProcedures, useStreamReceiptData, useUserDetails } from '../../hooks'
 import NavigationMenu from '../../components/NavigationMenu'
 
 const Dashboard = ({ user: currentUser }) => {
@@ -16,8 +16,7 @@ const Dashboard = ({ user: currentUser }) => {
     isLoading: isUserDetailsLoading
   } = useUserDetails(currentUser.uid)
 
-  const { settings: { useNewProcedures } } = useUserSettings()
-  const procedures = useProcedures(userDetails.workerCategory, useNewProcedures)
+  const procedures = useProcedures(userDetails.workerCategory)
 
   console.debug('procedures', procedures)
   const proceduresForSubmitData = procedures.filter(

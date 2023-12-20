@@ -1,13 +1,9 @@
-import { useMemo } from 'react'
 import { useFetchData } from './index'
-import { getProceduresByWorkerCategory } from '../services/proceduresService'
 import { getProceduresV2ByWorkerCategory } from '../services/proceduresServiceV2'
+import { useCallback } from 'react'
 
-const useProcedures = (workerCategory, useNewProcedures = false) => {
-  const fetchFunction = useMemo(() => useNewProcedures
-    ? () => getProceduresV2ByWorkerCategory(workerCategory)
-    : () => getProceduresByWorkerCategory(workerCategory),
-  [useNewProcedures, workerCategory])
+const useProcedures = (workerCategory) => {
+  const fetchFunction = useCallback(() => getProceduresV2ByWorkerCategory(workerCategory), [workerCategory])
 
   const { data } = useFetchData(fetchFunction)
 
