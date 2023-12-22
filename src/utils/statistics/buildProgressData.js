@@ -26,7 +26,5 @@ const mapEntry = ([key, value]) => ({
   totalPriceAfterTaxes: _.sumBy(value, item => item.priceAfterTaxes)
 })
 
-const buildProgressData = (data) => Object.entries(groupDataByType(data))
+export const buildProgressData = (data) => Object.entries(groupDataByType(data))
   .map(mapEntry)
-
-export default buildProgressData

@@ -1,6 +1,6 @@
-const getLocalStorageSize = () => {
+export const getLocalStorageSize = () => {
 
-  var _lsTotal = 0,
+  let _lsTotal = 0,
     _xLen, _x
 
   for (_x in localStorage) {
@@ -13,5 +13,3 @@ const getLocalStorageSize = () => {
 
   return (_lsTotal / 1024).toFixed(2)
 }
-
-export default getLocalStorageSize

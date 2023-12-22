@@ -1,4 +1,1 @@
-import getWorkerCategoryDisplayName from './getWorkerCategoryDisplayName'
-export {
-  getWorkerCategoryDisplayName,
-}
+export * from './getWorkerCategoryDisplayName'

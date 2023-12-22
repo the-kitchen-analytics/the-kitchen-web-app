@@ -1,7 +1,7 @@
 
 import { Dropdown } from 'semantic-ui-react'
 import { useUserSettings } from '../../../../hooks'
-import { getMonthOptions } from '../../../../utils/ui/dropdown'
+import { getMonthOptions } from '../../../../utils/ui'
 
 const MonthSelect = ({ value, handleChange, options, disabled }) => {
 

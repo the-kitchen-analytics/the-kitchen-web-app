@@ -1,11 +1,9 @@
-import getDocData from './getDocData'
+import { getDocData } from './'
 
-const getDocsData = (snapshot) => {
+export const getDocsData = (snapshot) => {
   if (snapshot.empty) {
     return []
   }
 
   return snapshot.docs.map(getDocData)
 }
-
-export default getDocsData

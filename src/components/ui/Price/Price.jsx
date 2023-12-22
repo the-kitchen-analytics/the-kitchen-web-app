@@ -1,7 +1,11 @@
-import _ from 'lodash'
+import { buildPrice } from '../../../utils/money'
 
-const Price = ({ children, euro, fixed = 2 }) => (
-  <>{euro ? '€' : ''} {_.isNumber(children) ? children.toFixed(fixed) : 'NaN'}</>
+const Price = ({ children, euro }) => (
+  <>
+    {
+      buildPrice(children, euro ? '€' : '')
+    }
+  </>
 )
 
 export default Price

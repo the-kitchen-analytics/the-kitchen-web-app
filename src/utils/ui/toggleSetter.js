@@ -1,2 +1,1 @@
-const toggleSetter = (setterFunction) => setterFunction(val => !val)
-export default toggleSetter
+export const toggleSetter = (setterFunction) => setterFunction(val => !val)

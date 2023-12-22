@@ -1,5 +1,5 @@
 import { Form } from 'semantic-ui-react'
-import { buildDropdownOptions } from '../../../../utils/ui/dropdown'
+import { buildDropdownOptions } from '../../../../utils/ui'
 import procedureTypesJson from '../../../../data/procedure-types.json'
 
 const procedureTypeOptions = buildDropdownOptions(

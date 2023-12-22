@@ -1,9 +1,3 @@
-import getProcedureTypeDisplayName from './getProcedureTypeDisplayName'
-import getProceduresFromReceipts from './getProceduresFromReceipts'
-
 export * from './halfPartProceduresMapper'
-
-export {
-  getProcedureTypeDisplayName,
-  getProceduresFromReceipts
-}
+export * from './getProcedureTypeDisplayName'
+export * from './getProceduresFromReceipts'

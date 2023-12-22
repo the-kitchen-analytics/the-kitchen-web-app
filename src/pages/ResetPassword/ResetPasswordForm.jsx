@@ -1,7 +1,7 @@
 import { Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { useApplicationSettings } from '../../hooks'
-import { handleInputChange } from '../../utils/ui/form'
+import { handleInputChange } from '../../utils/ui'
 import { REGISTER } from '../../data/routePaths'
 
 const ResetPasswordForm = ({

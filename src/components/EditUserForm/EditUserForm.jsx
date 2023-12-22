@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
 import { useUserSettings } from '../../hooks'
-import { handleInputChange } from '../../utils/ui/form'
+import { handleInputChange } from '../../utils/ui'
 import { WorkerCategorySelect } from '../shared/dropdown'
 
 const EditUserForm = ({
