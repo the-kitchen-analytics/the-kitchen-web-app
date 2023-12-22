@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { mapFirebaseEntityToReceipt } from '../mappers/receipt'
 import { streamReceiptsByUid } from '../services/receiptService'
 
-const useStreamReceiptData = (options) => {
+export const useStreamReceiptData = (options) => {
   const { uid } = options
 
   const [data, setData] = useState()
@@ -37,5 +37,3 @@ const useStreamReceiptData = (options) => {
 
   return [data, isLoading, error]
 }
-
-export default useStreamReceiptData

@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react'
 import colors from '../data/ui/colors.json'
 import { getRandomArrayElement } from '../utils/array'
 
-const useColorNames = () => {
+export const useColorNames = () => {
   const fancyColorNames = useMemo(() => colors
     .filter(({ isFancy }) => isFancy)
     .map(({ name }) => name), [])
@@ -21,5 +21,3 @@ const useColorNames = () => {
     getRandomFancyColorName
   }
 }
-
-export default useColorNames

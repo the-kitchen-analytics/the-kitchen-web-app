@@ -1,12 +1,9 @@
-import useWindowStorage from './useWindowStorage'
+import { useWindowStorage } from './'
 
 /**
- * @param {string} key 
- * @param {*} initialValue 
- * @returns 
+ * @param {string} key
+ * @param {*} initialValue
+ * @returns
  */
-const useSessionStorage = (key, initialValue) => {
-  return useWindowStorage(window.sessionStorage, key, initialValue)
-}
-
-export default useSessionStorage
+export const useSessionStorage = (key, initialValue) =>
+  useWindowStorage(window.sessionStorage, key, initialValue)
