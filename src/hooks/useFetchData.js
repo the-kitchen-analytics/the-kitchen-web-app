@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from 'react'
 
 
-const useFetchData = (fetchFunction, deps = []) => {
+export const useFetchData = (fetchFunction, deps = []) => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState({})
@@ -39,5 +39,3 @@ const useFetchData = (fetchFunction, deps = []) => {
     refresh
   }
 }
-
-export default useFetchData

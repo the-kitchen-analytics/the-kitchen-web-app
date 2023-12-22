@@ -2,7 +2,7 @@ import { useFetchData } from './index'
 import { getProceduresV2ByWorkerCategory } from '../services/proceduresServiceV2'
 import { useCallback } from 'react'
 
-const useProcedures = (workerCategory) => {
+export const useProcedures = (workerCategory) => {
   const fetchFunction = useCallback(() => getProceduresV2ByWorkerCategory(workerCategory), [workerCategory])
 
   const { data } = useFetchData(fetchFunction)
@@ -11,5 +11,3 @@ const useProcedures = (workerCategory) => {
     ? data
     : []
 }
-
-export default useProcedures

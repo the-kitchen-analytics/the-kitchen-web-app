@@ -3,7 +3,7 @@ import { Button, Divider, Form } from 'semantic-ui-react'
 import { LoadableButton } from '../../components/ui/Button'
 import { REGISTER, RESET_PASSWORD } from '../../data/routePaths'
 import { useApplicationSettings } from '../../hooks'
-import { handleInputChange } from '../../utils/ui/form'
+import { handleInputChange } from '../../utils/ui'
 
 const LoginForm = ({
   formData: { email, password },

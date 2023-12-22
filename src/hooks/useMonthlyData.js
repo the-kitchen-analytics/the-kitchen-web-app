@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom'
 
 import { getCurrentMonthAndYear } from '../utils/date'
 
-const useMonthlyData = (getData) => {
+export const useMonthlyData = (getData) => {
 
   const initialSelectedDate = useMemo(getCurrentMonthAndYear, [])
   const [selectedDate, setSelectedDate] = useState(initialSelectedDate)
@@ -26,5 +26,3 @@ const useMonthlyData = (getData) => {
     setSelectedDate,
   ]
 }
-
-export default useMonthlyData

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useState } from 'react'
 
-const useTouched = (handleChange) => {
+export const useTouched = (handleChange) => {
   const [isTouched, setIsTouched] = useState(false)
 
   const handleInputChangeWrapper = (...args) => {
@@ -16,5 +16,3 @@ const useTouched = (handleChange) => {
     isTouched, handleInputChangeWrapper
   }
 }
-
-export default useTouched

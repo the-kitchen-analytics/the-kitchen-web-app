@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { WorkerCategorySelect } from '../../components/shared/dropdown'
 import { useApplicationSettings } from '../../hooks'
-import { handleInputChange } from '../../utils/ui/form'
+import { handleInputChange } from '../../utils/ui'
 
 const CreateAccountForm = ({
   formData: { name, email, password, workerCategory },

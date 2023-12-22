@@ -1,7 +1,7 @@
 import { Grid } from 'semantic-ui-react'
 import DashboardLayout from '../DashboardLayout'
 import { DaySelect } from '../../shared/dropdown'
-import { buildDropdownOptions } from '../../../utils/ui/dropdown'
+import { buildDropdownOptions } from '../../../utils/ui'
 import { Carousel } from '../../ui'
 import _ from 'lodash'
 import TimelinePicker from '../../TimelinePicker'

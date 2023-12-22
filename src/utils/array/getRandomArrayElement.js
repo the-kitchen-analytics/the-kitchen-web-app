@@ -1,4 +1,3 @@
-import getRandomArrayIndex from './getRandomArrayIndex'
+const getRandomArrayIndex = (array = []) => Math.floor(Math.random() * array.length)
 
-const getRandomArrayElement = (array) => array[getRandomArrayIndex(array)]
-export default getRandomArrayElement
+export const getRandomArrayElement = (array) => array[getRandomArrayIndex(array)]

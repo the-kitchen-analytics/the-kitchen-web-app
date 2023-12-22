@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
 
-const useDataFilters = (data, groupedData) => {
+export const useDataFilters = (data, groupedData) => {
   const getAllData = useCallback(() => Object.values(groupedData), [groupedData])
 
   const getDataByDay = useCallback((selectedDay) => {
@@ -24,6 +24,3 @@ const useDataFilters = (data, groupedData) => {
     getDataByMonthAndYear
   }
 }
-
-export default useDataFilters
-

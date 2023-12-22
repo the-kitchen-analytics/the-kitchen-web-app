@@ -1,3 +1,1 @@
-const getCurrentDate = () => new Date()
-
-export default getCurrentDate
+export const getCurrentDate = () => new Date()

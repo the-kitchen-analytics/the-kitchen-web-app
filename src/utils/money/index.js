@@ -1,9 +1,3 @@
-import buildPriceString from './buildPriceString'
-import calculateTotalPrice from './calculateTotalPrice'
-import calculateTotalWorkerIncome from './calculateTotalWorkerIncome'
-
-export {
-  buildPriceString,
-  calculateTotalPrice,
-  calculateTotalWorkerIncome,
-}
+export * from './buildPriceString'
+export * from './calculateTotalPrice'
+export * from './calculateTotalWorkerIncome'

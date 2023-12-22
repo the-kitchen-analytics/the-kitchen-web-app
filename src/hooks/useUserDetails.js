@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { getUserDetailsByUid, updateUserDetails } from '../services/userDetailsService'
-import useFetchData from './useFetchData'
-import usePostData from './usePostData'
+import { useFetchData } from './'
+import { usePostData } from './'
 
-const useUserDetails = (uid) => {
+export const useUserDetails = (uid) => {
 
   const fetchData = useCallback(() => {
     return getUserDetailsByUid(uid)
@@ -25,5 +25,3 @@ const useUserDetails = (uid) => {
     error: updateError,
   }
 }
-
-export default useUserDetails

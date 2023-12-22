@@ -22,9 +22,6 @@ export const RECEIPTS = `${DASHBOARD}/receipts`
 export const CREATE_RECEIPT = `${RECEIPTS}/create`
 export const EDIT_RECEIPT = `${RECEIPTS}/:id`
 
-// PROCEDURES
-export const PROCEDURES = `${DASHBOARD}/procedures`
-
 // OTHER ROUTES
 export const SETTINGS = `${DASHBOARD}/settings`
 export const USER_PROFILE = `${DASHBOARD}/profile`

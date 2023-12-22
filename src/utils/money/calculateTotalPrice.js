@@ -1,5 +1,5 @@
 import _ from 'lodash'
 
-export default function calculateTotalPrice(procedures = []) {
-  return _.sumBy(procedures, 'priceBeforeTaxes')
-}
+const SUM_BY_PROPERTY_NAME = 'priceBeforeTaxes'
+
+export const calculateTotalPrice = (procedures = []) =>  _.sumBy(procedures, SUM_BY_PROPERTY_NAME)

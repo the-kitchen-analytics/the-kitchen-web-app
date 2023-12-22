@@ -2,7 +2,7 @@ import { Progress, Segment } from 'semantic-ui-react'
 import { sumBy } from 'lodash'
 import { getProcedureTypeDisplayName } from '../../utils/procedures'
 import { buildPriceString } from '../../utils/money'
-import useColorNames from '../../hooks/useColorNames'
+import { useColorNames } from '../../hooks'
 
 const isEligibleItem = ({ value }) => value > 0
 

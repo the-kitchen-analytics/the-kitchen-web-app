@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const usePostData = () => {
+export const usePostData = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState()
@@ -25,5 +25,3 @@ const usePostData = () => {
     doRequest
   ]
 }
-
-export default usePostData

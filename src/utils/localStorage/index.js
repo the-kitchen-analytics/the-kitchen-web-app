@@ -1,4 +1,1 @@
-import getLocalStorageSize from './getLocalStorageSize'
-export {
-  getLocalStorageSize,
-}
+export * from './getLocalStorageSize'

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
-const useDailyData = (getData) => {
+export const useDailyData = (getData) => {
   const { receipts, workedDays } = useOutletContext()
   const [selectedDay, setSelectedDay] = useState(workedDays[0])
 
@@ -20,5 +20,3 @@ const useDailyData = (getData) => {
     setSelectedDay,
   ]
 }
-
-export default useDailyData

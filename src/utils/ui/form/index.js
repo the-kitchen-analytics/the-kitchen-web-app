@@ -1,4 +1,1 @@
-import handleInputChange from './handleInputChange'
-export {
-  handleInputChange
-}
+export * from './handleInputChange'

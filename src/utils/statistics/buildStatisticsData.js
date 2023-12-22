@@ -1,9 +1,8 @@
 import _ from 'lodash'
 
-import Price from '../../components/ui/Price'
-import { calculateTotalWorkerIncome } from '../money'
+import { buildPrice, calculateTotalWorkerIncome } from '../money'
 
-const buildStatisticsData = (rawData) => {
+export const buildStatisticsData = (rawData) => {
 
   const allProcedures = rawData
     .flat()
@@ -34,13 +33,7 @@ const buildStatisticsData = (rawData) => {
       color: 'green',
       name: 'totalIncome',
       renderLabel: () => 'Заработано',
-      renderValue: () => (
-        <Price euro>
-          {
-            totalWorkerIncome
-          }
-        </Price>
-      )
+      renderValue: () => buildPrice(totalWorkerIncome)
     }
   ])
 
@@ -51,33 +44,21 @@ const buildStatisticsData = (rawData) => {
           color: 'orange',
           name: 'operationsCountPerDay',
           renderLabel: () => 'Процедур в среднем за день',
-          renderValue: () => (operationCount / daysCount).toFixed(0)
+          renderValue: () => _.divide(operationCount, daysCount).toFixed(0)
         },
 
         {
           color: 'blue',
           name: 'incomePerDay',
           renderLabel: () => 'В среднем за день',
-          renderValue: () => (
-            <Price euro>
-              {
-                totalWorkerIncome / daysCount
-              }
-            </Price>
-          )
+          renderValue: () => buildPrice(_.divide(totalWorkerIncome, daysCount))
         },
 
         {
           color: 'violet',
           name: 'incomePerOperation',
           renderLabel: () => 'В среднем за процедуру',
-          renderValue: () => (
-            <Price euro>
-              {
-                totalWorkerIncome / operationCount
-              }
-            </Price>
-          )
+          renderValue: () => buildPrice(_.divide(totalWorkerIncome, operationCount))
         }
       ]
     )
@@ -91,5 +72,3 @@ const buildStatisticsData = (rawData) => {
 
   return []
 }
-
-export default buildStatisticsData

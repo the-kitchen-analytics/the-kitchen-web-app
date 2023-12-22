@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
  * @param {*} initialValue
  * @returns
  */
-const useWindowStorage = (windowStorage, key, initialValue) => {
+export const useWindowStorage = (windowStorage, key, initialValue) => {
 
   useEffect(() => {
     setInitialValue(windowStorage, key, initialValue)
@@ -65,5 +65,3 @@ const setInitialValue = (windowStorage, key, value) => {
     console.error(error)
   }
 }
-
-export default useWindowStorage
