@@ -11,12 +11,12 @@ export const AUGUST = 7
 export const SEPTEMBER = 8
 export const OCTOBER = 9
 export const NOVEMBER = 10
-export const DECAMBER = 11
+export const DECEMBER = 11
 
 const monthIndexes = Object.freeze([
   JANUARY, FEBRUARY, MARCH, APRIL,
   MAY, JUNE, JULY, AUGUST,
-  SEPTEMBER, OCTOBER, NOVEMBER, DECAMBER
+  SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
 ])
 
 export const FIRST_MONTH_INDEX = monthIndexes[0]
