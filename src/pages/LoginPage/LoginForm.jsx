@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Button, Divider, Form } from 'semantic-ui-react'
 import { LoadableButton } from '../../components/shared'
-import { useApplicationSettings } from '../../hooks'
 import { handleInputChange } from '../../utils'
 import { REGISTER, RESET_PASSWORD } from '../../data/routePaths'
 
@@ -12,9 +11,6 @@ const LoginForm = ({
   isLoading,
   error
 }) => {
-
-  const { settings: { controlsSize } } = useApplicationSettings()
-
   const shouldDisableSubmitButton = () => {
     return isLoading || !(email && password)
   }
@@ -25,7 +21,7 @@ const LoginForm = ({
 
   return (
     <Form
-      size={controlsSize}
+      size="large"
       error={error}
       loading={isLoading}
       onSubmit={handleLoginWithEmailAndPassword}
@@ -65,7 +61,7 @@ const LoginForm = ({
           type="submit"
           onClick={handleLoginWithEmailAndPassword}
           content="Войти"
-          size={controlsSize}
+          size="large"
         />
       </Form.Field>
 
@@ -85,7 +81,7 @@ const LoginForm = ({
             positive
             disabled={isLoading}
             content="Зарегистрироваться"
-            size={controlsSize}
+            size="large"
           />
         </Link>
       </Form.Field>

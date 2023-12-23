@@ -8,7 +8,7 @@ const DeleteData = () => {
 
   const navigate = useNavigate()
   const { userDetails } = useOutletContext()
-  const { settings: { controlsSize } } = useUserSettings()
+  
 
   const handleDeleteDataButtonClick = async (e) => {
     e.preventDefault()
@@ -45,7 +45,7 @@ const DeleteData = () => {
               content="Стереть данные"
               icon="trash"
               negative
-              size={controlsSize}
+              size="large"
               onClick={handleDeleteDataButtonClick}
             />
           </Grid.Column>

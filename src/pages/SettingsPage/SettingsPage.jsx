@@ -2,13 +2,10 @@ import { Grid } from 'semantic-ui-react'
 import { DashboardLayout } from '../../components/layouts'
 import ClearCache from './ClearCache.jsx'
 import SelectAccentColor from './SelectAccentColorSetting.jsx'
-import { useColorNames } from '../../hooks'
 import { UserProfile } from '../../components/UserProfile'
+import { fancyColorNames } from '../../utils'
 
 export const SettingsPage = () => {
-
-  const { fancyColorNames } = useColorNames()
-
   const settingsOptions = [
     {
       key: 'user-account',

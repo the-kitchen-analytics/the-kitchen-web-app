@@ -1,6 +1,4 @@
-export * from './useApplicationSettings'
 export * from './useAuth'
-export * from './useColorNames'
 export * from './useDailyData'
 export * from './useDataFilters'
 export * from './useFetchData'

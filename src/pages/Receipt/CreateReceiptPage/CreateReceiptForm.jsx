@@ -30,7 +30,7 @@ export const CreateReceiptForm = (props) => {
     shouldDisableSubmitFormButton,
   } = props
 
-  const { settings: { accentColor, controlsSize } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettings()
 
   const handleInputChangeWrapper = useCallback((e) => handleInputChange(e, setFormData), [setFormData])
 
@@ -42,7 +42,7 @@ export const CreateReceiptForm = (props) => {
 
   return (
     <Form
-      size={controlsSize}
+      size="large"
       onSubmit={handleFormSubmit}
       loading={isLoading}
     >
@@ -90,7 +90,7 @@ export const CreateReceiptForm = (props) => {
       <Form.Group widths="equal">
         <Form.Button
           fluid
-          size={controlsSize}
+          size="large"
           icon="trash"
           type="button"
           content="Очистить"
@@ -102,7 +102,7 @@ export const CreateReceiptForm = (props) => {
           <LoadableButton
             loading={isLoading}
             fluid
-            size={controlsSize}
+            size="large"
             icon="save"
             type="submit"
             content={getSubmitButtonLabel()}

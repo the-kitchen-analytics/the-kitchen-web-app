@@ -12,7 +12,7 @@ export const EditUserForm = (props) => {
     shouldDisableSubmitButton, shouldDisableResetButton
   } = props
 
-  const { settings: { controlsSize, accentColor } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettings()
   const { name, email,workerCategory,description } = formData
 
   const handleInputChangeWrapper = useCallback((e) => {
@@ -30,7 +30,7 @@ export const EditUserForm = (props) => {
     <Form
       onSubmit={handleSubmit}
       loading={isLoading}
-      size={controlsSize}
+      size="large"
     >
       <Form.Input
         required
@@ -79,7 +79,7 @@ export const EditUserForm = (props) => {
           type="button"
           disabled={shouldDisableResetButton()}
           onClick={handleResetButtonClick}
-          size={controlsSize}
+          size="large"
           content="Отменить"
         />
         <Form.Button
@@ -88,7 +88,7 @@ export const EditUserForm = (props) => {
           type="submit"
           loading={isLoading}
           disabled={shouldDisableSubmitButton()}
-          size={controlsSize}
+          size="large"
           color={accentColor}
           content="Сохранить"
         />

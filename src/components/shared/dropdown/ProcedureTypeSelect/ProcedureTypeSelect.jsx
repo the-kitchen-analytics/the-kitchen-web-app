@@ -1,5 +1,5 @@
 import { Form } from 'semantic-ui-react'
-import { buildDropdownOptions } from '../../../../utils/ui'
+import { buildDropdownOptions } from '../../../../utils'
 import procedureTypesJson from '../../../../data/procedure-types.json'
 
 const procedureTypeOptions = buildDropdownOptions(
@@ -9,7 +9,7 @@ const procedureTypeOptions = buildDropdownOptions(
   ({ name }) => name
 )
 
-const ProcedureTypeSelect = ({ value, options = procedureTypeOptions, handleChange }) => (
+export const ProcedureTypeSelect = ({ value, options = procedureTypeOptions, handleChange }) => (
   <Form.Select
     required
     label="Тип процедуры"
@@ -21,5 +21,3 @@ const ProcedureTypeSelect = ({ value, options = procedureTypeOptions, handleChan
     options={options}
   />
 )
-
-export default ProcedureTypeSelect
