@@ -5,7 +5,7 @@ import { logOut } from '../../services/authenticationService'
 
 const CONFIRM_LOGOUT_MESSAGE = 'Вы действительно хотите выйти?'
 
-const LogoutButton = (props) => {
+export const LogoutButton = (props) => {
 
   const { settings: { controlsSize } } = useUserSettings()
 
@@ -33,5 +33,3 @@ const LogoutButton = (props) => {
     />
   )
 }
-
-export default LogoutButton

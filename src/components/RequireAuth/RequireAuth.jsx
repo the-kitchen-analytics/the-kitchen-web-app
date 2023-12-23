@@ -4,7 +4,7 @@ import { Message } from 'semantic-ui-react'
 import { LOGIN } from '../../data/routePaths'
 import { useAuth } from '../../hooks'
 
-const RequireAuth = ({ children }) => {
+export const RequireAuth = ({ children }) => {
 
   const [user, loading, error] = useAuth()
   const location = useLocation()

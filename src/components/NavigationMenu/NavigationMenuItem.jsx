@@ -8,7 +8,7 @@ const getIconProps = (name) => ({
   name
 })
 
-const NavigationMenuItem = ({ icon, to, active, handleItemClick }) => (
+export const NavigationMenuItem = ({ icon, to, active, handleItemClick }) => (
   <Menu.Item
     className="navigation-menu-item"
     active={active}
@@ -18,5 +18,3 @@ const NavigationMenuItem = ({ icon, to, active, handleItemClick }) => (
     icon={getIconProps(icon)}
   />
 )
-
-export default NavigationMenuItem

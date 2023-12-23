@@ -1,6 +1,6 @@
 import { Header, List, Segment, Message } from 'semantic-ui-react'
 
-const ContactUs = ({ options }) => (
+export const ContactUs = ({ options }) => (
   <Segment>
     <Header
       icon="talk"
@@ -27,5 +27,3 @@ const ContactUs = ({ options }) => (
     </List>
   </Segment>
 )
-
-export default ContactUs

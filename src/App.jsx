@@ -1,19 +1,23 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
 
-import Login from './pages/Login'
-import CreateAccount from './pages/CreateAccount'
-import ResetPassword from './pages/ResetPassword'
-import RequireAuth from './components/RequireAuth'
-
-import Dashboard from './pages/Dashboard'
-import ErrorPage from './pages/ErrorPage'
-
-import { AllTimeTableView, DailyTableView, MonthlyTableView } from './pages/Tables'
-import { AllTimeStatisticsView, DailyStatisticsView, MonthlyStatisticsView } from './pages/Statistics'
-import Settings from './pages/Settings'
+import { RequireAuth } from './components/RequireAuth'
+import { Footer } from './components/Footer'
 import { WithCurrentUser } from './hoc'
-import PageNotFound from './pages/PageNotFound'
-import Footer from './components/Footer'
+
+import {
+  AllTimeTablePage, DailyTablePage, MonthlyTablePage,
+  AllTimeStatisticsPage, DailyStatisticsPage, MonthlyStatisticsPage,
+  CreateAccountPage,
+  ErrorPage,
+  InfoPage,
+  LoginPage,
+  MainPage,
+  NotFoundPage,
+  EditReceiptPage,
+  CreateReceiptPage,
+  ResetPasswordPage,
+  SettingsPage
+} from './pages'
 
 import {
   CREATE_RECEIPT,
@@ -27,17 +31,14 @@ import {
   TABLE_DAILY,
   TABLE_MONTHLY
 } from './data/routePaths'
-import { ApplicationSettingsContextProvider } from './context/ApplicationSettingsContext'
-import { CreateReceipt, EditReceipt } from './pages/Receipt'
-import UserProfile from './pages/UserProfile'
-import InfoPage from './pages/InfoPage'
-import { UserSettingsContextProvider } from './context/UserSettingsContext'
 
+import { ApplicationSettingsContextProvider } from './context/ApplicationSettingsContext'
+import { UserSettingsContextProvider } from './context/UserSettingsContext'
 import './App.css'
 
-const DashboardWithCurrentUser = WithCurrentUser(Dashboard)
+const MainPageWithCurrentUser = WithCurrentUser(MainPage)
 
-const App = () => (
+export const App = () => (
   <div className="app">
     <ApplicationSettingsContextProvider>
       <UserSettingsContextProvider>
@@ -45,15 +46,15 @@ const App = () => (
           <Routes>
             <Route index element={<Navigate to={'/dashboard/table/daily'} />} />
 
-            <Route path={routes.LOGIN} element={<Login />} />
-            <Route path={routes.REGISTER} element={<CreateAccount />} />
-            <Route path={routes.RESET_PASSWORD} element={<ResetPassword />} />
+            <Route path={routes.LOGIN} element={<LoginPage />} />
+            <Route path={routes.REGISTER} element={<CreateAccountPage />} />
+            <Route path={routes.RESET_PASSWORD} element={<ResetPasswordPage />} />
 
             <Route
               path={routes.DASHBOARD}
               element={
                 <RequireAuth>
-                  <DashboardWithCurrentUser />
+                  <MainPageWithCurrentUser />
                 </RequireAuth>
               }
               errorElement={<ErrorPage />}
@@ -61,60 +62,55 @@ const App = () => (
               <Route path="table">
                 <Route
                   path={TABLE_ALL}
-                  element={<AllTimeTableView />}
+                  element={<AllTimeTablePage />}
                 />
                 <Route
                   path={TABLE_DAILY}
-                  element={<DailyTableView />}
+                  element={<DailyTablePage />}
                 />
                 <Route
                   path={TABLE_MONTHLY}
-                  element={<MonthlyTableView />}
+                  element={<MonthlyTablePage />}
                 />
               </Route>
 
               <Route path="statistics">
                 <Route
                   path={STATISTICS_ALL}
-                  element={<AllTimeStatisticsView />}
+                  element={<AllTimeStatisticsPage />}
                 />
                 <Route
                   path={STATISTICS_DAILY}
-                  element={<DailyStatisticsView />}
+                  element={<DailyStatisticsPage />}
                 />
                 <Route
                   path={STATISTICS_MONTHLY}
-                  element={<MonthlyStatisticsView />}
+                  element={<MonthlyStatisticsPage />}
                 />
               </Route>
 
               <Route
                 path={EDIT_RECEIPT}
-                element={<EditReceipt />}
+                element={<EditReceiptPage />}
               />
 
               <Route
                 path={CREATE_RECEIPT}
-                element={<CreateReceipt />}
+                element={<CreateReceiptPage />}
               />
 
               <Route
                 path={'settings'}
-                element={<Settings />}
+                element={<SettingsPage />}
               />
 
               <Route
                 path={INFO}
                 element={<InfoPage />}
               />
-
-              <Route
-                path={'profile'}
-                element={<UserProfile />}
-              />
             </Route>
 
-            <Route path="*" element={<PageNotFound />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
         <Footer />
@@ -122,5 +118,3 @@ const App = () => (
     </ApplicationSettingsContextProvider>
   </div>
 )
-
-export default App
