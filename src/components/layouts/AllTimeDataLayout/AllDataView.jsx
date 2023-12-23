@@ -1,8 +1,8 @@
 import { Grid } from 'semantic-ui-react'
-import DashboardLayout from '../DashboardLayout'
-import TimelinePicker from '../../TimelinePicker'
+import { DashboardLayout } from '../'
+import { TimelinePicker } from '../../TimelinePicker'
 
-const AllTimeDataLayout = ({ icon, header, content, children }) => (
+export const AllTimeDataLayout = ({ icon, header, content, children }) => (
   <DashboardLayout
     icon={icon}
     header={header}
@@ -20,7 +20,4 @@ const AllTimeDataLayout = ({ icon, header, content, children }) => (
       </Grid.Column>
     </Grid.Row>
   </DashboardLayout>
-
 )
-
-export default AllTimeDataLayout

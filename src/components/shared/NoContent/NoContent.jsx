@@ -1,10 +1,10 @@
 import { Icon } from 'semantic-ui-react'
 
-const NoContentView = () => (
-  <div className="view">
+export const NoContent = () => (
+  <div>
     <Icon name="info circle" />
     <span>Нет данных</span>
   </div>
 )
 
-export default NoContentView
+export default NoContent

@@ -1,20 +1,20 @@
 import _ from 'lodash'
-import { Grid, Message } from 'semantic-ui-react'
-import DashboardLayout from '../../../components/layouts/DashboardLayout'
-import CreateReceiptForm from './CreateReceiptForm'
-import ErrorMessage from '../../../components/ui/ErrorMessage'
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import { Grid, Message } from 'semantic-ui-react'
+import { DashboardLayout } from '../../../components/layouts/'
+import { CreateReceiptForm } from './CreateReceiptForm'
+import { ErrorMessage } from '../../../components/shared'
 import { useLocalStorage, usePostData, useSessionStorage } from '../../../hooks'
-import { formatDateForDatePicker, getCurrentDate } from '../../../utils/date'
+import { formatDateForDatePicker, getCurrentDate } from '../../../utils/'
 import { createReceipt } from '../../../services/receiptService'
 import { TABLE_DAILY } from '../../../data/routePaths'
 import { mapReceiptToFirebaseEntity } from '../../../mappers/receipt'
-import validateReceipt from '../../../validators/receipt/validateReceipt'
+import { validateReceipt } from '../../../validators/receipt'
 
 const INITIAL_ACORDITION_INDEX = -1
 
-const CreateReceipt = () => {
+export const CreateReceipt = () => {
 
   const { userDetails: { uid, workerCategory } } = useOutletContext()
 
@@ -131,5 +131,3 @@ const CreateReceipt = () => {
     </DashboardLayout>
   )
 }
-
-export default CreateReceipt

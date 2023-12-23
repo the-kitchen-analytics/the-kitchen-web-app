@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
-import FormLayout from '../../components/layouts/FormLayout'
+import { FormLayout } from '../../components/layouts'
 import ResetPasswordForm from './ResetPasswordForm'
 import { usePostData } from '../../hooks'
 import { resetPassword } from '../../services/authenticationService'

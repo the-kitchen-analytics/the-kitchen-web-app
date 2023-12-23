@@ -1,5 +1,5 @@
 import { Grid } from 'semantic-ui-react'
-import DashboardLayout from '../../components/layouts/DashboardLayout'
+import { DashboardLayout } from '../../components/layouts'
 import ContactUs from './ContactUs'
 import contactOptions from '../../data/contactOptions.json'
 import { WithCurrentUser } from '../../hoc'

@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { Grid, Segment, Statistic } from 'semantic-ui-react'
-import NoContent from '../../pages/NoContent'
-import StatisticsProgress from './StatisticsProgress'
+import { NoContent } from '../shared'
+import { StatisticsProgress } from './StatisticsProgress'
 
-const Statistics = ({ progressData = [], statisticsData = [] }) => {
+export const Statistics = ({ progressData = [], statisticsData = [] }) => {
 
   if (_.isEmpty(statisticsData.flat())) {
     return (
@@ -57,5 +57,3 @@ const Statistics = ({ progressData = [], statisticsData = [] }) => {
     </div>
   )
 }
-
-export default Statistics

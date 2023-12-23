@@ -1,7 +1,7 @@
 import { Accordion, Form, Divider } from 'semantic-ui-react'
 import { useToggleState } from '../../../hooks'
 
-const DisplayOptionsAccordition = ({ options }) => {
+export const DisplayOptionsAccordition = ({ options }) => {
 
   const [shouldDisplayOptions, toggleShouldDisplayOptions] = useToggleState(false)
 
@@ -31,5 +31,3 @@ const DisplayOptionsAccordition = ({ options }) => {
     </Accordion>
   )
 }
-
-export default DisplayOptionsAccordition

@@ -2,9 +2,9 @@ import _ from 'lodash'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Button } from 'semantic-ui-react'
 
-const LoadableButton = (props) => {
+export const LoadableButton = (props) => {
 
-  const [isLoading, setIsLoading] = useState(props.loading ? true : false)
+  const [isLoading, setIsLoading] = useState(!!props.loading)
 
   useEffect(() => {
     if (_.isBoolean(props.loading) && props.loading !== isLoading) {
@@ -33,5 +33,3 @@ const LoadableButton = (props) => {
     />
   )
 }
-
-export default LoadableButton

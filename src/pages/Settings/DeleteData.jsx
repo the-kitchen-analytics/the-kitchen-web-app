@@ -1,6 +1,6 @@
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import { Header, Segment, Message, Grid } from 'semantic-ui-react'
-import { LoadableButton } from '../../components/ui/Button'
+import { LoadableButton } from '../../components/shared/Button'
 import { useUserSettings } from '../../hooks'
 import { deleteAllReceiptByUid } from '../../services/receiptService'
 

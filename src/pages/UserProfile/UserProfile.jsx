@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Segment, Header, Icon, Form } from 'semantic-ui-react'
-import { ErrorMessage, Loader } from '../../components/ui'
+import { ErrorMessage, Loader } from '../../components/shared'
 import LogoutButton from '../../components/LogoutButton'
 import { useState, useMemo } from 'react'
 import { useOutletContext } from 'react-router-dom'

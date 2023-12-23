@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom'
-import { Loader } from '../ui'
+import { Loader } from '../shared/'
 import { Message } from 'semantic-ui-react'
 import { LOGIN } from '../../data/routePaths'
 import { useAuth } from '../../hooks'

@@ -1,5 +1,5 @@
 import { Grid } from 'semantic-ui-react'
-import DashboardLayout from '../../components/layouts/DashboardLayout'
+import { DashboardLayout } from '../../components/layouts'
 import ClearCache from './ClearCache.jsx'
 import SelectAccentColor from './SelectAccentColorSetting.jsx'
 import { useColorNames } from '../../hooks'

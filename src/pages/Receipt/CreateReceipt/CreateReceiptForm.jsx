@@ -1,32 +1,34 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Form } from 'semantic-ui-react'
-import { DatePicker } from '../../../components/ui/Input'
-import { LoadableButton } from '../../../components/ui/Button'
-import { handleInputChange } from '../../../utils/ui/form'
-import { useUserSettings } from '../../../hooks'
-import SelectProcedures from './SelectProcedures'
-import Preview from './Preview'
 import { useOutletContext } from 'react-router-dom'
-import { getWorkerCategoryDisplayName } from '../../../utils/workerCategory'
+import { Form } from 'semantic-ui-react'
+import { DataTable } from '../../../components/DataTable'
+import { DatePicker, LoadableButton } from '../../../components/shared'
+import { useUserSettings } from '../../../hooks'
+import { SelectProcedures } from './SelectProcedures'
+import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
 
-const CreateReceiptForm = ({
-  formData,
-  setFormData,
-  convertedFormData,
-  workerCategory,
-  accorditionActiveIndex,
-  setAccorditionActiveIndex,
-  shouldRedirectToHomePageAfterSubmit,
-  setShouldRedirectToHomePageAfterSubmit,
-  shouldDisplayPreview,
-  setShouldDisplayPreview,
-  isLoading,
-  handleFormSubmit,
-  handleClearFromButtonClick,
-  shouldDisableClearFormButton,
-  shouldDisableSubmitFormButton,
-}) => {
+const Preview = ({ data }) => <DataTable data={data} />
+
+export const CreateReceiptForm = (props) => {
+
+  const {
+    formData,
+    setFormData,
+    convertedFormData,
+    workerCategory,
+    accorditionActiveIndex,
+    setAccorditionActiveIndex,
+    shouldRedirectToHomePageAfterSubmit,
+    setShouldRedirectToHomePageAfterSubmit,
+    shouldDisplayPreview,
+    setShouldDisplayPreview,
+    isLoading,
+    handleFormSubmit,
+    handleClearFromButtonClick,
+    shouldDisableClearFormButton,
+    shouldDisableSubmitFormButton,
+  } = props
 
   const { settings: { accentColor, controlsSize } } = useUserSettings()
 

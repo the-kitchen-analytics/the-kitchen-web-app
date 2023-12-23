@@ -1,7 +1,6 @@
-import CreateReceipt from './CreateReceipt'
+export * from './CreateReceipt'
 import EditReceipt from './EditReceipt/EditReceipt'
 
 export {
-  CreateReceipt,
   EditReceipt,
 }

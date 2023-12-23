@@ -1,24 +1,24 @@
 import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
-import DisplayOptionsAccordition from './DisplayOptionsAccordition'
+import { DisplayOptionsAccordition } from './DisplayOptionsAccordition'
 import { useLocalStorage, useToggleState } from '../../../hooks'
-import { toggleSetter } from '../../../utils/ui'
-import ProceduresAccordition from './ProceduresAccordition'
-
+import { ProceduresAccordition } from './ProceduresAccordition'
+import { toggleSetter, halfPartProceduresMapper } from '../../../utils/'
 import procedureTypes from '../../../data/procedure-types.json'
-import { halfPartProceduresMapper } from '../../../utils/procedures'
 
-const SelectProcedures = ({
-  formData, setFormData,
-  accorditionActiveIndex,
-  setAccorditionActiveIndex,
-  procedures,
-  shouldRedirectToHomePageAfterSubmit,
-  setShouldRedirectToHomePageAfterSubmit,
-  shouldDisplayPreview,
-  setShouldDisplayPreview
-}) => {
+export const SelectProcedures = (props) => {
+
+  const {
+    formData, setFormData,
+    accorditionActiveIndex,
+    setAccorditionActiveIndex,
+    procedures,
+    shouldRedirectToHomePageAfterSubmit,
+    setShouldRedirectToHomePageAfterSubmit,
+    shouldDisplayPreview,
+    setShouldDisplayPreview
+  } = props
 
   const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures])
 
@@ -136,5 +136,3 @@ const SelectProcedures = ({
     </Form.Group>
   )
 }
-
-export default SelectProcedures

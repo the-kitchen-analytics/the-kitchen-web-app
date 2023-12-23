@@ -1,6 +1,6 @@
 import { useOutletContext } from 'react-router-dom'
-import DataTable from '../../components/DataTable'
-import AllTimeDataLayout from '../../components/layouts/AllTimeDataLayout'
+import { DataTable } from '../../components/DataTable'
+import { AllTimeDataLayout } from '../../components/layouts'
 import { getAllTableData } from '../../services/tableDataFilterService'
 
 const AllTimeTableView = () => {

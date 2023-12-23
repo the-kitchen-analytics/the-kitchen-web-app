@@ -1,5 +1,5 @@
-import DataTable from '../../components/DataTable'
-import DailyDataLayout from '../../components/layouts/DailyDataLayout'
+import { DataTable } from '../../components/DataTable'
+import { DailyDataLayout } from '../../components/layouts'
 import { getTableDataByDay } from '../../services/tableDataFilterService'
 import { useDailyData } from '../../hooks'
 

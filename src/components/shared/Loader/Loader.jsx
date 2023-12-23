@@ -1,6 +1,6 @@
 import { Dimmer, Loader as SemanticLoader } from 'semantic-ui-react'
 
-const Loader = (props) => (
+export const Loader = (props) => (
   <div className="loader">
     <Dimmer active inverted>
       <SemanticLoader
@@ -10,5 +10,3 @@ const Loader = (props) => (
     </Dimmer>
   </div>
 )
-
-export default Loader

@@ -16,7 +16,7 @@ const items = [
   }
 ]
 
-const TimelinePicker = () => {
+export const TimelinePicker = () => {
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -44,5 +44,3 @@ const TimelinePicker = () => {
     </Button.Group>
   )
 }
-
-export default TimelinePicker

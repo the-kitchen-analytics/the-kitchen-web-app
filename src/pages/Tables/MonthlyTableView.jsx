@@ -1,5 +1,5 @@
-import DataTable from '../../components/DataTable'
-import MonthlyDataLayout from '../../components/layouts/MonthlyDataLayout'
+import { MonthlyDataLayout } from '../../components/layouts/'
+import { DataTable } from '../../components/DataTable'
 import { getTableDataByMonthAndYear } from '../../services/tableDataFilterService'
 import { useMonthlyData } from '../../hooks'
 

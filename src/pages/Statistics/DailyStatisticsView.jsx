@@ -1,5 +1,5 @@
-import DailyDataLayout from '../../components/layouts/DailyDataLayout/DailyDataLayout'
-import Statistics from '../../components/Statistics'
+import { DailyDataLayout } from '../../components/layouts'
+import { Statistics } from '../../components/Statistics'
 import { getStatisticsDataByDay } from '../../services/statisticsDataFilterService'
 import { useDailyData } from '../../hooks'
 

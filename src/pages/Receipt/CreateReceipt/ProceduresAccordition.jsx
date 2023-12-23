@@ -27,7 +27,7 @@ const AccordionItem = ({ title, index, activeIndex, handleToggle, count, childre
   )
 }
 
-const ProceduresAccordition = (props) => {
+export const ProceduresAccordition = (props) => {
 
   const {
     shouldDisplayProcedurePrice,
@@ -82,5 +82,3 @@ const ProceduresAccordition = (props) => {
     </Accordion>
   )
 }
-
-export default ProceduresAccordition

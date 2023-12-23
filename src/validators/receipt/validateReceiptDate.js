@@ -1,7 +1,5 @@
-import { parseDateFromDropdown } from '../../utils/date'
+import { parseDateFromDropdown } from '../../utils'
 
-const validateReceiptDate = ({ date }) => {
+export const validateReceiptDate = ({ date }) => {
   return !!date && !!parseDateFromDropdown(date)
 }
-
-export default validateReceiptDate

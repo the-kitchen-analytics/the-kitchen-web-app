@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react'
 import { useUserSettings } from '../../../hooks'
 
 
-const GoBackButton = () => {
+export const GoBackButton = () => {
 
   const { settings: { controlsSize } } = useUserSettings()
   const navigate = useNavigate()
@@ -24,5 +24,3 @@ const GoBackButton = () => {
     />
   )
 }
-
-export default GoBackButton

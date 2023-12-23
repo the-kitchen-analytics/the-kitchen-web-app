@@ -1,9 +1,8 @@
 import { useOutletContext } from 'react-router-dom'
-import AllTimeDataLayout from '../../components/layouts/AllTimeDataLayout'
-import Statistics from '../../components/Statistics'
+import { AllTimeDataLayout } from '../../components/layouts/'
+import { Statistics } from '../../components/Statistics'
 import { getAllData } from '../../services/receiptFilterService'
-import { buildStatisticsData, buildProgressData } from '../../utils/statistics'
-import { getProceduresFromReceipts } from '../../utils/procedures'
+import { getProceduresFromReceipts, buildStatisticsData, buildProgressData } from '../../utils'
 
 const AllTimeStatisticsView = () => {
 

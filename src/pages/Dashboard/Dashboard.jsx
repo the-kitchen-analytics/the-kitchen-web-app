@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Container, Grid, Segment } from 'semantic-ui-react'
-import { ErrorMessage, Loader } from '../../components/ui'
+import { ErrorMessage, Loader } from '../../components/shared'
 import { useProcedures, useStreamReceiptData, useUserDetails } from '../../hooks'
 import NavigationMenu from '../../components/NavigationMenu'
 

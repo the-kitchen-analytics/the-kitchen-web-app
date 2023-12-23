@@ -1,8 +1,9 @@
 import { Form } from 'semantic-ui-react'
 import { useTouched } from '../../../hooks'
 
-const DatePicker = ({ value, label, name, handleChange, required = false, isInvalid = false }) => {
-
+export const DatePicker = (props) => {
+  
+  const { value, label, name, handleChange, required = false, isInvalid = false } = props
   const { isTouched, handleInputChangeWrapper } = useTouched(handleChange)
 
   return (
@@ -17,5 +18,3 @@ const DatePicker = ({ value, label, name, handleChange, required = false, isInva
     />
   )
 }
-
-export default DatePicker
