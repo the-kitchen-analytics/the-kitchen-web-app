@@ -25,7 +25,7 @@ const ContactUs = ({ options }) => (
         ))
       }
     </List>
-  </Segment >
+  </Segment>
 )
 
 export default ContactUs
