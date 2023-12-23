@@ -1,8 +1,8 @@
 
 import { RECEIPTS } from '../../data/routePaths'
-import ProceduresList from '../ProceduresList/ProceduresList'
+import { ProceduresList } from '../ProceduresList'
 
-const ProceduresCell = ({ id, procedures }) => (
+export const ProceduresCell = ({ id, procedures }) => (
   <ProceduresList
     listProps={{
       relaxed: true,
@@ -12,5 +12,3 @@ const ProceduresCell = ({ id, procedures }) => (
     procedures={procedures}
   />
 )
-
-export default ProceduresCell

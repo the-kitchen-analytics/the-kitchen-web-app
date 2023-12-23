@@ -3,15 +3,17 @@ import { useMemo } from 'react'
 import { Grid } from 'semantic-ui-react'
 import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
 import { MonthSelect, YearSelect } from '../../shared/dropdown'
-import { Carousel } from '../../ui'
-import DashboardLayout from '../DashboardLayout/DashboardLayout'
-import TimelinePicker from '../../TimelinePicker'
+import { Carousel } from '../../shared'
+import { DashboardLayout } from '../DashboardLayout'
+import { TimelinePicker } from '../../TimelinePicker'
 
-const MonthlyDataLayout = ({
-  icon, header, content, children,
-  defaultSelectedDate, selectedDate, setSelectedDate,
-  yearOptions
-}) => {
+export const MonthlyDataLayout = (props) => {
+
+  const {
+    icon, header, content, children,
+    defaultSelectedDate, selectedDate, setSelectedDate,
+    yearOptions
+  } = props
 
   const setSelectedMonth = (month) => {
     setSelectedDate((selectedDate) => ({ ...selectedDate, month }))
@@ -91,5 +93,3 @@ const MonthlyDataLayout = ({
     </DashboardLayout>
   )
 }
-
-export default MonthlyDataLayout

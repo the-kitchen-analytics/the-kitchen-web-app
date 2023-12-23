@@ -1,7 +1,7 @@
 import { Label, List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { useUserSettings } from '../../hooks'
-import { getProcedureTypeDisplayName } from '../../utils/procedures'
+import { getProcedureTypeDisplayName } from '../../utils'
 
 
 const ListItem = (props) => {
@@ -53,7 +53,7 @@ const ListItem = (props) => {
   )
 }
 
-const ProceduresList = ({ linkTo, procedures, listProps, shouldDisplayProcedurePriceInTable }) => (
+export const ProceduresList = ({ linkTo, procedures, listProps, shouldDisplayProcedurePriceInTable }) => (
   <List
     {...listProps}
     size="medium"
@@ -70,5 +70,3 @@ const ProceduresList = ({ linkTo, procedures, listProps, shouldDisplayProcedureP
     }
   </List>
 )
-
-export default ProceduresList

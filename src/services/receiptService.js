@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import { RECEIPTS } from '../config/firebaseCollectionNames'
-import { getDoc } from '../utils/firebase'
+import { getDoc } from '../utils'
 
 const getCollection = () => {
   return collection(db, RECEIPTS)

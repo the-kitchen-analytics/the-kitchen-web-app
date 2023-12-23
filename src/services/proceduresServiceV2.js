@@ -2,7 +2,7 @@ import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 
 import { db } from '../config/firebase'
 import { PROCEDURES_V2 } from '../config/firebaseCollectionNames'
-import { getDocsData } from '../utils/firebase'
+import { getDocsData } from '../utils'
 
 const getCollection = () => {
   return collection(db, PROCEDURES_V2)

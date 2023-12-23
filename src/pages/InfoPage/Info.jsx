@@ -1,8 +1,7 @@
 import { Header, List, Segment } from 'semantic-ui-react'
-import { formatDate } from '../../utils/date'
-import { getLocalStorageSize } from '../../utils/localStorage'
+import { formatDate, getLocalStorageSize } from '../../utils'
 
-const Info = ({ user }) => {
+export const Info = ({ user }) => {
 
   const listItems = [
     {
@@ -45,5 +44,3 @@ const Info = ({ user }) => {
     </Segment>
   )
 }
-
-export default Info

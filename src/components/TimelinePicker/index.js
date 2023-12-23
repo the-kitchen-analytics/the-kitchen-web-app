@@ -1,3 +1,1 @@
-import TimelinePicker from './TimelinePicker'
-
-export default TimelinePicker
+export * from './TimelinePicker'

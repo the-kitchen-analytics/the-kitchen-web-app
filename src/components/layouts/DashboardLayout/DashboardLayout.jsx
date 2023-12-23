@@ -1,6 +1,6 @@
 import { Grid, Header } from 'semantic-ui-react'
 
-const DashboardLayout = ({ header, subheader, icon, content, children }) => (
+export const DashboardLayout = ({ header, subheader, icon, content, children }) => (
   <Grid stackable padded>
     <Grid.Row>
       <Grid.Column>
@@ -17,5 +17,3 @@ const DashboardLayout = ({ header, subheader, icon, content, children }) => (
     }
   </Grid>
 )
-
-export default DashboardLayout

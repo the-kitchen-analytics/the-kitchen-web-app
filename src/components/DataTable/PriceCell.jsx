@@ -1,10 +1,3 @@
+import { Price } from '../shared'
 
-import Price from '../ui/Price'
-
-const PriceCell = ({ children }) => (
-  <Price euro>
-    {children}
-  </Price>
-)
-
-export default PriceCell
+export const PriceCell = props => <Price euro>{props.children}</Price>

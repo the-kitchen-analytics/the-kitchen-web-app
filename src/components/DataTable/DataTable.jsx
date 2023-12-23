@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { Table, Icon } from 'semantic-ui-react'
-import DateCell from './DateCell'
-import ProceduresCell from './ProceduresCell'
-import PriceCell from './PriceCell'
-import { calculateTotalWorkerIncome, calculateTotalPrice } from '../../utils/money'
+import { DateCell } from './DateCell'
+import { ProceduresCell } from './ProceduresCell'
+import { PriceCell } from './'
+import { calculateTotalWorkerIncome, calculateTotalPrice } from '../../utils/'
 
 const NoTableContent = () => (
   <Table.Row>
@@ -77,7 +77,7 @@ const DataTableBody = ({ data }) => {
   ))
 }
 
-const DataTable = ({ data }) => {
+export const DataTable = ({ data }) => {
 
   const allProcedures = data
     .flat()
@@ -128,5 +128,3 @@ const DataTable = ({ data }) => {
     </Table>
   )
 }
-
-export default DataTable

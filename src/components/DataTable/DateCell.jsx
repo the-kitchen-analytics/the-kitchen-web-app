@@ -1,9 +1,9 @@
 import { Label } from 'semantic-ui-react'
-import Price from '../ui/Price'
-import { formatDate } from '../../utils/date'
+import { Price } from '../shared'
 import { useUserSettings } from '../../hooks'
+import { formatDate } from '../../utils'
 
-const DateCell = ({ children, price = 0 }) => {
+export const DateCell = ({ children, price = 0 }) => {
 
   const { settings: { accentColor } } = useUserSettings()
 
@@ -16,5 +16,3 @@ const DateCell = ({ children, price = 0 }) => {
     </>
   )
 }
-
-export default DateCell

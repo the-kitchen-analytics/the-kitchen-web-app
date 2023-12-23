@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Menu } from 'semantic-ui-react'
-import { useUserSettings } from '../../hooks'
 import { CREATE_RECEIPT, INFO, SETTINGS, STATISTICS_DAILY, TABLE_DAILY } from '../../data/routePaths'
-import NavigationMenuItem from './NavigationMenuItem'
+import { NavigationMenuItem } from './NavigationMenuItem'
+import { useUserSettings } from '../../hooks'
+import { scrollToTop } from '../../utils'
 import './NavigationMenu.css'
-import { scrollToTop } from '../../utils/ui'
 
 const menuItems = [
   {
@@ -34,7 +34,7 @@ const menuItems = [
   }
 ]
 
-const NavigationMenu = () => {
+export const NavigationMenu = () => {
   const [activeItem, setActiveItem] = useState('home')
   const { settings: { accentColor } } = useUserSettings()
 
@@ -73,5 +73,3 @@ const NavigationMenu = () => {
     </Menu>
   )
 }
-
-export default NavigationMenu

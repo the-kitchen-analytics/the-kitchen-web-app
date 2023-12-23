@@ -1,2 +1,1 @@
-import DailyDataLayout from './DailyDataLayout'
-export default DailyDataLayout
+export * from './DailyDataLayout'

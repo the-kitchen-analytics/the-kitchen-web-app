@@ -1,12 +1,13 @@
 import { Grid } from 'semantic-ui-react'
-import DashboardLayout from '../../components/layouts/DashboardLayout'
-import ContactUs from './ContactUs'
-import contactOptions from '../../data/contactOptions.json'
+import { DashboardLayout } from '../../components/layouts'
 import { WithCurrentUser } from '../../hoc'
-import Info from './Info'
+import { ContactUs } from './ContactUs'
+import { Info } from './Info'
+import contactOptions from '../../data/contactOptions.json'
 
 const InfoWithUser = WithCurrentUser(Info)
-const InfoPage = () => {
+
+export const InfoPage = () => {
 
   const settingsOptions = [
     {
@@ -41,5 +42,3 @@ const InfoPage = () => {
     />
   )
 }
-
-export default InfoPage
