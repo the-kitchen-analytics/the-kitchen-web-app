@@ -33,6 +33,8 @@ import UserProfile from './pages/UserProfile'
 import InfoPage from './pages/InfoPage'
 import { UserSettingsContextProvider } from './context/UserSettingsContext'
 
+import './App.css'
+
 const DashboardWithCurrentUser = WithCurrentUser(Dashboard)
 
 const App = () => (
