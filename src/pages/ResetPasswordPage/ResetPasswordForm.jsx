@@ -1,6 +1,5 @@
 import { Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { useApplicationSettings } from '../../hooks'
 import { handleInputChange } from '../../utils'
 import { REGISTER } from '../../data/routePaths'
 
@@ -13,9 +12,6 @@ export const ResetPasswordForm = (props) => {
     isLoading,
     error,
   } = props
-
-  const { settings: { controlsSize } } = useApplicationSettings()
-
   const handleInputChangeWrapper = (e) => {
     handleInputChange(e, setFormData)
   }
@@ -24,7 +20,7 @@ export const ResetPasswordForm = (props) => {
     <Form
       error={!!error}
       loading={isLoading}
-      size={controlsSize}
+      size="large"
       onSubmit={handlePasswordReset}
     >
       <Form.Input
@@ -40,7 +36,7 @@ export const ResetPasswordForm = (props) => {
 
       <Form.Button
         fluid
-        size={controlsSize}
+        size="large"
         positive
         icon="send"
         content="Отправить"

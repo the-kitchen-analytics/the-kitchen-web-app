@@ -3,7 +3,7 @@ import { Form, Grid, Table } from 'semantic-ui-react'
 import { PriceCell } from '../../../components/DataTable/'
 import { DashboardLayout } from '../../../components/layouts'
 import { ErrorMessage, Price, NoContent, GoBackButton } from '../../../components/shared'
-import { usePostData, useUserSettings } from '../../../hooks'
+import { usePostData } from '../../../hooks'
 import { calculateTotalPrice, calculateTotalWorkerIncome, getProcedureTypeDisplayName } from '../../../utils/'
 import { deleteReceiptById } from '../../../services/receiptService'
 
@@ -11,7 +11,7 @@ export const EditReceiptPage = () => {
 
   const { id } = useParams()
   const { getReceiptById } = useOutletContext()
-  const { settings: { controlsSize } } = useUserSettings()
+  
   const [isLoading, error, postData] = usePostData()
   const navigate = useNavigate()
   const receipt = getReceiptById(id)
@@ -146,7 +146,7 @@ export const EditReceiptPage = () => {
 
               <Form.Button
                 fluid
-                size={controlsSize}
+                size="large"
                 icon="trash"
                 type="button"
                 negative

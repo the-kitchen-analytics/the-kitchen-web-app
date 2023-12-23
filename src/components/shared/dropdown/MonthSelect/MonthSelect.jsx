@@ -1,26 +1,20 @@
 
 import { Dropdown } from 'semantic-ui-react'
-import { useUserSettings } from '../../../../hooks'
-import { getMonthOptions } from '../../../../utils/ui'
+import { getMonthOptions } from '../../../../utils'
 
-const MonthSelect = ({ value, handleChange, options, disabled }) => {
-
-  const { settings: { controlsSize } } = useUserSettings()
-
-  return (
-    <Dropdown
-      disabled={disabled}
-      placeholder='Выберите месяц'
-      button
-      basic
-      selection
-      options={options || getMonthOptions()}
-      onChange={handleChange}
-      value={value}
-      className={controlsSize}
-      fluid
-    />
-  )
-}
+export const MonthSelect = ({ value, handleChange, options, disabled }) => (
+  <Dropdown
+    disabled={disabled}
+    placeholder='Выберите месяц'
+    button
+    basic
+    selection
+    options={options || getMonthOptions()}
+    onChange={handleChange}
+    value={value}
+    className="large"
+    fluid
+  />
+)
 
 export default MonthSelect

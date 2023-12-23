@@ -2,9 +2,8 @@ import _ from 'lodash'
 import { useState, useMemo } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { Segment, Header, Icon, Form } from 'semantic-ui-react'
-import { LogoutButton } from '../LogoutButton'
-import { ErrorMessage, Loader } from '../shared'
-import { useUserSettings, usePostData } from '../../hooks'
+import { LogOutButton, ErrorMessage, Loader } from '../shared'
+import { usePostData } from '../../hooks'
 import { getWorkerCategoryDisplayName } from '../../utils/'
 import { EditUserForm } from './EditUserForm'
 
@@ -15,8 +14,6 @@ export const UserProfile = () => {
     updateUserDetails,
     isUserDetailsLoading,
   } = useOutletContext()
-
-  const { settings: { controlsSize } } = useUserSettings()
 
   const initialFormData = useMemo(() => userDetails, [userDetails])
 
@@ -65,7 +62,7 @@ export const UserProfile = () => {
       <Header
         icon
         textAlign="center"
-        size={controlsSize}>
+        size="large">
         <Icon name="user circle" />
         <Header.Content>
           {userDetails.name}
@@ -102,14 +99,14 @@ export const UserProfile = () => {
                 <Form.Button
                   fluid
                   icon="edit"
-                  size={controlsSize}
+                  size="large"
                   type="button"
                   onClick={() => setShouldDisplayEditProfileForm(true)}
                   content="Редактировать"
                 />
 
                 <Form.Field>
-                  <LogoutButton fluid />
+                  <LogOutButton fluid />
                 </Form.Field>
               </Form.Group>
             </Form>

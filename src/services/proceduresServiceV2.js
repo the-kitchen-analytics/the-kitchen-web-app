@@ -11,11 +11,13 @@ const getCollection = () => {
 export const getProceduresV2ByWorkerCategory = async (workerCategory) => {
   console.debug('getProceduresV2ByWorkerCategory', workerCategory)
 
-  const q = query(
-    getCollection(),
-    where('workerCategory', '==', workerCategory),
-    orderBy('name'))
-  const snapshot = await getDocs(q)
+  if (workerCategory) {
+    const q = query(
+      getCollection(),
+      where('workerCategory', '==', workerCategory),
+      orderBy('name'))
+    const snapshot = await getDocs(q)
 
-  return getDocsData(snapshot)
+    return getDocsData(snapshot)
+  }
 }

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
 
 import { RequireAuth } from './components/RequireAuth'
-import { Footer } from './components/Footer'
+import { Footer } from './components/shared'
 import { WithCurrentUser } from './hoc'
 
 import {
@@ -32,89 +32,86 @@ import {
   TABLE_MONTHLY
 } from './data/routePaths'
 
-import { ApplicationSettingsContextProvider } from './context/ApplicationSettingsContext'
-import { UserSettingsContextProvider } from './context/UserSettingsContext'
+import { UserSettingsContextProvider } from './context'
 import './App.css'
 
 const MainPageWithCurrentUser = WithCurrentUser(MainPage)
 
 export const App = () => (
   <div className="app">
-    <ApplicationSettingsContextProvider>
-      <UserSettingsContextProvider>
-        <Router>
-          <Routes>
-            <Route index element={<Navigate to={'/dashboard/table/daily'} />} />
+    <UserSettingsContextProvider>
+      <Router>
+        <Routes>
+          <Route index element={<Navigate to={'/dashboard/table/daily'} />} />
 
-            <Route path={routes.LOGIN} element={<LoginPage />} />
-            <Route path={routes.REGISTER} element={<CreateAccountPage />} />
-            <Route path={routes.RESET_PASSWORD} element={<ResetPasswordPage />} />
+          <Route path={routes.LOGIN} element={<LoginPage />} />
+          <Route path={routes.REGISTER} element={<CreateAccountPage />} />
+          <Route path={routes.RESET_PASSWORD} element={<ResetPasswordPage />} />
 
-            <Route
-              path={routes.DASHBOARD}
-              element={
-                <RequireAuth>
-                  <MainPageWithCurrentUser />
-                </RequireAuth>
-              }
-              errorElement={<ErrorPage />}
-            >
-              <Route path="table">
-                <Route
-                  path={TABLE_ALL}
-                  element={<AllTimeTablePage />}
-                />
-                <Route
-                  path={TABLE_DAILY}
-                  element={<DailyTablePage />}
-                />
-                <Route
-                  path={TABLE_MONTHLY}
-                  element={<MonthlyTablePage />}
-                />
-              </Route>
-
-              <Route path="statistics">
-                <Route
-                  path={STATISTICS_ALL}
-                  element={<AllTimeStatisticsPage />}
-                />
-                <Route
-                  path={STATISTICS_DAILY}
-                  element={<DailyStatisticsPage />}
-                />
-                <Route
-                  path={STATISTICS_MONTHLY}
-                  element={<MonthlyStatisticsPage />}
-                />
-              </Route>
-
+          <Route
+            path={routes.DASHBOARD}
+            element={
+              <RequireAuth>
+                <MainPageWithCurrentUser />
+              </RequireAuth>
+            }
+            errorElement={<ErrorPage />}
+          >
+            <Route path="table">
               <Route
-                path={EDIT_RECEIPT}
-                element={<EditReceiptPage />}
+                path={TABLE_ALL}
+                element={<AllTimeTablePage />}
               />
-
               <Route
-                path={CREATE_RECEIPT}
-                element={<CreateReceiptPage />}
+                path={TABLE_DAILY}
+                element={<DailyTablePage />}
               />
-
               <Route
-                path={'settings'}
-                element={<SettingsPage />}
-              />
-
-              <Route
-                path={INFO}
-                element={<InfoPage />}
+                path={TABLE_MONTHLY}
+                element={<MonthlyTablePage />}
               />
             </Route>
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Router>
-        <Footer />
-      </UserSettingsContextProvider>
-    </ApplicationSettingsContextProvider>
+            <Route path="statistics">
+              <Route
+                path={STATISTICS_ALL}
+                element={<AllTimeStatisticsPage />}
+              />
+              <Route
+                path={STATISTICS_DAILY}
+                element={<DailyStatisticsPage />}
+              />
+              <Route
+                path={STATISTICS_MONTHLY}
+                element={<MonthlyStatisticsPage />}
+              />
+            </Route>
+
+            <Route
+              path={EDIT_RECEIPT}
+              element={<EditReceiptPage />}
+            />
+
+            <Route
+              path={CREATE_RECEIPT}
+              element={<CreateReceiptPage />}
+            />
+
+            <Route
+              path={'settings'}
+              element={<SettingsPage />}
+            />
+
+            <Route
+              path={INFO}
+              element={<InfoPage />}
+            />
+          </Route>
+
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Router>
+      <Footer />
+    </UserSettingsContextProvider>
   </div>
 )

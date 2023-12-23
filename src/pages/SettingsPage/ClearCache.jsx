@@ -1,12 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { Header, Segment, Message, Grid } from 'semantic-ui-react'
 import { LoadableButton } from '../../components/shared/Button'
-import { useUserSettings } from '../../hooks'
 
 const ClearCache = () => {
 
   const navigate = useNavigate()
-  const { settings: { controlsSize } } = useUserSettings()
+  
 
   const handleClearCacheButtonClick = () => {
     localStorage.clear()
@@ -40,7 +39,7 @@ const ClearCache = () => {
               icon="trash"
               negative
               basic
-              size={controlsSize}
+              size="large"
               onClick={handleClearCacheButtonClick}
             />
           </Grid.Column>

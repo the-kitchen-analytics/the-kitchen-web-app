@@ -2,7 +2,6 @@ import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { WorkerCategorySelect } from '../../components/shared'
-import { useApplicationSettings } from '../../hooks'
 import { handleInputChange } from '../../utils'
 
 export const CreateAccountForm = (props) => {
@@ -14,9 +13,6 @@ export const CreateAccountForm = (props) => {
     error,
     handleRegisterWithMailAndPassword
   } = props
-
-  const { settings: { controlsSize } } = useApplicationSettings()
-
   const handleInputChangeWrapper = useCallback((e) => {
     handleInputChange(e, setFormData)
   }, [setFormData])
@@ -35,7 +31,7 @@ export const CreateAccountForm = (props) => {
   return (
     <Form
       error={!!error}
-      size={controlsSize}
+      size="large"
       onSubmit={handleRegisterWithMailAndPassword}
       loading={isLoading}
     >
@@ -81,7 +77,7 @@ export const CreateAccountForm = (props) => {
 
       <Form.Button
         fluid
-        size={controlsSize}
+        size="large"
         type="submit"
         content="Зарегистрироваться"
         loading={isLoading}
