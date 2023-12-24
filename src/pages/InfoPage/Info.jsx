@@ -1,7 +1,11 @@
 import { Header, List, Segment } from 'semantic-ui-react'
 import { formatDate, getLocalStorageSize } from '../../utils'
+import { useOutletContext } from 'react-router-dom'
 
-export const Info = ({ user }) => {
+export const Info = () => {
+
+  const { user } = useOutletContext()
+  console.debug('user', user)
 
   const listItems = [
     {

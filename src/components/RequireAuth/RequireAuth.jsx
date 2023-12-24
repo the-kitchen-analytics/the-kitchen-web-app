@@ -1,10 +1,10 @@
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { Loader } from '../shared/'
 import { Message } from 'semantic-ui-react'
 import { LOGIN } from '../../data/routePaths'
 import { useAuth } from '../../hooks'
 
-export const RequireAuth = ({ children }) => {
+export const RequireAuth = () => {
 
   const [user, loading, error] = useAuth()
   const location = useLocation()
@@ -35,5 +35,5 @@ export const RequireAuth = ({ children }) => {
     return <Navigate to={LOGIN} state={{ from: location }} replace />
   }
 
-  return children
+  return <Outlet context={{ user }} />
 }

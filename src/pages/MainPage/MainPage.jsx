@@ -1,20 +1,19 @@
 import { useCallback, useMemo } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useOutletContext } from 'react-router-dom'
 import { Container, Grid, Segment } from 'semantic-ui-react'
 import { ErrorMessage, Loader } from '../../components/shared'
 import { useReceipts, useUserDetails } from '../../hooks'
 import { NavigationMenu } from '../../components/NavigationMenu'
 
-export const MainPage = ({ user: currentUser }) => {
-  const [data, isLoading, error] = useReceipts({
-    uid: currentUser.uid
-  })
+export const MainPage = () => {
+  const { user } = useOutletContext()
+  const [data, isLoading, error] = useReceipts({ uid: user.uid })
 
   const {
     userDetails,
     updateUserDetails,
     isLoading: isUserDetailsLoading
-  } = useUserDetails(currentUser.uid)
+  } = useUserDetails(user.uid)
 
   const getReceiptById = useCallback(
     (id) => {
@@ -48,6 +47,7 @@ export const MainPage = ({ user: currentUser }) => {
       <Outlet
         context={{
           ...data,
+          user,
           userDetails,
           updateUserDetails,
           getReceiptById
