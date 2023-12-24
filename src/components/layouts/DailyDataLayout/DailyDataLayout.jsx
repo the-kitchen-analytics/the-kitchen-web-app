@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Grid } from 'semantic-ui-react'
-import { DashboardLayout } from '../'
+import { MainLayout } from '../'
 import { TimelinePicker } from '../../TimelinePicker'
 import { Carousel, DaySelect } from '../../shared'
 import { buildDropdownOptions } from '../../../utils/'
@@ -11,7 +11,7 @@ export const DailyDataLayout = (props) => {
   const selectedDayIndex = _.indexOf(options, selectedDay)
 
   return (
-    <DashboardLayout
+    <MainLayout
       icon={icon}
       header={header}
     >
@@ -64,6 +64,6 @@ export const DailyDataLayout = (props) => {
           }
         </Grid.Column>
       </Grid.Row>
-    </DashboardLayout>
+    </MainLayout>
   )
 }

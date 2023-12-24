@@ -1,6 +1,6 @@
 import { Grid, Header } from 'semantic-ui-react'
 
-export const DashboardLayout = ({ header, subheader, icon, content, children }) => (
+export const MainLayout = ({ header, subheader, icon, content, children }) => (
   <Grid stackable padded>
     <Grid.Row>
       <Grid.Column>

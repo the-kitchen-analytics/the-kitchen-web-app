@@ -1,7 +1,7 @@
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
 import { Form, Grid, Table } from 'semantic-ui-react'
 import { PriceCell } from '../../../components/DataTable/'
-import { DashboardLayout } from '../../../components/layouts'
+import { MainLayout } from '../../../components/layouts'
 import { ErrorMessage, Price, NoContent, GoBackButton } from '../../../components/shared'
 import { usePostData } from '../../../hooks'
 import { calculateTotalPrice, calculateTotalWorkerIncome, getProcedureTypeDisplayName } from '../../../utils/'
@@ -30,7 +30,7 @@ export const EditReceiptPage = () => {
   }
 
   return (
-    <DashboardLayout
+    <MainLayout
       header={header}
       subheader="Детализация записи клиента"
     >
@@ -158,6 +158,6 @@ export const EditReceiptPage = () => {
         </Grid.Column>
       </Grid.Row>
 
-    </DashboardLayout >
+    </MainLayout >
   )
 }

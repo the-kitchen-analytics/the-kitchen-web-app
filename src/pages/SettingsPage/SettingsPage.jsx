@@ -1,5 +1,5 @@
 import { Grid } from 'semantic-ui-react'
-import { DashboardLayout } from '../../components/layouts'
+import { MainLayout } from '../../components/layouts'
 import ClearCache from './ClearCache.jsx'
 import SelectAccentColor from './SelectAccentColorSetting.jsx'
 import { UserProfile } from '../../components/UserProfile'
@@ -36,7 +36,7 @@ export const SettingsPage = () => {
   ))
 
   return (
-    <DashboardLayout
+    <MainLayout
       icon="settings"
       header="Настройки"
       content={content}

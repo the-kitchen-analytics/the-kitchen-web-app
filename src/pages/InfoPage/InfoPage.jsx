@@ -1,5 +1,5 @@
 import { Grid } from 'semantic-ui-react'
-import { DashboardLayout } from '../../components/layouts'
+import { MainLayout } from '../../components/layouts'
 import { WithCurrentUser } from '../../hoc'
 import { ContactUs } from './ContactUs'
 import { Info } from './Info'
@@ -35,7 +35,7 @@ export const InfoPage = () => {
   ))
 
   return (
-    <DashboardLayout
+    <MainLayout
       icon="question circle"
       header="Информация"
       content={content}

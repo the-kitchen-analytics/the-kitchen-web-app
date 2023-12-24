@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import { Grid, Message } from 'semantic-ui-react'
-import { DashboardLayout } from '../../../components/layouts/'
+import { MainLayout } from '../../../components/layouts/'
 import { CreateReceiptForm } from './CreateReceiptForm'
 import { ErrorMessage } from '../../../components/shared'
 import { useLocalStorage, usePostData, useSessionStorage } from '../../../hooks'
@@ -86,7 +86,7 @@ export const CreateReceiptPage = () => {
   }
 
   return (
-    <DashboardLayout
+    <MainLayout
       icon="cloud upload"
       header="Сохранить запись"
     >
@@ -128,6 +128,6 @@ export const CreateReceiptPage = () => {
           />
         </Grid.Column>
       </Grid.Row>
-    </DashboardLayout>
+    </MainLayout>
   )
 }
