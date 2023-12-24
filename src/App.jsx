@@ -23,7 +23,7 @@ import {
   CREATE_RECEIPT,
   EDIT_RECEIPT,
   INFO,
-  routes,
+  routes, SETTINGS,
   STATISTICS_ALL,
   STATISTICS_DAILY,
   STATISTICS_MONTHLY,
@@ -98,7 +98,7 @@ export const App = () => (
             />
 
             <Route
-              path={'settings'}
+              path={SETTINGS}
               element={<SettingsPage />}
             />
 

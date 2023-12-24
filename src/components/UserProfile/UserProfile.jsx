@@ -9,11 +9,7 @@ import { EditUserForm } from './EditUserForm'
 
 export const UserProfile = () => {
 
-  const {
-    userDetails,
-    updateUserDetails,
-    isUserDetailsLoading,
-  } = useOutletContext()
+  const { userDetails, updateUserDetails } = useOutletContext()
 
   const initialFormData = useMemo(() => userDetails, [userDetails])
 
@@ -53,12 +49,12 @@ export const UserProfile = () => {
     resetFormData()
   }
 
-  if (isUserDetailsLoading) {
+  if (!userDetails) {
     return <Loader />
   }
 
   return (
-    <Segment loading={isLoading || isUserDetailsLoading}>
+    <Segment loading={isLoading}>
       <Header
         icon
         textAlign="center"

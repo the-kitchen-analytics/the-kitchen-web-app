@@ -1,9 +1,9 @@
 import { Grid } from 'semantic-ui-react'
-import { DashboardLayout } from '../'
+import { MainLayout } from '../'
 import { TimelinePicker } from '../../TimelinePicker'
 
 export const AllTimeDataLayout = ({ icon, header, content, children }) => (
-  <DashboardLayout
+  <MainLayout
     icon={icon}
     header={header}
   >
@@ -19,5 +19,5 @@ export const AllTimeDataLayout = ({ icon, header, content, children }) => (
         }
       </Grid.Column>
     </Grid.Row>
-  </DashboardLayout>
+  </MainLayout>
 )

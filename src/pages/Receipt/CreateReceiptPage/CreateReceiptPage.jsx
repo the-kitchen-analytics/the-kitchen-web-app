@@ -2,26 +2,27 @@ import _ from 'lodash'
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 import { Grid, Message } from 'semantic-ui-react'
-import { DashboardLayout } from '../../../components/layouts/'
+import { MainLayout } from '../../../components/layouts/'
 import { CreateReceiptForm } from './CreateReceiptForm'
 import { ErrorMessage } from '../../../components/shared'
-import { useLocalStorage, usePostData, useSessionStorage } from '../../../hooks'
+import { useLocalStorage, usePostData, useProcedures, useSessionStorage } from '../../../hooks'
 import { formatDateForDatePicker, getCurrentDate } from '../../../utils/'
 import { createReceipt } from '../../../services/receiptService'
 import { TABLE_DAILY } from '../../../data/routePaths'
 import { mapReceiptToFirebaseEntity } from '../../../mappers/receipt'
 import { validateReceipt } from '../../../validators/receipt'
 
-const INITIAL_ACORDITION_INDEX = -1
+const INITIAL_ACCORDITION_INDEX = -1
 
 export const CreateReceiptPage = () => {
 
   const { userDetails: { uid, workerCategory } } = useOutletContext()
+  const [procedures = [], isFetchingProcedures] = useProcedures(workerCategory)
 
   const navigate = useNavigate()
-  const [isLoading, error, postData] = usePostData()
+  const [isSavingReceipt, error, postData] = usePostData()
 
-  const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMesage] = useState(false)
+  const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMessage] = useState(false)
 
   const initialReceipt = useMemo(() => ({
     date: formatDateForDatePicker(getCurrentDate()),
@@ -39,9 +40,10 @@ export const CreateReceiptPage = () => {
     useLocalStorage('shouldDisplayPreview', true)
 
   const [accorditionActiveIndex, setAccorditionActiveIndex] =
-    useSessionStorage('accorditionActiveIndex', INITIAL_ACORDITION_INDEX)
+    useSessionStorage('accorditionActiveIndex', INITIAL_ACCORDITION_INDEX)
 
   const isReceiptValid = useMemo(() => validateReceipt(receipt), [receipt])
+  const isLoading = isSavingReceipt || isFetchingProcedures
 
   const convertedFormData = useMemo(() => {
     return mapReceiptToFirebaseEntity(receipt)
@@ -49,21 +51,21 @@ export const CreateReceiptPage = () => {
 
   const clearForm = () => {
     setReceipt(initialReceipt)
-    setShouldDisplaySuccessMesage(false)
+    setShouldDisplaySuccessMessage(false)
   }
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    setShouldDisplaySuccessMesage(false)
+    setShouldDisplaySuccessMessage(false)
 
     if (!shouldDisableSubmitFormButton()) {
-      setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX)
+      setAccorditionActiveIndex(INITIAL_ACCORDITION_INDEX)
 
       const receipt = await postData(createReceipt, convertedFormData)
 
       if (receipt.id) {
         clearForm()
-        setShouldDisplaySuccessMesage(true)
+        setShouldDisplaySuccessMessage(true)
 
         if (shouldRedirectToHomePageAfterSubmit) {
           navigate('/')
@@ -73,12 +75,12 @@ export const CreateReceiptPage = () => {
   }
 
   const handleClearFromButtonClick = () => {
-    setAccorditionActiveIndex(INITIAL_ACORDITION_INDEX)
+    setAccorditionActiveIndex(INITIAL_ACCORDITION_INDEX)
     clearForm()
   }
 
   const shouldDisableClearFormButton = () => {
-    return _.isEqual(receipt, initialReceipt) || isLoading
+    return _.isEqual(receipt, initialReceipt) || isSavingReceipt
   }
 
   const shouldDisableSubmitFormButton = () => {
@@ -86,7 +88,7 @@ export const CreateReceiptPage = () => {
   }
 
   return (
-    <DashboardLayout
+    <MainLayout
       icon="cloud upload"
       header="Сохранить запись"
     >
@@ -111,6 +113,7 @@ export const CreateReceiptPage = () => {
           }
           <CreateReceiptForm
             formData={receipt}
+            procedures={procedures}
             setFormData={setReceipt}
             convertedFormData={convertedFormData}
             workerCategory={workerCategory}
@@ -128,6 +131,6 @@ export const CreateReceiptPage = () => {
           />
         </Grid.Column>
       </Grid.Row>
-    </DashboardLayout>
+    </MainLayout>
   )
 }

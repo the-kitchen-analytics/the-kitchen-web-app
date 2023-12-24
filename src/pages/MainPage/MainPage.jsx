@@ -2,11 +2,11 @@ import { useCallback, useMemo } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Container, Grid, Segment } from 'semantic-ui-react'
 import { ErrorMessage, Loader } from '../../components/shared'
-import { useProcedures, useStreamReceiptData, useUserDetails } from '../../hooks'
+import { useReceipts, useUserDetails } from '../../hooks'
 import { NavigationMenu } from '../../components/NavigationMenu'
 
 export const MainPage = ({ user: currentUser }) => {
-  const [data, isLoading, error] = useStreamReceiptData({
+  const [data, isLoading, error] = useReceipts({
     uid: currentUser.uid
   })
 
@@ -15,20 +15,6 @@ export const MainPage = ({ user: currentUser }) => {
     updateUserDetails,
     isLoading: isUserDetailsLoading
   } = useUserDetails(currentUser.uid)
-
-  const procedures = useProcedures(userDetails.workerCategory)
-
-  console.debug('procedures', procedures)
-  const proceduresForSubmitData = procedures.filter(
-    ({ workerCategory }) => workerCategory === userDetails.workerCategory
-  )
-
-  const getProcedureById = useCallback(
-    (id) => {
-      return procedures.find((procedure) => procedure.id === id)
-    },
-    [procedures]
-  )
 
   const getReceiptById = useCallback(
     (id) => {
@@ -63,16 +49,12 @@ export const MainPage = ({ user: currentUser }) => {
         context={{
           ...data,
           userDetails,
-          procedures,
-          proceduresForSubmitData,
-          isUserDetailsLoading,
           updateUserDetails,
-          getProcedureById,
           getReceiptById
         }}
       />
     )
-  }, [isLoading, isUserDetailsLoading, data, userDetails, procedures, updateUserDetails, getProcedureById, getReceiptById])
+  }, [isLoading, data, userDetails, updateUserDetails, getReceiptById])
 
   return (
     <>

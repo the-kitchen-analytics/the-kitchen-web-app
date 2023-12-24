@@ -1,10 +1,9 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { useOutletContext } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { DataTable } from '../../../components/DataTable'
 import { DatePicker, LoadableButton } from '../../../components/shared'
-import { useUserSettings } from '../../../hooks'
+import {  useUserSettings } from '../../../hooks'
 import { SelectProcedures } from './SelectProcedures'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
 
@@ -14,6 +13,7 @@ export const CreateReceiptForm = (props) => {
 
   const {
     formData,
+    procedures,
     setFormData,
     convertedFormData,
     workerCategory,
@@ -27,7 +27,7 @@ export const CreateReceiptForm = (props) => {
     handleFormSubmit,
     handleClearFromButtonClick,
     shouldDisableClearFormButton,
-    shouldDisableSubmitFormButton,
+    shouldDisableSubmitFormButton
   } = props
 
   const { settings: { accentColor } } = useUserSettings()
@@ -37,8 +37,6 @@ export const CreateReceiptForm = (props) => {
   const getSubmitButtonLabel = useCallback(() => {
     return 'Сохранить ' + (formData.procedures.length > 0 ? `(${formData.procedures.length})` : '')
   }, [formData.procedures])
-
-  const { proceduresForSubmitData } = useOutletContext()
 
   return (
     <Form
@@ -65,17 +63,21 @@ export const CreateReceiptForm = (props) => {
         />
       </Form.Group>
 
-      <SelectProcedures
-        procedures={proceduresForSubmitData}
-        formData={formData}
-        setFormData={setFormData}
-        accorditionActiveIndex={accorditionActiveIndex}
-        setAccorditionActiveIndex={setAccorditionActiveIndex}
-        shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
-        setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
-        shouldDisplayPreview={shouldDisplayPreview}
-        setShouldDisplayPreview={setShouldDisplayPreview}
-      />
+      {
+        !isLoading && (
+          <SelectProcedures
+            procedures={procedures}
+            formData={formData}
+            setFormData={setFormData}
+            accorditionActiveIndex={accorditionActiveIndex}
+            setAccorditionActiveIndex={setAccorditionActiveIndex}
+            shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
+            setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
+            shouldDisplayPreview={shouldDisplayPreview}
+            setShouldDisplayPreview={setShouldDisplayPreview}
+          />
+        )
+      }
 
       {
         shouldDisplayPreview && !_.isEmpty(formData.procedures) && (

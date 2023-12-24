@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react'
 import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
 import { MonthSelect, YearSelect } from '../../shared/dropdown'
 import { Carousel } from '../../shared'
-import { DashboardLayout } from '../DashboardLayout'
+import { MainLayout } from '../MainLayout'
 import { TimelinePicker } from '../../TimelinePicker'
 
 export const MonthlyDataLayout = (props) => {
@@ -30,7 +30,7 @@ export const MonthlyDataLayout = (props) => {
   })), [yearOptions])
 
   return (
-    <DashboardLayout
+    <MainLayout
       icon={icon}
       header={header}
     >
@@ -90,6 +90,6 @@ export const MonthlyDataLayout = (props) => {
           }
         </Grid.Column>
       </Grid.Row>
-    </DashboardLayout>
+    </MainLayout>
   )
 }

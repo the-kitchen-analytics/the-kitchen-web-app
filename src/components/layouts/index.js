@@ -1,5 +1,5 @@
 export * from './AllTimeDataLayout'
 export * from './DailyDataLayout'
-export * from './DashboardLayout'
+export * from './MainLayout'
 export * from './FormLayout'
 export * from './MonthlyDataLayout'
