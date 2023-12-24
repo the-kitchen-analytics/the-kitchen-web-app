@@ -3,9 +3,7 @@ import { formatDate, getLocalStorageSize } from '../../utils'
 import { useOutletContext } from 'react-router-dom'
 
 export const Info = () => {
-
   const { user } = useOutletContext()
-  console.debug('user', user)
 
   const listItems = [
     {
