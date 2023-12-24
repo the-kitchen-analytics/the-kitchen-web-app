@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { mapFirebaseEntityToReceipt } from '../mappers/receipt'
 import { streamReceiptsByUid } from '../services/receiptService'
 
-export const useStreamReceiptData = (options) => {
+export const useReceipts = (options) => {
   const { uid } = options
 
   const [data, setData] = useState()

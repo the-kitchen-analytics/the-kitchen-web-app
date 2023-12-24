@@ -1,6 +1,5 @@
 import { useCallback, useState, useEffect } from 'react'
 
-
 export const useFetchData = (fetchFunction, deps = []) => {
 
   const [isLoading, setIsLoading] = useState(true)
