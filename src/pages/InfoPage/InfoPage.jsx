@@ -1,11 +1,8 @@
 import { Grid } from 'semantic-ui-react'
 import { MainLayout } from '../../components/layouts'
-import { WithCurrentUser } from '../../hoc'
 import { ContactUs } from './ContactUs'
-import { Info } from './Info'
 import contactOptions from '../../data/contactOptions.json'
-
-const InfoWithUser = WithCurrentUser(Info)
+import { Info } from './Info'
 
 export const InfoPage = () => {
 
@@ -20,7 +17,7 @@ export const InfoPage = () => {
     },
     {
       key: 'app-info',
-      element: <InfoWithUser />
+      element: <Info />
     }
   ]
 
