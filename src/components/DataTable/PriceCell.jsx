@@ -1,3 +1,3 @@
 import { Price } from '../shared'
 
-export const PriceCell = props => <Price euro>{props.children}</Price>
+export const PriceCell = props => <Price>{props.children}</Price>

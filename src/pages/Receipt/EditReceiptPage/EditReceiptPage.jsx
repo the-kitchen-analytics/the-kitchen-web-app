@@ -76,7 +76,7 @@ export const EditReceiptPage = () => {
                     <Table.Cell
                       textAlign="right"
                       content={(
-                        <Price euro>
+                        <Price>
                           {procedure.priceBeforeTaxes}
                         </Price>
                       )}
@@ -86,7 +86,7 @@ export const EditReceiptPage = () => {
                       textAlign="right"
                       content={(
                         <strong>
-                          <Price euro>
+                          <Price>
                             {procedure.priceAfterTaxes}
                           </Price>
                         </strong>

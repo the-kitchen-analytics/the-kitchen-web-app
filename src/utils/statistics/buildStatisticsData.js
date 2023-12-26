@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import { buildPrice, calculateTotalWorkerIncome } from '../money'
+import { formatPrice, calculateTotalWorkerIncome } from '../money'
 
 export const buildStatisticsData = (rawData) => {
 
@@ -33,7 +33,7 @@ export const buildStatisticsData = (rawData) => {
       color: 'green',
       name: 'totalIncome',
       renderLabel: () => 'Заработано',
-      renderValue: () => buildPrice(totalWorkerIncome)
+      renderValue: () => formatPrice(totalWorkerIncome)
     }
   ])
 
@@ -51,14 +51,14 @@ export const buildStatisticsData = (rawData) => {
           color: 'blue',
           name: 'incomePerDay',
           renderLabel: () => 'В среднем за день',
-          renderValue: () => buildPrice(_.divide(totalWorkerIncome, daysCount))
+          renderValue: () => formatPrice(_.divide(totalWorkerIncome, daysCount))
         },
 
         {
           color: 'violet',
           name: 'incomePerOperation',
           renderLabel: () => 'В среднем за процедуру',
-          renderValue: () => buildPrice(_.divide(totalWorkerIncome, operationCount))
+          renderValue: () => formatPrice(_.divide(totalWorkerIncome, operationCount))
         }
       ]
     )

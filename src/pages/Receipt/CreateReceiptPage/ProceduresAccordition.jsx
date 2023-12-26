@@ -1,10 +1,12 @@
 import { useCallback, Fragment } from 'react'
 import { Accordion, Icon, Divider, Form } from 'semantic-ui-react'
-import { buildPriceString } from '../../../utils/money'
+import { formatPrice } from '../../../utils'
 
+const getLabel = ({ name, price }) => {
+  return `${name} ${formatPrice(price)}`
+}
 
 const AccordionItem = ({ title, index, activeIndex, handleToggle, count, children }) => {
-
   const isActive = index === activeIndex
 
   return (
@@ -51,7 +53,7 @@ export const ProceduresAccordition = (props) => {
         name={procedure.name}
         label={
           shouldDisplayProcedurePrice
-            ? buildPriceString(procedure.name, procedure.price)
+            ? getLabel(procedure)
             : procedure.name
         }
         onChange={(event, { checked }) => handleProcedureItemChange(procedure, checked)}

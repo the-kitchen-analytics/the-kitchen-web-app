@@ -1,3 +1,3 @@
-export * from './buildPriceString'
+export * from './formatPrice'
 export * from './calculateTotalPrice'
 export * from './calculateTotalWorkerIncome'
