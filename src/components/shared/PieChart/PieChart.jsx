@@ -1,11 +1,15 @@
-import _ from 'lodash'
 import { useRef, useEffect } from 'react'
-import { Segment, List, Grid } from 'semantic-ui-react'
+import { Segment, Grid } from 'semantic-ui-react'
 import { getHexByColorName } from '../../../utils'
+import { ChartLegend } from './ChartLegend'
+import { calculateTotal, sortChartData } from './helpers'
+
+const CANVAS_SIZE = 250
 
 export const PieChart = ({ data }) => {
   const canvasRef = useRef(null)
-  const total = _.sumBy(data, item => item.value)
+  const total = calculateTotal(data)
+  const sortedData = sortChartData(data)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -17,7 +21,7 @@ export const PieChart = ({ data }) => {
 
     let startAngle = 0
 
-    data.forEach((entry) => {
+    sortedData.forEach((entry) => {
       const sliceAngle = (entry.value / total) * 2 * Math.PI
       const endAngle = startAngle + sliceAngle
 
@@ -37,17 +41,7 @@ export const PieChart = ({ data }) => {
     ctx.fillStyle = 'white'
     ctx.fill()
     ctx.closePath()
-  }, [data])
-
-  const listItems = data.map(({ key, label, color }) => ({
-    key,
-    color,
-    icon: {
-      name: 'circle',
-      color
-    },
-    header: label
-  }))
+  }, [sortedData])
 
   return (
     <Segment padded>
@@ -56,19 +50,15 @@ export const PieChart = ({ data }) => {
           <Grid.Column>
             <canvas
               ref={canvasRef}
-              width={250}
-              height={250}
+              width={CANVAS_SIZE}
+              height={CANVAS_SIZE}
               style={{ display: 'block', margin: 'auto' }}
             />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered>
           <Grid.Column>
-            <List
-              relaxed
-              size={'large'}
-              items={listItems}
-            />
+            <ChartLegend data={sortedData} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

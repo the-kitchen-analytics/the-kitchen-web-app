@@ -3,6 +3,10 @@ import { getColorNameByIndex } from '../ui'
 import { getProcedureTypeDisplayName } from '../procedures'
 import { formatPrice } from '../money'
 
+const COLOR_NAMES = Object.freeze([
+  'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet'
+])
+
 const getType = (entry) => {
   if (entry.type) {
     return entry.type
@@ -35,7 +39,7 @@ const mapEntry = ([key, value], i) => {
     name: key,
     value: totalIncome,
     label: getChartLabel(key, totalIncome),
-    color: getColorNameByIndex(i)
+    color: getColorNameByIndex(i, COLOR_NAMES)
   }
 }
 
