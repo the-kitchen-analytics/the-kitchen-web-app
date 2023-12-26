@@ -35,7 +35,7 @@ const mapEntry = ([key, value], i) => {
     name: key,
     value: totalIncome,
     label: getChartLabel(key, totalIncome),
-    color: getColorNameByIndex(i),
+    color: getColorNameByIndex(i)
   }
 }
 

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { useRef, useEffect } from 'react'
 import { Segment, List, Grid } from 'semantic-ui-react'
+import { getHexByColorName } from '../../../utils'
 
 export const PieChart = ({ data }) => {
   const canvasRef = useRef(null)
@@ -24,7 +25,7 @@ export const PieChart = ({ data }) => {
       ctx.beginPath()
       ctx.moveTo(centerX, centerY)
       ctx.arc(centerX, centerY, outerRadius, startAngle, endAngle, false)
-      ctx.fillStyle = entry.color
+      ctx.fillStyle = getHexByColorName(entry.color)
       ctx.fill()
       ctx.closePath()
       startAngle = endAngle
