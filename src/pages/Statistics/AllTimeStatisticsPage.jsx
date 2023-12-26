@@ -2,7 +2,7 @@ import { useOutletContext } from 'react-router-dom'
 import { AllTimeDataLayout } from '../../components/layouts/'
 import { Statistics } from '../../components/Statistics'
 import { getAllData } from '../../services/receiptFilterService'
-import { getProceduresFromReceipts, buildStatisticsData, buildProgressData } from '../../utils'
+import { getProceduresFromReceipts, buildStatisticsData, buildChartData } from '../../utils'
 
 export const AllTimeStatisticsPage = () => {
 
@@ -10,7 +10,7 @@ export const AllTimeStatisticsPage = () => {
   const data = getAllData(receipts)
   const procedures = getProceduresFromReceipts(data)
   const statisticsData = buildStatisticsData(data)
-  const progressData = buildProgressData(procedures)
+  const chartData = buildChartData(procedures)
 
   return (
     <AllTimeDataLayout
@@ -18,7 +18,7 @@ export const AllTimeStatisticsPage = () => {
       header="Статистика"
     >
       <Statistics
-        progressData={progressData}
+        chartData={chartData}
         statisticsData={statisticsData}
       />
     </AllTimeDataLayout>

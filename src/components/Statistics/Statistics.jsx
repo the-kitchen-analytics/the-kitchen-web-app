@@ -1,9 +1,8 @@
 import _ from 'lodash'
 import { Grid, Segment, Statistic } from 'semantic-ui-react'
-import { NoContent } from '../shared'
-import { StatisticsProgress } from './StatisticsProgress'
+import { NoContent, PieChart } from '../shared'
 
-export const Statistics = ({ progressData = [], statisticsData = [] }) => {
+export const Statistics = ({ chartData = [], statisticsData = [] }) => {
 
   if (_.isEmpty(statisticsData.flat())) {
     return (
@@ -45,10 +44,10 @@ export const Statistics = ({ progressData = [], statisticsData = [] }) => {
           }
         </Grid.Row>
         {
-          !_.isEmpty(progressData) && (
+          !_.isEmpty(chartData) && (
             <Grid.Row>
               <Grid.Column>
-                <StatisticsProgress data={progressData} />
+                <PieChart data={chartData} />
               </Grid.Column>
             </Grid.Row>
           )
