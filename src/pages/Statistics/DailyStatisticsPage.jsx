@@ -5,7 +5,7 @@ import { useDailyData } from '../../hooks'
 
 export const DailyStatisticsPage = () => {
 
-  const [statisticsData, workedDays, selectedDay, setSelectedDay] = useDailyData(getStatisticsDataByDay)
+  const [{ statisticsData, chartData }, workedDays, selectedDay, setSelectedDay] = useDailyData(getStatisticsDataByDay)
 
   return (
     <DailyDataLayout
@@ -16,6 +16,7 @@ export const DailyStatisticsPage = () => {
       options={workedDays}
     >
       <Statistics
+        chartData={chartData}
         statisticsData={statisticsData}
       />
     </DailyDataLayout>

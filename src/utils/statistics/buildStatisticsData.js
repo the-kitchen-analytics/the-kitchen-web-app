@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import { formatPrice, calculateTotalWorkerIncome } from '../money'
+import { buildChartData } from './buildChartData'
 
 export const buildStatisticsData = (rawData) => {
 
@@ -37,6 +38,8 @@ export const buildStatisticsData = (rawData) => {
     }
   ])
 
+  const chartData = buildChartData(allProcedures)
+
   if (daysCount > 1) {
     const averageStatistics = Object.freeze(
       [
@@ -63,12 +66,18 @@ export const buildStatisticsData = (rawData) => {
       ]
     )
 
-    return [generalDataStatistics, averageStatistics]
+    return {
+      statisticsData: [generalDataStatistics, averageStatistics],
+      chartData
+    }
   }
 
   if (daysCount === 1) {
-    return [generalDataStatistics]
+    return {
+      statisticsData: [generalDataStatistics],
+      chartData
+    }
   }
 
-  return []
+  return {}
 }

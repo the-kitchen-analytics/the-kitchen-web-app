@@ -43,15 +43,12 @@ export const Statistics = ({ chartData = [], statisticsData = [] }) => {
             ))
           }
         </Grid.Row>
-        {
-          !_.isEmpty(chartData) && (
-            <Grid.Row>
-              <Grid.Column>
-                <PieChart data={chartData} />
-              </Grid.Column>
-            </Grid.Row>
-          )
-        }
+
+        <Grid.Row>
+          <Grid.Column>
+            <PieChart data={chartData} />
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </div>
   )
