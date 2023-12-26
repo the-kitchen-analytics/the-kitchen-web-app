@@ -1,54 +1,67 @@
 [
     {
         "name": "red",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#DB2828"
     },
     {
         "name": "orange",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#F2711C"
     },
     {
         "name": "yellow",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#FBBD08"
     },
     {
         "name": "olive",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#B5CC18"
     },
     {
         "name": "green",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#21BA45"
     },
     {
         "name": "teal",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#00B5AD"
     },
     {
         "name": "blue",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#2185D0"
     },
     {
         "name": "violet",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#6435C9"
     },
     {
         "name": "purple",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#A333C8"
     },
     {
         "name": "pink",
-        "isFancy": true
+        "isFancy": true,
+        "hex": "#E03997"
     },
     {
         "name": "brown",
-        "isFancy": false
+        "isFancy": false,
+        "hex": "#A5673F"
     },
     {
         "name": "grey",
-        "isFancy": false
+        "isFancy": false,
+        "hex": "#767676"
     },
     {
         "name": "black",
-        "isFancy": false
+        "isFancy": false,
+        "hex": "#000000"
     }
 ]

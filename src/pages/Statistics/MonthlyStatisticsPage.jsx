@@ -4,9 +4,8 @@ import { getStatisticsDataByMonthAndYear } from '../../services/statisticsDataFi
 import { useMonthlyData } from '../../hooks'
 
 export const MonthlyStatisticsPage = () => {
-
   const [
-    filteredData, yearOptions,
+    { statisticsData, chartData }, yearOptions,
     initialSelectedDate,
     selectedDate, setSelectedDate
   ] = useMonthlyData(getStatisticsDataByMonthAndYear)
@@ -22,7 +21,8 @@ export const MonthlyStatisticsPage = () => {
     >
       {
         <Statistics
-          statisticsData={filteredData}
+          chartData={chartData}
+          statisticsData={statisticsData}
         />
       }
     </MonthlyDataLayout>

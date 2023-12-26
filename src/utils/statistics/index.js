@@ -1,2 +1,2 @@
+export * from './buildChartData'
 export * from './buildStatisticsData'
-export * from './buildProgressData'

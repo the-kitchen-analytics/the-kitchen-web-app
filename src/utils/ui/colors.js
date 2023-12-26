@@ -9,3 +9,7 @@ export const getRandomColorName = () => getRandomArrayElement(colorNames)
 
 export const getRandomFancyColorName = () => getRandomArrayElement(fancyColorNames)
 
+export const getColorNameByIndex = (i) => fancyColorNames[i % fancyColorNames.length]
+
+export const getHexByColorName = (name) => colors
+  .find(it => it.name === name).hex
