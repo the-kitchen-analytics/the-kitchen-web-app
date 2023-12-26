@@ -3,7 +3,7 @@ import { Accordion, Icon, Divider, Form } from 'semantic-ui-react'
 import { formatPrice } from '../../../utils'
 
 const getLabel = ({ name, price }) => {
-  return `${name} ${formatPrice(price)}`
+  return `${name} (${formatPrice(price)})`
 }
 
 const AccordionItem = ({ title, index, activeIndex, handleToggle, count, children }) => {
