@@ -10,7 +10,7 @@ export const DateCell = ({ children, price = 0 }) => {
   return (
     <>
       <Label ribbon size="large" color={accentColor}>
-        <Price euro>{price}</Price>
+        <Price>{price}</Price>
       </Label>
       <h2>{formatDate(children)}</h2>
     </>

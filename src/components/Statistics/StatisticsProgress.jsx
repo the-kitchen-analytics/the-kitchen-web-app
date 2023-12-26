@@ -1,11 +1,14 @@
 import { Progress, Segment } from 'semantic-ui-react'
 import { sumBy } from 'lodash'
-import { getProcedureTypeDisplayName, getRandomFancyColorName, buildPriceString } from '../../utils'
+import { getProcedureTypeDisplayName, getRandomFancyColorName, formatPrice } from '../../utils'
+
+const getLabel = (type, price) => {
+  return `${getProcedureTypeDisplayName(type)} (${formatPrice(price)})`
+}
 
 const isEligibleItem = ({ value }) => value > 0
 
 export const StatisticsProgress = ({ data }) => {
-
   const filteredData = data.filter(isEligibleItem)
   const total = sumBy(filteredData, item => item.value)
 
@@ -14,11 +17,11 @@ export const StatisticsProgress = ({ data }) => {
       {
         filteredData.map(({ key, value, totalPriceAfterTaxes }) => (
           <Progress
+            key={key}
             color={getRandomFancyColorName()}
             size="large"
             progress="value"
-            key={key}
-            label={buildPriceString(getProcedureTypeDisplayName(key), totalPriceAfterTaxes)}
+            label={getLabel(key, totalPriceAfterTaxes)}
             value={value}
             total={total}
           />

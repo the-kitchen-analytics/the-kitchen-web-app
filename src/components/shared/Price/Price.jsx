@@ -1,9 +1,9 @@
-import { buildPrice } from '../../../utils/money'
+import { formatPrice } from '../../../utils'
 
-export const Price = ({ children, euro }) => (
+export const Price = ({ children }) => (
   <>
     {
-      buildPrice(children, euro ? '€' : '')
+      formatPrice(children)
     }
   </>
 )
