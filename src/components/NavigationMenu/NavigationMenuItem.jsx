@@ -1,5 +1,5 @@
 import { Menu } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const getIconProps = (name) => ({
   fitted: true,
@@ -8,13 +8,11 @@ const getIconProps = (name) => ({
   name
 })
 
-export const NavigationMenuItem = ({ icon, to, active, handleItemClick }) => (
+export const NavigationMenuItem = ({ icon, to }) => (
   <Menu.Item
-    className="navigation-menu-item"
-    active={active}
-    onClick={handleItemClick}
-    as={Link}
+    as={NavLink}
     to={to}
     icon={getIconProps(icon)}
+    className="navigation-menu-item"
   />
 )

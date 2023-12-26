@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { CREATE_RECEIPT, INFO, SETTINGS, STATISTICS_DAILY, TABLE_DAILY } from '../../data/routePaths'
 import { NavigationMenuItem } from './NavigationMenuItem'
 import { useUserSettings } from '../../hooks'
-import { scrollToTop } from '../../utils'
 import './NavigationMenu.css'
 
 const menuItems = [
@@ -35,18 +33,7 @@ const menuItems = [
 ]
 
 export const NavigationMenu = () => {
-  const [activeItem, setActiveItem] = useState('home')
   const { settings: { accentColor } } = useUserSettings()
-
-  const isActive = (item) => item.name === activeItem
-
-  const handleItemClick = (item) => {
-    if (isActive(item)) {
-      scrollToTop()
-    }
-
-    setActiveItem(item.name)
-  }
 
   return (
     <Menu
@@ -61,14 +48,7 @@ export const NavigationMenu = () => {
       widths={menuItems.length}
     >
       {
-        menuItems.map(item => (
-          <NavigationMenuItem
-            key={item.name}
-            {...item}
-            active={isActive(item)}
-            handleItemClick={() => handleItemClick(item)}
-          />
-        ))
+        menuItems.map(item => <NavigationMenuItem key={item.name} {...item} />)
       }
     </Menu>
   )
