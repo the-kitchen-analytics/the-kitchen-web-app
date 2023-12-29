@@ -3,6 +3,17 @@ import { Segment, Button, Grid, Header } from 'semantic-ui-react'
 import { useUserSettings } from '../../../../../hooks'
 import { formatPrice } from '../../../../../utils'
 
+const ProcedureButton = ({ handleClick, icon, floated }) => (
+  <Button
+    compact
+    type={'button'}
+    icon={icon}
+    onClick={handleClick}
+    floated={floated}
+    circular
+  />
+)
+
 export const ProcedureCheckbox = (props) => {
 
   const {
@@ -29,36 +40,51 @@ export const ProcedureCheckbox = (props) => {
   }
 
   return (
-    <Segment color={activeColor} raised={isChecked}>
+    <Segment
+      className={'cursor-pointer'}
+      color={activeColor}
+      attached={!isChecked}
+      raised={isChecked}
+    >
       <Grid verticalAlign={'middle'}>
-        <Grid.Column width={10} onClick={handleClick}>
+        {
+          isChecked && (
+            <Grid.Column
+              width={3}
+              floated={'left'}
+            >
+              <ProcedureButton
+                handleClick={decrement}
+                icon={'minus'}
+                floated={'left'}
+              />
+            </Grid.Column>
+          )
+        }
+
+        <Grid.Column
+          width={isChecked ? 10 : 16}
+          onClick={handleClick}
+          textAlign={isChecked ? 'center' : 'left'}
+        >
           <Header
             color={activeColor}
             size={'small'}
             content={title}
             subheader={isPriceDisplayed ? formatPrice(procedure.price) : ''}
           />
-
         </Grid.Column>
 
         {
-          (isChecked) && (
-            <Grid.Column width={6} floated={'right'}>
-              <Button
-                compact
-                type={'button'}
+          isChecked && (
+            <Grid.Column
+              width={3}
+              floated={'right'}
+            >
+              <ProcedureButton
+                handleClick={increment}
                 icon={'plus'}
-                onClick={increment}
                 floated={'right'}
-                circular
-              />
-              <Button
-                compact
-                type={'button'}
-                icon={'minus'}
-                onClick={decrement}
-                floated={'right'}
-                circular
               />
             </Grid.Column>
           )
