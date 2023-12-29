@@ -2,17 +2,17 @@ import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
 import { DisplayOptionsAccordition } from './DisplayOptionsAccordition'
-import { useLocalStorage, useToggleState } from '../../../hooks'
-import { ProceduresAccordition } from './ProceduresAccordition'
-import { toggleSetter, halfPartProceduresMapper } from '../../../utils/'
-import procedureTypes from '../../../data/procedure-types.json'
+import { useLocalStorage, useToggleState } from '../../../../hooks'
+import { ProceduresAccordion } from './ProcedureAccordion'
+import { toggleSetter, halfPartProceduresMapper } from '../../../../utils/'
+import procedureTypes from '../../../../data/procedure-types.json'
 
 export const SelectProcedures = (props) => {
 
   const {
     formData, setFormData,
-    accorditionActiveIndex,
-    setAccorditionActiveIndex,
+    accordionActiveIndex,
+    setAccordionActiveIndex,
     procedures,
     shouldRedirectToHomePageAfterSubmit,
     setShouldRedirectToHomePageAfterSubmit,
@@ -20,14 +20,14 @@ export const SelectProcedures = (props) => {
     setShouldDisplayPreview
   } = props
 
-  const selectedIds = useMemo(() => formData.procedures.map(({ id }) => id), [formData.procedures])
+  const procedureIdsCount = _.countBy(formData.procedures, 'id')
 
   const [shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures] = useToggleState(false)
 
   const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', true)
 
   const halfPartProceduresMapperFn = useCallback((procedure) => {
-    if (selectedIds.includes(procedure.id)) {
+    if (_.has(procedureIdsCount, procedure.id)) {
       return { ...formData.procedures.find(({ id }) => procedure.id === id) }
     }
 
@@ -73,42 +73,51 @@ export const SelectProcedures = (props) => {
   const addProcedure = useCallback((procedure) => {
     setFormData((prevData) => ({
       ...prevData,
-      procedures: _.uniqBy([...prevData.procedures, procedure], 'id')
+      procedures: [...prevData.procedures, procedure]
     }))
   }, [setFormData])
 
-  const removeProcedure = useCallback((procedure) => {
+  const removeProcedure = useCallback(({ id }) => {
     setFormData((prevData) => ({
       ...prevData,
-      procedures: _.uniqBy([...prevData.procedures.filter(it => it.id !== procedure.id)], 'id')
+      procedures: _.filter(prevData.procedures, (element) => !(element.id === id))
     }))
   }, [setFormData])
 
-  const handleProcedureItemChange = useCallback((procedure, checked) => {
-    checked ? addProcedure(procedure) : removeProcedure(procedure)
-  }, [addProcedure, removeProcedure])
+  const removeFirstProcedure = useCallback(({ id }) => {
+    const indexToRemove = formData.procedures.findIndex(it => it.id === id)
 
-  const createAccorditionItem = useCallback((title, data) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      procedures: prevData.procedures.filter((it, i) => i !== indexToRemove)
+    }))
+  }, [setFormData])
 
-    const count = selectedIds
-      .filter(selectedId => data.map(({ id }) => id).includes(selectedId))
-      .length
+  const createAccordionItem = useCallback((title, data) => {
+    const ids = data.map(({ id }) => id)
+
+    const values = Object.entries(procedureIdsCount)
+      .filter(([key]) => ids.includes(key))
+      .filter(([, value]) => value > 0)
+      .map(([, value]) => value)
+
+    const count = _.sum(values)
 
     return {
       title,
       data,
       count
     }
-  }, [selectedIds])
+  }, [procedureIdsCount])
 
-  const accorditionItems = useMemo(() => {
-    return procedureTypes.map(procedureType => createAccorditionItem(
+  const accordionItems = useMemo(() => {
+    return procedureTypes.map(procedureType => createAccordionItem(
       procedureType.displayName,
       procedures
         .filter(getTypeFilter(procedureType.name))
         .map(halfPartProceduresMapperFn)
     ))
-  }, [createAccorditionItem, getTypeFilter, halfPartProceduresMapperFn, procedures])
+  }, [createAccordionItem, getTypeFilter, halfPartProceduresMapperFn, procedures])
 
   return (
     <Form.Group grouped required>
@@ -122,13 +131,16 @@ export const SelectProcedures = (props) => {
       </Form.Field>
 
       <Form.Field>
-        <ProceduresAccordition
+        <ProceduresAccordion
+          procedureIdsCount={procedureIdsCount}
           shouldDisplayProcedurePrice={shouldDisplayProcedurePrice}
           procedures={formData.procedures}
-          accorditionItems={accorditionItems}
-          accorditionActiveIndex={accorditionActiveIndex}
-          handleProcedureItemChange={handleProcedureItemChange}
-          setAccorditionActiveIndex={setAccorditionActiveIndex}
+          accordionItems={accordionItems}
+          accordionActiveIndex={accordionActiveIndex}
+          addProcedure={addProcedure}
+          removeProcedure={removeProcedure}
+          removeFirstProcedure={removeFirstProcedure}
+          setAccordionActiveIndex={setAccordionActiveIndex}
         />
         <Divider hidden />
       </Form.Field>

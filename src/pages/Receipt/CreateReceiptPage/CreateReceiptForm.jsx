@@ -69,8 +69,8 @@ export const CreateReceiptForm = (props) => {
             procedures={procedures}
             formData={formData}
             setFormData={setFormData}
-            accorditionActiveIndex={accorditionActiveIndex}
-            setAccorditionActiveIndex={setAccorditionActiveIndex}
+            accordionActiveIndex={accorditionActiveIndex}
+            setAccordionActiveIndex={setAccorditionActiveIndex}
             shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
             setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
             shouldDisplayPreview={shouldDisplayPreview}
