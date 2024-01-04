@@ -13,11 +13,7 @@ export const ProcedureSelect = (props) => {
     formData, setFormData,
     accordionActiveIndex,
     setAccordionActiveIndex,
-    procedures,
-    shouldRedirectToHomePageAfterSubmit,
-    setShouldRedirectToHomePageAfterSubmit,
-    shouldDisplayPreview,
-    setShouldDisplayPreview
+    procedures
   } = props
 
   const procedureIdsCount = _.countBy(formData.procedures, 'id')
@@ -46,28 +42,14 @@ export const ProcedureSelect = (props) => {
       onChange: toggleShouldDisplayHalfPartProcedures
     },
     {
-      key: 'shouldDisplayPreview',
-      label: 'Показывать превью выбранных услуг',
-      checked: shouldDisplayPreview,
-      onChange: () => toggleSetter(setShouldDisplayPreview)
-    },
-    {
       key: 'shouldDisplayProcedurePrice',
       label: 'Показывать стоимость услуги',
       checked: shouldDisplayProcedurePrice,
       onChange: () => toggleSetter(setShouldDisplayProcedurePrice)
-    },
-    {
-      key: 'shouldRedirectToHomePageAfterSubmit',
-      label: 'Переходить на главную после отправки формы',
-      checked: shouldRedirectToHomePageAfterSubmit,
-      onChange: () => toggleSetter(setShouldRedirectToHomePageAfterSubmit)
     }
   ]), [
     shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures,
-    shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice,
-    shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit,
-    shouldDisplayPreview, setShouldDisplayPreview
+    shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice
   ])
 
   const addProcedure = useCallback((procedure) => {

@@ -19,10 +19,6 @@ export const CreateReceiptForm = (props) => {
     workerCategory,
     accorditionActiveIndex,
     setAccorditionActiveIndex,
-    shouldRedirectToHomePageAfterSubmit,
-    setShouldRedirectToHomePageAfterSubmit,
-    shouldDisplayPreview,
-    setShouldDisplayPreview,
     isLoading,
     handleFormSubmit,
     handleClearFromButtonClick,
@@ -71,16 +67,12 @@ export const CreateReceiptForm = (props) => {
             setFormData={setFormData}
             accordionActiveIndex={accorditionActiveIndex}
             setAccordionActiveIndex={setAccorditionActiveIndex}
-            shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
-            setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
-            shouldDisplayPreview={shouldDisplayPreview}
-            setShouldDisplayPreview={setShouldDisplayPreview}
           />
         )
       }
 
       {
-        shouldDisplayPreview && !_.isEmpty(formData.procedures) && (
+        !_.isEmpty(formData.procedures) && (
           <Form.Field>
             <Preview
               data={[[convertedFormData]]}

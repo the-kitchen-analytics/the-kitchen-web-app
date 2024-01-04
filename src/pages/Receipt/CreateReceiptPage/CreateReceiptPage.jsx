@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import { useMemo, useState } from 'react'
-import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 import { Grid, Message } from 'semantic-ui-react'
 import { MainLayout } from '../../../components/layouts/'
 import { CreateReceiptForm } from './CreateReceiptForm'
 import { ErrorMessage } from '../../../components/shared'
-import { useLocalStorage, usePostData, useProcedures, useSessionStorage } from '../../../hooks'
+import { usePostData, useProcedures, useSessionStorage } from '../../../hooks'
 import { formatDateForDatePicker, getCurrentDate } from '../../../utils/'
 import { createReceipt } from '../../../services/receiptService'
 import { TABLE_DAILY } from '../../../data/routePaths'
@@ -19,7 +19,6 @@ export const CreateReceiptPage = () => {
   const { userDetails: { uid, workerCategory } } = useOutletContext()
   const [procedures = [], isFetchingProcedures] = useProcedures(workerCategory)
 
-  const navigate = useNavigate()
   const [isSavingReceipt, error, postData] = usePostData()
 
   const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMessage] = useState(false)
@@ -32,12 +31,6 @@ export const CreateReceiptPage = () => {
 
   const [receipt, setReceipt] = useSessionStorage(
     'submitFormData', initialReceipt)
-
-  const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] =
-    useLocalStorage('shouldRedirectToHomePageAfterSubmit', false)
-
-  const [shouldDisplayPreview, setShouldDisplayPreview] =
-    useLocalStorage('shouldDisplayPreview', true)
 
   const [accorditionActiveIndex, setAccorditionActiveIndex] =
     useSessionStorage('accorditionActiveIndex', INITIAL_ACCORDITION_INDEX)
@@ -66,10 +59,6 @@ export const CreateReceiptPage = () => {
       if (receipt.id) {
         clearForm()
         setShouldDisplaySuccessMessage(true)
-
-        if (shouldRedirectToHomePageAfterSubmit) {
-          navigate('/')
-        }
       }
     }
   }
@@ -119,10 +108,6 @@ export const CreateReceiptPage = () => {
             workerCategory={workerCategory}
             accorditionActiveIndex={accorditionActiveIndex}
             setAccorditionActiveIndex={setAccorditionActiveIndex}
-            shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
-            setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
-            shouldDisplayPreview={shouldDisplayPreview}
-            setShouldDisplayPreview={setShouldDisplayPreview}
             isLoading={isLoading}
             handleFormSubmit={handleFormSubmit}
             handleClearFromButtonClick={handleClearFromButtonClick}
