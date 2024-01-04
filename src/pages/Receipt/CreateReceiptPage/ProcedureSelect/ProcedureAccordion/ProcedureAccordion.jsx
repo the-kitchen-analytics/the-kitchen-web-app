@@ -1,9 +1,9 @@
 import { Accordion } from 'semantic-ui-react'
-import { ProcedureCheckbox } from './ProcedureCheckbox'
-import { Fragment } from 'react'
+import { ProcedureListItem } from './ProcedureListItem'
 import { AccordionItem } from './AccordionItem'
+import { getAccordionItemTitleContent } from './helpers'
 
-export const ProceduresAccordion = (props) => {
+export const ProcedureAccordion = (props) => {
 
   const {
     procedureIdsCount,
@@ -27,24 +27,23 @@ export const ProceduresAccordion = (props) => {
         accordionItems.map(({ title, data, count }, index) => (
           <AccordionItem
             key={title}
-            title={title}
+            content={getAccordionItemTitleContent(title, count)}
             index={index}
-            activeIndex={accordionActiveIndex}
+            isActive={index === accordionActiveIndex}
             handleToggle={handleAccordionChange}
             count={count}
           >
             {
               data.map(procedure => (
-                <Fragment key={procedure.id}>
-                  <ProcedureCheckbox
-                    count={procedureIdsCount[procedure.id] || 0}
-                    procedure={procedure}
-                    increment={() => addProcedure(procedure)}
-                    decrement={() => removeFirstProcedure(procedure)}
-                    remove={() => removeProcedure(procedure)}
-                    isPriceDisplayed={shouldDisplayProcedurePrice}
-                  />
-                </Fragment>
+                <ProcedureListItem
+                  key={procedure.id}
+                  count={procedureIdsCount[procedure.id] || 0}
+                  procedure={procedure}
+                  increment={() => addProcedure(procedure)}
+                  decrement={() => removeFirstProcedure(procedure)}
+                  remove={() => removeProcedure(procedure)}
+                  isPriceDisplayed={shouldDisplayProcedurePrice}
+                />
               ))
             }
           </AccordionItem>

@@ -3,11 +3,11 @@ import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
 import { DisplayOptionsAccordition } from './DisplayOptionsAccordition'
 import { useLocalStorage, useToggleState } from '../../../../hooks'
-import { ProceduresAccordion } from './ProcedureAccordion'
+import { ProcedureAccordion } from './ProcedureAccordion'
 import { toggleSetter, halfPartProceduresMapper } from '../../../../utils/'
 import procedureTypes from '../../../../data/procedure-types.json'
 
-export const SelectProcedures = (props) => {
+export const ProcedureSelect = (props) => {
 
   const {
     formData, setFormData,
@@ -131,7 +131,7 @@ export const SelectProcedures = (props) => {
       </Form.Field>
 
       <Form.Field>
-        <ProceduresAccordion
+        <ProcedureAccordion
           procedureIdsCount={procedureIdsCount}
           shouldDisplayProcedurePrice={shouldDisplayProcedurePrice}
           procedures={formData.procedures}
