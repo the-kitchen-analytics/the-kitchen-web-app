@@ -19,7 +19,10 @@ export const DisplayOptionsAccordition = ({ options }) => {
         {
           options.map(option => (
             <Form.Field key={option.key}>
-              <Form.Checkbox
+              <Form.Radio
+                toggle
+                type={'checkbox'}
+                color={'green'}
                 {...option}
               />
             </Form.Field>
