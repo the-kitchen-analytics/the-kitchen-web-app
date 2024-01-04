@@ -15,7 +15,7 @@ export const CreateReceiptForm = (props) => {
     formData,
     procedures,
     setFormData,
-    convertedFormData,
+    receiptPreview,
     workerCategory,
     accorditionActiveIndex,
     setAccorditionActiveIndex,
@@ -75,7 +75,7 @@ export const CreateReceiptForm = (props) => {
         !_.isEmpty(formData.procedures) && (
           <Form.Field>
             <Preview
-              data={[[convertedFormData]]}
+              data={[[receiptPreview]]}
             />
           </Form.Field>
         )

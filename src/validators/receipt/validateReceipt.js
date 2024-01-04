@@ -4,9 +4,10 @@ import { validateReceiptProcedures } from './validateReceiptProcedures'
 
 const validators = Object.freeze([
   validateReceiptDate,
-  validateReceiptProcedures,
+  validateReceiptProcedures
 ])
 
-export const validateReceipt = (procedure) => {
-  return validate(procedure, validators)
+export const validateReceipt = (receipt) => {
+  console.debug('validate receipt', receipt)
+  return validate(receipt, validators)
 }
