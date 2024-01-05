@@ -16,6 +16,5 @@ export const DisplayOptions = ({ options }) => (
         ))
       }
     </List>
-
   </div>
 )
