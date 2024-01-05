@@ -16,8 +16,6 @@
 }
 
 .switch div.label {
-    cursor: pointer;
-    text-indent: -9999px;
     width: 3.286rem;
     height: 1.857rem;
     background: #e0e1e2;
@@ -36,14 +34,9 @@
     height: 1.429rem;
     background: #fff;
     border-radius: 1.429rem;
-    transition: 0.2s;
 }
 
 .switch input:checked+div.label:after {
     left: calc(100% - 0.214rem);
     transform: translateX(-100%);
-}
-
-.switch div.label:active:after {
-    width: 26px;
 }
