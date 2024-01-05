@@ -10,6 +10,6 @@ const INITIAL_RECEIPT = Object.freeze({
 const STORAGE_KEY = 'submitFormData'
 
 export const useReceipt = (uid) => {
-  const initialReceipt = useMemo(() => ({ ...INITIAL_RECEIPT,uid }), [uid])
+  const initialReceipt = useMemo(() => ({ ...INITIAL_RECEIPT, uid }), [uid])
   return [...useSessionStorage(STORAGE_KEY, initialReceipt), initialReceipt]
 }

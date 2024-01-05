@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
-import { DisplayOptionsAccordition } from './DisplayOptionsAccordition'
+import { DisplayOptions } from './DisplayOptions'
 import { useLocalStorage, useToggleState } from '../../../../hooks'
 import { ProcedureAccordion } from './ProcedureAccordion'
 import { toggleSetter, halfPartProceduresMapper } from '../../../../utils/'
@@ -107,7 +107,7 @@ export const ProcedureSelect = (props) => {
       <Form.Field label="Выберите набор услуг" required />
 
       <Form.Field>
-        <DisplayOptionsAccordition
+        <DisplayOptions
           options={displayOptions}
         />
       </Form.Field>
