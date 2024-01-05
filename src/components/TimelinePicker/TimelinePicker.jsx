@@ -28,7 +28,6 @@ export const TimelinePicker = () => {
   return (
     <Button.Group
       basic
-      fluid
       widths={items.length}
     >
       {
