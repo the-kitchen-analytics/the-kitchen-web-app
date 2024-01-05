@@ -70,7 +70,7 @@ export const MainPage = () => {
               tablet={'14'}
               mobile={'16'}
             >
-              <Segment >{outlet}</Segment>
+              <Segment>{outlet}</Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>

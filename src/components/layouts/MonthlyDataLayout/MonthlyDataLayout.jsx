@@ -41,7 +41,7 @@ export const MonthlyDataLayout = (props) => {
       <Grid.Column
         computer={'4'}
         tablet={'4'}
-        mobile={'10'}
+        mobile={'16'}
       >
         <MonthSelect
           value={selectedDate.month}
@@ -53,7 +53,7 @@ export const MonthlyDataLayout = (props) => {
       <Grid.Column
         computer={'2'}
         tablet={'4'}
-        mobile={'6'}
+        mobile={'16'}
       >
         <YearSelect
           value={selectedDate.year}
