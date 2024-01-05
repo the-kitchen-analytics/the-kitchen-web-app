@@ -1,53 +1,33 @@
 import _ from 'lodash'
 import { useMemo, useState } from 'react'
-import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 import { Grid, Message } from 'semantic-ui-react'
 import { MainLayout } from '../../../components/layouts/'
 import { CreateReceiptForm } from './CreateReceiptForm'
 import { ErrorMessage } from '../../../components/shared'
-import { useLocalStorage, usePostData, useProcedures, useSessionStorage } from '../../../hooks'
-import { formatDateForDatePicker, getCurrentDate } from '../../../utils/'
+import { usePostData, useProcedures } from '../../../hooks'
 import { createReceipt } from '../../../services/receiptService'
 import { TABLE_DAILY } from '../../../data/routePaths'
 import { mapReceiptToFirebaseEntity } from '../../../mappers/receipt'
 import { validateReceipt } from '../../../validators/receipt'
-
-const INITIAL_ACCORDITION_INDEX = -1
+import { useAccordionActiveIndex, useReceipt } from './helpers/hooks'
 
 export const CreateReceiptPage = () => {
 
   const { userDetails: { uid, workerCategory } } = useOutletContext()
   const [procedures = [], isFetchingProcedures] = useProcedures(workerCategory)
-
-  const navigate = useNavigate()
   const [isSavingReceipt, error, postData] = usePostData()
-
   const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMessage] = useState(false)
+  const [receipt, setReceipt, initialReceipt] = useReceipt(uid)
+  const [accorditionActiveIndex, setAccorditionActiveIndex, resetAccordionActiveIndex] = useAccordionActiveIndex()
 
-  const initialReceipt = useMemo(() => ({
-    date: formatDateForDatePicker(getCurrentDate()),
-    uid: uid,
-    procedures: []
-  }), [uid])
-
-  const [receipt, setReceipt] = useSessionStorage(
-    'submitFormData', initialReceipt)
-
-  const [shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit] =
-    useLocalStorage('shouldRedirectToHomePageAfterSubmit', false)
-
-  const [shouldDisplayPreview, setShouldDisplayPreview] =
-    useLocalStorage('shouldDisplayPreview', true)
-
-  const [accorditionActiveIndex, setAccorditionActiveIndex] =
-    useSessionStorage('accorditionActiveIndex', INITIAL_ACCORDITION_INDEX)
-
-  const isReceiptValid = useMemo(() => validateReceipt(receipt), [receipt])
   const isLoading = isSavingReceipt || isFetchingProcedures
 
-  const convertedFormData = useMemo(() => {
-    return mapReceiptToFirebaseEntity(receipt)
-  }, [receipt])
+  const isReceiptValid = useMemo(() =>
+    validateReceipt(receipt), [receipt])
+
+  const convertedFormData = useMemo(() =>
+    mapReceiptToFirebaseEntity(receipt), [receipt])
 
   const clearForm = () => {
     setReceipt(initialReceipt)
@@ -59,23 +39,19 @@ export const CreateReceiptPage = () => {
     setShouldDisplaySuccessMessage(false)
 
     if (!shouldDisableSubmitFormButton()) {
-      setAccorditionActiveIndex(INITIAL_ACCORDITION_INDEX)
+      resetAccordionActiveIndex()
 
       const receipt = await postData(createReceipt, convertedFormData)
 
       if (receipt.id) {
         clearForm()
         setShouldDisplaySuccessMessage(true)
-
-        if (shouldRedirectToHomePageAfterSubmit) {
-          navigate('/')
-        }
       }
     }
   }
 
   const handleClearFromButtonClick = () => {
-    setAccorditionActiveIndex(INITIAL_ACCORDITION_INDEX)
+    resetAccordionActiveIndex()
     clearForm()
   }
 
@@ -115,14 +91,10 @@ export const CreateReceiptPage = () => {
             formData={receipt}
             procedures={procedures}
             setFormData={setReceipt}
-            convertedFormData={convertedFormData}
+            receiptPreview={convertedFormData}
             workerCategory={workerCategory}
             accorditionActiveIndex={accorditionActiveIndex}
             setAccorditionActiveIndex={setAccorditionActiveIndex}
-            shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
-            setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
-            shouldDisplayPreview={shouldDisplayPreview}
-            setShouldDisplayPreview={setShouldDisplayPreview}
             isLoading={isLoading}
             handleFormSubmit={handleFormSubmit}
             handleClearFromButtonClick={handleClearFromButtonClick}

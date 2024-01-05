@@ -14,7 +14,7 @@ const ProcedureButton = ({ handleClick, icon, floated }) => (
   />
 )
 
-export const ProcedureCheckbox = (props) => {
+export const ProcedureListItem = (props) => {
 
   const {
     procedure,

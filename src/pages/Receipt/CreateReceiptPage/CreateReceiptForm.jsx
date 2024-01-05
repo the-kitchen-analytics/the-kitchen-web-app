@@ -3,8 +3,8 @@ import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
 import { DataTable } from '../../../components/DataTable'
 import { DatePicker, LoadableButton } from '../../../components/shared'
-import {  useUserSettings } from '../../../hooks'
-import { SelectProcedures } from './SelectProcedures'
+import { ProcedureSelect } from './ProcedureSelect'
+import { useUserSettings } from '../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
 
 const Preview = ({ data }) => <DataTable data={data} />
@@ -15,14 +15,10 @@ export const CreateReceiptForm = (props) => {
     formData,
     procedures,
     setFormData,
-    convertedFormData,
+    receiptPreview,
     workerCategory,
     accorditionActiveIndex,
     setAccorditionActiveIndex,
-    shouldRedirectToHomePageAfterSubmit,
-    setShouldRedirectToHomePageAfterSubmit,
-    shouldDisplayPreview,
-    setShouldDisplayPreview,
     isLoading,
     handleFormSubmit,
     handleClearFromButtonClick,
@@ -65,25 +61,21 @@ export const CreateReceiptForm = (props) => {
 
       {
         !isLoading && (
-          <SelectProcedures
+          <ProcedureSelect
             procedures={procedures}
             formData={formData}
             setFormData={setFormData}
             accordionActiveIndex={accorditionActiveIndex}
             setAccordionActiveIndex={setAccorditionActiveIndex}
-            shouldRedirectToHomePageAfterSubmit={shouldRedirectToHomePageAfterSubmit}
-            setShouldRedirectToHomePageAfterSubmit={setShouldRedirectToHomePageAfterSubmit}
-            shouldDisplayPreview={shouldDisplayPreview}
-            setShouldDisplayPreview={setShouldDisplayPreview}
           />
         )
       }
 
       {
-        shouldDisplayPreview && !_.isEmpty(formData.procedures) && (
+        !_.isEmpty(formData.procedures) && (
           <Form.Field>
             <Preview
-              data={[[convertedFormData]]}
+              data={[[receiptPreview]]}
             />
           </Form.Field>
         )
@@ -114,7 +106,6 @@ export const CreateReceiptForm = (props) => {
           />
         </Form.Field>
       </Form.Group>
-
     </Form>
   )
 }

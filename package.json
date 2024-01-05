@@ -1,6 +1,6 @@
 {
   "name": "the-kitchen-analytics-react-app",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "dependencies": {
     "@semantic-ui-react/css-patch": "^1.1.2",

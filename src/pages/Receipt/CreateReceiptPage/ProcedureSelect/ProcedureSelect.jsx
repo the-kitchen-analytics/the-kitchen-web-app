@@ -1,23 +1,19 @@
 import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
-import { DisplayOptionsAccordition } from './DisplayOptionsAccordition'
+import { DisplayOptions } from './DisplayOptions'
 import { useLocalStorage, useToggleState } from '../../../../hooks'
-import { ProceduresAccordion } from './ProcedureAccordion'
+import { ProcedureAccordion } from './ProcedureAccordion'
 import { toggleSetter, halfPartProceduresMapper } from '../../../../utils/'
 import procedureTypes from '../../../../data/procedure-types.json'
 
-export const SelectProcedures = (props) => {
+export const ProcedureSelect = (props) => {
 
   const {
     formData, setFormData,
     accordionActiveIndex,
     setAccordionActiveIndex,
-    procedures,
-    shouldRedirectToHomePageAfterSubmit,
-    setShouldRedirectToHomePageAfterSubmit,
-    shouldDisplayPreview,
-    setShouldDisplayPreview
+    procedures
   } = props
 
   const procedureIdsCount = _.countBy(formData.procedures, 'id')
@@ -46,28 +42,14 @@ export const SelectProcedures = (props) => {
       onChange: toggleShouldDisplayHalfPartProcedures
     },
     {
-      key: 'shouldDisplayPreview',
-      label: 'Показывать превью выбранных услуг',
-      checked: shouldDisplayPreview,
-      onChange: () => toggleSetter(setShouldDisplayPreview)
-    },
-    {
       key: 'shouldDisplayProcedurePrice',
       label: 'Показывать стоимость услуги',
       checked: shouldDisplayProcedurePrice,
       onChange: () => toggleSetter(setShouldDisplayProcedurePrice)
-    },
-    {
-      key: 'shouldRedirectToHomePageAfterSubmit',
-      label: 'Переходить на главную после отправки формы',
-      checked: shouldRedirectToHomePageAfterSubmit,
-      onChange: () => toggleSetter(setShouldRedirectToHomePageAfterSubmit)
     }
   ]), [
     shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures,
-    shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice,
-    shouldRedirectToHomePageAfterSubmit, setShouldRedirectToHomePageAfterSubmit,
-    shouldDisplayPreview, setShouldDisplayPreview
+    shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice
   ])
 
   const addProcedure = useCallback((procedure) => {
@@ -125,13 +107,13 @@ export const SelectProcedures = (props) => {
       <Form.Field label="Выберите набор услуг" required />
 
       <Form.Field>
-        <DisplayOptionsAccordition
+        <DisplayOptions
           options={displayOptions}
         />
       </Form.Field>
 
       <Form.Field>
-        <ProceduresAccordion
+        <ProcedureAccordion
           procedureIdsCount={procedureIdsCount}
           shouldDisplayProcedurePrice={shouldDisplayProcedurePrice}
           procedures={formData.procedures}
