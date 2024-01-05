@@ -59,16 +59,18 @@ export const MainPage = () => {
   return (
     <>
       <NavigationMenu />
-      <Container>
-        <Grid centered padded stackable>
+      <Container fluid className='m-1'>
+        <Grid centered>
+
           {error && <ErrorMessage message={error} />}
+
           <Grid.Row>
-            <Grid.Column stretched>
-              <Grid.Row>
-                <Grid.Column>
-                  <Segment padded>{outlet}</Segment>
-                </Grid.Column>
-              </Grid.Row>
+            <Grid.Column
+              computer={'12'}
+              tablet={'14'}
+              mobile={'16'}
+            >
+              <Segment>{outlet}</Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>

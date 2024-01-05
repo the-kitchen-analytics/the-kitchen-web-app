@@ -24,13 +24,17 @@ export const Statistics = ({ chartData = [], statisticsData = [] }) => {
 
   return (
     <div className="statistics">
-      <Grid padded stackable>
-        <Grid.Row columns={2}>
+      <Grid>
+        <Grid.Row>
           {
             statisticsData.map((entries) => (
               <Grid.Column
+                computer={'8'}
+                tablet={'8'}
+                mobile={'16'}
                 key={entries.map(it => it.name).join()}
               >
+                {/* {i !== 0 && <Divider />} */}
                 <Statistic.Group
                   size="small"
                   horizontal

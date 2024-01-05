@@ -22,8 +22,8 @@ export const InfoPage = () => {
   ]
 
   const content = settingsOptions.map(({ key, element }) => (
-    <Grid.Row key={key}>
-      <Grid.Column>
+    <Grid.Row key={key} stretched>
+      <Grid.Column stretched>
         {
           element
         }

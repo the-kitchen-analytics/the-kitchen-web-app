@@ -92,7 +92,7 @@ export const CreateReceiptForm = (props) => {
           onClick={handleClearFromButtonClick}
         />
 
-        <Form.Field>
+        <Form.Field className='mb-0'>
           <LoadableButton
             loading={isLoading}
             fluid
