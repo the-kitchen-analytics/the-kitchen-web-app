@@ -16,5 +16,3 @@ export const MonthSelect = ({ value, handleChange, options, disabled }) => (
     fluid
   />
 )
-
-export default MonthSelect

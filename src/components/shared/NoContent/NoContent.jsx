@@ -6,5 +6,3 @@ export const NoContent = () => (
     <span>Нет данных</span>
   </div>
 )
-
-export default NoContent

@@ -1,6 +1,6 @@
 import { formatDate } from '../../utils'
 
-const mapFirebaseEntityToReceipt = (firebaseEntity) => {
+export const mapFirebaseEntityToReceipt = (firebaseEntity) => {
   const entryData = firebaseEntity.data()
 
   return {
@@ -11,5 +11,3 @@ const mapFirebaseEntityToReceipt = (firebaseEntity) => {
     dateFormatted: formatDate(entryData.date.toDate()),
   }
 }
-
-export default mapFirebaseEntityToReceipt

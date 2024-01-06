@@ -1,7 +1,2 @@
-import mapReceiptToFirebaseEntity from './mapReceiptToFirebaseEntity'
-import mapFirebaseEntityToReceipt from './mapFirebaseEntityToReceipt'
-
-export {
-  mapReceiptToFirebaseEntity,
-  mapFirebaseEntityToReceipt,
-}
+export * from './mapReceiptToFirebaseEntity'
+export * from './mapFirebaseEntityToReceipt'
