@@ -1,4 +1,4 @@
-import validate from '../common/validate'
+import { validate } from '../common/validate'
 import { validateReceiptDate } from './validateReceiptDate'
 import { validateReceiptProcedures } from './validateReceiptProcedures'
 

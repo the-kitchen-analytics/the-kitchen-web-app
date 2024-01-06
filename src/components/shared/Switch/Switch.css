@@ -1,43 +1,43 @@
 .switch {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .switch label {
-    cursor: pointer !important;
-    display: flex;
-    align-items: center;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
+  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .switch input[type=checkbox] {
-    height: 0;
-    width: 0;
-    visibility: hidden;
+  height: 0;
+  width: 0;
+  visibility: hidden;
 }
 
 .switch div.label {
-    width: 3.286rem;
-    height: 1.857rem;
-    background: #e0e1e2;
-    display: block;
-    border-radius: 1.857rem;
-    position: relative;
-    margin-right: .75rem;
+  width: 3.286rem;
+  height: 1.857rem;
+  background: #e0e1e2;
+  display: block;
+  border-radius: 1.857rem;
+  position: relative;
+  margin-right: .75rem;
 }
 
 .switch div.label:after {
-    content: '';
-    position: absolute;
-    top: 0.214rem;
-    left: 0.214rem;
-    width: 1.429rem;
-    height: 1.429rem;
-    background: #fff;
-    border-radius: 1.429rem;
+  content: '';
+  position: absolute;
+  top: 0.214rem;
+  left: 0.214rem;
+  width: 1.429rem;
+  height: 1.429rem;
+  background: #fff;
+  border-radius: 1.429rem;
 }
 
-.switch input:checked+div.label:after {
-    left: calc(100% - 0.214rem);
-    transform: translateX(-100%);
+.switch input:checked + div.label:after {
+  left: calc(100% - 0.214rem);
+  transform: translateX(-100%);
 }

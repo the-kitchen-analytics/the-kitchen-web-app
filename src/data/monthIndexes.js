@@ -13,7 +13,7 @@ export const OCTOBER = 9
 export const NOVEMBER = 10
 export const DECEMBER = 11
 
-const monthIndexes = Object.freeze([
+export const monthIndexes = Object.freeze([
   JANUARY, FEBRUARY, MARCH, APRIL,
   MAY, JUNE, JULY, AUGUST,
   SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
@@ -22,5 +22,3 @@ const monthIndexes = Object.freeze([
 export const FIRST_MONTH_INDEX = monthIndexes[0]
 // export const LAST_MONTH_INDEX = monthIndexes.at(-1);
 export const LAST_MONTH_INDEX = _.last(monthIndexes)
-
-export default monthIndexes
