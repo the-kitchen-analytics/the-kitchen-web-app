@@ -1,8 +1,9 @@
-.switch {
-  font-size: 1rem;
+:root {
+  --transition-durition: .2s
 }
 
-.switch label {
+.switch-container {
+  font-size: 1rem;
   cursor: pointer !important;
   display: flex;
   align-items: center;
@@ -10,23 +11,22 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.switch input[type=checkbox] {
+.switch-input {
   height: 0;
   width: 0;
   visibility: hidden;
 }
 
-.switch div.label {
+.switch-slider {
   width: 3.286rem;
   height: 1.857rem;
-  background: #e0e1e2;
-  display: block;
-  border-radius: 1.857rem;
+  border-radius: 1.857rem !important;
   position: relative;
-  margin-right: .75rem;
+  margin-right: .75rem !important;
+  transition: var(--transition-durition);
 }
 
-.switch div.label:after {
+.switch-slider:before {
   content: '';
   position: absolute;
   top: 0.214rem;
@@ -34,10 +34,10 @@
   width: 1.429rem;
   height: 1.429rem;
   background: #fff;
-  border-radius: 1.429rem;
+  border-radius: 50%;
+  transition: var(--transition-durition);
 }
 
-.switch input:checked + div.label:after {
-  left: calc(100% - 0.214rem);
-  transform: translateX(-100%);
+.switch-input:checked + .switch-slider:before {
+  transform: translateX(100%);
 }
