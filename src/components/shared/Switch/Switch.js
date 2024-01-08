@@ -2,20 +2,22 @@ import { useUserSettings } from '../../../hooks'
 import classNames from 'classnames'
 import './Switch.css'
 
+const SLIDER_DEFAULT_CLASS_NAMES = ['switch-slider', 'ui', 'button']
+
 export const Switch = ({ label, checked, onChange }) => {
   const { settings: { accentColor } } = useUserSettings()
+  const sliderClassName = classNames(SLIDER_DEFAULT_CLASS_NAMES, { [accentColor]: checked })
 
   return (
-    <div className="switch">
-      <label>
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={onChange}
-        />
-        <div className={classNames('label', 'ui', { [accentColor]: checked })} />
-        <span>{label}</span>
-      </label>
-    </div>
+    <label className="switch-container">
+      <input
+        type="checkbox"
+        className="switch-input"
+        checked={checked}
+        onChange={onChange}
+      />
+      <span className={sliderClassName}></span>
+      <span className="switch-label">{label}</span>
+    </label>
   )
 }
