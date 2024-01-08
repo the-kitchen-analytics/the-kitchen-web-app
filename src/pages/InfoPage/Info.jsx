@@ -9,7 +9,7 @@ export const Info = () => {
     {
       key: 'app-version',
       text: 'Версия',
-      value: process.env.REACT_APP_VERSION,
+      value: import.meta.env.VITE_APP_VERSION,
     },
     {
       key: 'last-login-at',
