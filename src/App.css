@@ -1,20 +1,16 @@
 .app {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .cursor-pointer {
-    cursor: pointer !important;
+  cursor: pointer !important;
 }
 
 .m-1 {
-    margin: 1rem !important;
+  margin: 1rem !important;
 }
 
 .mb-0 {
-    margin-bottom: 0 !important;
-}
-
-pb-0 {
-    padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
