@@ -17,9 +17,7 @@ export const ProcedureSelect = (props) => {
   } = props
 
   const procedureIdsCount = _.countBy(formData.procedures, 'id')
-
   const [shouldDisplayHalfPartProcedures, toggleShouldDisplayHalfPartProcedures] = useToggleState(false)
-
   const [shouldDisplayProcedurePrice, setShouldDisplayProcedurePrice] = useLocalStorage('shouldDisplayProcedurePrice', true)
 
   const halfPartProceduresMapperFn = useCallback((procedure) => {
@@ -29,10 +27,6 @@ export const ProcedureSelect = (props) => {
 
     return halfPartProceduresMapper(procedure, shouldDisplayHalfPartProcedures)
   }, [shouldDisplayHalfPartProcedures, formData.procedures])
-
-  const getTypeFilter = useCallback((type) => {
-    return it => it.type === type
-  }, [])
 
   const displayOptions = useMemo(() => ([
     {
@@ -96,10 +90,10 @@ export const ProcedureSelect = (props) => {
     return procedureTypes.map(procedureType => createAccordionItem(
       procedureType.displayName,
       procedures
-        .filter(getTypeFilter(procedureType.name))
+        .filter(({ type }) => type === procedureType.name)
         .map(halfPartProceduresMapperFn)
     ))
-  }, [createAccordionItem, getTypeFilter, halfPartProceduresMapperFn, procedures])
+  }, [createAccordionItem, halfPartProceduresMapperFn, procedures])
 
   return (
     <Form.Group grouped required>
@@ -117,7 +111,7 @@ export const ProcedureSelect = (props) => {
           procedureIdsCount={procedureIdsCount}
           shouldDisplayProcedurePrice={shouldDisplayProcedurePrice}
           procedures={formData.procedures}
-          accordionItems={accordionItems}
+          items={accordionItems}
           accordionActiveIndex={accordionActiveIndex}
           addProcedure={addProcedure}
           removeProcedure={removeProcedure}
