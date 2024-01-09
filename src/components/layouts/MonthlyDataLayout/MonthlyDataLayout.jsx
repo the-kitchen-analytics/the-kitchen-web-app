@@ -51,7 +51,7 @@ export const MonthlyDataLayout = (props) => {
       </Grid.Column>
 
       <Grid.Column
-        computer={'2'}
+        computer={'4'}
         tablet={'4'}
         mobile={'16'}
       >
@@ -63,7 +63,7 @@ export const MonthlyDataLayout = (props) => {
       </Grid.Column>
 
       <Grid.Column
-        computer={'6'}
+        computer={'8'}
         tablet={'8'}
         mobile={'16'}
         textAlign={'right'}

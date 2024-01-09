@@ -7,7 +7,7 @@ export const ProcedureAccordion = (props) => {
 
   const {
     procedureIdsCount,
-    accordionItems,
+    items,
     addProcedure,
     removeProcedure,
     removeFirstProcedure,
@@ -24,7 +24,7 @@ export const ProcedureAccordion = (props) => {
   return (
     <Accordion styled fluid>
       {
-        accordionItems.map(({ title, data, count }, index) => (
+        items.map(({ title, data, count }, index) => (
           <AccordionItem
             key={title}
             content={getAccordionItemTitleContent(title, count)}
