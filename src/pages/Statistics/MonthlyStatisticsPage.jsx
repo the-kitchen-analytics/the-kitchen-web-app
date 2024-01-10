@@ -12,7 +12,6 @@ export const MonthlyStatisticsPage = () => {
 
   return (
     <MonthlyDataLayout
-      icon="chart bar"
       header="Статистика"
       yearOptions={yearOptions}
       defaultSelectedDate={initialSelectedDate}

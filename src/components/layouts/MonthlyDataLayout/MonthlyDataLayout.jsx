@@ -10,7 +10,7 @@ import { TimelinePicker } from '../../TimelinePicker'
 export const MonthlyDataLayout = (props) => {
 
   const {
-    icon, header, content, children,
+    header, content, children,
     defaultSelectedDate, selectedDate, setSelectedDate,
     yearOptions
   } = props
@@ -30,10 +30,7 @@ export const MonthlyDataLayout = (props) => {
   })), [yearOptions])
 
   return (
-    <MainLayout
-      icon={icon}
-      header={header}
-    >
+    <MainLayout header={header}>
       <Grid.Column width={'16'}>
         <TimelinePicker />
       </Grid.Column>

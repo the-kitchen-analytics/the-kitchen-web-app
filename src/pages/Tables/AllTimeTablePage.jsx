@@ -8,10 +8,7 @@ export const AllTimeTablePage = () => {
   const { receipts } = useOutletContext()
 
   return (
-    <AllTimeDataLayout
-      icon="home"
-      header="Главная"
-    >
+    <AllTimeDataLayout header="Главная">
       <DataTable
         data={getAllTableData(receipts)}
       />

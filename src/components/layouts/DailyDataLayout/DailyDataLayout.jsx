@@ -7,10 +7,10 @@ import { buildDropdownOptions } from '../../../utils/'
 
 export const DailyDataLayout = (props) => {
 
-  const { selectedDay, setSelectedDay, options, icon, header, children } = props
+  const { selectedDay, setSelectedDay, options, header, children } = props
   const selectedDayIndex = _.indexOf(options, selectedDay)
 
-  const layoutProps = { icon, header }
+  const layoutProps = { header }
 
   return (
     <MainLayout {...layoutProps}>

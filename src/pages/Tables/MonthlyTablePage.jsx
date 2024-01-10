@@ -12,7 +12,6 @@ export const MonthlyTablePage = () => {
 
   return (
     <MonthlyDataLayout
-      icon="home"
       header="Главная"
       yearOptions={yearOptions}
       defaultSelectedDate={initialSelectedDate}

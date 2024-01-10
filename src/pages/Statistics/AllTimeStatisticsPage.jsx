@@ -11,10 +11,7 @@ export const AllTimeStatisticsPage = () => {
   const { statisticsData, chartData } = buildStatisticsData(data)
 
   return (
-    <AllTimeDataLayout
-      icon="chart bar"
-      header="Статистика"
-    >
+    <AllTimeDataLayout header="Статистика">
       <Statistics
         chartData={chartData}
         statisticsData={statisticsData}

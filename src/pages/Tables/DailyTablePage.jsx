@@ -10,7 +10,6 @@ export const DailyTablePage = () => {
   return (
     <div className="view">
       <DailyDataLayout
-        icon="home"
         header="Главная"
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
