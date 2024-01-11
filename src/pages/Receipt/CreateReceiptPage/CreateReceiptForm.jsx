@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Divider, Form, Header } from 'semantic-ui-react'
 import { DataTable } from '../../../components/shared'
 import { DatePicker, LoadableButton } from '../../../components/shared'
 import { ProcedureSelect } from './ProcedureSelect'
@@ -8,7 +8,16 @@ import { useUserSettings } from '../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
 
 const Preview = ({ data }) => (
-  <DataTable data={data} />
+  <>
+    <Divider horizontal>
+      <Header
+        as='h4'
+        icon={'paperclip'}
+        content={'Предпросмотр'}
+      />
+    </Divider>
+    <DataTable data={data} />
+  </>
 )
 
 export const CreateReceiptForm = (props) => {
