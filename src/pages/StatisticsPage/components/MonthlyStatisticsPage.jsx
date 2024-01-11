@@ -1,7 +1,7 @@
 import { MonthlyDataLayout } from '../../../components/layouts/'
-import { Statistics } from '../../../components/Statistics'
 import { getStatisticsDataByMonthAndYear } from '../../../services/statisticsDataFilterService'
 import { useMonthlyData } from '../../../hooks'
+import { Statistics } from './Statistics'
 
 export const MonthlyStatisticsPage = () => {
   const [

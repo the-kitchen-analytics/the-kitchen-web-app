@@ -2,9 +2,9 @@ import _ from 'lodash'
 import { useState, useMemo } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { Segment, Header, Icon, Form } from 'semantic-ui-react'
-import { LogOutButton, ErrorMessage, Loader } from '../shared'
-import { usePostData } from '../../hooks'
-import { getWorkerCategoryDisplayName } from '../../utils/'
+import { LogOutButton, ErrorMessage, Loader } from '../../../../components/shared'
+import { usePostData } from '../../../../hooks'
+import { getWorkerCategoryDisplayName } from '../../../../utils'
 import { EditUserForm } from './EditUserForm'
 
 export const UserProfile = () => {

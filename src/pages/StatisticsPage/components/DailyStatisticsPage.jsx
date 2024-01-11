@@ -1,7 +1,7 @@
 import { DailyDataLayout } from '../../../components/layouts'
-import { Statistics } from '../../../components/Statistics'
 import { getStatisticsDataByDay } from '../../../services/statisticsDataFilterService'
 import { useDailyData } from '../../../hooks'
+import { Statistics } from './Statistics'
 
 export const DailyStatisticsPage = () => {
 

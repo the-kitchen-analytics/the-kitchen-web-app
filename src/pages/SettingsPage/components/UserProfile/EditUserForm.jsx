@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
-import { WorkerCategorySelect } from '../../components/shared'
-import { useUserSettings } from '../../hooks'
-import { handleInputChange } from '../../utils'
+import { WorkerCategorySelect } from '../../../../components/shared'
+import { useUserSettings } from '../../../../hooks'
+import { handleInputChange } from '../../../../utils'
 
 export const EditUserForm = (props) => {
   

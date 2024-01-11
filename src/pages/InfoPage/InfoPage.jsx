@@ -34,7 +34,7 @@ export const InfoPage = () => {
   return (
     <MainLayout
       icon="question circle"
-      header="Информация"
+      header={{ content: 'Информация' }}
       content={content}
     />
   )

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
-
 import { RequireAuth } from './components/RequireAuth'
 import { Footer } from './components/shared'
 

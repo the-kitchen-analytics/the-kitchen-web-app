@@ -1,16 +1,14 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Form, Segment } from 'semantic-ui-react'
-import { DataTable } from '../../../components/DataTable'
+import { Form } from 'semantic-ui-react'
+import { DataTable } from '../../../components/shared'
 import { DatePicker, LoadableButton } from '../../../components/shared'
 import { ProcedureSelect } from './ProcedureSelect'
 import { useUserSettings } from '../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
 
 const Preview = ({ data }) => (
-  <Segment>
-    <DataTable data={data} />
-  </Segment>
+  <DataTable data={data} />
 )
 
 export const CreateReceiptForm = (props) => {
@@ -96,7 +94,7 @@ export const CreateReceiptForm = (props) => {
           onClick={handleClearFromButtonClick}
         />
 
-        <Form.Field className='mb-0'>
+        <Form.Field className="mb-0">
           <LoadableButton
             loading={isLoading}
             fluid
