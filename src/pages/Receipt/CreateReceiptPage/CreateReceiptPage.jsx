@@ -66,7 +66,7 @@ export const CreateReceiptPage = () => {
   return (
     <MainLayout
       icon="cloud upload"
-      header="Сохранить запись"
+      header={{ content: 'Сохранить' }}
     >
       <Grid.Row>
         <Grid.Column>

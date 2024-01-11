@@ -59,7 +59,7 @@ export const MainPage = () => {
   return (
     <>
       <NavigationMenu />
-      <Container fluid className='m-1'>
+      <Container fluid className="m-1">
         <Grid centered>
 
           {error && <ErrorMessage message={error} />}
@@ -70,7 +70,7 @@ export const MainPage = () => {
               tablet={'14'}
               mobile={'16'}
             >
-              <Segment size={'large'}>{outlet}</Segment>
+              <Segment padded>{outlet}</Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>

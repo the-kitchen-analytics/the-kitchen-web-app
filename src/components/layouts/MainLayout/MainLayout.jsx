@@ -1,17 +1,13 @@
-import { Grid, Header } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
+import { MainHeader } from '../../shared/index'
 
-export const MainLayout = ({ header, subheader, content, children }) => (
+export const MainLayout = ({ header, content, children }) => (
   <Grid>
     {
       header && (
         <Grid.Row>
           <Grid.Column width={'16'}>
-            <Header
-              as={'h1'}
-              size={'huge'}
-              content={header}
-              subheader={subheader}
-            />
+            <MainHeader {...header} />
           </Grid.Column>
         </Grid.Row>
       )

@@ -1,5 +1,5 @@
 import { TabularPage } from '../../components/shared'
-import { AllTimeStatisticsPage, DailyStatisticsPage, MonthlyStatisticsPage } from './pages'
+import { AllTimeStatisticsPage, DailyStatisticsPage, MonthlyStatisticsPage } from './components'
 
 const panes = [
   { menuItem: 'За день', content: <DailyStatisticsPage /> },

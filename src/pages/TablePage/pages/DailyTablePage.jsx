@@ -1,4 +1,4 @@
-import { DataTable } from '../../../components/DataTable'
+import { DataTable } from '../../../components/shared'
 import { DailyDataLayout } from '../../../components/layouts'
 import { getTableDataByDay } from '../../../services/tableDataFilterService'
 import { useDailyData } from '../../../hooks'

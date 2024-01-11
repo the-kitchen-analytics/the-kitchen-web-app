@@ -2,8 +2,8 @@ import _ from 'lodash'
 import { Table, Icon } from 'semantic-ui-react'
 import { DateCell } from './DateCell'
 import { ProceduresCell } from './ProceduresCell'
-import { PriceCell } from './'
-import { calculateTotalWorkerIncome, calculateTotalPrice } from '../../utils/'
+import { calculateTotalWorkerIncome, calculateTotalPrice } from '../../../utils'
+import { Price } from '../'
 
 const NoTableContent = () => (
   <Table.Row>
@@ -46,23 +46,21 @@ const DataTableRow = ({ data }) => {
         </Table.Cell>
 
         <Table.Cell textAlign="right">
-          <PriceCell euro>
-            {calculateTotalPrice(procedures)}
-          </PriceCell>
+          <Price
+            content={calculateTotalPrice(procedures)}
+          />
         </Table.Cell>
 
         <Table.Cell textAlign="right">
-          <strong>
-            <PriceCell euro>
-              {calculateTotalWorkerIncome(procedures)}
-            </PriceCell>
-          </strong>
+          <Price
+            primary
+            content={calculateTotalWorkerIncome(procedures)}
+          />
         </Table.Cell>
 
       </Table.Row>
     ))
 }
-
 
 const DataTableBody = ({ data }) => {
   if (_.isEmpty(data.flat())) {
@@ -106,22 +104,15 @@ export const DataTable = ({ data }) => {
         <Table.Row>
           <Table.HeaderCell colSpan={2}>Итого</Table.HeaderCell>
           <Table.HeaderCell collapsing textAlign="right">
-            <strong>
-              <PriceCell>
-                {
-                  totalPrice
-                }
-              </PriceCell>
-            </strong>
+            <Price
+              content={totalPrice}
+            />
           </Table.HeaderCell>
           <Table.HeaderCell collapsing textAlign="right">
-            <strong>
-              <PriceCell>
-                {
-                  totalWorkerIncome
-                }
-              </PriceCell>
-            </strong>
+            <Price
+              primary
+              content={totalWorkerIncome}
+            />
           </Table.HeaderCell>
         </Table.Row>
       </Table.Footer>

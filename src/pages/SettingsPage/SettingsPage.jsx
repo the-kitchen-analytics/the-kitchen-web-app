@@ -1,7 +1,6 @@
 import { Grid } from 'semantic-ui-react'
 import { MainLayout } from '../../components/layouts'
-import { SelectAccentColor, ClearCache } from './components'
-import { UserProfile } from '../../components/UserProfile'
+import { UserProfile, SelectAccentColor, ClearCache } from './components'
 import { fancyColorNames } from '../../utils'
 
 const settingsOptions = [
@@ -32,7 +31,7 @@ const content = settingsOptions.map(({ key, element }) => (
 export const SettingsPage = () => (
   <MainLayout
     icon="settings"
-    header="Настройки"
+    header={{ content: 'Настройки' }}
     content={content}
   />
 )

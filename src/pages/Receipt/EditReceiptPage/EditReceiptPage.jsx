@@ -1,17 +1,16 @@
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
-import { Form, Grid, Table } from 'semantic-ui-react'
-import { PriceCell } from '../../../components/DataTable/'
+import { Form, Grid } from 'semantic-ui-react'
+import { DataTable } from '../../../components/shared/'
 import { MainLayout } from '../../../components/layouts'
-import { ErrorMessage, Price, NoContent, GoBackButton } from '../../../components/shared'
+import { ErrorMessage, NoContent, GoBackButton } from '../../../components/shared'
 import { usePostData } from '../../../hooks'
-import { calculateTotalPrice, calculateTotalWorkerIncome, getProcedureTypeDisplayName } from '../../../utils/'
 import { deleteReceiptById } from '../../../services/receiptService'
 
 export const EditReceiptPage = () => {
 
   const { id } = useParams()
   const { getReceiptById } = useOutletContext()
-  
+
   const [isLoading, error, postData] = usePostData()
   const navigate = useNavigate()
   const receipt = getReceiptById(id)
@@ -19,8 +18,6 @@ export const EditReceiptPage = () => {
   if (!receipt) {
     return <NoContent />
   }
-
-  const header = `Запись от ${receipt.dateFormatted}`
 
   const handleDeleteButtonClick = async () => {
     if (window.confirm('Вы действительно хотите удалить запись?')) {
@@ -31,8 +28,10 @@ export const EditReceiptPage = () => {
 
   return (
     <MainLayout
-      header={header}
-      subheader="Детализация записи клиента"
+      header={{
+        content: `Запись от ${receipt.dateFormatted}`,
+        subheader: 'Детализация записи клиента'
+      }}
     >
       <Grid.Row>
         <Grid.Column>
@@ -40,97 +39,7 @@ export const EditReceiptPage = () => {
             error && <ErrorMessage message={error.message} />
           }
 
-          <Table celled>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell
-                  content="Название услуги"
-                />
-                <Table.HeaderCell
-                  collapsing
-                  content="Тип"
-                />
-                <Table.HeaderCell
-                  collapsing
-                  content="Стоимость услуги"
-                />
-                <Table.HeaderCell
-                  collapsing
-                  content="Заработок мастера"
-                />
-              </Table.Row>
-            </Table.Header>
-
-            <Table.Body>
-              {
-                receipt.procedures.map((procedure, i) => (
-                  <Table.Row key={`${procedure.name}-${i}`}>
-                    <Table.Cell
-                      content={procedure.name}
-                    />
-
-                    <Table.Cell
-                      content={getProcedureTypeDisplayName(procedure.type)}
-                    />
-
-                    <Table.Cell
-                      textAlign="right"
-                      content={(
-                        <Price>
-                          {procedure.priceBeforeTaxes}
-                        </Price>
-                      )}
-                    />
-
-                    <Table.Cell
-                      textAlign="right"
-                      content={(
-                        <strong>
-                          <Price>
-                            {procedure.priceAfterTaxes}
-                          </Price>
-                        </strong>
-                      )}
-                    />
-                  </Table.Row>
-                ))
-              }
-            </Table.Body>
-            <Table.Footer>
-              <Table.Row>
-                <Table.HeaderCell
-                  colSpan={2}
-                  content={
-                    <strong>
-                      Итого
-                    </strong>
-                  }
-                />
-
-                <Table.HeaderCell
-                  textAlign="right"
-                  content={
-                    <strong>
-                      <PriceCell>
-                        {calculateTotalPrice(receipt.procedures)}
-                      </PriceCell>
-                    </strong>
-                  }
-                />
-
-                <Table.HeaderCell
-                  textAlign="right"
-                  content={
-                    <strong>
-                      <PriceCell>
-                        {calculateTotalWorkerIncome(receipt.procedures)}
-                      </PriceCell>
-                    </strong>
-                  }
-                />
-              </Table.Row>
-            </Table.Footer>
-          </Table>
+          <DataTable data={[[receipt]]} />
 
         </Grid.Column>
 
@@ -158,6 +67,6 @@ export const EditReceiptPage = () => {
         </Grid.Column>
       </Grid.Row>
 
-    </MainLayout >
+    </MainLayout>
   )
 }

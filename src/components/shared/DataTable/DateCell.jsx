@@ -1,7 +1,7 @@
 import { Label } from 'semantic-ui-react'
-import { Price } from '../shared'
-import { useUserSettings } from '../../hooks'
-import { formatDate } from '../../utils'
+import { Price } from '../'
+import { useUserSettings } from '../../../hooks'
+import { formatDate } from '../../../utils'
 
 export const DateCell = ({ children, price = 0 }) => {
 
@@ -10,7 +10,7 @@ export const DateCell = ({ children, price = 0 }) => {
   return (
     <>
       <Label ribbon size="large" color={accentColor}>
-        <Price>{price}</Price>
+        <Price content={price} />
       </Label>
       <h2>{formatDate(children)}</h2>
     </>

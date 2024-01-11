@@ -1,7 +1,7 @@
 import { Label, List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { useUserSettings } from '../../hooks'
-import { getProcedureTypeDisplayName } from '../../utils'
+import { useUserSettings } from '../../../hooks'
+import { getProcedureTypeDisplayName } from '../../../utils'
 
 
 const ListItem = (props) => {
