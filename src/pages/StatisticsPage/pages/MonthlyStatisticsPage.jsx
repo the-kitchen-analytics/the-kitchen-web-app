@@ -1,7 +1,7 @@
-import { MonthlyDataLayout } from '../../components/layouts/'
-import { Statistics } from '../../components/Statistics'
-import { getStatisticsDataByMonthAndYear } from '../../services/statisticsDataFilterService'
-import { useMonthlyData } from '../../hooks'
+import { MonthlyDataLayout } from '../../../components/layouts/'
+import { Statistics } from '../../../components/Statistics'
+import { getStatisticsDataByMonthAndYear } from '../../../services/statisticsDataFilterService'
+import { useMonthlyData } from '../../../hooks'
 
 export const MonthlyStatisticsPage = () => {
   const [
@@ -12,8 +12,6 @@ export const MonthlyStatisticsPage = () => {
 
   return (
     <MonthlyDataLayout
-      icon="chart bar"
-      header="Статистика"
       yearOptions={yearOptions}
       defaultSelectedDate={initialSelectedDate}
       selectedDate={selectedDate}

@@ -4,8 +4,6 @@ import { RequireAuth } from './components/RequireAuth'
 import { Footer } from './components/shared'
 
 import {
-  AllTimeTablePage, DailyTablePage, MonthlyTablePage,
-  AllTimeStatisticsPage, DailyStatisticsPage, MonthlyStatisticsPage,
   CreateAccountPage,
   ErrorPage,
   InfoPage,
@@ -15,7 +13,9 @@ import {
   EditReceiptPage,
   CreateReceiptPage,
   ResetPasswordPage,
-  SettingsPage
+  SettingsPage,
+  TablePage,
+  StatisticsPage
 } from './pages'
 
 import {
@@ -23,12 +23,8 @@ import {
   EDIT_RECEIPT,
   INFO, LOGIN, REGISTER, RESET_PASSWORD,
   SETTINGS,
-  STATISTICS_ALL, STATISTICS_BASE_ROUTE,
-  STATISTICS_DAILY,
-  STATISTICS_MONTHLY,
-  TABLE_ALL, TABLE_BASE_ROUTE,
-  TABLE_DAILY,
-  TABLE_MONTHLY
+  STATISTICS,
+  TABLE,
 } from './data/routePaths'
 
 import { UserSettingsContextProvider } from './context'
@@ -39,7 +35,7 @@ export const App = () => (
     <UserSettingsContextProvider>
       <Router>
         <Routes>
-          <Route index element={<Navigate to={TABLE_DAILY} />} />
+          <Route index element={<Navigate to={TABLE} />} />
 
           <Route path={LOGIN} element={<LoginPage />} />
           <Route path={REGISTER} element={<CreateAccountPage />} />
@@ -51,35 +47,15 @@ export const App = () => (
               element={<MainPage />}
               errorElement={<ErrorPage />}
             >
-              <Route path={TABLE_BASE_ROUTE}>
-                <Route
-                  path={TABLE_ALL}
-                  element={<AllTimeTablePage />}
-                />
-                <Route
-                  path={TABLE_DAILY}
-                  element={<DailyTablePage />}
-                />
-                <Route
-                  path={TABLE_MONTHLY}
-                  element={<MonthlyTablePage />}
-                />
-              </Route>
+              <Route
+                path={TABLE}
+                element={<TablePage />}
+              />
 
-              <Route path={STATISTICS_BASE_ROUTE}>
-                <Route
-                  path={STATISTICS_ALL}
-                  element={<AllTimeStatisticsPage />}
-                />
-                <Route
-                  path={STATISTICS_DAILY}
-                  element={<DailyStatisticsPage />}
-                />
-                <Route
-                  path={STATISTICS_MONTHLY}
-                  element={<MonthlyStatisticsPage />}
-                />
-              </Route>
+              <Route
+                path={STATISTICS}
+                element={<StatisticsPage />}
+              />
 
               <Route
                 path={EDIT_RECEIPT}

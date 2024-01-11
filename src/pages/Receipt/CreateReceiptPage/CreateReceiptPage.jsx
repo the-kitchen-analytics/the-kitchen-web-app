@@ -7,7 +7,7 @@ import { CreateReceiptForm } from './CreateReceiptForm'
 import { ErrorMessage } from '../../../components/shared'
 import { usePostData, useProcedures } from '../../../hooks'
 import { createReceipt } from '../../../services/receiptService'
-import { TABLE_DAILY } from '../../../data/routePaths'
+import { TABLE } from '../../../data/routePaths'
 import { mapReceiptToFirebaseEntity } from '../../../mappers/receipt'
 import { validateReceipt } from '../../../validators/receipt'
 import { useAccordionActiveIndex, useReceipt } from './helpers/hooks'
@@ -77,7 +77,7 @@ export const CreateReceiptPage = () => {
                 icon="check circle"
                 header="Данные успешно сохранены"
                 content={
-                  <>Перейдите в раздел <Link to={TABLE_DAILY}>Таблицы -{'>'} За день</Link>, чтобы просмотреть запись</>
+                  <>Перейдите в раздел <Link to={TABLE}>Таблицы -{'>'} За день</Link>, чтобы просмотреть запись</>
                 }
               />
             )

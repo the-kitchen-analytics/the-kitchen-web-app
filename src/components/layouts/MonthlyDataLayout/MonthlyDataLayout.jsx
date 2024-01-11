@@ -5,12 +5,11 @@ import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
 import { MonthSelect, YearSelect } from '../../shared/dropdown'
 import { Carousel } from '../../shared'
 import { MainLayout } from '../MainLayout'
-import { TimelinePicker } from '../../TimelinePicker'
 
 export const MonthlyDataLayout = (props) => {
 
   const {
-    icon, header, content, children,
+    content, children,
     defaultSelectedDate, selectedDate, setSelectedDate,
     yearOptions
   } = props
@@ -30,14 +29,7 @@ export const MonthlyDataLayout = (props) => {
   })), [yearOptions])
 
   return (
-    <MainLayout
-      icon={icon}
-      header={header}
-    >
-      <Grid.Column width={'16'}>
-        <TimelinePicker />
-      </Grid.Column>
-
+    <MainLayout>
       <Grid.Column
         computer={'4'}
         tablet={'4'}

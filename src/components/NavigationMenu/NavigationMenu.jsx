@@ -1,5 +1,11 @@
 import { Menu } from 'semantic-ui-react'
-import { CREATE_RECEIPT, INFO, SETTINGS, STATISTICS_DAILY, TABLE_DAILY } from '../../data/routePaths'
+import {
+  CREATE_RECEIPT,
+  INFO,
+  SETTINGS,
+  STATISTICS,
+  TABLE
+} from '../../data/routePaths'
 import { NavigationMenuItem } from './NavigationMenuItem'
 import { useUserSettings } from '../../hooks'
 import './NavigationMenu.css'
@@ -8,12 +14,12 @@ const menuItems = [
   {
     name: 'home',
     icon: 'home',
-    to: TABLE_DAILY
+    to: TABLE
   },
   {
     name: 'statistics',
     icon: 'chart pie',
-    to: STATISTICS_DAILY
+    to: STATISTICS
   },
   {
     name: 'create-receipt',
