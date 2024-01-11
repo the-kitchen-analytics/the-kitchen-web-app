@@ -1,14 +1,14 @@
 import { useOutletContext } from 'react-router-dom'
-import { DataTable } from '../../components/DataTable'
-import { AllTimeDataLayout } from '../../components/layouts'
-import { getAllTableData } from '../../services/tableDataFilterService'
+import { DataTable } from '../../../components/DataTable'
+import { AllTimeDataLayout } from '../../../components/layouts'
+import { getAllTableData } from '../../../services/tableDataFilterService'
 
 export const AllTimeTablePage = () => {
 
   const { receipts } = useOutletContext()
 
   return (
-    <AllTimeDataLayout header="Главная">
+    <AllTimeDataLayout>
       <DataTable
         data={getAllTableData(receipts)}
       />

@@ -1,13 +1,17 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Segment } from 'semantic-ui-react'
 import { DataTable } from '../../../components/DataTable'
 import { DatePicker, LoadableButton } from '../../../components/shared'
 import { ProcedureSelect } from './ProcedureSelect'
 import { useUserSettings } from '../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
 
-const Preview = ({ data }) => <DataTable data={data} />
+const Preview = ({ data }) => (
+  <Segment>
+    <DataTable data={data} />
+  </Segment>
+)
 
 export const CreateReceiptForm = (props) => {
 

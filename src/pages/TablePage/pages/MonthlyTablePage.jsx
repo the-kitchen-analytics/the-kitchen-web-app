@@ -1,7 +1,7 @@
-import { MonthlyDataLayout } from '../../components/layouts/'
-import { DataTable } from '../../components/DataTable'
-import { getTableDataByMonthAndYear } from '../../services/tableDataFilterService'
-import { useMonthlyData } from '../../hooks'
+import { MonthlyDataLayout } from '../../../components/layouts/'
+import { DataTable } from '../../../components/DataTable'
+import { getTableDataByMonthAndYear } from '../../../services/tableDataFilterService'
+import { useMonthlyData } from '../../../hooks'
 
 export const MonthlyTablePage = () => {
 
@@ -12,7 +12,6 @@ export const MonthlyTablePage = () => {
 
   return (
     <MonthlyDataLayout
-      header="Главная"
       yearOptions={yearOptions}
       defaultSelectedDate={initialSelectedDate}
       selectedDate={selectedDate}

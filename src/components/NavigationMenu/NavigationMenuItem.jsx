@@ -13,6 +13,6 @@ export const NavigationMenuItem = ({ icon, to }) => (
     as={NavLink}
     to={to}
     icon={getIconProps(icon)}
-    className="navigation-menu-item"
+    className={'navigation-menu-item'}
   />
 )

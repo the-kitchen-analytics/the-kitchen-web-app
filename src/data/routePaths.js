@@ -1,16 +1,10 @@
 export const DASHBOARD = '/dashboard'
 
 // TABLE ROUTES
-export const TABLE_BASE_ROUTE = `${DASHBOARD}/table`
-export const TABLE_DAILY = `${TABLE_BASE_ROUTE}/daily`
-export const TABLE_MONTHLY = `${TABLE_BASE_ROUTE}/monthly`
-export const TABLE_ALL = `${TABLE_BASE_ROUTE}/all`
+export const TABLE = `${DASHBOARD}/table`
 
 // STATISTICS ROUTES
-export const STATISTICS_BASE_ROUTE = `${DASHBOARD}/statistics`
-export const STATISTICS_DAILY = `${STATISTICS_BASE_ROUTE}/daily`
-export const STATISTICS_MONTHLY = `${STATISTICS_BASE_ROUTE}/monthly`
-export const STATISTICS_ALL = `${STATISTICS_BASE_ROUTE}/all`
+export const STATISTICS = `${DASHBOARD}/statistics`
 
 // AUTH ROUTES
 export const LOGIN = '/login'

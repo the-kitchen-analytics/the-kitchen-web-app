@@ -1,5 +1,5 @@
 import { List } from 'semantic-ui-react'
-import { Switch } from '../../../../../components/shared/Switch'
+import { Switch } from '../../../../../components/shared'
 
 import './DisplayOptions.css'
 

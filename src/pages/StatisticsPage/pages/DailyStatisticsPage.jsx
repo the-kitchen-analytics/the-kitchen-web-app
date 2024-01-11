@@ -1,7 +1,7 @@
-import { DailyDataLayout } from '../../components/layouts'
-import { Statistics } from '../../components/Statistics'
-import { getStatisticsDataByDay } from '../../services/statisticsDataFilterService'
-import { useDailyData } from '../../hooks'
+import { DailyDataLayout } from '../../../components/layouts'
+import { Statistics } from '../../../components/Statistics'
+import { getStatisticsDataByDay } from '../../../services/statisticsDataFilterService'
+import { useDailyData } from '../../../hooks'
 
 export const DailyStatisticsPage = () => {
 
@@ -9,7 +9,6 @@ export const DailyStatisticsPage = () => {
 
   return (
     <DailyDataLayout
-      header="Статистика"
       selectedDay={selectedDay}
       setSelectedDay={setSelectedDay}
       options={workedDays}
