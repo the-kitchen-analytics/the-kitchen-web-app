@@ -7,7 +7,7 @@ import {
   TABLE
 } from '../../data/routePaths'
 import { NavigationMenuItem } from './NavigationMenuItem'
-import { useUserSettings } from '../../hooks'
+import { useUserSettingsContext } from '../../hooks'
 import './NavigationMenu.css'
 
 const menuItems = [
@@ -39,7 +39,7 @@ const menuItems = [
 ]
 
 export const NavigationMenu = () => {
-  const { settings: { accentColor } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettingsContext()
 
   return (
     <Menu

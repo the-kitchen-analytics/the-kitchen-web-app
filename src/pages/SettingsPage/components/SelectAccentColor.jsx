@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Header, Icon, Segment, Label, Message } from 'semantic-ui-react'
-import { useUserSettings } from '../../../hooks'
+import { useUserSettingsContext } from '../../../hooks'
 
 const ColorOption = ({ isActive, value, handleClick }) => (
   <Label
@@ -18,7 +18,7 @@ const ColorOption = ({ isActive, value, handleClick }) => (
 
 export const SelectAccentColor = ({ colorOptions }) => {
 
-  const { settings: { accentColor }, setSetting } = useUserSettings()
+  const { settings: { accentColor }, setSetting } = useUserSettingsContext()
 
   const handleColorChange = (colorName) => setSetting('accentColor', colorName)
 

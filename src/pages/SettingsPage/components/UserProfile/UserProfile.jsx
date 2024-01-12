@@ -1,18 +1,15 @@
 import _ from 'lodash'
 import { useState, useMemo } from 'react'
-import { useOutletContext } from 'react-router-dom'
-import { Segment, Header, Icon, Form } from 'semantic-ui-react'
-import { LogOutButton, ErrorMessage, Loader } from '../../../../components/shared'
-import { usePostData } from '../../../../hooks'
+import { Segment, Header, Form, Placeholder, Icon } from 'semantic-ui-react'
+import { LogOutButton, ErrorMessage } from '../../../../components/shared'
+import { usePostData, useUserDetailsContext } from '../../../../hooks'
 import { getWorkerCategoryDisplayName } from '../../../../utils'
 import { EditUserForm } from './EditUserForm'
 
 export const UserProfile = () => {
 
-  const { userDetails, updateUserDetails } = useOutletContext()
-
+  const [userDetails, setUserDetails] = useUserDetailsContext()
   const initialFormData = useMemo(() => userDetails, [userDetails])
-
   const [formData, setFormData] = useState(userDetails)
 
   const [
@@ -36,7 +33,7 @@ export const UserProfile = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    await postData(updateUserDetails, formData)
+    await postData(setUserDetails, formData)
 
     if (!error) {
       setShouldDisplayEditProfileForm(false)
@@ -49,30 +46,48 @@ export const UserProfile = () => {
     resetFormData()
   }
 
-  if (!userDetails) {
-    return <Loader />
+  const shouldDisplayLoader = () => isLoading || !userDetails
+
+  const getHeaderContent = () => {
+    if (shouldDisplayLoader()) {
+      return (
+        <Placeholder>
+          <Placeholder.Header image>
+            <Placeholder.Line />
+            <Placeholder.Line />
+          </Placeholder.Header>
+          <Placeholder.Paragraph>
+            <Placeholder.Line />
+            <Placeholder.Line />
+          </Placeholder.Paragraph>
+        </Placeholder>
+      )
+    }
+
+    if (userDetails) {
+      return (
+        <>
+          <Icon name={'user circle'} />
+          <Header.Content>{userDetails.name}</Header.Content>
+          <Header.Subheader>{userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}</Header.Subheader>
+        </>
+      )
+    }
+
+    return null
   }
 
   return (
-    <Segment loading={isLoading}>
-      <Header
-        icon
-        textAlign="center"
-        size="large">
-        <Icon name="user circle" />
-        <Header.Content>
-          {userDetails.name}
-        </Header.Content>
-
-        <Header.Subheader>
-          {userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}
-        </Header.Subheader>
+    <Segment loading={shouldDisplayLoader()} size={'huge'}>
+      <Header icon textAlign={'center'}>
+        {
+          getHeaderContent()
+        }
       </Header>
 
       {
-        shouldDisplayEditProfileForm ?
-
-          (
+        shouldDisplayEditProfileForm
+          ? (
             <>
               {
                 error && (
@@ -89,7 +104,8 @@ export const UserProfile = () => {
                 shouldDisableResetButton={shouldDisableResetButton}
               />
             </>
-          ) : (
+          )
+          : (
             <Form>
               <Form.Group widths='equal'>
                 <Form.Button
@@ -108,7 +124,6 @@ export const UserProfile = () => {
             </Form>
           )
       }
-
     </Segment>
   )
 }

@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import { useMemo, useState } from 'react'
-import { Link, useOutletContext } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Grid, Message } from 'semantic-ui-react'
 import { MainLayout } from '../../../components/layouts/'
 import { CreateReceiptForm } from './CreateReceiptForm'
 import { ErrorMessage } from '../../../components/shared'
-import { usePostData, useProcedures } from '../../../hooks'
+import { usePostData, useProcedures, useUserDetailsContext } from '../../../hooks'
 import { createReceipt } from '../../../services/receiptService'
 import { TABLE } from '../../../data/routePaths'
 import { mapReceiptToFirebaseEntity } from '../../../mappers/receipt'
@@ -14,7 +14,7 @@ import { useAccordionActiveIndex, useReceipt } from './helpers/hooks'
 
 export const CreateReceiptPage = () => {
 
-  const { userDetails: { uid, workerCategory } } = useOutletContext()
+  const [{ uid, workerCategory } ] = useUserDetailsContext()
   const [procedures = [], isFetchingProcedures] = useProcedures(workerCategory)
   const [isSavingReceipt, error, postData] = usePostData()
   const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMessage] = useState(false)

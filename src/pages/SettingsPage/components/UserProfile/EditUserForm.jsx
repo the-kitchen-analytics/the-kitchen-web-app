@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
 import { WorkerCategorySelect } from '../../../../components/shared'
-import { useUserSettings } from '../../../../hooks'
+import { useUserSettingsContext } from '../../../../hooks'
 import { handleInputChange } from '../../../../utils'
 
 export const EditUserForm = (props) => {
@@ -12,7 +12,7 @@ export const EditUserForm = (props) => {
     shouldDisableSubmitButton, shouldDisableResetButton
   } = props
 
-  const { settings: { accentColor } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettingsContext()
   const { name, email,workerCategory,description } = formData
 
   const handleInputChangeWrapper = useCallback((e) => {

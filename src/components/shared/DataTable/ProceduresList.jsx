@@ -1,12 +1,12 @@
 import { Label, List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { useUserSettings } from '../../../hooks'
+import { useUserSettingsContext } from '../../../hooks'
 import { getProcedureTypeDisplayName } from '../../../utils'
 
 
 const ListItem = (props) => {
 
-  const { settings: { accentColor } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettingsContext()
   const {
     linkTo,
     shouldDisplayProcedurePriceInTable,

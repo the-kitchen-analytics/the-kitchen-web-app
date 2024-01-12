@@ -1,23 +1,18 @@
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Form, Grid } from 'semantic-ui-react'
-import { DataTable } from '../../../components/shared/'
+import { DataTable, Loader } from '../../../components/shared/'
 import { MainLayout } from '../../../components/layouts'
-import { ErrorMessage, NoContent, GoBackButton } from '../../../components/shared'
-import { usePostData } from '../../../hooks'
+import { ErrorMessage, GoBackButton } from '../../../components/shared'
+import { usePostData, useReceiptContext } from '../../../hooks'
 import { deleteReceiptById } from '../../../services/receiptService'
 
 export const EditReceiptPage = () => {
 
   const { id } = useParams()
-  const { getReceiptById } = useOutletContext()
-
+  const { getReceiptById } = useReceiptContext()
   const [isLoading, error, postData] = usePostData()
   const navigate = useNavigate()
   const receipt = getReceiptById(id)
-
-  if (!receipt) {
-    return <NoContent />
-  }
 
   const handleDeleteButtonClick = async () => {
     if (window.confirm('Вы действительно хотите удалить запись?')) {
@@ -27,20 +22,17 @@ export const EditReceiptPage = () => {
   }
 
   return (
-    <MainLayout
-      header={{
-        content: `Запись от ${receipt.dateFormatted}`,
-        subheader: 'Детализация записи клиента'
-      }}
-    >
+    <MainLayout header={{ content: 'Просмотреть запись' }}>
       <Grid.Row>
         <Grid.Column>
           {
             error && <ErrorMessage message={error.message} />
           }
-
-          <DataTable data={[[receipt]]} />
-
+          {
+            isLoading
+              ? <Loader />
+              : (receipt && <DataTable data={[[receipt]]} />)
+          }
         </Grid.Column>
 
       </Grid.Row>
@@ -66,7 +58,6 @@ export const EditReceiptPage = () => {
           </Form>
         </Grid.Column>
       </Grid.Row>
-
     </MainLayout>
   )
 }

@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Divider, Form, Header } from 'semantic-ui-react'
+import { Divider, Form, Header, Placeholder } from 'semantic-ui-react'
 import { DataTable } from '../../../components/shared'
 import { DatePicker, LoadableButton } from '../../../components/shared'
 import { ProcedureSelect } from './ProcedureSelect'
-import { useUserSettings } from '../../../hooks'
+import { useUserSettingsContext } from '../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
 
 const Preview = ({ data }) => (
@@ -37,7 +37,7 @@ export const CreateReceiptForm = (props) => {
     shouldDisableSubmitFormButton
   } = props
 
-  const { settings: { accentColor } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettingsContext()
 
   const handleInputChangeWrapper = useCallback((e) => handleInputChange(e, setFormData), [setFormData])
 
@@ -71,15 +71,25 @@ export const CreateReceiptForm = (props) => {
       </Form.Group>
 
       {
-        !isLoading && (
-          <ProcedureSelect
-            procedures={procedures}
-            formData={formData}
-            setFormData={setFormData}
-            accordionActiveIndex={accorditionActiveIndex}
-            setAccordionActiveIndex={setAccorditionActiveIndex}
-          />
-        )
+        isLoading
+          ? (
+            <Placeholder>
+              <Placeholder.Paragraph>
+                {
+                  _.range(0, 6).map((i) => <Placeholder.Line key={i} />)
+                }
+              </Placeholder.Paragraph>
+            </Placeholder>
+          )
+          : (
+            <ProcedureSelect
+              procedures={procedures}
+              formData={formData}
+              setFormData={setFormData}
+              accordionActiveIndex={accorditionActiveIndex}
+              setAccordionActiveIndex={setAccorditionActiveIndex}
+            />
+          )
       }
 
       {
