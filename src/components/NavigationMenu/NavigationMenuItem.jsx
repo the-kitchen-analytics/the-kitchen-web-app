@@ -2,7 +2,6 @@ import { Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
 const getIconProps = (name) => ({
-  fitted: true,
   link: true,
   size: 'big',
   name

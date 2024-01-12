@@ -1,24 +1,11 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Divider, Form, Header, Placeholder } from 'semantic-ui-react'
-import { DataTable } from '../../../components/shared'
-import { DatePicker, LoadableButton } from '../../../components/shared'
-import { ProcedureSelect } from './ProcedureSelect'
-import { useUserSettingsContext } from '../../../hooks'
-import { handleInputChange, getWorkerCategoryDisplayName } from '../../../utils'
-
-const Preview = ({ data }) => (
-  <>
-    <Divider horizontal>
-      <Header
-        as='h4'
-        icon={'paperclip'}
-        content={'Предпросмотр'}
-      />
-    </Divider>
-    <DataTable data={data} />
-  </>
-)
+import { Form, Placeholder } from 'semantic-ui-react'
+import { DatePicker, LoadableButton } from '../../../../components/shared'
+import { ProcedureSelect } from '../ProcedureSelect'
+import { useUserSettingsContext } from '../../../../hooks'
+import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../utils'
+import { Preview } from './Preview'
 
 export const CreateReceiptForm = (props) => {
 

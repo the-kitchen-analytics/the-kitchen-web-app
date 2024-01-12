@@ -12,6 +12,7 @@ export const RequireAuth = () => {
   if (loading) {
     return (
       <Loader
+        indeterminate
         content="Загрузка информации о пользователе"
       />
     )

@@ -1,41 +1,27 @@
 import { Grid } from 'semantic-ui-react'
-import { MainLayout } from '../../components/layouts'
+import { MainHeader } from '../../components/shared'
 import { ContactUs } from './ContactUs'
-import contactOptions from '../../data/contactOptions.json'
 import { Info } from './Info'
+import contactOptions from '../../data/contactOptions.json'
 
-export const InfoPage = () => {
-
-  const settingsOptions = [
-    {
-      key: 'contact-us',
-      element: (
-        <ContactUs
-          options={contactOptions}
-        />
-      )
-    },
-    {
-      key: 'app-info',
-      element: <Info />
-    }
-  ]
-
-  const content = settingsOptions.map(({ key, element }) => (
-    <Grid.Row key={key} stretched>
-      <Grid.Column stretched>
-        {
-          element
-        }
+export const InfoPage = () =>  (
+  <Grid>
+    <Grid.Row>
+      <Grid.Column>
+        <MainHeader content={'Информация'} />
       </Grid.Column>
     </Grid.Row>
-  ))
 
-  return (
-    <MainLayout
-      icon="question circle"
-      header={{ content: 'Информация' }}
-      content={content}
-    />
-  )
-}
+    <Grid.Row>
+      <Grid.Column>
+        <ContactUs options={contactOptions} />
+      </Grid.Column>
+    </Grid.Row>
+
+    <Grid.Row>
+      <Grid.Column>
+        <Info />
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
+)

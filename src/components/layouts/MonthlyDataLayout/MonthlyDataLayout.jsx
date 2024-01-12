@@ -1,10 +1,8 @@
 import _ from 'lodash'
 import { useMemo } from 'react'
 import { Grid } from 'semantic-ui-react'
+import { Carousel, MonthSelect, YearSelect } from '../../shared'
 import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
-import { MonthSelect, YearSelect } from '../../shared/dropdown'
-import { Carousel } from '../../shared'
-import { MainLayout } from '../MainLayout'
 
 export const MonthlyDataLayout = (props) => {
 
@@ -29,7 +27,7 @@ export const MonthlyDataLayout = (props) => {
   })), [yearOptions])
 
   return (
-    <MainLayout>
+    <Grid>
       <Grid.Column
         computer={'4'}
         tablet={'4'}
@@ -85,6 +83,6 @@ export const MonthlyDataLayout = (props) => {
           }
         </Grid.Column>
       </Grid.Row>
-    </MainLayout>
+    </Grid>
   )
 }

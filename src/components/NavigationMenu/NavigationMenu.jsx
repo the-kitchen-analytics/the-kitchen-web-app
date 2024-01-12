@@ -28,7 +28,7 @@ const menuItems = [
   },
   {
     name: 'info',
-    icon: 'question circle',
+    icon: 'info circle',
     to: INFO
   },
   {
@@ -43,14 +43,12 @@ export const NavigationMenu = () => {
 
   return (
     <Menu
-      className="navigation-menu"
+      className={'navigation-menu'}
       icon
       borderless
-      fluid
-      defaultActiveIndex={1}
       color={accentColor || 'black'}
-      fixed="bottom"
-      size="large"
+      fixed={'bottom'}
+      size={'large'}
       widths={menuItems.length}
     >
       {

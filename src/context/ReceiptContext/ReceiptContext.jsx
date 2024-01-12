@@ -1,6 +1,6 @@
 import { createContext, useCallback } from 'react'
-import { useReceipts } from '../hooks'
-import { Loader } from '../components/shared/index.js'
+import { Loader } from '../../components/shared'
+import { useReceipts } from './useReceipts'
 
 export const ReceiptContext = createContext({})
 export const ReceiptContextProvider = ({ uid, children }) => {

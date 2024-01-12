@@ -2,15 +2,14 @@ import _ from 'lodash'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Grid, Message } from 'semantic-ui-react'
-import { MainLayout } from '../../../components/layouts/'
-import { CreateReceiptForm } from './CreateReceiptForm'
-import { ErrorMessage } from '../../../components/shared'
-import { usePostData, useProcedures, useUserDetailsContext } from '../../../hooks'
-import { createReceipt } from '../../../services/receiptService'
-import { TABLE } from '../../../data/routePaths'
-import { mapReceiptToFirebaseEntity } from '../../../mappers/receipt'
-import { validateReceipt } from '../../../validators/receipt'
-import { useAccordionActiveIndex, useReceipt } from './helpers/hooks'
+import { ErrorMessage, MainHeader } from '../../components/shared'
+import { CreateReceiptForm } from './components'
+import { usePostData, useProcedures, useUserDetailsContext } from '../../hooks'
+import { createReceipt } from '../../services/receiptService'
+import { TABLE } from '../../data/routePaths'
+import { mapReceiptToFirebaseEntity } from '../../mappers/receipt'
+import { validateReceipt } from '../../validators/receipt'
+import { useAccordionActiveIndex, useReceipt } from './hooks'
 
 export const CreateReceiptPage = () => {
 
@@ -64,10 +63,13 @@ export const CreateReceiptPage = () => {
   }
 
   return (
-    <MainLayout
-      icon="cloud upload"
-      header={{ content: 'Сохранить' }}
-    >
+    <Grid>
+      <Grid.Row>
+        <Grid.Column>
+          <MainHeader content={'Сохранить'} />
+        </Grid.Column>
+      </Grid.Row>
+
       <Grid.Row>
         <Grid.Column>
           {
@@ -103,6 +105,6 @@ export const CreateReceiptPage = () => {
           />
         </Grid.Column>
       </Grid.Row>
-    </MainLayout>
+    </Grid>
   )
 }

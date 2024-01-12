@@ -1,10 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { Form, Grid } from 'semantic-ui-react'
-import { DataTable, Loader } from '../../../components/shared/'
-import { MainLayout } from '../../../components/layouts'
-import { ErrorMessage, GoBackButton } from '../../../components/shared'
-import { usePostData, useReceiptContext } from '../../../hooks'
-import { deleteReceiptById } from '../../../services/receiptService'
+import { DataTable, Loader, MainHeader } from '../../components/shared'
+import { ErrorMessage, GoBackButton } from '../../components/shared'
+import { usePostData, useReceiptContext } from '../../hooks'
+import { deleteReceiptById } from '../../services/receiptService'
 
 export const EditReceiptPage = () => {
 
@@ -22,7 +21,12 @@ export const EditReceiptPage = () => {
   }
 
   return (
-    <MainLayout header={{ content: 'Просмотреть запись' }}>
+    <Grid>
+      <Grid.Row>
+        <Grid.Column>
+          <MainHeader content={'Просмотреть запись'} />
+        </Grid.Column>
+      </Grid.Row>
       <Grid.Row>
         <Grid.Column>
           {
@@ -34,18 +38,18 @@ export const EditReceiptPage = () => {
               : (receipt && <DataTable data={[[receipt]]} />)
           }
         </Grid.Column>
-
       </Grid.Row>
 
       <Grid.Row>
         <Grid.Column>
-          <Form loading={isLoading}>
+          <Form>
             <Form.Group widths="equal">
-              <Form.Field>
+              <Form.Field disabled={isLoading}>
                 <GoBackButton />
               </Form.Field>
 
               <Form.Button
+                disabled={isLoading}
                 fluid
                 size="large"
                 icon="trash"
@@ -58,6 +62,6 @@ export const EditReceiptPage = () => {
           </Form>
         </Grid.Column>
       </Grid.Row>
-    </MainLayout>
+    </Grid>
   )
 }
