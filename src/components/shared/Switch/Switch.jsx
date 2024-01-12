@@ -1,11 +1,11 @@
-import { useUserSettings } from '../../../hooks'
+import { useUserSettingsContext } from '../../../hooks'
 import classNames from 'classnames'
 import './Switch.css'
 
 const SLIDER_DEFAULT_CLASS_NAMES = ['switch-slider', 'ui', 'button']
 
 export const Switch = ({ label, checked, onChange }) => {
-  const { settings: { accentColor } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettingsContext()
   const sliderClassName = classNames(SLIDER_DEFAULT_CLASS_NAMES, { [accentColor]: checked })
 
   return (

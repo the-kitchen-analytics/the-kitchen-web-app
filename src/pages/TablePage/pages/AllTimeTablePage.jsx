@@ -1,11 +1,11 @@
-import { useOutletContext } from 'react-router-dom'
 import { DataTable } from '../../../components/shared'
 import { AllTimeDataLayout } from '../../../components/layouts'
 import { getAllTableData } from '../../../services/tableDataFilterService'
+import { useReceiptContext } from '../../../hooks'
 
 export const AllTimeTablePage = () => {
 
-  const { receipts } = useOutletContext()
+  const { receipts } = useReceiptContext()
 
   return (
     <AllTimeDataLayout>

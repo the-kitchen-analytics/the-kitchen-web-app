@@ -1,12 +1,12 @@
-import { useOutletContext } from 'react-router-dom'
 import { AllTimeDataLayout } from '../../../components/layouts/'
 import { getAllData } from '../../../services/receiptFilterService'
 import { buildStatisticsData } from '../../../utils'
+import { useReceiptContext } from '../../../hooks'
 import { Statistics } from './Statistics'
 
 export const AllTimeStatisticsPage = () => {
 
-  const { receipts } = useOutletContext()
+  const { receipts } = useReceiptContext()
   const data = getAllData(receipts)
   const { statisticsData, chartData } = buildStatisticsData(data)
 

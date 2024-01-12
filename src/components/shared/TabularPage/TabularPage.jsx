@@ -1,10 +1,10 @@
-import { useUserSettings } from '../../../hooks'
+import { useUserSettingsContext } from '../../../hooks'
 import { Grid, Tab } from 'semantic-ui-react'
 import { MainHeader } from '../MainHeader'
 
 export const TabularPage = ({ header, panes }) => {
 
-  const { settings: { accentColor } } = useUserSettings()
+  const { settings: { accentColor } } = useUserSettingsContext()
 
   const tabularPanes = panes.map((pane) => ({
     ...pane,

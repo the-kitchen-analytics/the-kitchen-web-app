@@ -7,7 +7,7 @@ const panes = [
   { menuItem: 'За всё время', content: <AllTimeStatisticsPage /> }
 ]
 
-export const StatisticsPage = () => (
+export const StatisticsPage = () =>  (
   <TabularPage
     header={{ content: 'Статистика' }}
     panes={panes}

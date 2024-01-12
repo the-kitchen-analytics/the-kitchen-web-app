@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { Loader } from '../shared/'
+import { Loader } from '../shared'
 import { Message } from 'semantic-ui-react'
 import { LOGIN } from '../../data/routePaths'
 import { useAuth } from '../../hooks'
@@ -22,7 +22,7 @@ export const RequireAuth = () => {
       <Message
         negative
         header="Ошибка авторизации"
-        content="При попытке загрузки информауии об авторизации произошла ошибка"
+        content="При попытке загрузки информации об авторизации произошла ошибка"
       />
     )
   }

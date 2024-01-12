@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { useReceiptContext } from './'
 
 export const useDailyData = (getData) => {
-  const { receipts, workedDays } = useOutletContext()
+  const { receipts, workedDays } = useReceiptContext()
   const [selectedDay, setSelectedDay] = useState(workedDays[0])
 
   const filteredData = useMemo(() => {
