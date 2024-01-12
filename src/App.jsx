@@ -3,27 +3,17 @@ import { RequireAuth } from './components/RequireAuth'
 import { Footer } from './components/shared'
 
 import {
-  CreateAccountPage,
-  ErrorPage,
-  InfoPage,
-  LoginPage,
-  MainPage,
-  NotFoundPage,
-  EditReceiptPage,
-  CreateReceiptPage,
-  ResetPasswordPage,
-  SettingsPage,
-  TablePage,
-  StatisticsPage
+  CreateAccountPage, LoginPage,
+  ErrorPage, InfoPage, MainPage, NotFoundPage,
+  EditReceiptPage, CreateReceiptPage,
+  ResetPasswordPage, SettingsPage,
+  TablePage, StatisticsPage
 } from './pages'
 
 import {
-  CREATE_RECEIPT, DASHBOARD,
-  EDIT_RECEIPT,
+  CREATE_RECEIPT, EDIT_RECEIPT,
   INFO, LOGIN, REGISTER, RESET_PASSWORD,
-  SETTINGS,
-  STATISTICS,
-  TABLE,
+  SETTINGS, STATISTICS, TABLE
 } from './data/routePaths'
 
 import './App.css'
@@ -40,7 +30,6 @@ export const App = () => (
 
         <Route element={<RequireAuth />}>
           <Route
-            path={DASHBOARD}
             element={<MainPage />}
             errorElement={<ErrorPage />}
           >

@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
-import { DisplayOptions } from './DisplayOptions'
 import { useLocalStorage, useToggleState } from '../../../../hooks'
-import { ProcedureAccordion } from './ProcedureAccordion'
-import { toggleSetter, halfPartProceduresMapper } from '../../../../utils/'
+import { toggleSetter, halfPartProceduresMapper } from '../../../../utils'
 import procedureTypes from '../../../../data/procedure-types.json'
+import { DisplayOptions } from '../DisplayOptions'
+import { ProcedureAccordion } from '../ProcedureAccordion'
 
 export const ProcedureSelect = (props) => {
 

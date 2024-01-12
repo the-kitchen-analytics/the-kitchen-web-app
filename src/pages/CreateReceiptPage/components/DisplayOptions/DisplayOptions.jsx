@@ -1,6 +1,5 @@
 import { List } from 'semantic-ui-react'
-import { Switch } from '../../../../../components/shared'
-
+import { Switch } from '../../../../components/shared'
 import './DisplayOptions.css'
 
 export const DisplayOptions = ({ options }) => (
@@ -9,9 +8,7 @@ export const DisplayOptions = ({ options }) => (
       {
         options.map(option => (
           <List.Item key={option.key}>
-            <Switch
-              {...option}
-            />
+            <Switch {...option} />
           </List.Item>
         ))
       }

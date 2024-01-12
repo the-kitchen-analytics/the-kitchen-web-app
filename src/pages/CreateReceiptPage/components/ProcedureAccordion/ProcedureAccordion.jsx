@@ -1,7 +1,24 @@
 import { Accordion } from 'semantic-ui-react'
 import { ProcedureListItem } from './ProcedureListItem'
-import { AccordionItem } from './AccordionItem'
 import { getAccordionItemTitleContent } from './helpers'
+
+const AccordionItem = ({ content, index, isActive, handleToggle, children }) => (
+  <>
+    <Accordion.Title
+      active={isActive}
+      index={index}
+      onClick={handleToggle}
+      icon={'dropdown'}
+      content={content}
+    />
+
+    <Accordion.Content active={isActive}>
+      {
+        children
+      }
+    </Accordion.Content>
+  </>
+)
 
 export const ProcedureAccordion = (props) => {
 

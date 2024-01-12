@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import { useState, useEffect } from 'react'
-import { mapFirebaseEntityToReceipt } from '../mappers/receipt'
-import { streamReceiptsByUid } from '../services/receiptService'
+import { useEffect, useState } from 'react'
+import { mapFirebaseEntityToReceipt } from '../../mappers/receipt'
+import { streamReceiptsByUid } from '../../services/receiptService'
 
 export const useReceipts = (options) => {
   const { uid } = options
@@ -11,7 +11,7 @@ export const useReceipts = (options) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const unsubscribe = streamReceiptsByUid(uid,
+    return streamReceiptsByUid(uid,
       (querySnapshot) => {
         setIsLoading(true)
 
@@ -32,7 +32,6 @@ export const useReceipts = (options) => {
         setIsLoading(false)
       }
     )
-    return unsubscribe
   }, [uid])
 
   return [data, isLoading, error]
