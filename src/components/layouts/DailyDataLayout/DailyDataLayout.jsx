@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import { Grid } from 'semantic-ui-react'
-import { MainLayout } from '../'
 import { Carousel, DaySelect } from '../../shared'
-import { buildDropdownOptions } from '../../../utils/'
+import { buildDropdownOptions } from '../../../utils'
 
 export const DailyDataLayout = (props) => {
 
@@ -10,7 +9,7 @@ export const DailyDataLayout = (props) => {
   const selectedDayIndex = _.indexOf(options, selectedDay)
 
   return (
-    <MainLayout>
+    <Grid>
       <Grid.Column
         computer={'4'}
         tablet={'6'}
@@ -54,6 +53,6 @@ export const DailyDataLayout = (props) => {
           }
         </Grid.Column>
       </Grid.Row>
-    </MainLayout>
+    </Grid>
   )
 }

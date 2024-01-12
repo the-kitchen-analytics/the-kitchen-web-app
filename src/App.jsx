@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
 import { RequireAuth } from './components/RequireAuth'
 import { Footer } from './components/shared'
+import { MainLayout } from './components/layouts'
 
 import {
-  CreateAccountPage, LoginPage,
-  ErrorPage, InfoPage, MainPage, NotFoundPage,
+  CreateAccountPage, LoginPage, ResetPasswordPage,
   EditReceiptPage, CreateReceiptPage,
-  ResetPasswordPage, SettingsPage,
+  SettingsPage, InfoPage,
   TablePage, StatisticsPage
 } from './pages'
 
@@ -29,10 +29,7 @@ export const App = () => (
         <Route path={RESET_PASSWORD} element={<ResetPasswordPage />} />
 
         <Route element={<RequireAuth />}>
-          <Route
-            element={<MainPage />}
-            errorElement={<ErrorPage />}
-          >
+          <Route element={<MainLayout />}>
             <Route
               path={TABLE}
               element={<TablePage />}
@@ -65,7 +62,7 @@ export const App = () => (
           </Route>
         </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<Navigate to={TABLE} />} />
       </Routes>
     </Router>
     <Footer />
