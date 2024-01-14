@@ -1,10 +1,10 @@
 import { TabularPage } from '../../components/shared'
-import { DailyTablePage, MonthlyTablePage, AllTimeTablePage } from './pages'
+import { DayView, MonthAndYearView, YearView } from './components'
 
 const panes = [
-  { menuItem: 'За день', content: <DailyTablePage /> },
-  { menuItem: 'За месяц', content: <MonthlyTablePage /> },
-  { menuItem: 'За всё время', content: <AllTimeTablePage /> }
+  { menuItem: 'За день', content: <DayView /> },
+  { menuItem: 'За месяц', content: <MonthAndYearView /> },
+  { menuItem: 'За год', content: <YearView /> }
 ]
 
 export const TablePage = () => (

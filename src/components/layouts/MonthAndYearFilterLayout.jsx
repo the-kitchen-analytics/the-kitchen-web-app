@@ -1,16 +1,15 @@
 import _ from 'lodash'
 import { useMemo } from 'react'
 import { Grid } from 'semantic-ui-react'
-import { Carousel, MonthSelect, YearSelect } from '../../shared'
-import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
+import { Carousel, MonthSelect, YearSelect } from '../shared'
+import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../data/monthIndexes'
+import { useReceiptContext } from '../../hooks'
 
-export const MonthlyDataLayout = (props) => {
+export const MonthAndYearFilterLayout = (props) => {
 
-  const {
-    content, children,
-    defaultSelectedDate, selectedDate, setSelectedDate,
-    yearOptions
-  } = props
+  const { children, selectedDate, setSelectedDate } = props
+  const { workedYears: yearOptions } = useReceiptContext()
+  const defaultSelectedDate = useMemo(() => selectedDate, [])
 
   const setSelectedMonth = (month) => {
     setSelectedDate((selectedDate) => ({ ...selectedDate, month }))
@@ -79,7 +78,7 @@ export const MonthlyDataLayout = (props) => {
       <Grid.Row>
         <Grid.Column>
           {
-            content || children
+            children
           }
         </Grid.Column>
       </Grid.Row>

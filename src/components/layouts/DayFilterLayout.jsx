@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { Grid } from 'semantic-ui-react'
-import { Carousel, DaySelect } from '../../shared'
-import { buildDropdownOptions } from '../../../utils'
+import { Carousel, DaySelect } from '../shared'
+import { buildDropdownOptions } from '../../utils'
 
-export const DailyDataLayout = (props) => {
+export const DayFilterLayout = (props) => {
 
   const { selectedDay, setSelectedDay, options, children } = props
   const selectedDayIndex = _.indexOf(options, selectedDay)
