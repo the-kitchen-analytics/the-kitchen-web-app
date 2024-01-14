@@ -1,7 +1,5 @@
 import _ from 'lodash'
 
-export const getAll = (data) => groupAsArray(data)
-
 export const getAllByDay = (selectedDay, data) => {
   const filterFn = ({ dateFormatted }) => dateFormatted === selectedDay
   return filterData(filterFn, data)

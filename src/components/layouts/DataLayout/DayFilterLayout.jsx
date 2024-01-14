@@ -1,12 +1,14 @@
 import _ from 'lodash'
 import { Grid } from 'semantic-ui-react'
-import { Carousel, DaySelect } from '../shared'
-import { buildDropdownOptions } from '../../utils'
+import { Carousel, DaySelect } from '../../shared'
+import { useReceiptContext, useReceiptsFilteredByDate } from '../../../hooks'
+import { buildDropdownOptions } from '../../../utils'
 
-export const DayFilterLayout = (props) => {
+export const DayFilterLayout = ({ getData, as: Component }) => {
 
-  const { selectedDay, setSelectedDay, options, children } = props
-  const selectedDayIndex = _.indexOf(options, selectedDay)
+  const { workedDays: options } = useReceiptContext()
+  const [componentProps, date, setDate] = useReceiptsFilteredByDate(options[0], getData)
+  const selectedDayIndex = _.indexOf(options, date)
 
   return (
     <Grid>
@@ -16,9 +18,9 @@ export const DayFilterLayout = (props) => {
         mobile={'16'}
       >
         <DaySelect
-          value={selectedDay}
+          value={date}
           options={buildDropdownOptions(options)}
-          handleChange={(e, { value }) => setSelectedDay(value)}
+          handleChange={(e, { value }) => setDate(value)}
         />
       </Grid.Column>
 
@@ -32,25 +34,23 @@ export const DayFilterLayout = (props) => {
         <Carousel
           previousItemProps={{
             disabled: options.length === 0 || selectedDayIndex === _.lastIndexOf(options) - 1,
-            onClick: () => setSelectedDay(options[selectedDayIndex + 1])
+            onClick: () => setDate(options[selectedDayIndex + 1])
           }}
           resetButtonProps={{
             content: 'Последний день',
-            disabled: _.isEqual(selectedDay, _.first(options)),
-            onClick: () => setSelectedDay(_.first(options))
+            disabled: _.isEqual(date, _.first(options)),
+            onClick: () => setDate(_.first(options))
           }}
           nextItemProps={{
             disabled: options.length === 0 || selectedDayIndex === 0,
-            onClick: () => setSelectedDay(options[selectedDayIndex - 1])
+            onClick: () => setDate(options[selectedDayIndex - 1])
           }}
         />
       </Grid.Column>
 
       <Grid.Row>
         <Grid.Column>
-          {
-            children
-          }
+          <Component {...componentProps} />
         </Grid.Column>
       </Grid.Row>
     </Grid>
