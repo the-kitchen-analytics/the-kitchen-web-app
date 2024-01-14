@@ -1,28 +1,35 @@
 import _ from 'lodash'
 
-export const getAllData = (data) => groupAsArray(data)
+export const getAll = (data) => groupAsArray(data)
 
-export const getDataByDay = (selectedDay, data) => {
-  const result = data
-    .flat()
-    .filter(({ dateFormatted }) => dateFormatted === selectedDay)
-
-  return result ? groupAsArray(result) : result
+export const getAllByDay = (selectedDay, data) => {
+  const filterFn = ({ dateFormatted }) => dateFormatted === selectedDay
+  return filterData(filterFn, data)
 }
 
-export const getDataByMonthAndYear = (selectedMonth, selectedYear, data) => {
-  const result = data
-    .flat()
-    .filter(({ date }) => (date.getFullYear() === selectedYear && date.getMonth() === selectedMonth))
-
-  return result ? groupAsArray(result) : result
+export const getAllByMonthAndYear = ({ month, year }, data) => {
+  const filterFn = ({ date }) => date.getFullYear() === year && date.getMonth() === month
+  return filterData(filterFn, data)
 }
 
-const groupAsObject = (data) => {
-  return _.groupBy(data, 'dateFormatted')
+export const getAllByYear = (year, data) => {
+  const filterFn = ({ date }) => date.getFullYear() === year
+  return filterData(filterFn, data)
+}
+
+const filterData = (filterFn, data) => {
+  const result = data
+    .flat()
+    .filter(filterFn)
+
+  return result ? groupAsArray(result) : result
 }
 
 const groupAsArray = (data) => {
+  const groupAsObject = (data) => {
+    return _.groupBy(data, 'dateFormatted')
+  }
+
   return Object.values(groupAsObject(data))
     .map(dataByDay => _.sortBy(dataByDay, 'dateCreated'))
 }

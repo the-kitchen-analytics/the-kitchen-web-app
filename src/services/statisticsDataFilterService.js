@@ -1,11 +1,14 @@
-import { getAllData, getDataByDay, getDataByMonthAndYear } from './receiptFilterService'
+import { getAll, getAllByDay, getAllByMonthAndYear, getAllByYear } from './receiptFilterService'
 import { buildStatisticsData } from '../utils'
 
-export const getAllStatisticsData = (groupedData) =>
-  buildStatisticsData(getAllData(groupedData))
+export const getAllStatistics = (receipts) =>
+  buildStatisticsData(getAll(receipts))
 
-export const getStatisticsDataByMonthAndYear = (month, year, data) =>
-  buildStatisticsData(getDataByMonthAndYear(month, year, data))
+export const getStatisticsByYear = (year, receipts) =>
+  buildStatisticsData(getAllByYear(year, receipts))
 
-export const getStatisticsDataByDay = (day, groupedData) =>
-  buildStatisticsData(getDataByDay(day, groupedData))
+export const getStatisticsByMonthAndYear = ({ month, year }, receipts) =>
+  buildStatisticsData(getAllByMonthAndYear({ month, year }, receipts))
+
+export const getStatisticsByDay = (day, groupedData) =>
+  buildStatisticsData(getAllByDay(day, groupedData))

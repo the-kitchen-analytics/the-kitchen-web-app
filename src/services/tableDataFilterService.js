@@ -1,5 +1,6 @@
-import { getDataByDay, getAllData, getDataByMonthAndYear } from './receiptFilterService'
+import { getAllByDay, getAll, getAllByMonthAndYear, getAllByYear } from './receiptFilterService'
 
-export const getAllTableData = getAllData
-export const getTableDataByDay = getDataByDay
-export const getTableDataByMonthAndYear = getDataByMonthAndYear
+export const getAllTableData = getAll
+export const getTableDataByDay = getAllByDay
+export const getTableDataByMonthAndYear = getAllByMonthAndYear
+export const getTableDataByYear = getAllByYear

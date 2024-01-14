@@ -1,7 +1,11 @@
 import { Container, Grid, Segment } from 'semantic-ui-react'
 import { Outlet, useOutletContext } from 'react-router-dom'
-import { ReceiptContextProvider, UserDetailsContextProvider, UserSettingsContextProvider } from '../../../context'
-import { NavigationMenu } from '../../NavigationMenu'
+import {
+  ReceiptContextProvider,
+  UserDetailsContextProvider,
+  UserSettingsContextProvider
+} from '../../context'
+import { NavigationMenu } from '../NavigationMenu'
 
 export const MainLayout = () => {
   const { user } = useOutletContext()

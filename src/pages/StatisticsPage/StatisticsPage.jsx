@@ -1,13 +1,13 @@
 import { TabularPage } from '../../components/shared'
-import { AllTimeStatisticsPage, DailyStatisticsPage, MonthlyStatisticsPage } from './components'
+import { DayView, MonthAndYearView, YearView } from './components'
 
 const panes = [
-  { menuItem: 'За день', content: <DailyStatisticsPage /> },
-  { menuItem: 'За месяц', content: <MonthlyStatisticsPage /> },
-  { menuItem: 'За всё время', content: <AllTimeStatisticsPage /> }
+  { menuItem: 'За день', content: <DayView /> },
+  { menuItem: 'За месяц', content: <MonthAndYearView /> },
+  { menuItem: 'За год', content: <YearView /> }
 ]
 
-export const StatisticsPage = () =>  (
+export const StatisticsPage = () => (
   <TabularPage
     header={{ content: 'Статистика' }}
     panes={panes}

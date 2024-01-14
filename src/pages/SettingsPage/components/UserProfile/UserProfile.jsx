@@ -69,7 +69,9 @@ export const UserProfile = () => {
         <>
           <Icon name={'user circle'} />
           <Header.Content>{userDetails.name}</Header.Content>
-          <Header.Subheader>{userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}</Header.Subheader>
+          <Header.Subheader>
+            {userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}
+          </Header.Subheader>
         </>
       )
     }
@@ -78,8 +80,8 @@ export const UserProfile = () => {
   }
 
   return (
-    <Segment loading={shouldDisplayLoader()} size={'huge'}>
-      <Header icon textAlign={'center'}>
+    <Segment loading={shouldDisplayLoader()}>
+      <Header icon textAlign={'center'} size={'large'}>
         {
           getHeaderContent()
         }
@@ -107,7 +109,7 @@ export const UserProfile = () => {
           )
           : (
             <Form>
-              <Form.Group widths='equal'>
+              <Form.Group widths="equal">
                 <Form.Button
                   fluid
                   icon="edit"
@@ -117,7 +119,7 @@ export const UserProfile = () => {
                   content="Редактировать"
                 />
 
-                <Form.Field>
+                <Form.Field className={'mb-0'}>
                   <LogOutButton fluid />
                 </Form.Field>
               </Form.Group>
