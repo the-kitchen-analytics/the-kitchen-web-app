@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { Segment, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { getHexByColorName } from '../../../utils'
 import { ChartLegend } from './ChartLegend'
 import { calculateTotal, sortChartData } from './helpers'
@@ -44,24 +44,22 @@ export const PieChart = ({ data }) => {
   }, [sortedData])
 
   return (
-    <Segment padded>
-      <Grid centered>
-        <Grid.Row>
-          <Grid.Column>
-            <canvas
-              ref={canvasRef}
-              width={CANVAS_SIZE}
-              height={CANVAS_SIZE}
-              style={{ display: 'block', margin: 'auto' }}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row centered>
-          <Grid.Column>
-            <ChartLegend data={sortedData} />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
+    <Grid centered>
+      <Grid.Row>
+        <Grid.Column>
+          <canvas
+            ref={canvasRef}
+            width={CANVAS_SIZE}
+            height={CANVAS_SIZE}
+            style={{ display: 'block', margin: 'auto' }}
+          />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row centered>
+        <Grid.Column>
+          <ChartLegend data={sortedData} />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   )
 }
