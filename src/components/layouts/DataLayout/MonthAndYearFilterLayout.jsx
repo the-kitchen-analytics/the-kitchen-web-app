@@ -1,22 +1,25 @@
 import _ from 'lodash'
 import { useMemo } from 'react'
 import { Grid } from 'semantic-ui-react'
-import { Carousel, MonthSelect, YearSelect } from '../shared'
-import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../data/monthIndexes'
-import { useReceiptContext } from '../../hooks'
+import { Carousel, MonthSelect, YearSelect } from '../../shared'
+import { useReceiptContext, useReceiptsFilteredByDate } from '../../../hooks'
+import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
+import { getCurrentMonthAndYear } from '../../../utils'
 
-export const MonthAndYearFilterLayout = (props) => {
+const INITIAL_DATE = getCurrentMonthAndYear()
 
-  const { children, selectedDate, setSelectedDate } = props
+export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
+
+  const [componentProps, date, setDate] = useReceiptsFilteredByDate(INITIAL_DATE, getData)
   const { workedYears: yearOptions } = useReceiptContext()
-  const defaultSelectedDate = useMemo(() => selectedDate, [])
+  const defaultSelectedDate = useMemo(() => date, [])
 
   const setSelectedMonth = (month) => {
-    setSelectedDate((selectedDate) => ({ ...selectedDate, month }))
+    setDate((date) => ({ ...date, month }))
   }
 
   const setSelectedYear = (year) => {
-    setSelectedDate((selectedDate) => ({ ...selectedDate, year }))
+    setDate((date) => ({ ...date, year }))
   }
 
   const yearSelectOptions = useMemo(() => yearOptions.map(year => ({
@@ -33,7 +36,7 @@ export const MonthAndYearFilterLayout = (props) => {
         mobile={'16'}
       >
         <MonthSelect
-          value={selectedDate.month}
+          value={date.month}
           handleChange={(e, { value }) => setSelectedMonth(value)}
           disabled={yearSelectOptions <= 1}
         />
@@ -45,7 +48,7 @@ export const MonthAndYearFilterLayout = (props) => {
         mobile={'16'}
       >
         <YearSelect
-          value={selectedDate.year}
+          value={date.year}
           handleChange={(e, { value }) => setSelectedYear(value)}
           options={yearSelectOptions}
         />
@@ -60,26 +63,24 @@ export const MonthAndYearFilterLayout = (props) => {
       >
         <Carousel
           previousItemProps={{
-            disabled: yearSelectOptions.length === 0 || selectedDate.month <= FIRST_MONTH_INDEX,
-            onClick: () => setSelectedMonth(selectedDate.month - 1)
+            disabled: yearSelectOptions.length === 0 || date.month <= FIRST_MONTH_INDEX,
+            onClick: () => setSelectedMonth(date.month - 1)
           }}
           resetButtonProps={{
             content: 'Текущий месяц',
-            disabled: _.isEqual(defaultSelectedDate, selectedDate),
-            onClick: () => setSelectedDate(defaultSelectedDate)
+            disabled: _.isEqual(defaultSelectedDate, date),
+            onClick: () => setDate(defaultSelectedDate)
           }}
           nextItemProps={{
-            disabled: yearSelectOptions.length === 0 || selectedDate.month >= LAST_MONTH_INDEX,
-            onClick: () => setSelectedMonth(selectedDate.month + 1)
+            disabled: yearSelectOptions.length === 0 || date.month >= LAST_MONTH_INDEX,
+            onClick: () => setSelectedMonth(date.month + 1)
           }}
         />
       </Grid.Column>
 
       <Grid.Row>
         <Grid.Column>
-          {
-            children
-          }
+          <Component {...componentProps} />
         </Grid.Column>
       </Grid.Row>
     </Grid>
