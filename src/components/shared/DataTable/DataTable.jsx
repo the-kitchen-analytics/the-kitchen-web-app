@@ -24,7 +24,7 @@ const DataTableRow = ({ data }) => {
 
   return data
     .map(({ id, date, dateCreated, procedures }, i) => (
-      <Table.Row key={dateCreated.getTime()} verticalAlign='top'>
+      <Table.Row key={dateCreated.getTime()} verticalAlign="top">
         {
           i === 0 ? (
             <Table.Cell rowSpan={data.length}>
@@ -56,6 +56,12 @@ const DataTableRow = ({ data }) => {
             primary
             content={calculateTotalWorkerIncome(procedures)}
           />
+        </Table.Cell>
+
+        <Table.Cell>
+          {
+            date.notes
+          }
         </Table.Cell>
 
       </Table.Row>
@@ -93,6 +99,7 @@ export const DataTable = ({ data }) => {
           <Table.HeaderCell>Название набора услуг</Table.HeaderCell>
           <Table.HeaderCell collapsing>Стоимость услуги</Table.HeaderCell>
           <Table.HeaderCell collapsing>Заработок мастера</Table.HeaderCell>
+          <Table.HeaderCell>Комментарий</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -114,6 +121,7 @@ export const DataTable = ({ data }) => {
               content={totalWorkerIncome}
             />
           </Table.HeaderCell>
+          <Table.HeaderCell />
         </Table.Row>
       </Table.Footer>
     </Table>

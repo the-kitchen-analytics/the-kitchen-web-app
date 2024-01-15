@@ -4,7 +4,8 @@ import { useMemo } from 'react'
 
 const INITIAL_RECEIPT = Object.freeze({
   date: formatDateForDatePicker(getCurrentDate()),
-  procedures: []
+  procedures: [],
+  notes: ''
 })
 
 const STORAGE_KEY = 'submitFormData'

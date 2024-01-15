@@ -13,7 +13,7 @@ import { useAccordionActiveIndex, useReceipt } from './hooks'
 
 export const CreateReceiptPage = () => {
 
-  const [{ uid, workerCategory } ] = useUserDetailsContext()
+  const [{ uid, workerCategory }] = useUserDetailsContext()
   const [procedures = [], isFetchingProcedures] = useProcedures(workerCategory)
   const [isSavingReceipt, error, postData] = usePostData()
   const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMessage] = useState(false)

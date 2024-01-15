@@ -12,7 +12,8 @@ export const mapReceiptToFirebaseEntity = (receipt) => {
     uid: receipt.uid,
     procedures: procedures,
     date: parseDateFromDropdown(receipt.date),
-    dateCreated: new Date()
+    dateCreated: new Date(),
+    notes: receipt.notes
   })
 
   return data
