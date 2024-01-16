@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { Table, Icon } from 'semantic-ui-react'
-import { DateCell } from './DateCell'
-import { ProceduresCell } from './ProceduresCell'
+import { DateCell, ProceduresCell, NotesCell } from './components'
 import { calculateTotalWorkerIncome, calculateTotalPrice } from '../../../utils'
 import { Price } from '../'
 
@@ -14,7 +13,7 @@ const NoTableContent = () => (
   </Table.Row>
 )
 
-const DataTableRow = ({ data }) => {
+const DataTableRow = ({ data, showNotes }) => {
 
   const allProcedures = data
     .map(({ procedures }) => procedures)
@@ -23,8 +22,8 @@ const DataTableRow = ({ data }) => {
   const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures)
 
   return data
-    .map(({ id, date, dateCreated, procedures }, i) => (
-      <Table.Row key={dateCreated.getTime()} verticalAlign='top'>
+    .map(({ id, date, dateCreated, procedures, notes }, i) => (
+      <Table.Row key={dateCreated.getTime()} verticalAlign="top">
         {
           i === 0 ? (
             <Table.Cell rowSpan={data.length}>
@@ -58,11 +57,18 @@ const DataTableRow = ({ data }) => {
           />
         </Table.Cell>
 
+        {
+          showNotes && (
+            <Table.Cell>
+              <NotesCell content={notes} />
+            </Table.Cell>
+          )
+        }
       </Table.Row>
     ))
 }
 
-const DataTableBody = ({ data }) => {
+const DataTableBody = ({ data, showNotes }) => {
   if (_.isEmpty(data.flat())) {
     return <NoTableContent />
   }
@@ -71,11 +77,12 @@ const DataTableBody = ({ data }) => {
     <DataTableRow
       key={rowData.map(({ date }) => date.getTime())[0]}
       data={rowData}
+      showNotes={showNotes}
     />
   ))
 }
 
-export const DataTable = ({ data }) => {
+export const DataTable = ({ data, showNotes = false }) => {
 
   const allProcedures = data
     .flat()
@@ -84,6 +91,7 @@ export const DataTable = ({ data }) => {
 
   const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures)
   const totalPrice = calculateTotalPrice(allProcedures)
+  const displayNotes = showNotes && data.flat().find(({ notes }) => !!notes)
 
   return (
     <Table structured celled>
@@ -93,11 +101,14 @@ export const DataTable = ({ data }) => {
           <Table.HeaderCell>Название набора услуг</Table.HeaderCell>
           <Table.HeaderCell collapsing>Стоимость услуги</Table.HeaderCell>
           <Table.HeaderCell collapsing>Заработок мастера</Table.HeaderCell>
+          {
+            displayNotes && <Table.HeaderCell>Комментарий</Table.HeaderCell>
+          }
         </Table.Row>
       </Table.Header>
 
       <Table.Body>
-        <DataTableBody data={data} />
+        <DataTableBody data={data} showNotes={displayNotes} />
       </Table.Body>
 
       <Table.Footer>
@@ -114,6 +125,9 @@ export const DataTable = ({ data }) => {
               content={totalWorkerIncome}
             />
           </Table.HeaderCell>
+          {
+            displayNotes && <Table.HeaderCell />
+          }
         </Table.Row>
       </Table.Footer>
     </Table>

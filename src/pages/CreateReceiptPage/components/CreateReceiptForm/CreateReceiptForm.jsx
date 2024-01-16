@@ -29,7 +29,7 @@ export const CreateReceiptForm = (props) => {
   const handleInputChangeWrapper = useCallback((e) => handleInputChange(e, setFormData), [setFormData])
 
   const getSubmitButtonLabel = useCallback(() => {
-    return 'Сохранить ' + (formData.procedures.length > 0 ? `(${formData.procedures.length})` : '')
+    return 'Сохранить' + (formData.procedures.length > 0 ? ` (${formData.procedures.length})` : '')
   }, [formData.procedures])
 
   return (
@@ -78,6 +78,18 @@ export const CreateReceiptForm = (props) => {
             />
           )
       }
+
+      <Form.Field>
+        <Form.TextArea
+          disabled={isLoading}
+          value={formData.notes}
+          label={'Комментарий'}
+          placeholder={'Ваш комментарий к записи (0-150 символов)'}
+          maxLength={150}
+          name={'notes'}
+          onChange={handleInputChangeWrapper}
+        />
+      </Form.Field>
 
       {
         !_.isEmpty(formData.procedures) && (

@@ -5,11 +5,11 @@ export const Preview = ({ data }) => (
   <>
     <Divider horizontal>
       <Header
-        as='h4'
+        as="h4"
         icon={'paperclip'}
         content={'Предпросмотр'}
       />
     </Divider>
-    <DataTable data={data} />
+    <DataTable showNotes data={data} />
   </>
 )

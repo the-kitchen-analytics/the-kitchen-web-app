@@ -9,5 +9,6 @@ export const mapFirebaseEntityToReceipt = (firebaseEntity) => {
     dateCreated: entryData.dateCreated.toDate(),
     date: entryData.date.toDate(),
     dateFormatted: formatDate(entryData.date.toDate()),
+    notes: entryData.notes || ''
   }
 }

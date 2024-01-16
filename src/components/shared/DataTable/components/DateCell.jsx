@@ -1,7 +1,7 @@
 import { Label } from 'semantic-ui-react'
-import { Price } from '../'
-import { useUserSettingsContext } from '../../../hooks'
-import { formatDate } from '../../../utils'
+import { Price } from '../../'
+import { useUserSettingsContext } from '../../../../hooks'
+import { formatDate } from '../../../../utils'
 
 export const DateCell = ({ children, price = 0 }) => {
 

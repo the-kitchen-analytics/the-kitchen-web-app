@@ -1,8 +1,7 @@
 import { Label, List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { useUserSettingsContext } from '../../../hooks'
-import { getProcedureTypeDisplayName } from '../../../utils'
-
+import { useUserSettingsContext } from '../../../../hooks'
+import { getProcedureTypeDisplayName } from '../../../../utils'
 
 const ListItem = (props) => {
 
@@ -14,8 +13,8 @@ const ListItem = (props) => {
       name,
       type,
       priceBeforeTaxes,
-      priceAfterTaxes,
-    },
+      priceAfterTaxes
+    }
   } = props
 
   const displayName = `${name} (${getProcedureTypeDisplayName(type)})`
