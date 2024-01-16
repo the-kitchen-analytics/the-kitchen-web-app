@@ -82,7 +82,7 @@ const DataTableBody = ({ data, showNotes }) => {
   ))
 }
 
-export const DataTable = ({ data, showNotes = false }) => {
+export const DataTable = ({ data = [[]], showNotes = false }) => {
 
   const allProcedures = data
     .flat()
