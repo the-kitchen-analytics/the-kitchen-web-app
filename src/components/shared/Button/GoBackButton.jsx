@@ -14,7 +14,6 @@ export const GoBackButton = () => {
       fluid
       size="large"
       icon="arrow left"
-      labelPosition='left'
       content="Назад"
       type="button"
       onClick={handleClick}
