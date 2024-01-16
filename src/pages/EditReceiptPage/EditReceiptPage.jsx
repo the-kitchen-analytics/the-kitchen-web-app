@@ -35,7 +35,7 @@ export const EditReceiptPage = () => {
           {
             isLoading
               ? <Loader />
-              : (receipt && <DataTable data={[[receipt]]} />)
+              : (receipt && <DataTable data={[[receipt]]} showNotes />)
           }
         </Grid.Column>
       </Grid.Row>

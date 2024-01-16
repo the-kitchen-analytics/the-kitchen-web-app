@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { Table, Icon } from 'semantic-ui-react'
-import { DateCell } from './DateCell'
-import { ProceduresCell } from './ProceduresCell'
+import { DateCell, ProceduresCell, NotesCell } from './components'
 import { calculateTotalWorkerIncome, calculateTotalPrice } from '../../../utils'
 import { Price } from '../'
 
@@ -14,7 +13,7 @@ const NoTableContent = () => (
   </Table.Row>
 )
 
-const DataTableRow = ({ data }) => {
+const DataTableRow = ({ data, showNotes }) => {
 
   const allProcedures = data
     .map(({ procedures }) => procedures)
@@ -23,7 +22,7 @@ const DataTableRow = ({ data }) => {
   const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures)
 
   return data
-    .map(({ id, date, dateCreated, procedures }, i) => (
+    .map(({ id, date, dateCreated, procedures, notes }, i) => (
       <Table.Row key={dateCreated.getTime()} verticalAlign="top">
         {
           i === 0 ? (
@@ -58,17 +57,18 @@ const DataTableRow = ({ data }) => {
           />
         </Table.Cell>
 
-        <Table.Cell>
-          {
-            date.notes
-          }
-        </Table.Cell>
-
+        {
+          showNotes && (
+            <Table.Cell>
+              <NotesCell content={notes} />
+            </Table.Cell>
+          )
+        }
       </Table.Row>
     ))
 }
 
-const DataTableBody = ({ data }) => {
+const DataTableBody = ({ data, showNotes }) => {
   if (_.isEmpty(data.flat())) {
     return <NoTableContent />
   }
@@ -77,11 +77,12 @@ const DataTableBody = ({ data }) => {
     <DataTableRow
       key={rowData.map(({ date }) => date.getTime())[0]}
       data={rowData}
+      showNotes={showNotes}
     />
   ))
 }
 
-export const DataTable = ({ data }) => {
+export const DataTable = ({ data, showNotes = false }) => {
 
   const allProcedures = data
     .flat()
@@ -99,12 +100,14 @@ export const DataTable = ({ data }) => {
           <Table.HeaderCell>Название набора услуг</Table.HeaderCell>
           <Table.HeaderCell collapsing>Стоимость услуги</Table.HeaderCell>
           <Table.HeaderCell collapsing>Заработок мастера</Table.HeaderCell>
-          <Table.HeaderCell>Комментарий</Table.HeaderCell>
+          {
+            showNotes && <Table.HeaderCell>Комментарий</Table.HeaderCell>
+          }
         </Table.Row>
       </Table.Header>
 
       <Table.Body>
-        <DataTableBody data={data} />
+        <DataTableBody data={data} showNotes={showNotes} />
       </Table.Body>
 
       <Table.Footer>
@@ -121,7 +124,9 @@ export const DataTable = ({ data }) => {
               content={totalWorkerIncome}
             />
           </Table.HeaderCell>
-          <Table.HeaderCell />
+          {
+            showNotes && <Table.HeaderCell />
+          }
         </Table.Row>
       </Table.Footer>
     </Table>
