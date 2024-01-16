@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
 import { Form, Placeholder } from 'semantic-ui-react'
-import { DatePicker, LoadableButton } from '../../../../components/shared'
+import { ButtonGroup, DatePicker, LoadableButton } from '../../../../components/shared'
 import { ProcedureSelect } from '../ProcedureSelect'
 import { useUserSettingsContext } from '../../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../utils'
@@ -101,31 +101,30 @@ export const CreateReceiptForm = (props) => {
         )
       }
 
-      <Form.Group widths="equal">
-        <Form.Button
-          fluid
-          size="large"
-          icon="trash"
-          type="button"
-          content="Очистить"
-          disabled={shouldDisableClearFormButton()}
-          onClick={handleClearFromButtonClick}
-        />
-
-        <Form.Field className="mb-0">
-          <LoadableButton
-            loading={isLoading}
-            fluid
-            size="large"
-            icon="save"
-            type="submit"
-            content={getSubmitButtonLabel()}
-            color={accentColor}
-            onClick={handleFormSubmit}
-            disabled={shouldDisableSubmitFormButton()}
-          />
-        </Form.Field>
-      </Form.Group>
+      <ButtonGroup
+        buttons={[
+          {
+            fluid: true,
+            size: 'large',
+            icon: 'trash',
+            type: 'button',
+            content: 'Очистить',
+            disabled: shouldDisableClearFormButton(),
+            onClick: handleClearFromButtonClick
+          },
+          {
+            as: LoadableButton,
+            fluid: true,
+            size: 'large',
+            icon: 'save',
+            type: 'submit',
+            content: getSubmitButtonLabel(),
+            color: accentColor,
+            disabled: shouldDisableSubmitFormButton(),
+            onClick: handleFormSubmit
+          }
+        ]}
+      />
     </Form>
   )
 }

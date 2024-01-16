@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
-import { WorkerCategorySelect } from '../../../../components/shared'
+import { ButtonGroup, WorkerCategorySelect } from '../../../../components/shared'
 import { useUserSettingsContext } from '../../../../hooks'
 import { handleInputChange } from '../../../../utils'
 
 export const EditUserForm = (props) => {
-  
+
   const {
     formData, setFormData, handleSubmit,
     isLoading, handleResetButtonClick,
@@ -13,7 +13,7 @@ export const EditUserForm = (props) => {
   } = props
 
   const { settings: { accentColor } } = useUserSettingsContext()
-  const { name, email,workerCategory,description } = formData
+  const { name, email, workerCategory, description } = formData
 
   const handleInputChangeWrapper = useCallback((e) => {
     handleInputChange(e, setFormData)
@@ -72,28 +72,29 @@ export const EditUserForm = (props) => {
         onChange={handleInputChangeWrapper}
       />
 
-      <Form.Group widths="equal">
-        <Form.Button
-          fluid
-          icon="cancel"
-          type="button"
-          disabled={shouldDisableResetButton()}
-          onClick={handleResetButtonClick}
-          size="large"
-          content="Отменить"
-        />
-        <Form.Button
-          fluid
-          icon="save"
-          type="submit"
-          loading={isLoading}
-          disabled={shouldDisableSubmitButton()}
-          size="large"
-          color={accentColor}
-          content="Сохранить"
-        />
-      </Form.Group>
-
+      <ButtonGroup
+        buttons={[
+          {
+            fluid: true,
+            icon: 'cancel',
+            type: 'button',
+            disabled: shouldDisableResetButton(),
+            onClick: handleResetButtonClick,
+            size: 'large',
+            content: 'Отменить'
+          },
+          {
+            fluid: true,
+            icon: 'save',
+            type: 'submit',
+            loading: isLoading,
+            disabled: shouldDisableSubmitButton(),
+            size: 'large',
+            color: accentColor,
+            content: 'Сохранить'
+          }
+        ]}
+      />
     </Form>
   )
 }
