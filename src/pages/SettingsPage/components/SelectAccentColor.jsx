@@ -30,7 +30,7 @@ export const SelectAccentColor = ({ colorOptions }) => {
       />
 
       <Message
-        header="Нажмите, чтобы выбрать:"
+        header="Нажмите, чтобы выбрать"
         content="Выбранный цвет будет отображаться в меню, таблицах и других частях приложения"
       />
 
