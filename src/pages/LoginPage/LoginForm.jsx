@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Button, Divider, Form } from 'semantic-ui-react'
-import { LoadableButton } from '../../components/shared'
+import { SubmitButton } from '../../components/shared'
 import { handleInputChange } from '../../utils'
 import { REGISTER, RESET_PASSWORD } from '../../data/routePaths'
 
-const LoginForm = ({
+export const LoginForm = ({
   formData: { email, password },
   setFormData,
   handleLoginWithEmailAndPassword,
@@ -38,6 +38,7 @@ const LoginForm = ({
           autoComplete="email"
         />
       </Form.Field>
+
       <Form.Field>
         <Form.Input
           icon="key"
@@ -53,19 +54,17 @@ const LoginForm = ({
       </Form.Field>
 
       <Form.Field>
-        <LoadableButton
+        <SubmitButton
           fluid
           loading={isLoading}
           disabled={shouldDisableSubmitButton()}
-          icon="sign in"
-          type="submit"
           onClick={handleLoginWithEmailAndPassword}
           content="Войти"
           size="large"
         />
       </Form.Field>
 
-      <Divider />
+      <Divider hidden />
 
       <Form.Field>
         <Link to={RESET_PASSWORD}>
@@ -74,20 +73,16 @@ const LoginForm = ({
       </Form.Field>
 
       <Form.Field>
-        <Link to={REGISTER}>
-          <Button
-            as="a"
-            fluid
-            positive
-            disabled={isLoading}
-            content="Зарегистрироваться"
-            size="large"
-          />
-        </Link>
+        <Button
+          as={Link}
+          to={REGISTER}
+          fluid
+          basic
+          disabled={isLoading}
+          content="Зарегистрироваться"
+          size="large"
+        />
       </Form.Field>
-
     </Form>
   )
 }
-
-export default LoginForm
