@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { Form, Grid } from 'semantic-ui-react'
-import { DataTable, Loader, MainHeader } from '../../components/shared'
+import { Grid } from 'semantic-ui-react'
+import { ButtonGroup, DataTable, Loader, MainHeader } from '../../components/shared'
 import { ErrorMessage, GoBackButton } from '../../components/shared'
 import { usePostData, useReceiptContext } from '../../hooks'
 import { deleteReceiptById } from '../../services/receiptService'
@@ -42,24 +42,23 @@ export const EditReceiptPage = () => {
 
       <Grid.Row>
         <Grid.Column>
-          <Form>
-            <Form.Group widths="equal">
-              <Form.Field disabled={isLoading}>
-                <GoBackButton />
-              </Form.Field>
-
-              <Form.Button
-                disabled={isLoading}
-                fluid
-                size="large"
-                icon="trash"
-                type="button"
-                negative
-                content="Удалить"
-                onClick={handleDeleteButtonClick}
-              />
-            </Form.Group>
-          </Form>
+          <ButtonGroup
+            buttons={[
+              {
+                as: GoBackButton
+              },
+              {
+                disabled: isLoading,
+                fluid: true,
+                size: 'large',
+                icon: 'trash',
+                type: 'button',
+                negative: true,
+                content: 'Удалить',
+                onClick: handleDeleteButtonClick
+              }
+            ]}
+          />
         </Grid.Column>
       </Grid.Row>
     </Grid>

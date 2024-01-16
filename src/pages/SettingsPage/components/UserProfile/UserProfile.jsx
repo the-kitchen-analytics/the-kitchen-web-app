@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useState, useMemo } from 'react'
-import { Segment, Header, Form, Placeholder, Icon } from 'semantic-ui-react'
-import { LogOutButton, ErrorMessage } from '../../../../components/shared'
+import { Segment, Header, Placeholder, Icon } from 'semantic-ui-react'
+import { LogOutButton, ErrorMessage, ButtonGroup } from '../../../../components/shared'
 import { usePostData, useUserDetailsContext } from '../../../../hooks'
 import { getWorkerCategoryDisplayName } from '../../../../utils'
 import { EditUserForm } from './EditUserForm'
@@ -14,7 +14,7 @@ export const UserProfile = () => {
 
   const [
     shouldDisplayEditProfileForm,
-    setShouldDisplayEditProfileForm,
+    setShouldDisplayEditProfileForm
   ] = useState(false)
 
   const [isLoading, error, postData] = usePostData()
@@ -108,22 +108,22 @@ export const UserProfile = () => {
             </>
           )
           : (
-            <Form>
-              <Form.Group widths="equal">
-                <Form.Button
-                  fluid
-                  icon="edit"
-                  size="large"
-                  type="button"
-                  onClick={() => setShouldDisplayEditProfileForm(true)}
-                  content="Редактировать"
-                />
-
-                <Form.Field className={'mb-0'}>
-                  <LogOutButton fluid />
-                </Form.Field>
-              </Form.Group>
-            </Form>
+            <ButtonGroup
+              buttons={[
+                {
+                  fluid: true,
+                  icon: 'edit',
+                  size: 'large',
+                  type: 'button',
+                  onClick: () => setShouldDisplayEditProfileForm(true),
+                  content: 'Редактировать'
+                },
+                {
+                  as: LogOutButton,
+                  fluid: true
+                }
+              ]}
+            />
           )
       }
     </Segment>
