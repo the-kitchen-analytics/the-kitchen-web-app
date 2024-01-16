@@ -91,6 +91,7 @@ export const DataTable = ({ data, showNotes = false }) => {
 
   const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures)
   const totalPrice = calculateTotalPrice(allProcedures)
+  const displayNotes = showNotes && data.flat().find(({ notes }) => !!notes)
 
   return (
     <Table structured celled>
@@ -101,13 +102,13 @@ export const DataTable = ({ data, showNotes = false }) => {
           <Table.HeaderCell collapsing>Стоимость услуги</Table.HeaderCell>
           <Table.HeaderCell collapsing>Заработок мастера</Table.HeaderCell>
           {
-            showNotes && <Table.HeaderCell>Комментарий</Table.HeaderCell>
+            displayNotes && <Table.HeaderCell>Комментарий</Table.HeaderCell>
           }
         </Table.Row>
       </Table.Header>
 
       <Table.Body>
-        <DataTableBody data={data} showNotes={showNotes} />
+        <DataTableBody data={data} showNotes={displayNotes} />
       </Table.Body>
 
       <Table.Footer>
@@ -125,7 +126,7 @@ export const DataTable = ({ data, showNotes = false }) => {
             />
           </Table.HeaderCell>
           {
-            showNotes && <Table.HeaderCell />
+            displayNotes && <Table.HeaderCell />
           }
         </Table.Row>
       </Table.Footer>
