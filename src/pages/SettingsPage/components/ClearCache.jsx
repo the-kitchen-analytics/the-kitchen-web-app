@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { Header, Segment, Message, Grid } from 'semantic-ui-react'
-import { LoadableButton } from '../../../components/shared'
+import { useState } from 'react'
+import { Header, Segment, Message, Grid, Button } from 'semantic-ui-react'
 
 const WarningMessage = () => (
   <Message
@@ -11,7 +11,7 @@ const WarningMessage = () => (
 )
 
 const ReloadButton = (props) => (
-  <LoadableButton
+  <Button
     fluid
     type="button"
     content="Oчистить"
@@ -25,9 +25,11 @@ const ReloadButton = (props) => (
 
 const useReload = () => {
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
 
-  return (e) => {
+  const reload = (e) => {
     e.preventDefault()
+    setIsLoading(true)
     localStorage.clear()
 
     setTimeout(() => {
@@ -35,11 +37,12 @@ const useReload = () => {
       window.location.reload()
     }, 250)
   }
+
+  return [reload, isLoading]
 }
 
 export const ClearCache = () => {
-
-  const reload = useReload()
+  const [reload, isLoading] = useReload()
 
   return (
     <Segment>
@@ -48,7 +51,7 @@ export const ClearCache = () => {
       <WarningMessage />
 
       <Grid.Column width={16}>
-        <ReloadButton onClick={reload} />
+        <ReloadButton loading={isLoading} onClick={reload} />
       </Grid.Column>
     </Segment>
   )

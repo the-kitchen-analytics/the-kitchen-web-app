@@ -1,11 +1,12 @@
 import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { Form } from 'semantic-ui-react'
-import { WorkerCategorySelect } from '../../components/shared'
+import { Button, Form } from 'semantic-ui-react'
+import { SubmitButton, WorkerCategorySelect } from '../../components/shared'
 import { handleInputChange } from '../../utils'
+import { LOGIN } from '../../data/routePaths.js'
 
 export const CreateAccountForm = (props) => {
-  
+
   const {
     formData: { name, email, password, workerCategory },
     setFormData,
@@ -75,17 +76,30 @@ export const CreateAccountForm = (props) => {
         handleChange={handleWorkerCategoryChange}
       />
 
-      <Form.Button
-        fluid
-        size="large"
-        type="submit"
-        content="Зарегистрироваться"
-        loading={isLoading}
-        disabled={shouldDisableSubmitButton()}
-      />
+      <Form.Field>
+        <SubmitButton
+          fluid
+          size={'large'}
+          content={'Зарегистрироваться'}
+          loading={isLoading}
+          disabled={shouldDisableSubmitButton()}
+        />
+      </Form.Field>
 
       <Form.Field>
-        Уже есть аккаунт? <Link to="/">Войти</Link>.
+        Уже есть аккаунт?
+      </Form.Field>
+
+      <Form.Field>
+        <Button
+          as={Link}
+          to={LOGIN}
+          fluid
+          basic
+          disabled={isLoading}
+          content="Войти"
+          size="large"
+        />
       </Form.Field>
 
     </Form>

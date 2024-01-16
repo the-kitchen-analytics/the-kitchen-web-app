@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
-import { ButtonGroup, WorkerCategorySelect } from '../../../../components/shared'
+import { ButtonGroup, SubmitButton, WorkerCategorySelect } from '../../../../components/shared'
 import { useUserSettingsContext } from '../../../../hooks'
 import { handleInputChange } from '../../../../utils'
 
@@ -84,10 +84,9 @@ export const EditUserForm = (props) => {
             content: 'Отменить'
           },
           {
+            as: SubmitButton,
             fluid: true,
             icon: 'save',
-            type: 'submit',
-            loading: isLoading,
             disabled: shouldDisableSubmitButton(),
             size: 'large',
             color: accentColor,

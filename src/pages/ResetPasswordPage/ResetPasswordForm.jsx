@@ -1,7 +1,8 @@
-import { Form } from 'semantic-ui-react'
+import { Button, Divider, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { handleInputChange } from '../../utils'
 import { REGISTER } from '../../data/routePaths'
+import { SubmitButton } from '../../components/shared/index.js'
 
 export const ResetPasswordForm = (props) => {
 
@@ -10,7 +11,7 @@ export const ResetPasswordForm = (props) => {
     setFormData,
     handlePasswordReset,
     isLoading,
-    error,
+    error
   } = props
   const handleInputChangeWrapper = (e) => {
     handleInputChange(e, setFormData)
@@ -34,21 +35,32 @@ export const ResetPasswordForm = (props) => {
         onChange={handleInputChangeWrapper}
       />
 
-      <Form.Button
-        fluid
-        size="large"
-        positive
-        icon="send"
-        content="Отправить"
-        type="submit"
-        loading={isLoading}
-        disabled={isLoading || !email}
-      />
+      <Form.Field>
+        <SubmitButton
+          fluid
+          size={'large'}
+          content={'Отправить'}
+          loading={isLoading}
+          disabled={isLoading || !email}
+        />
+      </Form.Field>
+
+      <Divider hidden />
 
       <Form.Field>
-        <div>
-          Нет аккаута? <Link to={REGISTER}>Зарегистрироваться</Link>.
-        </div>
+        Нет аккаута?
+      </Form.Field>
+
+      <Form.Field>
+        <Button
+          as={Link}
+          to={REGISTER}
+          fluid
+          basic
+          disabled={isLoading}
+          content="Зарегистрироваться"
+          size="large"
+        />
       </Form.Field>
     </Form>
   )
