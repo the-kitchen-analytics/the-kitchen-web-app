@@ -1,5 +1,5 @@
-import { Button } from 'semantic-ui-react'
 import { logOut } from '../../../services/authenticationService'
+import { DefaultButton } from './'
 
 const CONFIRM_LOGOUT_MESSAGE = 'Вы действительно хотите выйти?'
 
@@ -15,13 +15,12 @@ const DEFAULT_BUTTON_PROPS = {
   negative: true,
   icon: 'sign out',
   content: 'Выйти',
-  size: 'large',
   onClick: handleLogOut,
 }
 
-export const LogOutButton = (props) =>  (
-  <Button
-    { ...DEFAULT_BUTTON_PROPS}
-    { ...props}
+export const LogOutButton = (props) => (
+  <DefaultButton
+    {...DEFAULT_BUTTON_PROPS}
+    {...props}
   />
 )

@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
 import { ButtonGroup, SaveButton, WorkerCategorySelect } from '../../../../components/shared'
-import { useUserSettingsContext } from '../../../../hooks'
 import { handleInputChange } from '../../../../utils'
+import { useTheme } from '../../../../hooks'
 
 export const EditUserForm = (props) => {
 
@@ -12,8 +12,8 @@ export const EditUserForm = (props) => {
     shouldDisableSubmitButton, shouldDisableResetButton
   } = props
 
-  const { settings: { accentColor } } = useUserSettingsContext()
   const { name, email, workerCategory, description } = formData
+  const { size } = useTheme()
 
   const handleInputChangeWrapper = useCallback((e) => {
     handleInputChange(e, setFormData)
@@ -30,7 +30,7 @@ export const EditUserForm = (props) => {
     <Form
       onSubmit={handleSubmit}
       loading={isLoading}
-      size="large"
+      size={size}
     >
       <Form.Input
         required
@@ -80,15 +80,12 @@ export const EditUserForm = (props) => {
             type: 'button',
             disabled: shouldDisableResetButton(),
             onClick: handleResetButtonClick,
-            size: 'large',
             content: 'Отменить'
           },
           {
             as: SaveButton,
             fluid: true,
             disabled: shouldDisableSubmitButton(),
-            size: 'large',
-            color: accentColor,
             content: 'Сохранить'
           }
         ]}

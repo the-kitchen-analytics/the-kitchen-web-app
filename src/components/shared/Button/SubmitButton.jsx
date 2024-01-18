@@ -1,17 +1,13 @@
-import { useUserSettingsContext } from '../../../hooks/index.js'
-import { Button } from 'semantic-ui-react'
-
-const DEFAULT_SETTINGS = {
-  accentColor: 'blue'
-}
+import { useTheme } from '../../../hooks'
+import { DefaultButton } from './DefaultButton'
 
 export const SubmitButton = (props) => {
-  const { settings = DEFAULT_SETTINGS } = useUserSettingsContext()
+  const theme = useTheme()
 
   return (
-    <Button
+    <DefaultButton
       type={'submit'}
-      color={settings.accentColor}
+      {...theme}
       {...props}
     />
   )

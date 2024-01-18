@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Segment, Button, Grid, Header } from 'semantic-ui-react'
-import { useUserSettingsContext } from '../../../../hooks'
+import { useTheme } from '../../../../hooks'
 import { formatPrice } from '../../../../utils'
 
 const ProcedureButton = ({ handleClick, icon, floated }) => (
@@ -27,10 +27,10 @@ export const ProcedureListItem = (props) => {
 
   const isChecked = count > 0
 
-  const { settings: { accentColor } } = useUserSettingsContext()
+  const { color } = useTheme()
 
-  const activeColor = useMemo(() => isChecked ? accentColor : undefined,
-    [isChecked, accentColor])
+  const activeColor = useMemo(() => isChecked ? color : undefined,
+    [isChecked, color])
 
   const title = useMemo(() => count > 0 ? `(${count}) ${procedure.name}` : procedure.name,
     [count, procedure.name])

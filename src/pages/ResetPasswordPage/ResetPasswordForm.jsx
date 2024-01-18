@@ -1,8 +1,9 @@
-import { Button, Divider, Form } from 'semantic-ui-react'
+import { Divider, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { handleInputChange } from '../../utils'
 import { REGISTER } from '../../data/routePaths'
-import { SubmitButton } from '../../components/shared/index.js'
+import { DefaultButton, SubmitButton } from '../../components/shared'
+import { useTheme } from '../../hooks'
 
 export const ResetPasswordForm = (props) => {
 
@@ -13,6 +14,9 @@ export const ResetPasswordForm = (props) => {
     isLoading,
     error
   } = props
+
+  const { size } = useTheme()
+
   const handleInputChangeWrapper = (e) => {
     handleInputChange(e, setFormData)
   }
@@ -21,7 +25,7 @@ export const ResetPasswordForm = (props) => {
     <Form
       error={!!error}
       loading={isLoading}
-      size="large"
+      size={size}
       onSubmit={handlePasswordReset}
     >
       <Form.Input
@@ -38,7 +42,6 @@ export const ResetPasswordForm = (props) => {
       <Form.Field>
         <SubmitButton
           fluid
-          size={'large'}
           content={'Отправить'}
           loading={isLoading}
           disabled={isLoading || !email}
@@ -52,14 +55,13 @@ export const ResetPasswordForm = (props) => {
       </Form.Field>
 
       <Form.Field>
-        <Button
+        <DefaultButton
           as={Link}
           to={REGISTER}
           fluid
           basic
           disabled={isLoading}
           content="Зарегистрироваться"
-          size="large"
         />
       </Form.Field>
     </Form>

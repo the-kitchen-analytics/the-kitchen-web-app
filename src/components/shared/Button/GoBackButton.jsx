@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+import { DefaultButton } from './DefaultButton'
 
 export const GoBackButton = () => {
 
@@ -10,12 +10,10 @@ export const GoBackButton = () => {
   }
 
   return (
-    <Button
+    <DefaultButton
       fluid
-      size="large"
-      icon="arrow left"
-      content="Назад"
-      type="button"
+      icon={'arrow left'}
+      content={'Назад'}
       onClick={handleClick}
     />
   )

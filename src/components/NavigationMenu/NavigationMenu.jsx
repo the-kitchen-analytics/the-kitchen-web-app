@@ -1,13 +1,7 @@
 import { Menu } from 'semantic-ui-react'
-import {
-  CREATE_RECEIPT,
-  INFO,
-  SETTINGS,
-  STATISTICS,
-  TABLE
-} from '../../data/routePaths'
+import { CREATE_RECEIPT, INFO, SETTINGS, STATISTICS, TABLE } from '../../data/routePaths'
 import { NavigationMenuItem } from './NavigationMenuItem'
-import { useUserSettingsContext } from '../../hooks'
+import { useTheme } from '../../hooks'
 import './NavigationMenu.css'
 
 const menuItems = [
@@ -39,16 +33,15 @@ const menuItems = [
 ]
 
 export const NavigationMenu = () => {
-  const { settings: { accentColor } } = useUserSettingsContext()
+  const theme = useTheme()
 
   return (
     <Menu
+      {...theme}
       className={'navigation-menu'}
       icon
       borderless
-      color={accentColor || 'black'}
       fixed={'bottom'}
-      size={'large'}
       widths={menuItems.length}
     >
       {

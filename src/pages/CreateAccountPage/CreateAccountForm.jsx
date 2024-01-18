@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Form } from 'semantic-ui-react'
-import { SubmitButton, WorkerCategorySelect } from '../../components/shared'
+import { Form } from 'semantic-ui-react'
+import { DefaultButton, SubmitButton, WorkerCategorySelect } from '../../components/shared'
 import { handleInputChange } from '../../utils'
 import { LOGIN } from '../../data/routePaths.js'
+import { useTheme } from '../../hooks'
 
 export const CreateAccountForm = (props) => {
 
@@ -14,6 +15,9 @@ export const CreateAccountForm = (props) => {
     error,
     handleRegisterWithMailAndPassword
   } = props
+
+  const { size } = useTheme()
+
   const handleInputChangeWrapper = useCallback((e) => {
     handleInputChange(e, setFormData)
   }, [setFormData])
@@ -32,7 +36,7 @@ export const CreateAccountForm = (props) => {
   return (
     <Form
       error={!!error}
-      size="large"
+      size={size}
       onSubmit={handleRegisterWithMailAndPassword}
       loading={isLoading}
     >
@@ -79,7 +83,6 @@ export const CreateAccountForm = (props) => {
       <Form.Field>
         <SubmitButton
           fluid
-          size={'large'}
           content={'Зарегистрироваться'}
           loading={isLoading}
           disabled={shouldDisableSubmitButton()}
@@ -91,14 +94,13 @@ export const CreateAccountForm = (props) => {
       </Form.Field>
 
       <Form.Field>
-        <Button
+        <DefaultButton
           as={Link}
           to={LOGIN}
           fluid
           basic
           disabled={isLoading}
-          content="Войти"
-          size="large"
+          content={'Войти'}
         />
       </Form.Field>
 
