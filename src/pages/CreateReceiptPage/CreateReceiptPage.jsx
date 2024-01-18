@@ -1,22 +1,28 @@
 import _ from 'lodash'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Grid, Message } from 'semantic-ui-react'
-import { ErrorMessage, MainHeader } from '../../components/shared'
+import { Grid } from 'semantic-ui-react'
+import { ErrorMessage, SuccessMessage, MainHeader } from '../../components/shared'
 import { CreateReceiptForm } from './components'
-import { usePostData, useProcedures, useUserDetailsContext } from '../../hooks'
+import { usePostData, useProcedures, useUserDetailsContext, useMessage } from '../../hooks'
 import { createReceipt } from '../../services/receiptService'
-import { TABLE } from '../../data/routePaths'
 import { mapReceiptToFirebaseEntity } from '../../mappers/receipt'
 import { validateReceipt } from '../../validators/receipt'
 import { useAccordionActiveIndex, useReceipt } from './hooks'
+import { RECEIPTS } from '../../data/routePaths'
+
+const ReceiptSavedMessage = ({ receipt }) => (
+  <>
+    Запись успешно сохранена. <Link to={`${RECEIPTS}/${receipt.id}`}>Нажмите сюда чтобы просмотреть</Link>
+  </>
+)
 
 export const CreateReceiptPage = () => {
 
   const [{ uid, workerCategory }] = useUserDetailsContext()
   const [procedures = [], isFetchingProcedures] = useProcedures(workerCategory)
   const [isSavingReceipt, error, postData] = usePostData()
-  const [shouldDisplaySuccessMessage, setShouldDisplaySuccessMessage] = useState(false)
+  const [successMessage, setSuccessMessage, clearSuccessMessage] = useMessage(null)
   const [receipt, setReceipt, initialReceipt] = useReceipt(uid)
   const [accorditionActiveIndex, setAccorditionActiveIndex, resetAccordionActiveIndex] = useAccordionActiveIndex()
 
@@ -30,12 +36,12 @@ export const CreateReceiptPage = () => {
 
   const clearForm = () => {
     setReceipt(initialReceipt)
-    setShouldDisplaySuccessMessage(false)
+    clearSuccessMessage()
   }
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    setShouldDisplaySuccessMessage(false)
+    clearSuccessMessage()
 
     if (!shouldDisableSubmitFormButton()) {
       resetAccordionActiveIndex()
@@ -44,7 +50,7 @@ export const CreateReceiptPage = () => {
 
       if (receipt.id) {
         clearForm()
-        setShouldDisplaySuccessMessage(true)
+        setSuccessMessage(<ReceiptSavedMessage receipt={receipt} />)
       }
     }
   }
@@ -73,20 +79,19 @@ export const CreateReceiptPage = () => {
       <Grid.Row>
         <Grid.Column>
           {
-            shouldDisplaySuccessMessage && (
-              <Message
-                positive
-                icon="check circle"
-                header="Данные успешно сохранены"
-                content={
-                  <>Перейдите в раздел <Link to={TABLE}>Таблицы -{'>'} За день</Link>, чтобы просмотреть запись</>
-                }
+            successMessage && (
+              <SuccessMessage
+                header={'Готово'}
+                content={successMessage}
               />
             )
           }
+
           {
             error && (
-              <ErrorMessage message={error.message} />
+              <ErrorMessage
+                content={error.message}
+              />
             )
           }
           <CreateReceiptForm

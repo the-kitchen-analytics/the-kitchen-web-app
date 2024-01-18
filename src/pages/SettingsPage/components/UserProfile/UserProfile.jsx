@@ -93,7 +93,7 @@ export const UserProfile = () => {
             <>
               {
                 error && (
-                  <ErrorMessage message={error.message} />
+                  <ErrorMessage content={error.message} />
                 )
               }
               <EditUserForm

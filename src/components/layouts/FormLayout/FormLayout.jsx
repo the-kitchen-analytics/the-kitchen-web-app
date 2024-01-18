@@ -5,7 +5,7 @@ import { FormLayoutHeader } from './FormLayoutHeader'
 import './FormLayout.css'
 
 export const FormLayout = ({ title, subheader, error, children }) => (
-  <Grid className='form-layout'>
+  <Grid className="form-layout">
     <Grid.Row centered>
       <Grid.Column
         computer={6}
@@ -18,7 +18,7 @@ export const FormLayout = ({ title, subheader, error, children }) => (
             subheader={subheader}
           />
           {
-            error && <ErrorMessage message={error.message} />
+            error && <ErrorMessage content={error.message} />
           }
           {
             children

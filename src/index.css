@@ -22,6 +22,6 @@ body {
   background-color: var(--color-background) !important;
 }
 
-body > * {
-  font-family: Roboto, Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+body * :not(i) {
+  font-family: 'Roboto', sans-serif !important;
 }

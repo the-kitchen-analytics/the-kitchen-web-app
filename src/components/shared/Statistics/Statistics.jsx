@@ -16,7 +16,7 @@ export const Statistics = ({ chartData = [], statisticsData = [] }) => {
     <Grid>
       <Grid.Row>
         <Grid.Column>
-          <Segment padded>
+          <Segment>
             <PieChart data={chartData} />
           </Segment>
         </Grid.Column>
