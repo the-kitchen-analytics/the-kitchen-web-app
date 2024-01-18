@@ -18,6 +18,10 @@
 
 /* 3. Assign variables to page color and background */
 body {
-  /* color: var(--color-text); */
+  color: var(--color-text);
   background-color: var(--color-background) !important;
+}
+
+body > * {
+  font-family: Roboto, Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
 }
