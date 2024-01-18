@@ -30,7 +30,7 @@ export const EditReceiptPage = () => {
       <Grid.Row>
         <Grid.Column>
           {
-            error && <ErrorMessage message={error.message} />
+            error && <ErrorMessage content={error.message} />
           }
           {
             isLoading
