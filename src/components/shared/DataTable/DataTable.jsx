@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import { Table, Icon } from 'semantic-ui-react'
-import { DateCell, ProceduresCell, NotesCell } from './components'
-import { calculateTotalWorkerIncome, calculateTotalPrice } from '../../../utils'
+import { Icon, Table } from 'semantic-ui-react'
+import { DateCell, NotesCell, ProceduresCell } from './components'
+import { calculateTotalPrice, calculateTotalWorkerIncome } from '../../../utils'
 import { Price } from '../'
 
 const NoTableContent = () => (
@@ -30,9 +30,7 @@ const DataTableRow = ({ data, showNotes }) => {
               <DateCell
                 date={date}
                 price={totalWorkerIncome}
-              >
-                {date}
-              </DateCell>
+              />
             </Table.Cell>
           ) : ''
         }
@@ -94,7 +92,7 @@ export const DataTable = ({ data = [[]], showNotes = false }) => {
   const displayNotes = showNotes && data.flat().find(({ notes }) => !!notes)
 
   return (
-    <Table structured celled>
+    <Table>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Дата</Table.HeaderCell>

@@ -68,10 +68,8 @@ export const UserProfile = () => {
       return (
         <>
           <Icon name={'user circle'} />
-          <Header.Content>{userDetails.name}</Header.Content>
-          <Header.Subheader>
-            {userDetails.email} | {getWorkerCategoryDisplayName(userDetails.workerCategory)}
-          </Header.Subheader>
+          <Header.Content content={userDetails.name} />
+          <Header.Subheader content={getWorkerCategoryDisplayName(userDetails.workerCategory)} />
         </>
       )
     }
@@ -113,7 +111,6 @@ export const UserProfile = () => {
                 {
                   fluid: true,
                   icon: 'edit',
-                  size: 'large',
                   type: 'button',
                   onClick: () => setShouldDisplayEditProfileForm(true),
                   content: 'Редактировать'

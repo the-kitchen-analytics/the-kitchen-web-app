@@ -1,16 +1,21 @@
 import { Link } from 'react-router-dom'
-import { Button, Divider, Form } from 'semantic-ui-react'
-import { SubmitButton } from '../../components/shared'
+import { Divider, Form } from 'semantic-ui-react'
+import { DefaultButton, SubmitButton } from '../../components/shared'
 import { handleInputChange } from '../../utils'
 import { REGISTER, RESET_PASSWORD } from '../../data/routePaths'
+import { useTheme } from '../../hooks'
 
-export const LoginForm = ({
-  formData: { email, password },
-  setFormData,
-  handleLoginWithEmailAndPassword,
-  isLoading,
-  error
-}) => {
+export const LoginForm = (props) => {
+  const {
+    formData: { email, password },
+    setFormData,
+    handleLoginWithEmailAndPassword,
+    isLoading,
+    error
+  } = props
+
+  const { size } = useTheme()
+
   const shouldDisableSubmitButton = () => {
     return isLoading || !(email && password)
   }
@@ -21,7 +26,7 @@ export const LoginForm = ({
 
   return (
     <Form
-      size="large"
+      size={size}
       error={error}
       loading={isLoading}
       onSubmit={handleLoginWithEmailAndPassword}
@@ -59,8 +64,7 @@ export const LoginForm = ({
           loading={isLoading}
           disabled={shouldDisableSubmitButton()}
           onClick={handleLoginWithEmailAndPassword}
-          content="Войти"
-          size="large"
+          content={'Войти'}
         />
       </Form.Field>
 
@@ -73,14 +77,13 @@ export const LoginForm = ({
       </Form.Field>
 
       <Form.Field>
-        <Button
+        <DefaultButton
           as={Link}
           to={REGISTER}
           fluid
           basic
           disabled={isLoading}
-          content="Зарегистрироваться"
-          size="large"
+          content={'Зарегистрироваться'}
         />
       </Form.Field>
     </Form>

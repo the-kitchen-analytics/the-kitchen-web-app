@@ -3,7 +3,8 @@ import { useLocalStorage } from '../hooks'
 
 const STORAGE_KEY = 'userSettings'
 const INITIAL_SETTINGS = Object.freeze({
-  accentColor: 'blue'
+  accentColor: 'blue',
+  size: 'large'
 })
 
 export const UserSettingsContext = createContext({})

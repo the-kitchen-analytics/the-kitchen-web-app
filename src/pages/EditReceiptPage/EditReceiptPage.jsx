@@ -50,7 +50,6 @@ export const EditReceiptPage = () => {
               {
                 disabled: isLoading,
                 fluid: true,
-                size: 'large',
                 icon: 'trash',
                 type: 'button',
                 negative: true,

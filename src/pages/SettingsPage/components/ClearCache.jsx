@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { Header, Segment, Message, Grid, Button } from 'semantic-ui-react'
+import { Header, Segment, Message, Grid } from 'semantic-ui-react'
+import { DefaultButton } from '../../../components/shared'
 
 const WarningMessage = () => (
   <Message
@@ -11,14 +12,12 @@ const WarningMessage = () => (
 )
 
 const ReloadButton = (props) => (
-  <Button
+  <DefaultButton
     fluid
-    type="button"
-    content="Oчистить"
-    icon="trash"
+    content={'Oчистить'}
+    icon={'trash'}
     negative
     basic
-    size="large"
     {...props}
   />
 )

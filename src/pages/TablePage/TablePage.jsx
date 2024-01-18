@@ -5,10 +5,11 @@ import { getTableDataByDay, getTableDataByMonthAndYear, getTableDataByYear } fro
 export const panes = [
   {
     menuItem: 'За день',
-    content: <DayFilterLayout
-      as={DataTable}
-      getData={getTableDataByDay}
-    />
+    content:
+      <DayFilterLayout
+        as={DataTable}
+        getData={getTableDataByDay}
+      />
   },
   {
     menuItem: 'За месяц',

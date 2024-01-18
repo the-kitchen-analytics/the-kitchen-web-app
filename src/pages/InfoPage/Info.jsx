@@ -1,6 +1,13 @@
-import { Header, List, Segment } from 'semantic-ui-react'
+import { Fragment } from 'react'
 import { useOutletContext } from 'react-router-dom'
+import { Header, List, Segment } from 'semantic-ui-react'
 import { formatDate, getLocalStorageSize } from '../../utils'
+
+const ListItem = ({ text, value }) => (
+  <Fragment>
+    {text}: <strong>{value}</strong>
+  </Fragment>
+)
 
 export const Info = () => {
   const { user } = useOutletContext()
@@ -19,9 +26,12 @@ export const Info = () => {
     {
       key: 'localstorage-usage',
       text: 'Размер кэша',
-      value: getLocalStorageSize() + ' (KB)',
+      value: `${getLocalStorageSize()} KB`,
     },
-  ]
+  ].map(({ key, text, value }) => ({
+    key,
+    content: <ListItem text={text} value={value} />
+  }))
 
   return (
     <Segment>
@@ -32,17 +42,8 @@ export const Info = () => {
       <List
         relaxed
         bulleted
-      >
-        {
-          listItems.map(({ key, text, value }) => (
-            <List.Item key={key}>
-              {text}: <strong>
-                {value}
-              </strong>
-            </List.Item>
-          ))
-        }
-      </List>
+        items={listItems}
+      />
     </Segment>
   )
 }

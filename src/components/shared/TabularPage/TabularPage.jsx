@@ -1,7 +1,10 @@
 import { Grid, Tab } from 'semantic-ui-react'
 import { MainHeader } from '../MainHeader'
+import { useTheme } from '../../../hooks'
 
 export const TabularPage = ({ header, panes }) => {
+
+  const theme = useTheme()
 
   const tabularPanes = panes.map((pane) => ({
     ...pane,
@@ -19,11 +22,13 @@ export const TabularPage = ({ header, panes }) => {
         <Grid.Column>
           <Tab
             menu={{
-              size: 'huge',
+              ...theme,
               secondary: true,
+              pointing: true,
               widths: panes.length
             }}
-            panes={tabularPanes} />
+            panes={tabularPanes}
+          />
         </Grid.Column>
       </Grid.Row>
     </Grid>

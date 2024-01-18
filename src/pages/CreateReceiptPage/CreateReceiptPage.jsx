@@ -13,7 +13,7 @@ import { RECEIPTS } from '../../data/routePaths'
 
 const ReceiptSavedMessage = ({ receipt }) => (
   <>
-    Запись успешно сохранена. <Link to={`${RECEIPTS}/${receipt.id}`}>Нажмите сюда чтобы просмотреть</Link>
+    Запись сохранена. <Link to={`${RECEIPTS}/${receipt.id}`}>Нажмите, чтобы просмотреть</Link>
   </>
 )
 
@@ -72,7 +72,7 @@ export const CreateReceiptPage = () => {
     <Grid>
       <Grid.Row>
         <Grid.Column>
-          <MainHeader content={'Сохранить'} />
+          <MainHeader content={'Добавить'} />
         </Grid.Column>
       </Grid.Row>
 

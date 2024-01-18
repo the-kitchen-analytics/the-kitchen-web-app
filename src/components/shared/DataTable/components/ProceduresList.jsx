@@ -1,22 +1,10 @@
-import { Label, List } from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { useUserSettingsContext } from '../../../../hooks'
 import { getProcedureTypeDisplayName } from '../../../../utils'
 
 const ListItem = (props) => {
 
-  const { settings: { accentColor } } = useUserSettingsContext()
-  const {
-    linkTo,
-    shouldDisplayProcedurePriceInTable,
-    procedure: {
-      name,
-      type,
-      priceBeforeTaxes,
-      priceAfterTaxes
-    }
-  } = props
-
+  const { linkTo, procedure: { name, type } } = props
   const displayName = `${name} (${getProcedureTypeDisplayName(type)})`
 
   return (
@@ -29,24 +17,6 @@ const ListItem = (props) => {
               : displayName
           }
         </List.Header>
-        {
-          shouldDisplayProcedurePriceInTable && (
-            <List.Description>
-              <Label.Group size="small">
-                <Label
-                  pointing
-                  icon="euro"
-                  content={priceBeforeTaxes.toFixed(2)}
-                />
-                <Label
-                  icon="euro"
-                  color={accentColor}
-                  content={priceAfterTaxes.toFixed(2)}
-                />
-              </Label.Group>
-            </List.Description>
-          )
-        }
       </List.Content>
     </List.Item>
   )
