@@ -3,9 +3,9 @@ import { useCallback } from 'react'
 import { Form, Placeholder } from 'semantic-ui-react'
 import { ButtonGroup, DatePicker, SaveButton } from '../../../../components/shared'
 import { ProcedureSelect } from '../ProcedureSelect'
+import { useUserSettingsContext } from '../../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../utils'
 import { Preview } from './Preview'
-import { useTheme } from '../../../../hooks'
 
 export const CreateReceiptForm = (props) => {
 
@@ -24,7 +24,8 @@ export const CreateReceiptForm = (props) => {
     shouldDisableSubmitFormButton
   } = props
 
-  const { size } = useTheme()
+  const { settings: { accentColor } } = useUserSettingsContext()
+
   const handleInputChangeWrapper = useCallback((e) => handleInputChange(e, setFormData), [setFormData])
 
   const getSubmitButtonLabel = useCallback(() => {
@@ -33,7 +34,7 @@ export const CreateReceiptForm = (props) => {
 
   return (
     <Form
-      size={size}
+      size="large"
       onSubmit={handleFormSubmit}
       loading={isLoading}
     >
@@ -104,6 +105,7 @@ export const CreateReceiptForm = (props) => {
         buttons={[
           {
             fluid: true,
+            size: 'large',
             icon: 'trash',
             type: 'button',
             content: 'Очистить',
@@ -113,7 +115,9 @@ export const CreateReceiptForm = (props) => {
           {
             as: SaveButton,
             fluid: true,
+            size: 'large',
             content: getSubmitButtonLabel(),
+            color: accentColor,
             disabled: shouldDisableSubmitFormButton()
           }
         ]}
