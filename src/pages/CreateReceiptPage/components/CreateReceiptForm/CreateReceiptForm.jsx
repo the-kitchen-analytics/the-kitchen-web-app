@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
 import { Form, Placeholder } from 'semantic-ui-react'
-import { ButtonGroup, DatePicker, SubmitButton } from '../../../../components/shared'
+import { ButtonGroup, DatePicker, SaveButton } from '../../../../components/shared'
 import { ProcedureSelect } from '../ProcedureSelect'
 import { useUserSettingsContext } from '../../../../hooks'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../utils'
@@ -113,10 +113,9 @@ export const CreateReceiptForm = (props) => {
             onClick: handleClearFromButtonClick
           },
           {
-            as: SubmitButton,
+            as: SaveButton,
             fluid: true,
             size: 'large',
-            icon: 'save',
             content: getSubmitButtonLabel(),
             color: accentColor,
             disabled: shouldDisableSubmitFormButton()

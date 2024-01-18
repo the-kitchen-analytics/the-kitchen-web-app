@@ -1,4 +1,5 @@
 export * from './ButtonGroup'
 export * from './GoBackButton'
 export * from './LogOutButton'
+export * from './SaveButton'
 export * from './SubmitButton'
