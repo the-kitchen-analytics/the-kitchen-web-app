@@ -15,25 +15,25 @@ export const Info = (props) => {
     {
       key: 'app-version',
       text: 'Версия',
-      value: import.meta.env.VITE_APP_VERSION,
+      value: import.meta.env.VITE_APP_VERSION
     },
     {
       key: 'last-login-at',
       text: 'Дата последнего входа',
-      value: formatDate(new Date(parseInt(user.metadata.lastLoginAt))),
+      value: formatDate(new Date(parseInt(user.metadata.lastLoginAt)))
     },
     {
       key: 'localstorage-usage',
       text: 'Размер кэша',
-      value: `${getLocalStorageSize()} KB`,
-    },
+      value: `${getLocalStorageSize()} KB`
+    }
   ].map(({ key, text, value }) => ({
     key,
     content: <ListItem text={text} value={value} />
   }))
 
   return (
-    <Segment>
+    <Segment raised>
       <Header
         icon="info circle"
         content="О приложении"

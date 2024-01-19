@@ -1,4 +1,4 @@
-import { Container, Grid, Segment } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { Outlet, useOutletContext } from 'react-router-dom'
 import {
   ReceiptContextProvider,
@@ -13,25 +13,22 @@ export const MainLayout = () => {
   return (
     <UserSettingsContextProvider>
       <NavigationMenu />
-      <Container fluid className="m-1">
-        <Grid centered>
-          <Grid.Row>
-            <Grid.Column
-              computer={'12'}
-              tablet={'14'}
-              mobile={'16'}
-            >
-              <Segment padded>
-                <UserDetailsContextProvider uid={user.uid}>
-                  <ReceiptContextProvider uid={user.uid}>
-                    <Outlet context={{ user }} />
-                  </ReceiptContextProvider>
-                </UserDetailsContextProvider>
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
+      <Grid centered padded>
+        <Grid.Row>
+          <Grid.Column
+            computer={'12'}
+            tablet={'14'}
+            mobile={'16'}
+          >
+            <UserDetailsContextProvider uid={user.uid}>
+              <ReceiptContextProvider uid={user.uid}>
+                <Outlet context={{ user }} />
+              </ReceiptContextProvider>
+            </UserDetailsContextProvider>
+
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </UserSettingsContextProvider>
   )
 }
