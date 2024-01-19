@@ -1,11 +1,12 @@
-import { Container, Grid, Segment } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { Outlet, useOutletContext } from 'react-router-dom'
 import {
   ReceiptContextProvider,
   UserDetailsContextProvider,
   UserSettingsContextProvider
-} from '../../context'
-import { NavigationMenu } from '../NavigationMenu'
+} from '../../../context'
+import { NavigationMenu } from '../../NavigationMenu'
+import './MainLayout.css'
 
 export const MainLayout = () => {
   const { user } = useOutletContext()
@@ -13,7 +14,7 @@ export const MainLayout = () => {
   return (
     <UserSettingsContextProvider>
       <NavigationMenu />
-      <Container fluid className="m-1">
+      <div className="main-layout">
         <Grid centered>
           <Grid.Row>
             <Grid.Column
@@ -21,17 +22,16 @@ export const MainLayout = () => {
               tablet={'14'}
               mobile={'16'}
             >
-              <Segment padded>
-                <UserDetailsContextProvider uid={user.uid}>
-                  <ReceiptContextProvider uid={user.uid}>
-                    <Outlet context={{ user }} />
-                  </ReceiptContextProvider>
-                </UserDetailsContextProvider>
-              </Segment>
+              <UserDetailsContextProvider uid={user.uid}>
+                <ReceiptContextProvider uid={user.uid}>
+                  <Outlet context={{ user }} />
+                </ReceiptContextProvider>
+              </UserDetailsContextProvider>
+
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Container>
+      </div>
     </UserSettingsContextProvider>
   )
 }

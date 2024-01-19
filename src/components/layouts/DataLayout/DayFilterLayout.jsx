@@ -11,12 +11,8 @@ export const DayFilterLayout = ({ getData, as: Component }) => {
   const selectedDayIndex = _.indexOf(options, date)
 
   return (
-    <Grid>
-      <Grid.Column
-        computer={'4'}
-        tablet={'6'}
-        mobile={'16'}
-      >
+    <Grid columns={1}>
+      <Grid.Column>
         <DaySelect
           value={date}
           options={buildDropdownOptions(options)}
@@ -24,13 +20,7 @@ export const DayFilterLayout = ({ getData, as: Component }) => {
         />
       </Grid.Column>
 
-      <Grid.Column
-        computer={'6'}
-        tablet={'10'}
-        mobile={'16'}
-        textAlign="right"
-        floated="right"
-      >
+      <Grid.Column>
         <Carousel
           leftButton={{
             disabled: options.length === 0 || selectedDayIndex === _.lastIndexOf(options) - 1,
@@ -48,11 +38,9 @@ export const DayFilterLayout = ({ getData, as: Component }) => {
         />
       </Grid.Column>
 
-      <Grid.Row>
-        <Grid.Column>
-          <Component {...componentProps} />
-        </Grid.Column>
-      </Grid.Row>
+      <Grid.Column>
+        <Component {...componentProps} />
+      </Grid.Column>
     </Grid>
   )
 }

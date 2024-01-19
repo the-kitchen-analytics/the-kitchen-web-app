@@ -12,7 +12,7 @@ export const FormLayout = ({ title, subheader, error, children }) => (
         tablet={12}
         mobile={16}
       >
-        <Segment padded>
+        <Segment>
           <FormLayoutHeader
             title={title}
             subheader={subheader}

@@ -3,10 +3,12 @@ import { MainHeader } from '../../components/shared'
 import { ContactUs } from './ContactUs'
 import { Info } from './Info'
 import contactOptions from '../../data/contactOptions.json'
-import { useTheme } from '../../hooks'
 
 export const InfoPage = () => {
-  const { size } = useTheme()
+
+  const listProps = {
+    relaxed: true
+  }
 
   return (
     <Grid>
@@ -20,14 +22,14 @@ export const InfoPage = () => {
         <Grid.Column>
           <ContactUs
             options={contactOptions}
-            size={size}
+            {...listProps}
           />
         </Grid.Column>
       </Grid.Row>
 
       <Grid.Row>
         <Grid.Column>
-          <Info size={size} />
+          <Info {...listProps} />
         </Grid.Column>
       </Grid.Row>
     </Grid>

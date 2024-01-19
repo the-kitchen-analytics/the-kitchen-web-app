@@ -21,6 +21,7 @@ export const ContactUs = ({ options, ...listProps }) => {
       />
       <List
         {...listProps}
+        size={'large'}
         items={items}
       />
     </Segment>

@@ -29,12 +29,8 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
   })), [yearOptions])
 
   return (
-    <Grid>
-      <Grid.Column
-        computer={'4'}
-        tablet={'4'}
-        mobile={'16'}
-      >
+    <Grid columns={1}>
+      <Grid.Column>
         <MonthSelect
           value={date.month}
           handleChange={(e, { value }) => setSelectedMonth(value)}
@@ -42,11 +38,7 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
         />
       </Grid.Column>
 
-      <Grid.Column
-        computer={'4'}
-        tablet={'4'}
-        mobile={'16'}
-      >
+      <Grid.Column>
         <YearSelect
           value={date.year}
           handleChange={(e, { value }) => setSelectedYear(value)}
@@ -54,13 +46,7 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
         />
       </Grid.Column>
 
-      <Grid.Column
-        computer={'8'}
-        tablet={'8'}
-        mobile={'16'}
-        textAlign={'right'}
-        floated={'right'}
-      >
+      <Grid.Column>
         <Carousel
           leftButton={{
             disabled: yearSelectOptions.length === 0 || date.month <= FIRST_MONTH_INDEX,
