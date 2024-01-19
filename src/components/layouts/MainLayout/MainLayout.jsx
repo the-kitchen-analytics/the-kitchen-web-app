@@ -15,7 +15,7 @@ export const MainLayout = () => {
     <UserSettingsContextProvider>
       <NavigationMenu />
       <div className="main-layout">
-        <Grid centered padded>
+        <Grid centered>
           <Grid.Row>
             <Grid.Column
               computer={'12'}

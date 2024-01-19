@@ -44,7 +44,7 @@ export const ClearCache = () => {
   const [reload, isLoading] = useReload()
 
   return (
-    <Segment padded>
+    <Segment>
       <Header icon="erase" content="Очистить кэш" />
 
       <WarningMessage />

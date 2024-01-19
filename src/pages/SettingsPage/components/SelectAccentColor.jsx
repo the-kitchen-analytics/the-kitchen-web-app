@@ -23,7 +23,7 @@ export const SelectAccentColor = ({ colorOptions }) => {
   const handleColorChange = (colorName) => setSetting('accentColor', colorName)
 
   return (
-    <Segment padded>
+    <Segment>
       <Header
         icon="paint brush"
         content="Акцентный цвет"

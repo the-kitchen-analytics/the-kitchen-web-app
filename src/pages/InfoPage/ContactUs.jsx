@@ -11,7 +11,7 @@ export const ContactUs = ({ options, ...listProps }) => {
   }))
 
   return (
-    <Segment padded>
+    <Segment>
       <Header
         icon={'talk'}
         content={'Связаться с нами'}
