@@ -3,25 +3,33 @@ import { MainHeader } from '../../components/shared'
 import { ContactUs } from './ContactUs'
 import { Info } from './Info'
 import contactOptions from '../../data/contactOptions.json'
+import { useTheme } from '../../hooks'
 
-export const InfoPage = () =>  (
-  <Grid>
-    <Grid.Row>
-      <Grid.Column>
-        <MainHeader content={'Информация'} />
-      </Grid.Column>
-    </Grid.Row>
+export const InfoPage = () => {
+  const { size } = useTheme()
 
-    <Grid.Row>
-      <Grid.Column>
-        <ContactUs options={contactOptions} />
-      </Grid.Column>
-    </Grid.Row>
+  return (
+    <Grid>
+      <Grid.Row>
+        <Grid.Column>
+          <MainHeader content={'Информация'} />
+        </Grid.Column>
+      </Grid.Row>
 
-    <Grid.Row>
-      <Grid.Column>
-        <Info />
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
-)
+      <Grid.Row>
+        <Grid.Column>
+          <ContactUs
+            options={contactOptions}
+            size={size}
+          />
+        </Grid.Column>
+      </Grid.Row>
+
+      <Grid.Row>
+        <Grid.Column>
+          <Info size={size} />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  )
+}

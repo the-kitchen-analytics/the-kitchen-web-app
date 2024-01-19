@@ -1,15 +1,14 @@
-import { Fragment } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { Header, List, Segment } from 'semantic-ui-react'
 import { formatDate, getLocalStorageSize } from '../../utils'
 
 const ListItem = ({ text, value }) => (
-  <Fragment>
+  <>
     {text}: <strong>{value}</strong>
-  </Fragment>
+  </>
 )
 
-export const Info = () => {
+export const Info = (props) => {
   const { user } = useOutletContext()
 
   const listItems = [
@@ -40,8 +39,7 @@ export const Info = () => {
         content="О приложении"
       />
       <List
-        relaxed
-        bulleted
+        {...props}
         items={listItems}
       />
     </Segment>

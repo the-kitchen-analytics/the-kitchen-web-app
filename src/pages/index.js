@@ -1,7 +1,6 @@
 export * from './CreateAccountPage'
 export * from './InfoPage'
 export * from './LoginPage'
-export * from './NotFoundPage'
 export * from './CreateReceiptPage'
 export * from './EditReceiptPage'
 export * from './ResetPasswordPage'
