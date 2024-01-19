@@ -1,15 +1,13 @@
-
-import { Dropdown } from 'semantic-ui-react'
+import { DefaultSelect } from '../DefaultSelect'
 
 export const DaySelect = ({ value, handleChange, options = [], disabled }) => (
-  <Dropdown
+  <DefaultSelect
     disabled={disabled || options.length <= 1}
     placeholder='Выберите день'
     search selection
     options={options}
     onChange={handleChange}
     value={value}
-    className="large"
     fluid
   />
 )

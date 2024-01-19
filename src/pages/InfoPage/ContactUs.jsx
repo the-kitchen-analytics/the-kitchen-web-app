@@ -1,29 +1,28 @@
 import { Header, List, Segment, Message } from 'semantic-ui-react'
 
-export const ContactUs = ({ options }) => (
-  <Segment>
-    <Header
-      icon="talk"
-      content="Связаться с нами"
-    />
+const MESSAGE_CONTENT = 'Вы можете сообщить о баге и (или) предложить свою идею любым удобным способом'
 
-    <Message>
-      <p>
-        Вы можете сообщить о баге и (или) предложить свою идею любым удобным способом
-      </p>
-    </Message>
+export const ContactUs = ({ options, ...listProps }) => {
 
-    <List size="large" relaxed>
-      {
-        options.map(({ key, icon, href, content }) => (
-          <List.Item key={key}>
-            <List.Icon name={icon} />
-            <List.Content>
-              <a href={href} target="_blank" rel="noreferrer">{content}</a>
-            </List.Content>
-          </List.Item>
-        ))
-      }
-    </List>
-  </Segment>
-)
+  const items = options.map(({ key, icon, href, content }) => ({
+    key,
+    icon,
+    content: <a href={href} target="_blank" rel="noreferrer">{content}</a>
+  }))
+
+  return (
+    <Segment>
+      <Header
+        icon={'talk'}
+        content={'Связаться с нами'}
+      />
+      <Message
+        content={MESSAGE_CONTENT}
+      />
+      <List
+        {...listProps}
+        items={items}
+      />
+    </Segment>
+  )
+}

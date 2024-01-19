@@ -1,7 +1,7 @@
-import { Dropdown } from 'semantic-ui-react'
+import { DefaultSelect } from '../DefaultSelect'
 
 export const YearSelect = ({ value, handleChange, options, disabled }) => (
-  <Dropdown
+  <DefaultSelect
     disabled={disabled || options.length <= 1}
     placeholder='Выберите год'
     button
@@ -10,7 +10,6 @@ export const YearSelect = ({ value, handleChange, options, disabled }) => (
     options={options}
     onChange={handleChange}
     value={value}
-    className="large"
     fluid
   />
 )

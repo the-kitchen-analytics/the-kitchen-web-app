@@ -32,16 +32,16 @@ export const DayFilterLayout = ({ getData, as: Component }) => {
         floated="right"
       >
         <Carousel
-          previousItemProps={{
+          leftButton={{
             disabled: options.length === 0 || selectedDayIndex === _.lastIndexOf(options) - 1,
             onClick: () => setDate(options[selectedDayIndex + 1])
           }}
-          resetButtonProps={{
+          resetButton={{
             content: 'Последний день',
             disabled: _.isEqual(date, _.first(options)),
             onClick: () => setDate(_.first(options))
           }}
-          nextItemProps={{
+          rightButton={{
             disabled: options.length === 0 || selectedDayIndex === 0,
             onClick: () => setDate(options[selectedDayIndex - 1])
           }}

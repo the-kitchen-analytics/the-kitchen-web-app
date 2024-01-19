@@ -62,16 +62,16 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
         floated={'right'}
       >
         <Carousel
-          previousItemProps={{
+          leftButton={{
             disabled: yearSelectOptions.length === 0 || date.month <= FIRST_MONTH_INDEX,
             onClick: () => setSelectedMonth(date.month - 1)
           }}
-          resetButtonProps={{
+          resetButton={{
             content: 'Текущий месяц',
             disabled: _.isEqual(defaultSelectedDate, date),
             onClick: () => setDate(defaultSelectedDate)
           }}
-          nextItemProps={{
+          rightButton={{
             disabled: yearSelectOptions.length === 0 || date.month >= LAST_MONTH_INDEX,
             onClick: () => setSelectedMonth(date.month + 1)
           }}
