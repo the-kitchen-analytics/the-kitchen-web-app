@@ -33,7 +33,7 @@ export const Info = (props) => {
   }))
 
   return (
-    <Segment raised>
+    <Segment padded>
       <Header
         icon="info circle"
         content="О приложении"

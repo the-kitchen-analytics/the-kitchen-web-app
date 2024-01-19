@@ -78,7 +78,7 @@ export const UserProfile = () => {
   }
 
   return (
-    <Segment loading={shouldDisplayLoader()}>
+    <Segment loading={shouldDisplayLoader()} padded>
       <Header icon textAlign={'center'} size={'large'}>
         {
           getHeaderContent()

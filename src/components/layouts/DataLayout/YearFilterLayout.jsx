@@ -17,12 +17,8 @@ export const YearFilterLayout = ({ getData, as: Component }) => {
   })), [options])
 
   return (
-    <Grid>
-      <Grid.Column
-        computer={'6'}
-        tablet={'6'}
-        mobile={'16'}
-      >
+    <Grid columns={1}>
+      <Grid.Column>
         <YearSelect
           value={date}
           handleChange={(e, { value }) => setDate(value)}
@@ -30,13 +26,7 @@ export const YearFilterLayout = ({ getData, as: Component }) => {
         />
       </Grid.Column>
 
-      <Grid.Column
-        computer={'8'}
-        tablet={'8'}
-        mobile={'16'}
-        textAlign={'right'}
-        floated={'right'}
-      >
+      <Grid.Column>
         <Carousel
           leftButton={{
             disabled: options.length === 0 || selectedDayIndex === _.lastIndexOf(options) - 1,
@@ -54,11 +44,9 @@ export const YearFilterLayout = ({ getData, as: Component }) => {
         />
       </Grid.Column>
 
-      <Grid.Row>
-        <Grid.Column>
-          <Component {...statistics} />
-        </Grid.Column>
-      </Grid.Row>
+      <Grid.Column>
+        <Component {...statistics} />
+      </Grid.Column>
     </Grid>
   )
 }

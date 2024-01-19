@@ -6,7 +6,7 @@ export const Statistics = ({ chartData = [], statisticsData = [] }) => {
 
   if (_.isEmpty(statisticsData.flat())) {
     return (
-      <Segment>
+      <Segment padded>
         <NoContent />
       </Segment>
     )
@@ -16,7 +16,7 @@ export const Statistics = ({ chartData = [], statisticsData = [] }) => {
     <Grid>
       <Grid.Row>
         <Grid.Column>
-          <Segment>
+          <Segment padded>
             <PieChart data={chartData} />
           </Segment>
         </Grid.Column>
@@ -27,7 +27,7 @@ export const Statistics = ({ chartData = [], statisticsData = [] }) => {
           <Segment.Group>
             {
               statisticsData.map((entries, i) => (
-                <Segment key={i}>
+                <Segment key={i} padded>
                   <Statistic.Group size={'small'} horizontal>
                     {
                       entries.map(({ name, color, renderLabel, renderValue }) =>

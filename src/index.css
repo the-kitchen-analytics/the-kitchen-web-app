@@ -1,7 +1,7 @@
 /* 1. Create global variables for text and background color */
 :root {
   --color-text: #000;
-  --color-background: #fafafa;
+  --color-background: #fff;
 }
 
 /* 2. Add conditional styling for dark mode preference */
