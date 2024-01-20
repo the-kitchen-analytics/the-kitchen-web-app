@@ -1,32 +1,22 @@
 import { Grid } from 'semantic-ui-react'
 import { MainHeader } from '../../components/shared'
-import { UserProfile, SelectAccentColor, ClearCache } from './components'
+import { UserProfile, SelectAccentColor, ClearCache, DeleteProfile } from './components'
 import { fancyColorNames } from '../../utils'
 
+const columns = [
+  <MainHeader key={'header'} content={'Настройки'} />,
+  <UserProfile key={'profile'} />,
+  <SelectAccentColor key={'accentColorSelect'} colorOptions={fancyColorNames} />,
+  <ClearCache key={'clearCache'} />,
+  <DeleteProfile key={'deleteProfile'} />
+]
+
 export const SettingsPage = () => (
-  <Grid>
-    <Grid.Row>
-      <Grid.Column>
-        <MainHeader content={'Настройки'} />
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row>
-      <Grid.Column>
-        <UserProfile />
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row>
-      <Grid.Column>
-        <SelectAccentColor colorOptions={fancyColorNames} />
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row>
-      <Grid.Column>
-        <ClearCache />
-      </Grid.Column>
-    </Grid.Row>
+  <Grid columns={1}>
+    {
+      columns.map(column => (
+        <Grid.Column key={column.key}>{column}</Grid.Column>
+      ))
+    }
   </Grid>
 )

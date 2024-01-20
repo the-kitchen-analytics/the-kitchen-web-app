@@ -1,4 +1,9 @@
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut
+} from 'firebase/auth'
 import { auth } from '../config/firebase'
 import { createUserDetails } from './userDetailsService'
 
@@ -24,9 +29,14 @@ const resetPassword = (email) => {
   return sendPasswordResetEmail(auth, email)
 }
 
+const deleteUser = (uid) => {
+  console.debug('deleteUser', uid)
+}
+
 export {
   logIn,
   logOut,
   register,
-  resetPassword
+  resetPassword,
+  deleteUser
 }
