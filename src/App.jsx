@@ -11,9 +11,9 @@ import {
 } from './pages'
 
 import {
-  CREATE_RECEIPT, EDIT_RECEIPT,
-  INFO, LOGIN, REGISTER, RESET_PASSWORD,
-  SETTINGS, STATISTICS, TABLE
+  RECEIPT_CREATE_PATH, RECEIPT_EDIT_PATH,
+  INFO_PATH, LOGIN_PATH, REGISTER_PATH, RESET_PASSWORD_PATH,
+  SETTINGS_PATH, STATISTICS_PATH, TABLE_PATH
 } from './data/routePaths'
 
 import './App.css'
@@ -22,47 +22,47 @@ export const App = () => (
   <div className="app">
     <Router>
       <Routes>
-        <Route index element={<Navigate to={TABLE} />} />
+        <Route index element={<Navigate to={TABLE_PATH} />} />
 
-        <Route path={LOGIN} element={<LoginPage />} />
-        <Route path={REGISTER} element={<CreateAccountPage />} />
-        <Route path={RESET_PASSWORD} element={<ResetPasswordPage />} />
+        <Route path={LOGIN_PATH} element={<LoginPage />} />
+        <Route path={REGISTER_PATH} element={<CreateAccountPage />} />
+        <Route path={RESET_PASSWORD_PATH} element={<ResetPasswordPage />} />
 
         <Route element={<RequireAuth />}>
           <Route element={<MainLayout />}>
             <Route
-              path={TABLE}
+              path={TABLE_PATH}
               element={<TablePage />}
             />
 
             <Route
-              path={STATISTICS}
+              path={STATISTICS_PATH}
               element={<StatisticsPage />}
             />
 
             <Route
-              path={EDIT_RECEIPT}
+              path={RECEIPT_EDIT_PATH}
               element={<EditReceiptPage />}
             />
 
             <Route
-              path={CREATE_RECEIPT}
+              path={RECEIPT_CREATE_PATH}
               element={<CreateReceiptPage />}
             />
 
             <Route
-              path={SETTINGS}
+              path={SETTINGS_PATH}
               element={<SettingsPage />}
             />
 
             <Route
-              path={INFO}
+              path={INFO_PATH}
               element={<InfoPage />}
             />
           </Route>
         </Route>
 
-        <Route path="*" element={<Navigate to={TABLE} />} />
+        <Route path="*" element={<Navigate to={TABLE_PATH} />} />
       </Routes>
     </Router>
     <Footer />

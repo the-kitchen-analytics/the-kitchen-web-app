@@ -5,6 +5,7 @@ import { FormLayout } from '../../components/layouts'
 import { useAuth, usePostData } from '../../hooks'
 import { CreateAccountForm } from './CreateAccountForm'
 import { register } from '../../services/authenticationService'
+import { HOME_PATH } from '../../data/routePaths'
 
 export const CreateAccountPage = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ export const CreateAccountPage = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/')
+      navigate(HOME_PATH)
     }
   }, [user, navigate])
 

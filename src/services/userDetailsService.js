@@ -1,23 +1,21 @@
 import {
   addDoc,
-  collection,
   query,
   where,
   getDocs,
-  updateDoc,
+  updateDoc
 } from 'firebase/firestore'
 
-import { db } from '../config/firebase'
 import { USER_DETAILS } from '../config/firebaseCollectionNames'
+import { deleteAllByUid, getCollection } from '../utils'
 
-const getCollection = () => {
-  return collection(db, USER_DETAILS)
-}
+const path = USER_DETAILS
+const collection = getCollection(path)
 
 export const getUserDetailsByUid = async (uid) => {
   console.debug('getUserDetailsByUid', uid)
 
-  const q = query(getCollection(), where('uid', '==', uid))
+  const q = query(collection, where('uid', '==', uid))
   const resultSet = await getDocs(q)
 
   if (!resultSet.empty) {
@@ -29,9 +27,13 @@ export const getUserDetailsByUid = async (uid) => {
 
 export const createUserDetails = (userDetails) => {
   console.debug('createUserDetails', userDetails)
-  return addDoc(getCollection(), userDetails)
+  return addDoc(collection, userDetails)
 }
 
 export const updateUserDetails = (ref, payload) => {
   return updateDoc(ref, payload)
+}
+
+export const deleteUserDetailsByUid = async (uid) => {
+  await deleteAllByUid(uid, path)
 }

@@ -1,5 +1,5 @@
 import { Menu } from 'semantic-ui-react'
-import { CREATE_RECEIPT, INFO, SETTINGS, STATISTICS, TABLE } from '../../data/routePaths'
+import { RECEIPT_CREATE_PATH, INFO_PATH, SETTINGS_PATH, STATISTICS_PATH, TABLE_PATH } from '../../data/routePaths'
 import { NavigationMenuItem } from './NavigationMenuItem'
 import { useTheme } from '../../hooks'
 import './NavigationMenu.css'
@@ -8,27 +8,27 @@ const menuItems = [
   {
     name: 'home',
     icon: 'home',
-    to: TABLE
+    to: TABLE_PATH
   },
   {
     name: 'statistics',
     icon: 'chart pie',
-    to: STATISTICS
+    to: STATISTICS_PATH
   },
   {
     name: 'create-receipt',
     icon: 'plus circle',
-    to: CREATE_RECEIPT
+    to: RECEIPT_CREATE_PATH
   },
   {
     name: 'info',
     icon: 'info circle',
-    to: INFO
+    to: INFO_PATH
   },
   {
     name: 'settings',
     icon: 'setting',
-    to: SETTINGS
+    to: SETTINGS_PATH
   }
 ]
 

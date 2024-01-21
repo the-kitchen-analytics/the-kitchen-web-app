@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { Loader } from '../shared'
 import { Message } from 'semantic-ui-react'
-import { LOGIN } from '../../data/routePaths'
+import { LOGIN_PATH } from '../../data/routePaths'
 import { useAuth } from '../../hooks'
 
 export const RequireAuth = () => {
@@ -33,7 +33,7 @@ export const RequireAuth = () => {
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they login, which is a nicer user experience
     // than dropping them off on the home page.
-    return <Navigate to={LOGIN} state={{ from: location }} replace />
+    return <Navigate to={LOGIN_PATH} state={{ from: location }} replace />
   }
 
   return <Outlet context={{ user }} />

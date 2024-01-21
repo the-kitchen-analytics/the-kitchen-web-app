@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Header, Icon, Segment, Label, Message } from 'semantic-ui-react'
-import { useUserSettingsContext } from '../../../hooks'
+import { useUserSettingsContext } from '../../../../hooks'
 
 const ColorOption = ({ isActive, value, handleClick }) => (
   <Label

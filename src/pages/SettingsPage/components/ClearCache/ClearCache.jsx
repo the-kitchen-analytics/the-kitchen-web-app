@@ -1,13 +1,14 @@
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { Header, Segment, Message, Grid } from 'semantic-ui-react'
-import { DefaultButton } from '../../../components/shared'
+import { useNavigate } from 'react-router-dom'
+import { Header, Segment, Message } from 'semantic-ui-react'
+import { DefaultButton } from '../../../../components/shared'
+import { HOME_PATH } from '../../../../data/routePaths'
 
 const WarningMessage = () => (
   <Message
     warning
-    header="Внимание!"
-    content="Все несохранённые данные будут удалены, а так же ваши настройки будут сброшены. Страница будет перезагружена"
+    header={'Внимание!'}
+    content={'Все несохранённые данные будут удалены, а так же ваши настройки будут сброшены. Страница будет перезагружена'}
   />
 )
 
@@ -32,7 +33,7 @@ const useReload = () => {
     localStorage.clear()
 
     setTimeout(() => {
-      navigate('/')
+      navigate(HOME_PATH)
       window.location.reload()
     }, 250)
   }
@@ -45,13 +46,9 @@ export const ClearCache = () => {
 
   return (
     <Segment>
-      <Header icon="erase" content="Очистить кэш" />
-
+      <Header icon={'erase'} content={'Очистить кэш'} />
       <WarningMessage />
-
-      <Grid.Column width={16}>
-        <ReloadButton loading={isLoading} onClick={reload} />
-      </Grid.Column>
+      <ReloadButton loading={isLoading} onClick={reload} />
     </Segment>
   )
 }

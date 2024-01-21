@@ -9,11 +9,11 @@ import { createReceipt } from '../../services/receiptService'
 import { mapReceiptToFirebaseEntity } from '../../mappers/receipt'
 import { validateReceipt } from '../../validators/receipt'
 import { useAccordionActiveIndex, useReceipt } from './hooks'
-import { RECEIPTS } from '../../data/routePaths'
+import { RECEIPT_PATH } from '../../data/routePaths'
 
 const ReceiptSavedMessage = ({ receipt }) => (
   <>
-    Запись сохранена. <Link to={`${RECEIPTS}/${receipt.id}`}>Нажмите, чтобы просмотреть</Link>
+    Запись сохранена. <Link to={`${RECEIPT_PATH}/${receipt.id}`}>Нажмите, чтобы просмотреть</Link>
   </>
 )
 
