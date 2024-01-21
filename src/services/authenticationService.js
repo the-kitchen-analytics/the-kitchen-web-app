@@ -2,12 +2,15 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  reauthenticateWithCredential,
+  EmailAuthProvider
 } from 'firebase/auth'
 import { auth } from '../config/firebase'
-import { createUserDetails } from './userDetailsService'
+import { createUserDetails, deleteUserDetailsByUid } from './userDetailsService'
+import { deleteAllReceiptsByUid } from './receiptService'
 
-const register = async ({ name, email, password, workerCategory }) => {
+export const register = async ({ name, email, password, workerCategory }) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(credential => createUserDetails({
       uid: credential.user.uid,
@@ -17,26 +20,26 @@ const register = async ({ name, email, password, workerCategory }) => {
     }))
 }
 
-const logIn = (email, password) => {
+export const logIn = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
 }
 
-const logOut = () => {
+export const logOut = () => {
   return signOut(auth)
 }
 
-const resetPassword = (email) => {
+export const resetPassword = (email) => {
   return sendPasswordResetEmail(auth, email)
 }
 
-const deleteUser = (uid) => {
-  console.debug('deleteUser', uid)
-}
+export const deleteCurrentUserAndRelatedData = async (password) => {
+  const { currentUser } = auth
+  const { uid, email } = currentUser
 
-export {
-  logIn,
-  logOut,
-  register,
-  resetPassword,
-  deleteUser
+  console.debug('deleteUser', uid)
+
+  await reauthenticateWithCredential(currentUser, EmailAuthProvider.credential(email, password))
+  await deleteAllReceiptsByUid(uid)
+  await deleteUserDetailsByUid(uid)
+  await currentUser.delete()
 }

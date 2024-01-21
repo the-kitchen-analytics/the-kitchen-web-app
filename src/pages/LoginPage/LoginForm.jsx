@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Divider, Form } from 'semantic-ui-react'
 import { DefaultButton, SubmitButton } from '../../components/shared'
 import { handleInputChange } from '../../utils'
-import { REGISTER, RESET_PASSWORD } from '../../data/routePaths'
+import { REGISTER_PATH, RESET_PASSWORD_PATH } from '../../data/routePaths'
 import { useTheme } from '../../hooks'
 
 export const LoginForm = (props) => {
@@ -24,12 +24,19 @@ export const LoginForm = (props) => {
     handleInputChange(e, setFormData)
   }
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    sessionStorage.clear()
+    localStorage.clear()
+    handleLoginWithEmailAndPassword(e)
+  }
+
   return (
     <Form
       size={size}
       error={error}
       loading={isLoading}
-      onSubmit={handleLoginWithEmailAndPassword}
+      onSubmit={handleFormSubmit}
     >
       <Form.Field>
         <Form.Input
@@ -71,7 +78,7 @@ export const LoginForm = (props) => {
       <Divider hidden />
 
       <Form.Field>
-        <Link to={RESET_PASSWORD}>
+        <Link to={RESET_PASSWORD_PATH}>
           Забыли пароль?
         </Link>
       </Form.Field>
@@ -79,7 +86,7 @@ export const LoginForm = (props) => {
       <Form.Field>
         <DefaultButton
           as={Link}
-          to={REGISTER}
+          to={REGISTER_PATH}
           fluid
           basic
           disabled={isLoading}

@@ -5,6 +5,7 @@ import { FormLayout } from '../../components/layouts'
 import { ResetPasswordForm } from './ResetPasswordForm'
 import { usePostData } from '../../hooks'
 import { resetPassword } from '../../services/authenticationService'
+import { HOME_PATH } from '../../data/routePaths'
 
 export const ResetPasswordPage = () => {
 
@@ -23,7 +24,7 @@ export const ResetPasswordPage = () => {
     await makeRequest(resetPassword, email)
 
     if (!error) {
-      navigate('/')
+      navigate(HOME_PATH)
     }
   }
 

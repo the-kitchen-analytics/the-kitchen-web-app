@@ -1,7 +1,7 @@
 import { Divider, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { handleInputChange } from '../../utils'
-import { REGISTER } from '../../data/routePaths'
+import { REGISTER_PATH } from '../../data/routePaths'
 import { DefaultButton, SubmitButton } from '../../components/shared'
 import { useTheme } from '../../hooks'
 
@@ -57,7 +57,7 @@ export const ResetPasswordForm = (props) => {
       <Form.Field>
         <DefaultButton
           as={Link}
-          to={REGISTER}
+          to={REGISTER_PATH}
           fluid
           basic
           disabled={isLoading}

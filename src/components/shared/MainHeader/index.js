@@ -1,1 +1,1 @@
-export * from './MainHeader.jsx'
+export * from './MainHeader'

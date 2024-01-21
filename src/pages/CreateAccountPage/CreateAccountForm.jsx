@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { DefaultButton, SubmitButton, WorkerCategorySelect } from '../../components/shared'
 import { handleInputChange } from '../../utils'
-import { LOGIN } from '../../data/routePaths.js'
+import { LOGIN_PATH } from '../../data/routePaths.js'
 import { useTheme } from '../../hooks'
 
 export const CreateAccountForm = (props) => {
@@ -96,7 +96,7 @@ export const CreateAccountForm = (props) => {
       <Form.Field>
         <DefaultButton
           as={Link}
-          to={LOGIN}
+          to={LOGIN_PATH}
           fluid
           basic
           disabled={isLoading}

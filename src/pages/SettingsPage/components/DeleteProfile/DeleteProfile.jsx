@@ -1,20 +1,20 @@
-import { Divider, Header, Message, Segment } from 'semantic-ui-react'
+import { Header, Message, Segment } from 'semantic-ui-react'
 import { DeleteProfileForm } from './DeleteProfileForm'
 import { useState } from 'react'
-import { DeleteButton } from './DeleteButton.jsx'
+import { DeleteButton } from './DeleteButton'
 
 const DangerMessage = (props) => (
   <Message
     negative
     header={'Внимание!'}
-    content={'Ваш аккаунт и все сохранённые данные будут удалены без возможности восстановления. Вы не сможете больше пользоваться приложением.'}
+    content={'Ваш аккаунт и все связанные с ним данные будут удалены без возможности восстановления. Вы больше не сможете пользоваться приложением'}
     {...props}
   />
 )
 
 const InfoMessage = (props) => (
   <Message
-    content={'Чтобы продолжить, введите адрес электронной почты от данного акаунта. После этого кнопка "Удалить" станет активной'}
+    content={'Чтобы продолжить, введите пароль от Вашего акаунта'}
     {...props}
   />
 )
@@ -25,7 +25,6 @@ export const DeleteProfile = () => {
 
   const formWithMessage = (
     <>
-      <Divider hidden />
       <InfoMessage />
       <DeleteProfileForm />
     </>

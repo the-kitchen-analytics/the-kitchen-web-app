@@ -1,3 +1,5 @@
+export * from './deleteAllByUid'
+export * from './getCollection'
 export * from './getDoc'
 export * from './getDocData'
 export * from './getDocsData'

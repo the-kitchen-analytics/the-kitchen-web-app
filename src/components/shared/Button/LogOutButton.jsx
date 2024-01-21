@@ -6,7 +6,10 @@ const CONFIRM_LOGOUT_MESSAGE = 'Вы действительно хотите в�
 const handleLogOut = async () => {
   if (window.confirm(CONFIRM_LOGOUT_MESSAGE)) {
     console.debug('log out')
+
+    sessionStorage.clear()
     localStorage.clear()
+
     await logOut()
   }
 }
