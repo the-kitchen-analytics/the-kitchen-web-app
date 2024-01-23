@@ -1,7 +1,7 @@
-import { russianMonthNames } from '../../../data/monthNames'
+import { monthNames } from '../../date'
 
 export const monthIndexToMonthOption = (index) => Object.freeze({
   key: index,
-  text: russianMonthNames[index],
+  text: monthNames[index],
   value: index
 })

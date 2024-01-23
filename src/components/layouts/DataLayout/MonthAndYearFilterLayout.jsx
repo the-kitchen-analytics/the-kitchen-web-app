@@ -3,8 +3,7 @@ import { useMemo } from 'react'
 import { Grid } from 'semantic-ui-react'
 import { Carousel, MonthSelect, YearSelect } from '../../shared'
 import { useReceiptContext, useReceiptsFilteredByDate } from '../../../hooks'
-import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../data/monthIndexes'
-import { getCurrentMonthAndYear } from '../../../utils'
+import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX, getCurrentMonthAndYear } from '../../../utils'
 
 const INITIAL_DATE = getCurrentMonthAndYear()
 
