@@ -1,67 +1,67 @@
 [
-    {
-        "name": "red",
-        "isFancy": true,
-        "hex": "#DB2828"
-    },
-    {
-        "name": "orange",
-        "isFancy": true,
-        "hex": "#F2711C"
-    },
-    {
-        "name": "yellow",
-        "isFancy": true,
-        "hex": "#FBBD08"
-    },
-    {
-        "name": "olive",
-        "isFancy": true,
-        "hex": "#B5CC18"
-    },
-    {
-        "name": "green",
-        "isFancy": true,
-        "hex": "#21BA45"
-    },
-    {
-        "name": "teal",
-        "isFancy": true,
-        "hex": "#00B5AD"
-    },
-    {
-        "name": "blue",
-        "isFancy": true,
-        "hex": "#2185D0"
-    },
-    {
-        "name": "violet",
-        "isFancy": true,
-        "hex": "#6435C9"
-    },
-    {
-        "name": "purple",
-        "isFancy": true,
-        "hex": "#A333C8"
-    },
-    {
-        "name": "pink",
-        "isFancy": true,
-        "hex": "#E03997"
-    },
-    {
-        "name": "brown",
-        "isFancy": false,
-        "hex": "#A5673F"
-    },
-    {
-        "name": "grey",
-        "isFancy": false,
-        "hex": "#767676"
-    },
-    {
-        "name": "black",
-        "isFancy": false,
-        "hex": "#000000"
-    }
+  {
+    "name": "red",
+    "isColorful": true,
+    "hex": "#DB2828"
+  },
+  {
+    "name": "orange",
+    "isColorful": true,
+    "hex": "#F2711C"
+  },
+  {
+    "name": "yellow",
+    "isColorful": true,
+    "hex": "#FBBD08"
+  },
+  {
+    "name": "olive",
+    "isColorful": true,
+    "hex": "#B5CC18"
+  },
+  {
+    "name": "green",
+    "isColorful": true,
+    "hex": "#21BA45"
+  },
+  {
+    "name": "teal",
+    "isColorful": true,
+    "hex": "#00B5AD"
+  },
+  {
+    "name": "blue",
+    "isColorful": true,
+    "hex": "#2185D0"
+  },
+  {
+    "name": "violet",
+    "isColorful": true,
+    "hex": "#6435C9"
+  },
+  {
+    "name": "purple",
+    "isColorful": true,
+    "hex": "#A333C8"
+  },
+  {
+    "name": "pink",
+    "isColorful": true,
+    "hex": "#E03997"
+  },
+  {
+    "name": "brown",
+    "isColorful": false,
+    "hex": "#A5673F"
+  },
+  {
+    "name": "grey",
+    "isColorful": false,
+    "hex": "#767676"
+  },
+  {
+    "name": "black",
+    "isColorful": false,
+    "hex": "#000000"
+  }
 ]
