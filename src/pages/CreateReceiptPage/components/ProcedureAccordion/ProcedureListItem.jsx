@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Segment, Button, Grid, Header } from 'semantic-ui-react'
-import { useTheme } from '../../../../hooks'
-import { formatPrice } from '../../../../utils'
+import { useTheme } from '../../../../shared/hooks'
+import { formatPrice } from '../../../../shared/utils'
 
 const ProcedureButton = ({ handleClick, icon, floated }) => (
   <Button

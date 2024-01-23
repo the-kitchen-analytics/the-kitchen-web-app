@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Divider, Form } from 'semantic-ui-react'
-import { DefaultButton, SubmitButton } from '../../components/shared'
-import { handleInputChange } from '../../utils'
-import { REGISTER_PATH, RESET_PASSWORD_PATH } from '../../data/routePaths'
-import { useTheme } from '../../hooks'
+import { DefaultButton, SubmitButton } from '../../shared/components'
+import { handleInputChange } from '../../shared/utils'
+import { REGISTER_PATH, RESET_PASSWORD_PATH } from '../../router'
+import { useTheme } from '../../shared/hooks'
 
 export const LoginForm = (props) => {
   const {

@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { useState, useMemo } from 'react'
 import { Segment, Header, Placeholder, Icon } from 'semantic-ui-react'
-import { LogOutButton, ErrorMessage, ButtonGroup } from '../../../../components/shared'
-import { usePostData, useUserDetailsContext } from '../../../../hooks'
-import { getWorkerCategoryDisplayName } from '../../../../utils'
+import { LogOutButton, ErrorMessage, ButtonGroup } from '../../../../shared/components'
+import { usePostData, useUserDetailsContext } from '../../../../shared/hooks'
+import { getWorkerCategoryDisplayName } from '../../../../shared/utils'
 import { EditUserForm } from './EditUserForm'
 
 export const UserProfile = () => {

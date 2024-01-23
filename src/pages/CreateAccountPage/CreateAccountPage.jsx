@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
-import { FormLayout } from '../../components/layouts'
-import { useAuth, usePostData } from '../../hooks'
+import { FormLayout } from '../../layouts'
+import { useAuth, usePostData } from '../../shared/hooks'
 import { CreateAccountForm } from './CreateAccountForm'
-import { register } from '../../services/authenticationService'
-import { HOME_PATH } from '../../data/routePaths'
+import { register } from '../../domain/app'
+import { HOME_PATH } from '../../router'
 
 export const CreateAccountPage = () => {
   const [formData, setFormData] = useState({

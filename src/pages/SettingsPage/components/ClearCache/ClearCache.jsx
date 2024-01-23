@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Header, Segment, Message } from 'semantic-ui-react'
-import { DefaultButton } from '../../../../components/shared'
-import { HOME_PATH } from '../../../../data/routePaths'
+import { DefaultButton } from '../../../../shared/components'
+import { HOME_PATH } from '../../../../router'
 
 const WarningMessage = () => (
   <Message

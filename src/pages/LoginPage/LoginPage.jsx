@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import { LoginForm } from './LoginForm'
-import { FormLayout } from '../../components/layouts'
-import { useAuth, usePostData } from '../../hooks'
-import { logIn } from '../../services/authenticationService'
+import { FormLayout } from '../../layouts'
+import { useAuth, usePostData } from '../../shared/hooks'
+import { logIn } from '../../domain/app'
 
 export const LoginPage = () => {
 

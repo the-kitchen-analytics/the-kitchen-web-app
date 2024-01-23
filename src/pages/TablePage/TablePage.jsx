@@ -1,5 +1,5 @@
-import { DayFilterLayout, MonthAndYearFilterLayout, YearFilterLayout } from '../../components/layouts'
-import { DataTable, TabularPage } from '../../components/shared'
+import { DayFilterLayout, MonthAndYearFilterLayout, YearFilterLayout } from '../../layouts'
+import { DataTable, TabularPage } from '../../shared/components'
 import { getTableDataByDay, getTableDataByMonthAndYear, getTableDataByYear } from './helpers'
 
 export const panes = [

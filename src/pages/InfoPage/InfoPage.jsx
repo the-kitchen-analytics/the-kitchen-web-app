@@ -1,5 +1,5 @@
 import { Grid } from 'semantic-ui-react'
-import { MainHeader } from '../../components/shared'
+import { MainHeader } from '../../shared/components'
 import { ContactUs } from './ContactUs'
 import { Info } from './Info'
 import contactOptions from '../../data/contactOptions.json'

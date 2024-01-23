@@ -2,14 +2,12 @@ import _ from 'lodash'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
-import { ErrorMessage, SuccessMessage, MainHeader } from '../../components/shared'
+import { ErrorMessage, SuccessMessage, MainHeader } from '../../shared/components'
 import { CreateReceiptForm } from './components'
-import { usePostData, useProcedures, useUserDetailsContext, useMessage } from '../../hooks'
-import { createReceipt } from '../../services/receiptService'
-import { mapReceiptToFirebaseEntity } from '../../mappers/receipt'
-import { validateReceipt } from '../../validators/receipt'
+import { usePostData, useProcedures, useUserDetailsContext, useMessage } from '../../shared/hooks'
+import { createReceipt, mapReceiptToFirebaseEntity, validateReceipt } from '../../domain/receipt'
 import { useAccordionActiveIndex, useReceipt } from './hooks'
-import { RECEIPT_PATH } from '../../data/routePaths'
+import { RECEIPT_PATH } from '../../router'
 
 const ReceiptSavedMessage = ({ receipt }) => (
   <>

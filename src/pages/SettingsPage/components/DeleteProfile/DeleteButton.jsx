@@ -1,4 +1,4 @@
-import { DefaultButton } from '../../../../components/shared'
+import { DefaultButton } from '../../../../shared/components'
 
 export const DeleteButton = (props) => (
   <DefaultButton

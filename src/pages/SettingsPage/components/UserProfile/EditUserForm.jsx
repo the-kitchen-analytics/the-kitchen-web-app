@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
-import { ButtonGroup, SaveButton, WorkerCategorySelect } from '../../../../components/shared'
-import { handleInputChange } from '../../../../utils'
-import { useTheme } from '../../../../hooks'
+import { ButtonGroup, SaveButton, WorkerCategorySelect } from '../../../../shared/components'
+import { handleInputChange } from '../../../../shared/utils'
+import { useTheme } from '../../../../shared/hooks'
 
 export const EditUserForm = (props) => {
 

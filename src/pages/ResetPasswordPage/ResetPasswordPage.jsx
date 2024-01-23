@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
-import { FormLayout } from '../../components/layouts'
+import { FormLayout } from '../../layouts'
 import { ResetPasswordForm } from './ResetPasswordForm'
-import { usePostData } from '../../hooks'
-import { resetPassword } from '../../services/authenticationService'
-import { HOME_PATH } from '../../data/routePaths'
+import { usePostData } from '../../shared/hooks'
+import { resetPassword } from '../../domain/app'
+import { HOME_PATH } from '../../router'
 
 export const ResetPasswordPage = () => {
 

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
-import { mapFirebaseEntityToReceipt } from '../../mappers/receipt'
-import { streamReceiptsByUid } from '../../services/receiptService'
+import { mapFirebaseEntityToReceipt, streamReceiptsByUid } from '../../domain/receipt'
 
 export const useReceipts = (options) => {
   const { uid } = options
