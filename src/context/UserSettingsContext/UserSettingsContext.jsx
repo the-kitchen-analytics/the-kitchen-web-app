@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { useFirstRender, useLocalStorage } from '../hooks'
+import { useFirstRender, useLocalStorage } from '../../hooks'
 
 const LEGACY_STORAGE_KEY = 'userSettings'
 const STORAGE_KEY = 'user-settings-v2'
