@@ -5,7 +5,7 @@ import { FormLayout } from '../../layouts'
 import { ResetPasswordForm } from './ResetPasswordForm'
 import { usePostData } from '../../shared/hooks'
 import { resetPassword } from '../../domain/app'
-import { HOME_PATH } from '../../data/routePaths'
+import { HOME_PATH } from '../../router'
 
 export const ResetPasswordPage = () => {
 

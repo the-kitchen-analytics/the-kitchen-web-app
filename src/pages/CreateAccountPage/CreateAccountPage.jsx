@@ -5,7 +5,7 @@ import { FormLayout } from '../../layouts'
 import { useAuth, usePostData } from '../../shared/hooks'
 import { CreateAccountForm } from './CreateAccountForm'
 import { register } from '../../domain/app'
-import { HOME_PATH } from '../../data/routePaths'
+import { HOME_PATH } from '../../router'
 
 export const CreateAccountPage = () => {
   const [formData, setFormData] = useState({

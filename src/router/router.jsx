@@ -1,22 +1,24 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 import {
+  RECEIPT_CREATE_PATH, RECEIPT_EDIT_PATH,
+  INFO_PATH, LOGIN_PATH, REGISTER_PATH, RESET_PASSWORD_PATH,
+  SETTINGS_PATH, STATISTICS_PATH, TABLE_PATH
+} from './routes'
+
+import {
   CreateAccountPage, LoginPage, ResetPasswordPage,
   EditReceiptPage, CreateReceiptPage,
   SettingsPage, InfoPage,
   TablePage, StatisticsPage
-} from './pages'
+} from '../pages'
 
-import {
-  RECEIPT_CREATE_PATH, RECEIPT_EDIT_PATH,
-  INFO_PATH, LOGIN_PATH, REGISTER_PATH, RESET_PASSWORD_PATH,
-  SETTINGS_PATH, STATISTICS_PATH, TABLE_PATH
-} from './data/routePaths'
+import { MainLayout, RequireAuth } from '../layouts'
 
-import { MainLayout, RequireAuth } from './layouts'
+const NavigateToHome = () => <Navigate to={TABLE_PATH} />
 
 export const router = createBrowserRouter([
-  { index: true, element: <Navigate to={TABLE_PATH} /> },
+  { index: true, element: <NavigateToHome /> },
   { path: LOGIN_PATH, element: <LoginPage /> },
   { path: REGISTER_PATH, element: <CreateAccountPage /> },
   { path: RESET_PASSWORD_PATH, element: <ResetPasswordPage /> },
@@ -34,5 +36,5 @@ export const router = createBrowserRouter([
       }
     ]
   },
-  { path: '*', element: <Navigate to={TABLE_PATH} /> }
+  { path: '*', element: <NavigateToHome /> }
 ])

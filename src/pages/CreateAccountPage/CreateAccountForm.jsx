@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { DefaultButton, SubmitButton, WorkerCategorySelect } from '../../shared/components'
 import { handleInputChange } from '../../shared/utils'
-import { LOGIN_PATH } from '../../data/routePaths.js'
+import { LOGIN_PATH } from '../../router'
 import { useTheme } from '../../shared/hooks'
 
 export const CreateAccountForm = (props) => {

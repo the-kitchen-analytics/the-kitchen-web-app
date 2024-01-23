@@ -4,7 +4,7 @@ import { Form } from 'semantic-ui-react'
 import { useTheme } from '../../../../shared/hooks'
 import { DeleteButton } from './DeleteButton'
 import { deleteCurrentUserAndRelatedData } from '../../../../domain/app'
-import { HOME_PATH, RESET_PASSWORD_PATH } from '../../../../data/routePaths'
+import { HOME_PATH, RESET_PASSWORD_PATH } from '../../../../router'
 import { DefaultButton } from '../../../../shared/components'
 
 const WRONG_PASSWORD_ERROR = {

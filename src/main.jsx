@@ -14,7 +14,7 @@ import '@fontsource/roboto/cyrillic-400.css'
 import '@fontsource/roboto/cyrillic-500.css'
 import '@fontsource/roboto/cyrillic-700.css'
 import '@fontsource/roboto/cyrillic-900.css'
-import './index.css'
+import './main.css'
 import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

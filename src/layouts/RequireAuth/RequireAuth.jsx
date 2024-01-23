@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { Message } from 'semantic-ui-react'
 import { Loader } from '../../shared/components'
-import { LOGIN_PATH } from '../../data/routePaths'
+import { LOGIN_PATH } from '../../router'
 import { useAuth } from '../../shared/hooks'
 
 export const RequireAuth = () => {

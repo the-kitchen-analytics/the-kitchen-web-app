@@ -7,7 +7,7 @@ import { CreateReceiptForm } from './components'
 import { usePostData, useProcedures, useUserDetailsContext, useMessage } from '../../shared/hooks'
 import { createReceipt, mapReceiptToFirebaseEntity, validateReceipt } from '../../domain/receipt'
 import { useAccordionActiveIndex, useReceipt } from './hooks'
-import { RECEIPT_PATH } from '../../data/routePaths'
+import { RECEIPT_PATH } from '../../router'
 
 const ReceiptSavedMessage = ({ receipt }) => (
   <>

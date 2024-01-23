@@ -1,7 +1,7 @@
 import { Divider, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { handleInputChange } from '../../shared/utils'
-import { REGISTER_PATH } from '../../data/routePaths'
+import { REGISTER_PATH } from '../../router'
 import { DefaultButton, SubmitButton } from '../../shared/components'
 import { useTheme } from '../../shared/hooks'
 

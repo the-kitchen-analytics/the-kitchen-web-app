@@ -1,5 +1,5 @@
 import { ProceduresList } from './ProceduresList'
-import { RECEIPT_PATH } from '../../../../data/routePaths'
+import { RECEIPT_PATH } from '../../../../router'
 
 export const ProceduresCell = ({ id, procedures }) => (
   <ProceduresList

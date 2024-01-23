@@ -1,5 +1,5 @@
 import { Menu } from 'semantic-ui-react'
-import { RECEIPT_CREATE_PATH, INFO_PATH, SETTINGS_PATH, STATISTICS_PATH, TABLE_PATH } from '../../../data/routePaths'
+import { RECEIPT_CREATE_PATH, INFO_PATH, SETTINGS_PATH, STATISTICS_PATH, TABLE_PATH } from '../../../router'
 import { NavigationMenuItem } from './NavigationMenuItem'
 import { useTheme } from '../../../shared/hooks'
 import './NavigationMenu.css'
