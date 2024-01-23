@@ -2,21 +2,17 @@ import _ from 'lodash'
 import { useState, useMemo } from 'react'
 import { Segment, Header, Placeholder, Icon } from 'semantic-ui-react'
 import { LogOutButton, ErrorMessage, ButtonGroup } from '../../../../shared/components'
-import { usePostData, useUserDetailsContext } from '../../../../shared/hooks'
+import { useInitialState, usePostData, useTheme, useUserDetailsContext } from '../../../../shared/hooks'
 import { getWorkerCategoryDisplayName } from '../../../../shared/utils'
 import { EditUserForm } from './EditUserForm'
 
 export const UserProfile = () => {
 
+  const { size } = useTheme()
   const [userDetails, setUserDetails] = useUserDetailsContext()
   const initialFormData = useMemo(() => userDetails, [userDetails])
-  const [formData, setFormData] = useState(userDetails)
-
-  const [
-    shouldDisplayEditProfileForm,
-    setShouldDisplayEditProfileForm
-  ] = useState(false)
-
+  const [formData, setFormData, resetFormData] = useInitialState(initialFormData)
+  const [displayForm, setDisplayForm] = useState(false)
   const [isLoading, error, postData] = usePostData()
 
   const shouldDisableSubmitButton = () => {
@@ -27,22 +23,18 @@ export const UserProfile = () => {
     return isLoading
   }
 
-  const resetFormData = () => {
-    setFormData(initialFormData)
-  }
-
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     await postData(setUserDetails, formData)
 
     if (!error) {
-      setShouldDisplayEditProfileForm(false)
+      setDisplayForm(false)
     }
   }
 
   const handleResetButtonClick = (e) => {
     e.preventDefault()
-    setShouldDisplayEditProfileForm(false)
+    setDisplayForm(false)
     resetFormData()
   }
 
@@ -79,14 +71,14 @@ export const UserProfile = () => {
 
   return (
     <Segment loading={shouldDisplayLoader()}>
-      <Header icon textAlign={'center'} size={'large'}>
+      <Header icon textAlign={'center'} size={size}>
         {
           getHeaderContent()
         }
       </Header>
 
       {
-        shouldDisplayEditProfileForm
+        displayForm
           ? (
             <>
               {
@@ -112,7 +104,7 @@ export const UserProfile = () => {
                   fluid: true,
                   icon: 'edit',
                   type: 'button',
-                  onClick: () => setShouldDisplayEditProfileForm(true),
+                  onClick: () => setDisplayForm(true),
                   content: 'Редактировать'
                 },
                 {

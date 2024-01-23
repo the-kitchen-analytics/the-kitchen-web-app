@@ -34,10 +34,10 @@ export const EditUserForm = (props) => {
     >
       <Form.Input
         required
-        name="name"
-        type="text"
-        label="Имя"
-        placeholder="Имя"
+        name={'name'}
+        type={'text'}
+        label={'Имя'}
+        placeholder={'Имя'}
         value={name}
         onChange={handleInputChangeWrapper}
       />
@@ -46,12 +46,10 @@ export const EditUserForm = (props) => {
         <Form.Input
           required
           disabled
-          icon="at"
-          iconPosition="left"
-          name="email"
-          type="email"
-          label="Электронная почта"
-          placeholder="Эл. почта"
+          name={'email'}
+          type={'email'}
+          label={'Электронная почта'}
+          placeholder={'Эл. почта'}
           value={email}
           onChange={handleInputChangeWrapper}
         />
@@ -63,10 +61,10 @@ export const EditUserForm = (props) => {
       </Form.Group>
 
       <Form.TextArea
-        label="Обо мне"
-        name="description"
-        type="text"
-        placeholder="Обо мне"
+        label={'Обо мне'}
+        name={'description'}
+        type={'text'}
+        placeholder={'Обо мне'}
         value={description}
         maxLength={250}
         onChange={handleInputChangeWrapper}
