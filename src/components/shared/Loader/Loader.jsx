@@ -1,14 +1,16 @@
-import { Container, Dimmer, Loader as SemanticLoader } from 'semantic-ui-react'
+import { Container, Loader as SemanticLoader } from 'semantic-ui-react'
+import './Loader.css'
 
 export const Loader = (props) => (
-  <Container fluid style={{ minHeight: '50vh' }}>
-    <Dimmer active inverted>
-      <SemanticLoader
-        active
-        content={'Загрузка данных'}
-        size={'huge'}
-        {...props}
-      />
-    </Dimmer>
+  <Container
+    className={'loder-container'}
+    textAlign={'center'}
+  >
+    <SemanticLoader
+      active
+      content={'Загрузка данных'}
+      size={'huge'}
+      {...props}
+    />
   </Container>
 )
