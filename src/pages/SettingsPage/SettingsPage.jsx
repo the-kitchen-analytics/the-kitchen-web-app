@@ -1,7 +1,7 @@
 import { Grid } from 'semantic-ui-react'
-import { MainHeader } from '../../components/shared'
+import { MainHeader } from '../../shared/components'
 import { UserProfile, SelectAccentColor, ClearCache, DeleteProfile } from './components'
-import { fancyColorNames } from '../../utils'
+import { fancyColorNames } from '../../shared/utils'
 
 const columns = [
   <MainHeader key={'header'} content={'Настройки'} />,

@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
 import { Form, Placeholder } from 'semantic-ui-react'
-import { ButtonGroup, DatePicker, SaveButton } from '../../../../components/shared'
+import { ButtonGroup, DatePicker, SaveButton } from '../../../../shared/components'
 import { ProcedureSelect } from '../ProcedureSelect'
-import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../utils'
+import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../shared/utils'
 import { Preview } from './Preview'
-import { useTheme } from '../../../../hooks'
+import { useTheme } from '../../../../shared/hooks'
 
 export const CreateReceiptForm = (props) => {
 

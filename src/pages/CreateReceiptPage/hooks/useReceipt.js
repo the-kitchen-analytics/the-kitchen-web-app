@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { useSessionStorage } from '../../../hooks'
-import { formatDateForDatePicker, getCurrentDate } from '../../../utils'
+import { useSessionStorage } from '../../../shared/hooks'
+import { formatDateForDatePicker, getCurrentDate } from '../../../shared/utils'
 
 const INITIAL_RECEIPT = Object.freeze({
   date: formatDateForDatePicker(getCurrentDate()),

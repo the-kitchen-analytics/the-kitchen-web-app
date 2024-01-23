@@ -1,9 +1,9 @@
 import { Divider, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { handleInputChange } from '../../utils'
+import { handleInputChange } from '../../shared/utils'
 import { REGISTER_PATH } from '../../data/routePaths'
-import { DefaultButton, SubmitButton } from '../../components/shared'
-import { useTheme } from '../../hooks'
+import { DefaultButton, SubmitButton } from '../../shared/components'
+import { useTheme } from '../../shared/hooks'
 
 export const ResetPasswordForm = (props) => {
 

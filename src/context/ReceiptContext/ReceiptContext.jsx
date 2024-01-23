@@ -1,5 +1,5 @@
 import { createContext, useCallback } from 'react'
-import { Loader } from '../../components/shared'
+import { Loader } from '../../shared/components'
 import { useReceipts } from './useReceipts'
 
 export const ReceiptContext = createContext({})

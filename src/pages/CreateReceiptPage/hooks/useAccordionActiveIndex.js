@@ -1,4 +1,4 @@
-import { useSessionStorage } from '../../../hooks'
+import { useSessionStorage } from '../../../shared/hooks'
 
 const INITIAL_ACCORDITION_INDEX_KEY = 'accorditionActiveIndex'
 export const INITIAL_ACCORDITION_INDEX_VALUE = -1

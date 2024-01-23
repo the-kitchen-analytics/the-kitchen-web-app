@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
-import { DefaultButton, SubmitButton, WorkerCategorySelect } from '../../components/shared'
-import { handleInputChange } from '../../utils'
+import { DefaultButton, SubmitButton, WorkerCategorySelect } from '../../shared/components'
+import { handleInputChange } from '../../shared/utils'
 import { LOGIN_PATH } from '../../data/routePaths.js'
-import { useTheme } from '../../hooks'
+import { useTheme } from '../../shared/hooks'
 
 export const CreateAccountForm = (props) => {
 

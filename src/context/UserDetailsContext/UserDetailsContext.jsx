@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { Loader } from '../../components/shared'
+import { Loader } from '../../shared/components'
 import { useUserDetails } from './useUserDetails'
 
 export const UserDetailsContext = createContext({})

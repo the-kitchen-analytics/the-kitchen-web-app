@@ -1,5 +1,5 @@
 import { List } from 'semantic-ui-react'
-import { Switch } from '../../../../components/shared'
+import { Switch } from '../../../../shared/components'
 import './DisplayOptions.css'
 
 export const DisplayOptions = ({ options }) => (

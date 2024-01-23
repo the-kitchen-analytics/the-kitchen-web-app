@@ -1,6 +1,6 @@
-import { getUserDetailsByUid, updateUserDetails } from '../../services/userDetailsService'
-import { useFetchData, usePostData } from '../../hooks'
 import { useCallback } from 'react'
+import { useFetchData, usePostData } from '../../shared/hooks'
+import { getUserDetailsByUid, updateUserDetails } from '../../domain/user'
 
 export const useUserDetails = (uid) => {
 
