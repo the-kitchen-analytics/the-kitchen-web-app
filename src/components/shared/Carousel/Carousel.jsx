@@ -1,13 +1,16 @@
 import { Button } from 'semantic-ui-react'
-import { DefaultButton } from '../Button'
+import { useTheme } from '../../../hooks'
 
 export const Carousel = ({ leftButton, resetButton, rightButton }) => {
+
+  const { size } = useTheme()
+  const injectSizeProp = button => ({ size, ...button })
 
   const buttons = [
     { key: 'left', icon: 'chevron left', ...leftButton },
     { key: 'reset', content: 'По умолчанию', ...resetButton },
     { key: 'right', icon: 'chevron right', ...rightButton }
-  ].map(button => ({ ...button, as: DefaultButton }))
+  ].map(injectSizeProp)
 
   return (
     <Button.Group
