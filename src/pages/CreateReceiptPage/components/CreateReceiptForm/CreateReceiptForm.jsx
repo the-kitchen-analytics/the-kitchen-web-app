@@ -41,8 +41,8 @@ export const CreateReceiptForm = (props) => {
         <Form.Field required>
           <DatePicker
             required={true}
-            label="Выберите день"
-            name="date"
+            label={'Выберите день'}
+            name={'date'}
             value={formData.date}
             handleChange={handleInputChangeWrapper}
           />

@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
-import { ButtonGroup, DataTable, Loader, MainHeader } from '../../shared/components'
+import { ButtonGroup, Loader, MainHeader } from '../../shared/components'
 import { ErrorMessage, GoBackButton } from '../../shared/components'
 import { usePostData, useReceiptContext } from '../../shared/hooks'
 import { deleteReceiptById } from '../../domain/receipt'
+import { DataTable } from '../../modules'
 
 export const EditReceiptPage = () => {
 

@@ -1,6 +1,6 @@
 import { List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import { getProcedureTypeDisplayName } from '../../../../shared/utils'
+import { getProcedureTypeDisplayName } from '../../../shared/utils'
 
 const ListItem = (props) => {
 
@@ -25,7 +25,7 @@ const ListItem = (props) => {
 export const ProceduresList = ({ linkTo, procedures, listProps, shouldDisplayProcedurePriceInTable }) => (
   <List
     {...listProps}
-    size="medium"
+    size={'medium'}
   >
     {
       procedures.map((procedure, i) => (

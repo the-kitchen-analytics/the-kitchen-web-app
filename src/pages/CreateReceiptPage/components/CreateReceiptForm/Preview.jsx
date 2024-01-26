@@ -1,5 +1,5 @@
 import { Divider, Header } from 'semantic-ui-react'
-import { DataTable } from '../../../../shared/components'
+import { DataTable } from '../../../../modules'
 
 export const Preview = ({ data }) => (
   <>
