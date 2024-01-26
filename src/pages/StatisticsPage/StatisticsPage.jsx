@@ -1,5 +1,6 @@
 import { DayFilterLayout, MonthAndYearFilterLayout, YearFilterLayout } from '../../layouts'
-import { Statistics, TabularPage } from '../../shared/components'
+import { TabularPage } from '../../shared/components'
+import { Statistics } from '../../modules'
 import { getStatisticsByDay, getStatisticsByMonthAndYear, getStatisticsByYear } from './helpers'
 
 export const panes = [

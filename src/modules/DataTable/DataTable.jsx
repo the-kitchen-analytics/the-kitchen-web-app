@@ -1,13 +1,15 @@
 import _ from 'lodash'
 import { Icon, Table } from 'semantic-ui-react'
-import { DateCell, NotesCell, ProceduresCell } from './components'
-import { calculateTotalPrice, calculateTotalWorkerIncome } from '../../../shared/utils'
-import { Price } from '../'
+import { Price } from '../../shared/components'
+import { calculateTotalPrice, calculateTotalWorkerIncome } from '../../shared/utils'
+import { DateCell, ProceduresCell } from './components'
+
+const NotesCell = ({ content }) => <p>{content}</p>
 
 const NoTableContent = () => (
   <Table.Row>
-    <Table.Cell colSpan="4">
-      <Icon name="info circle" />
+    <Table.Cell colSpan={'4'}>
+      <Icon name={'info circle'} />
       <>Нет данных</>
     </Table.Cell>
   </Table.Row>

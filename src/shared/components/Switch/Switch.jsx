@@ -1,5 +1,5 @@
-import { useTheme } from '../../../shared/hooks'
 import classNames from 'classnames'
+import { useTheme } from '../../hooks'
 import './Switch.css'
 
 const SLIDER_DEFAULT_CLASS_NAMES = ['switch-slider', 'ui', 'button']
