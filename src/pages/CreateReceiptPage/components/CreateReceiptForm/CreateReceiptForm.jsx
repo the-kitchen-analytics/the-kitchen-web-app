@@ -15,8 +15,8 @@ export const CreateReceiptForm = (props) => {
     setFormData,
     receiptPreview,
     workerCategory,
-    accorditionActiveIndex,
-    setAccorditionActiveIndex,
+    accordionActiveIndex,
+    setAccordionActiveIndex,
     isLoading,
     handleFormSubmit,
     handleClearFromButtonClick,
@@ -72,8 +72,8 @@ export const CreateReceiptForm = (props) => {
               procedures={procedures}
               formData={formData}
               setFormData={setFormData}
-              accordionActiveIndex={accorditionActiveIndex}
-              setAccordionActiveIndex={setAccorditionActiveIndex}
+              accordionActiveIndex={accordionActiveIndex}
+              setAccordionActiveIndex={setAccordionActiveIndex}
             />
           )
       }

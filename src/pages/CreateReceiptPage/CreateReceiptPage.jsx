@@ -22,7 +22,7 @@ export const CreateReceiptPage = () => {
   const [isSavingReceipt, error, postData] = usePostData()
   const [successMessage, setSuccessMessage, clearSuccessMessage] = useMessage(null)
   const [receipt, setReceipt, initialReceipt] = useReceipt(uid)
-  const [accorditionActiveIndex, setAccorditionActiveIndex, resetAccordionActiveIndex] = useAccordionActiveIndex()
+  const [accordionActiveIndex, setAccordionActiveIndex, resetAccordionActiveIndex] = useAccordionActiveIndex()
 
   const isLoading = isSavingReceipt || isFetchingProcedures
 
@@ -98,8 +98,8 @@ export const CreateReceiptPage = () => {
             setFormData={setReceipt}
             receiptPreview={convertedFormData}
             workerCategory={workerCategory}
-            accorditionActiveIndex={accorditionActiveIndex}
-            setAccorditionActiveIndex={setAccorditionActiveIndex}
+            accordionActiveIndex={accordionActiveIndex}
+            setAccordionActiveIndex={setAccordionActiveIndex}
             isLoading={isLoading}
             handleFormSubmit={handleFormSubmit}
             handleClearFromButtonClick={handleClearFromButtonClick}
