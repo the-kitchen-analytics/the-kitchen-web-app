@@ -1,10 +1,10 @@
 import { DefaultSelect } from '../DefaultSelect'
-import { getMonthOptions } from '../../../../shared/utils'
+import { getMonthOptions } from '../../../utils'
 
 export const MonthSelect = ({ value, handleChange, options, disabled }) => (
   <DefaultSelect
     disabled={disabled}
-    placeholder='Выберите месяц'
+    placeholder={'Выберите месяц'}
     button
     basic
     options={options || getMonthOptions()}

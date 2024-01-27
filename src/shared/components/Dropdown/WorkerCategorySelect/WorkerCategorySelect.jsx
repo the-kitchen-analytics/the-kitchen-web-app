@@ -1,5 +1,5 @@
 import { Form } from 'semantic-ui-react'
-import { buildDropdownOptions } from '../../../../shared/utils'
+import { buildDropdownOptions } from '../../../utils'
 import workerCategoriesJson from '../../../../data/worker-categories.json'
 
 const workerCategoryOptions = buildDropdownOptions(
@@ -12,8 +12,8 @@ const workerCategoryOptions = buildDropdownOptions(
 export const WorkerCategorySelect = ({ value, options = workerCategoryOptions, handleChange }) => (
   <Form.Select
     required
-    label="Квалификация мастера"
-    placeholder='Нажмите, чтобы выбрать'
+    label={'Квалификация мастера'}
+    placeholder={'Нажмите, чтобы выбрать'}
     fluid
     selection
     value={value}
