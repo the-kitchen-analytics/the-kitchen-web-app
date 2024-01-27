@@ -1,6 +1,7 @@
 export * from './Button'
 export * from './Carousel'
 export * from './DatePicker'
+export * from './Chart'
 export * from './Dropdown'
 export * from './Message'
 export * from './Loader'

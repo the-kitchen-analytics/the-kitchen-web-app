@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Grid, Segment, Statistic } from 'semantic-ui-react'
-import { NoContent, PieChart } from '../../shared/components'
+import { DonutChart, NoContent } from '../../shared/components'
 
 
 export const Statistics = ({ chartData = [], statisticsData = [] }) => {
@@ -18,7 +18,11 @@ export const Statistics = ({ chartData = [], statisticsData = [] }) => {
       <Grid.Row>
         <Grid.Column>
           <Segment>
-            <PieChart data={chartData} />
+            <DonutChart
+              legend
+              radius={125}
+              data={chartData}
+            />
           </Segment>
         </Grid.Column>
       </Grid.Row>
