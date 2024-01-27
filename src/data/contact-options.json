@@ -1,0 +1,20 @@
+[
+  {
+    "key": "telegram",
+    "icon": "telegram",
+    "content": "Telegram",
+    "href": "https://t.me/glebremniov"
+  },
+  {
+    "key": "email",
+    "icon": "at",
+    "content": "Email",
+    "href": "mailto:g.remniov@gmail.com"
+  },
+  {
+    "key": "github",
+    "icon": "github",
+    "content": "GitHub",
+    "href": "https://github.com/glebremniov/the-kitchen-analytics-react-app"
+  }
+]

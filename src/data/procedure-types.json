@@ -1,22 +1,22 @@
 [
-    {
-        "id": "manicure",
-        "name": "manicure",
-        "displayName": "Маникюр"
-    },
-    {
-        "id": "pedicure",
-        "name": "pedicure",
-        "displayName": "Педикюр"
-    },
-    {
-        "id": "spa",
-        "name": "spa",
-        "displayName": "SPA-услуги"
-    },
-    {
-        "id": "brows",
-        "name": "brows",
-        "displayName": "Брови"
-    }
+  {
+    "id": "manicure",
+    "name": "manicure",
+    "displayName": "Маникюр"
+  },
+  {
+    "id": "pedicure",
+    "name": "pedicure",
+    "displayName": "Педикюр"
+  },
+  {
+    "id": "spa",
+    "name": "spa",
+    "displayName": "SPA-услуги"
+  },
+  {
+    "id": "brows",
+    "name": "brows",
+    "displayName": "Брови"
+  }
 ]
