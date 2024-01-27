@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
-import { Form, Placeholder } from 'semantic-ui-react'
-import { ButtonGroup, DatePicker, SaveButton } from '../../../../shared/components'
+import { Form } from 'semantic-ui-react'
+import { ButtonGroup, DatePicker, PlaceholderParagraph, SaveButton } from '../../../../shared/components'
 import { ProcedureSelect } from '../ProcedureSelect'
 import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../shared/utils'
 import { Preview } from './Preview'
@@ -58,15 +58,7 @@ export const CreateReceiptForm = (props) => {
 
       {
         isLoading
-          ? (
-            <Placeholder>
-              <Placeholder.Paragraph>
-                {
-                  _.range(0, 6).map((i) => <Placeholder.Line key={i} />)
-                }
-              </Placeholder.Paragraph>
-            </Placeholder>
-          )
+          ? <PlaceholderParagraph lines={6} />
           : (
             <ProcedureSelect
               procedures={procedures}
