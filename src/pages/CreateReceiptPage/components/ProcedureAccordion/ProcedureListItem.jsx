@@ -41,7 +41,6 @@ export const ProcedureListItem = (props) => {
 
   return (
     <Segment
-      className={'cursor-pointer'}
       color={activeColor}
       attached={!isChecked}
       raised={isChecked}
