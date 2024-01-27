@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useState, useMemo } from 'react'
 import { Segment, Header, Placeholder, Icon } from 'semantic-ui-react'
-import { LogOutButton, ErrorMessage, ButtonGroup } from '../../../../shared/components'
+import { LogOutButton, ErrorMessage, ButtonGroup, PlaceholderParagraph } from '../../../../shared/components'
 import { useInitialState, usePostData, useTheme, useUserDetailsContext } from '../../../../shared/hooks'
 import { getWorkerCategoryDisplayName } from '../../../../shared/utils'
 import { EditUserForm } from './EditUserForm'
@@ -48,10 +48,7 @@ export const UserProfile = () => {
             <Placeholder.Line />
             <Placeholder.Line />
           </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder.Paragraph>
+          <PlaceholderParagraph lines={2} />
         </Placeholder>
       )
     }
