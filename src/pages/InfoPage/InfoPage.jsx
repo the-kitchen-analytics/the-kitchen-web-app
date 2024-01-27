@@ -2,7 +2,7 @@ import { Grid } from 'semantic-ui-react'
 import { MainHeader } from '../../shared/components'
 import { ContactUs } from './ContactUs'
 import { Info } from './Info'
-import contactOptions from '../../data/contactOptions.json'
+import contactOptions from '../../data/contact-options.json'
 
 export const InfoPage = () => {
 

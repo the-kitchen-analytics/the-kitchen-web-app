@@ -1,6 +1,6 @@
 import { Form } from 'semantic-ui-react'
 import { buildDropdownOptions } from '../../../../shared/utils'
-import workerCategoriesJson from '../../../../data/workerCategories.json'
+import workerCategoriesJson from '../../../../data/worker-categories.json'
 
 const workerCategoryOptions = buildDropdownOptions(
   workerCategoriesJson,
