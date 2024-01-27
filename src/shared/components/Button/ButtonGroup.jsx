@@ -1,16 +1,13 @@
 import { Form } from 'semantic-ui-react'
-import classNames from 'classnames'
 import { DefaultButton } from './DefaultButton'
+import './ButtonGroup.css'
 
 export const ButtonGroup = ({ buttons = [] }) => (
-  <div className={'ui form'}>
-    <Form.Group widths={'equal'} className={'mb-0'}>
+  <div className={'ui form button-group'}>
+    <Form.Group widths={'equal'}>
       {
         buttons.map(({ as: Button = DefaultButton, ...props }, i) => (
-          <Form.Field
-            key={i}
-            className={classNames({ 'mb-0': i === buttons.length - 1 })}
-          >
+          <Form.Field key={i}>
             <Button {...props} />
           </Form.Field>
         ))
