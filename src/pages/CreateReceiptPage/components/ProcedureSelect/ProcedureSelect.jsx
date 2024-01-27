@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import { useCallback, useMemo } from 'react'
 import { Divider, Form } from 'semantic-ui-react'
+import { DisplayOptions } from '../DisplayOptions'
+import { ProcedureAccordion } from '../ProcedureAccordion'
 import { useLocalStorage, useToggleState } from '../../../../shared/hooks'
 import { toggleSetter, halfPartProceduresMapper } from '../../../../shared/utils'
 import procedureTypes from '../../../../data/procedure-types.json'
-import { DisplayOptions } from '../DisplayOptions'
-import { ProcedureAccordion } from '../ProcedureAccordion'
 
 export const ProcedureSelect = (props) => {
 
@@ -97,14 +97,16 @@ export const ProcedureSelect = (props) => {
 
   return (
     <Form.Group grouped required>
-
-      <Form.Field label="Выберите набор услуг" required />
-
       <Form.Field>
-        <DisplayOptions
-          options={displayOptions}
-        />
+        <DisplayOptions options={displayOptions} />
       </Form.Field>
+
+      <Divider hidden />
+
+      <Form.Field
+        required
+        label={'Выберите набор услуг'}
+      />
 
       <Form.Field>
         <ProcedureAccordion
@@ -118,7 +120,6 @@ export const ProcedureSelect = (props) => {
           removeFirstProcedure={removeFirstProcedure}
           setAccordionActiveIndex={setAccordionActiveIndex}
         />
-        <Divider hidden />
       </Form.Field>
 
     </Form.Group>
