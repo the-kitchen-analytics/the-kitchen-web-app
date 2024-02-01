@@ -25,9 +25,7 @@ export const CreateReceiptPage = () => {
   const [accordionActiveIndex, setAccordionActiveIndex, resetAccordionActiveIndex] = useAccordionActiveIndex()
 
   const isLoading = isSavingReceipt || isFetchingProcedures
-
-  const isReceiptValid = useMemo(() =>
-    validateReceipt(receipt), [receipt])
+  const isReceiptValid = useMemo(() => validateReceipt(receipt), [receipt])
 
   const convertedFormData = useMemo(() =>
     mapReceiptToFirebaseEntity(receipt), [receipt])

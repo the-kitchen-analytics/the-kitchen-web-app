@@ -34,5 +34,5 @@ export const updateUserDetails = (ref, payload) => {
 }
 
 export const deleteUserDetailsByUid = async (uid) => {
-  await deleteAllByUid(uid, path)
+  await deleteAllByUid(path, uid)
 }
