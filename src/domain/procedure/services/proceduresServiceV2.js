@@ -16,9 +16,5 @@ export const getProceduresV2ByWorkerCategory = async (workerCategory) => {
     orderBy('name'))
 
   const snapshot = await getDocs(q)
-  const data = getDocsData(snapshot)
-
-  console.debug('procedures', workerCategory, data)
-
-  return data
+  return getDocsData(snapshot)
 }

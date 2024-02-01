@@ -4,7 +4,7 @@ import {
   addDoc,
   deleteDoc,
   orderBy,
-  onSnapshot,
+  onSnapshot
 } from 'firebase/firestore'
 import { RECEIPTS } from '../../../config/firebaseCollectionNames'
 import { deleteAllByUid, getCollection, getDoc } from '../../../shared/utils'
@@ -33,5 +33,5 @@ export const deleteReceiptById = (id) => {
 }
 
 export const deleteAllReceiptsByUid = async (uid) => {
-  await deleteAllByUid(uid, path)
+  await deleteAllByUid(path, uid)
 }
