@@ -25,3 +25,7 @@ body {
 body * :not(i) {
   font-family: 'Roboto', sans-serif !important;
 }
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
