@@ -1,25 +1,24 @@
 import { DayFilterLayout, MonthAndYearFilterLayout, YearFilterLayout } from '../../layouts'
-import { TabularPage } from '../../shared/components'
-import { Statistics } from '../../modules'
+import { TabularPage, Statistics } from '../../modules'
 import { getStatisticsByDay, getStatisticsByMonthAndYear, getStatisticsByYear } from './helpers'
 
-export const panes = [
+export const tabs = [
   {
-    menuItem: 'За день',
+    name: 'За день',
     content: <DayFilterLayout
       as={Statistics}
       getData={getStatisticsByDay}
     />
   },
   {
-    menuItem: 'За месяц',
+    name: 'За месяц',
     content: <MonthAndYearFilterLayout
       as={Statistics}
       getData={getStatisticsByMonthAndYear}
     />
   },
   {
-    menuItem: 'За год',
+    name: 'За год',
     content: <YearFilterLayout
       as={Statistics}
       getData={getStatisticsByYear}
@@ -30,6 +29,6 @@ export const panes = [
 export const StatisticsPage = () => (
   <TabularPage
     header={{ content: 'Статистика' }}
-    panes={panes}
+    tabs={tabs}
   />
 )

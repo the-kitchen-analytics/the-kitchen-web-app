@@ -1,0 +1,55 @@
+:root {
+  --border-radius: .28571429rem;
+  --menu-bg-color: #f9fafb;
+  --menu-border: 1px solid rgba(34, 36, 38, .1);
+  --menu-border-radius: var(--border-radius);
+  --btn-color: rgba(0, 0, 0, .6);
+  --btn-padding: 0.785714em 0.785714em 0.785714em 0.78571429em;
+  --btn-border-radius: var(--border-radius);
+  --btn-font-size: 1.14285714rem;
+  --btn-font-weight: 400;
+  --btn-font-weight-active: 700;
+  --btn-outline-active: 1px solid rgba(34, 36, 38, .15);
+  --btn-shadow-active: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  --btn-bg-active: #ffffff;
+}
+
+.tabs .tab-menu {
+  display: flex;
+  background: var(--menu-bg-color);
+  border: var(--menu-border);
+  border-radius: var(--menu-border-radius);
+}
+
+.tabs .tab-menu .tab-menu-item {
+  flex: 1 0 0
+}
+
+.tabs .tab-menu .tab-menu-item button {
+  background: none;
+  color: var(--btn-color);
+  padding: var(--btn-padding);
+  width: 100%;
+  border: none;
+  border-radius: var(--btn-border-radius);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  text-transform: none;
+  text-shadow: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabs .tab-menu .tab-menu-item button.active {
+  background: var(--btn-bg-active);
+  outline: var(--btn-outline-active);
+  box-shadow: var(--btn-shadow-active);
+  font-weight: var(--btn-font-weight-active);
+}
+
+.tabs .tab-pane {
+  margin-top: 2rem;
+}
