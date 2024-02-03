@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 export const monthIndexes = Object.freeze(_.range(12))
 
-const getMonthName = (monthNumber) => {
+const buildMonthName = (monthNumber) => {
   const date = new Date()
   date.setMonth(monthNumber)
 
@@ -13,8 +13,10 @@ const getMonthName = (monthNumber) => {
 
 export const monthNames = Object.freeze(
   monthIndexes
-    .map(getMonthName)
+    .map(buildMonthName)
     .map(_.capitalize))
+
+export const getMonthName = (monthIndex) => monthNames[monthIndex]
 
 export const FIRST_MONTH_INDEX = monthIndexes[0]
 export const LAST_MONTH_INDEX = _.last(monthIndexes)

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { useMemo } from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import { Carousel, YearSelect } from '../../shared/components'
 import { useReceiptContext, useReceiptsFilteredByDate } from '../../shared/hooks'
 
@@ -17,36 +17,35 @@ export const YearFilterLayout = ({ getData, as: Component }) => {
   })), [options])
 
   return (
-    <Grid columns={1}>
-      <Grid.Column>
-        <YearSelect
-          value={date}
-          handleChange={(e, { value }) => setDate(value)}
-          options={yearSelectOptions}
-        />
-      </Grid.Column>
+    <>
+      <Form className={'mb-1'}>
+        <Form.Field>
+          <YearSelect
+            value={date}
+            handleChange={(e, { value }) => setDate(value)}
+            options={yearSelectOptions}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Carousel
+            leftButton={{
+              disabled: options.length === 0 || selectedDayIndex === _.lastIndexOf(options) - 1,
+              onClick: () => setDate(options[selectedDayIndex + 1])
+            }}
+            resetButton={{
+              content: 'Текущий год',
+              disabled: _.isEqual(date, _.first(options)),
+              onClick: () => setDate(_.first(options))
+            }}
+            rightButton={{
+              disabled: options.length === 0 || selectedDayIndex === 0,
+              onClick: () => setDate(options[selectedDayIndex - 1])
+            }}
+          />
+        </Form.Field>
+      </Form>
 
-      <Grid.Column>
-        <Carousel
-          leftButton={{
-            disabled: options.length === 0 || selectedDayIndex === _.lastIndexOf(options) - 1,
-            onClick: () => setDate(options[selectedDayIndex + 1])
-          }}
-          resetButton={{
-            content: 'Текущий год',
-            disabled: _.isEqual(date, _.first(options)),
-            onClick: () => setDate(_.first(options))
-          }}
-          rightButton={{
-            disabled: options.length === 0 || selectedDayIndex === 0,
-            onClick: () => setDate(options[selectedDayIndex - 1])
-          }}
-        />
-      </Grid.Column>
-
-      <Grid.Column>
-        <Component {...statistics} />
-      </Grid.Column>
-    </Grid>
+      <Component {...statistics} />
+    </>
   )
 }
