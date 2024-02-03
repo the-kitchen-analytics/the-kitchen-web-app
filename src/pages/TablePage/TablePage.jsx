@@ -1,26 +1,24 @@
 import { DayFilterLayout, MonthAndYearFilterLayout, YearFilterLayout } from '../../layouts'
-import { DataTable } from '../../modules'
-import { TabularPage } from '../../shared/components'
+import { TabularPage, DataTable } from '../../modules'
 import { getTableDataByDay, getTableDataByMonthAndYear, getTableDataByYear } from './helpers'
 
-export const panes = [
+export const tabs = [
   {
-    menuItem: 'За день',
-    content:
-      <DayFilterLayout
-        as={DataTable}
-        getData={getTableDataByDay}
-      />
+    name: 'За день',
+    content: <DayFilterLayout
+      as={DataTable}
+      getData={getTableDataByDay}
+    />
   },
   {
-    menuItem: 'За месяц',
+    name: 'За месяц',
     content: <MonthAndYearFilterLayout
       as={DataTable}
       getData={getTableDataByMonthAndYear}
     />
   },
   {
-    menuItem: 'За год',
+    name: 'За год',
     content: <YearFilterLayout
       as={DataTable}
       getData={getTableDataByYear}
@@ -31,6 +29,6 @@ export const panes = [
 export const TablePage = () => (
   <TabularPage
     header={{ content: 'Главная' }}
-    panes={panes}
+    tabs={tabs}
   />
 )
