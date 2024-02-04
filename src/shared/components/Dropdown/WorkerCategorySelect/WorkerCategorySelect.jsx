@@ -15,7 +15,6 @@ export const WorkerCategorySelect = ({ value, options = workerCategoryOptions, h
     label={'Квалификация мастера'}
     placeholder={'Нажмите, чтобы выбрать'}
     fluid
-    selection
     value={value}
     onChange={handleChange}
     options={options}

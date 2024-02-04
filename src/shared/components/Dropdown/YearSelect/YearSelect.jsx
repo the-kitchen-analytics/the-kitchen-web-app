@@ -6,7 +6,6 @@ export const YearSelect = ({ value, handleChange, options, disabled }) => (
     placeholder={'Выберите год'}
     button
     basic
-    selection
     options={options}
     onChange={handleChange}
     value={value}

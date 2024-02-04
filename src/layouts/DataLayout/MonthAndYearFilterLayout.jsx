@@ -31,20 +31,26 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
   return (
     <>
       <Form className={'mb-1'}>
+
         <Form.Field>
-          <MonthSelect
-            value={date.month}
-            handleChange={(e, { value }) => setSelectedMonth(value)}
-            disabled={yearSelectOptions <= 1}
-          />
+          <Form.Group widths={'2'} unstackable>
+            <Form.Field>
+              <MonthSelect
+                value={date.month}
+                handleChange={(e, { value }) => setSelectedMonth(value)}
+                disabled={yearSelectOptions <= 1}
+              />
+            </Form.Field>
+            <Form.Field>
+              <YearSelect
+                value={date.year}
+                handleChange={(e, { value }) => setSelectedYear(value)}
+                options={yearSelectOptions}
+              />
+            </Form.Field>
+          </Form.Group>
         </Form.Field>
-        <Form.Field>
-          <YearSelect
-            value={date.year}
-            handleChange={(e, { value }) => setSelectedYear(value)}
-            options={yearSelectOptions}
-          />
-        </Form.Field>
+
         <Form.Field>
           <Carousel
             leftButton={{
