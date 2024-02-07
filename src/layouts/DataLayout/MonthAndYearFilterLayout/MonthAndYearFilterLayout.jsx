@@ -1,9 +1,14 @@
-import _ from 'lodash'
 import { useMemo } from 'react'
 import { Form } from 'semantic-ui-react'
-import { Carousel, MonthSelect, YearSelect } from '../../shared/components'
-import { useReceiptContext, useReceiptsFilteredByDate } from '../../shared/hooks'
-import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX, getCurrentMonthAndYear } from '../../shared/utils'
+import { Carousel, MonthSelect, YearSelect } from '../../../shared/components'
+import { useReceiptContext, useReceiptsFilteredByDate } from '../../../shared/hooks'
+import { buildDropdownOptions, getCurrentMonthAndYear } from '../../../shared/utils'
+import {
+  increment, decrement, reset,
+  shouldDisableIncrementButton,
+  shouldDisableDecrementButton,
+  shouldDisableResetButton
+} from './helpers'
 
 const INITIAL_DATE = getCurrentMonthAndYear()
 
@@ -11,7 +16,8 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
 
   const [componentProps, date, setDate] = useReceiptsFilteredByDate(INITIAL_DATE, getData)
   const { workedYears: yearOptions } = useReceiptContext()
-  const defaultSelectedDate = useMemo(() => date, [])
+  const initialDate = useMemo(() => date, [])
+  const yearSelectOptions = buildDropdownOptions(yearOptions)
 
   const setSelectedMonth = (month) => {
     setDate((date) => ({ ...date, month }))
@@ -21,24 +27,31 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
     setDate((date) => ({ ...date, year }))
   }
 
-  const yearSelectOptions = useMemo(() => yearOptions.map(year => ({
-    key: year,
-    text: year,
-    value: year
-  })), [yearOptions])
-
+  const carouselProps = {
+    leftButton: {
+      disabled: shouldDisableDecrementButton(date, yearOptions),
+      onClick: () => setDate(decrement(date))
+    },
+    resetButton: {
+      content: 'Текущий месяц',
+      disabled: shouldDisableResetButton(date, initialDate),
+      onClick: () => setDate(reset(initialDate))
+    },
+    rightButton: {
+      disabled: shouldDisableIncrementButton(date, yearOptions),
+      onClick: () => setDate(increment(date))
+    }
+  }
 
   return (
     <>
       <Form className={'mb-1'}>
-
         <Form.Field>
           <Form.Group widths={'2'} unstackable>
             <Form.Field>
               <MonthSelect
                 value={date.month}
                 handleChange={(e, { value }) => setSelectedMonth(value)}
-                disabled={yearSelectOptions <= 1}
               />
             </Form.Field>
             <Form.Field>
@@ -52,21 +65,7 @@ export const MonthAndYearFilterLayout = ({ getData, as: Component }) => {
         </Form.Field>
 
         <Form.Field>
-          <Carousel
-            leftButton={{
-              disabled: yearSelectOptions.length === 0 || date.month <= FIRST_MONTH_INDEX,
-              onClick: () => setSelectedMonth(date.month - 1)
-            }}
-            resetButton={{
-              content: 'Текущий месяц',
-              disabled: _.isEqual(defaultSelectedDate, date),
-              onClick: () => setDate(defaultSelectedDate)
-            }}
-            rightButton={{
-              disabled: yearSelectOptions.length === 0 || date.month >= LAST_MONTH_INDEX,
-              onClick: () => setSelectedMonth(date.month + 1)
-            }}
-          />
+          <Carousel {...carouselProps} />
         </Form.Field>
       </Form>
 
