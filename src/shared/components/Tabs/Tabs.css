@@ -11,6 +11,7 @@
   --btn-font-weight-active: 700;
   --btn-outline-active: 1px solid rgba(34, 36, 38, .15);
   --btn-shadow-active: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  --btn-color-active: rgba(0, 0, 0, .75);
   --btn-bg-active: #ffffff;
 }
 
@@ -45,6 +46,7 @@
 
 .tabs .tab-menu .tab-menu-item button.active {
   background: var(--btn-bg-active);
+  color: var(--btn-color-active);
   outline: var(--btn-outline-active);
   box-shadow: var(--btn-shadow-active);
   font-weight: var(--btn-font-weight-active);
