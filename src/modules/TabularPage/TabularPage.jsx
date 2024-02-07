@@ -22,7 +22,7 @@ export const TabularPage = ({ header, tabs }) => {
       </Grid.Column>
 
       <Grid.Column>
-        <Tabs panes={tabPanes} />
+        <Tabs tabs={tabPanes} />
       </Grid.Column>
     </Grid>
   )
