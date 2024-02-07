@@ -9,4 +9,5 @@
 
 .navigation-menu .navigation-menu-item {
   background: none !important;
+  color: rgba(0, 0, 0, .90) !important;
 }
