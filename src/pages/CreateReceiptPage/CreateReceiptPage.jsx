@@ -1,17 +1,20 @@
 import _ from 'lodash'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
-import { ErrorMessage, SuccessMessage, MainHeader } from '../../shared/components'
-import { CreateReceiptForm } from './components'
-import { usePostData, useProcedures, useUserDetailsContext, useMessage } from '../../shared/hooks'
+import { MainHeader } from '../../shared/components'
+import { CreateReceiptForm, MessageBar } from './components'
+import { useMessage, usePostData, useProcedures, useUserDetailsContext } from '../../shared/hooks'
 import { createReceipt, mapReceiptToFirebaseEntity, validateReceipt } from '../../domain/receipt'
 import { useAccordionActiveIndex, useReceipt } from './hooks'
 import { RECEIPT_PATH } from '../../router'
 
+const WARNING_MESSAGE = 'Выбран не сегодняшний день'
+
 const ReceiptSavedMessage = ({ receipt }) => (
   <>
-    Запись сохранена. <Link to={`${RECEIPT_PATH}/${receipt.id}`}>Нажмите, чтобы просмотреть</Link>
+    <Link to={`${RECEIPT_PATH}/${receipt.id}`}>Запись</Link> сохранена.
+    Нажмите, чтобы <Link to={RECEIPT_PATH}>просмотреть все</Link>
   </>
 )
 
@@ -23,12 +26,21 @@ export const CreateReceiptPage = () => {
   const [successMessage, setSuccessMessage, clearSuccessMessage] = useMessage(null)
   const [receipt, setReceipt, initialReceipt] = useReceipt(uid)
   const [accordionActiveIndex, setAccordionActiveIndex, resetAccordionActiveIndex] = useAccordionActiveIndex()
+  const [warningMessage, setWarningMessage, clearWarningMessage] = useMessage(null)
 
   const isLoading = isSavingReceipt || isFetchingProcedures
   const isReceiptValid = useMemo(() => validateReceipt(receipt), [receipt])
 
   const convertedFormData = useMemo(() =>
     mapReceiptToFirebaseEntity(receipt), [receipt])
+
+  useEffect(() => {
+    if (receipt.date !== initialReceipt.date) {
+      setWarningMessage(WARNING_MESSAGE)
+    } else {
+      clearWarningMessage()
+    }
+  }, [receipt, initialReceipt])
 
   const clearForm = () => {
     setReceipt(initialReceipt)
@@ -74,22 +86,13 @@ export const CreateReceiptPage = () => {
 
       <Grid.Row>
         <Grid.Column>
-          {
-            successMessage && (
-              <SuccessMessage
-                header={'Готово'}
-                content={successMessage}
-              />
-            )
-          }
+          <MessageBar
+            errorMessage={error?.message}
+            successMessage={successMessage}
+            warningMessage={warningMessage}
+            clearWarningMessage={clearWarningMessage}
+          />
 
-          {
-            error && (
-              <ErrorMessage
-                content={error.message}
-              />
-            )
-          }
           <CreateReceiptForm
             formData={receipt}
             procedures={procedures}
