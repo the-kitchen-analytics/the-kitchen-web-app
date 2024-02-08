@@ -14,7 +14,7 @@ const WARNING_MESSAGE = 'Выбран не сегодняшний день'
 const ReceiptSavedMessage = ({ receipt }) => (
   <>
     <Link to={`${RECEIPT_PATH}/${receipt.id}`}>Запись</Link> сохранена.
-    Нажмите, чтобы просмотреть, чтобы просмотреть <Link to={RECEIPT_PATH}>все</Link>
+    Нажмите, чтобы <Link to={RECEIPT_PATH}>просмотреть все</Link>
   </>
 )
 
