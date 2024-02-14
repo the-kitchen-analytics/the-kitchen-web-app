@@ -10,7 +10,7 @@ export const useReceipts = (options) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    return streamReceiptsByUid(uid,
+    const unsubscribe = streamReceiptsByUid(uid,
       (querySnapshot) => {
         setIsLoading(true)
 
@@ -31,6 +31,11 @@ export const useReceipts = (options) => {
         setIsLoading(false)
       }
     )
+
+    return () => {
+      console.debug('unsubscribe')
+      unsubscribe()
+    }
   }, [uid])
 
   return [data, isLoading, error]
