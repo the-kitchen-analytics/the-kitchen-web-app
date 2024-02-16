@@ -18,7 +18,11 @@ const getDocRef = (id) => {
 
 export const streamReceiptsByUid = (uid, snapshot, error) => {
   console.debug('streamReceiptsByUid', uid)
-  const q = query(collection, where('uid', '==', uid), orderBy('date', 'desc'))
+
+  const q = query(collection,
+    where('uid', '==', uid),
+    orderBy('date', 'desc'))
+
   return onSnapshot(q, snapshot, error)
 }
 
