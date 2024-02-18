@@ -13,7 +13,7 @@ import {
   TablePage, StatisticsPage
 } from '../pages'
 
-import { MainLayout, RequireAuth } from '../layouts'
+import { MainLayout, ReceiptContexLayout, RequireAuth } from '../layouts'
 
 const NavigateToHome = () => <Navigate to={TABLE_PATH} />
 
@@ -26,9 +26,13 @@ export const router = createBrowserRouter([
     element: <RequireAuth />, children: [
       {
         element: <MainLayout />, children: [
-          { path: TABLE_PATH, element: <TablePage /> },
-          { path: STATISTICS_PATH, element: <StatisticsPage /> },
-          { path: RECEIPT_EDIT_PATH, element: <EditReceiptPage /> },
+          {
+            element: <ReceiptContexLayout />, children: [
+              { path: TABLE_PATH, element: <TablePage /> },
+              { path: STATISTICS_PATH, element: <StatisticsPage /> },
+              { path: RECEIPT_EDIT_PATH, element: <EditReceiptPage /> }
+            ]
+          },
           { path: RECEIPT_CREATE_PATH, element: <CreateReceiptPage /> },
           { path: SETTINGS_PATH, element: <SettingsPage /> },
           { path: INFO_PATH, element: <InfoPage /> }

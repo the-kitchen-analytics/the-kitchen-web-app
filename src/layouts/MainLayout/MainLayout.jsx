@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react'
 import { Outlet, useLocation, useOutletContext } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
-import { ReceiptContextProvider, UserDetailsContextProvider, UserSettingsContextProvider } from '../../context'
+import { UserDetailsContextProvider, UserSettingsContextProvider } from '../../context'
 import { NavigationMenu } from './NavigationMenu'
 import { Footer } from './Footer'
 import './MainLayout.css'
@@ -32,12 +32,7 @@ export const MainLayout = () => {
           <Grid.Row>
             <Grid.Column {...outletColumConfig}>
               <UserDetailsContextProvider uid={user.uid}>
-                <ReceiptContextProvider
-                  uid={user.uid}
-                  limit={250}
-                >
-                  <Outlet context={{ user }} />
-                </ReceiptContextProvider>
+                <Outlet context={{ user }} />
               </UserDetailsContextProvider>
             </Grid.Column>
           </Grid.Row>

@@ -1,33 +1,43 @@
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
-import { mapFirebaseEntityToReceipt, streamReceiptsByUid } from '../../domain/receipt'
+import { findAllReceiptsByUid } from '../../domain/receipt'
 
 export const useReceipts = (options) => {
-  const { uid, limit } = options
+  console.debug('useReceipts')
 
+  const { uid, limit } = options
   const [data, setData] = useState()
   const [error, setError] = useState()
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    const handleSnapshot = (querySnapshot) => {
+  const fetchData = async (uid, limit) => {
+    try {
       setIsLoading(true)
+      setData(null)
+      setError(null)
 
-      const receipts = querySnapshot.docs.map(mapFirebaseEntityToReceipt)
+      const receipts = await findAllReceiptsByUid(uid, limit)
       const workedDays = _.uniq(receipts.map(({ dateFormatted }) => dateFormatted))
       const workedYears = _.uniq(receipts.map(({ date }) => date.getFullYear()))
 
       setData({ receipts, workedDays, workedYears })
+
+    } catch (e) {
+      console.error(e.toString())
+      setError(e)
+
+    } finally {
       setIsLoading(false)
     }
 
-    const handleError = (error) => {
-      setError(error)
-      setIsLoading(false)
-    }
+  }
 
-    const unsubscribe = streamReceiptsByUid(options, handleSnapshot, handleError)
-    return unsubscribe
+  useEffect(() => {
+    console.debug('useReceipts -> useEffect')
+
+    if (uid) {
+      fetchData(uid, limit)
+    }
   }, [uid, limit])
 
   return [data, isLoading, error]

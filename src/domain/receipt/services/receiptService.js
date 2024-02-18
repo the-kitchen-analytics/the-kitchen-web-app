@@ -1,14 +1,7 @@
-import {
-  query,
-  where,
-  addDoc,
-  deleteDoc,
-  orderBy,
-  onSnapshot,
-  limit
-} from 'firebase/firestore'
+import { query, where, addDoc, deleteDoc, orderBy, limit, getDocs } from 'firebase/firestore'
 import { RECEIPTS } from '../../../config/firebaseCollectionNames'
 import { deleteAllByUid, getCollection, getDoc } from '../../../shared/utils'
+import { mapFirebaseEntityToReceipt } from '../mappers'
 
 const path = RECEIPTS
 const collection = getCollection(path)
@@ -17,15 +10,16 @@ const getDocRef = (id) => {
   return getDoc(path, id)
 }
 
-export const streamReceiptsByUid = ({ uid, limit: limitNum = 100 }, snapshot, error) => {
-  console.debug('streamReceiptsByUid', uid)
+export const findAllReceiptsByUid = async (uid, limitNumber = 100) => {
+  console.debug('findAllReceiptsByUid', uid)
 
   const q = query(collection,
     where('uid', '==', uid),
     orderBy('date', 'desc'),
-    limit(limitNum))
+    limit(limitNumber))
 
-  return onSnapshot(q, snapshot, error)
+  const snapshot = await getDocs(q)
+  return snapshot.docs.map(mapFirebaseEntityToReceipt)
 }
 
 export const createReceipt = (data) => {
