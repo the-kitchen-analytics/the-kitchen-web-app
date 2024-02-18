@@ -4,7 +4,8 @@ import {
   addDoc,
   deleteDoc,
   orderBy,
-  onSnapshot
+  onSnapshot,
+  limit
 } from 'firebase/firestore'
 import { RECEIPTS } from '../../../config/firebaseCollectionNames'
 import { deleteAllByUid, getCollection, getDoc } from '../../../shared/utils'
@@ -16,12 +17,13 @@ const getDocRef = (id) => {
   return getDoc(path, id)
 }
 
-export const streamReceiptsByUid = (uid, snapshot, error) => {
+export const streamReceiptsByUid = ({ uid, limit: limitNum = 100 }, snapshot, error) => {
   console.debug('streamReceiptsByUid', uid)
 
   const q = query(collection,
     where('uid', '==', uid),
-    orderBy('date', 'desc'))
+    orderBy('date', 'desc'),
+    limit(limitNum))
 
   return onSnapshot(q, snapshot, error)
 }

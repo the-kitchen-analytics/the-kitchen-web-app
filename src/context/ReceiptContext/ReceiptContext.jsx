@@ -3,9 +3,9 @@ import { Loader } from '../../shared/components'
 import { useReceipts } from './useReceipts'
 
 export const ReceiptContext = createContext({})
-export const ReceiptContextProvider = ({ uid, children }) => {
+export const ReceiptContextProvider = ({ uid, limit, children }) => {
 
-  const [data, isLoading, error] = useReceipts({ uid })
+  const [data, isLoading, error] = useReceipts({ uid, limit })
 
   const getReceiptById = useCallback((id) => {
     if (isLoading || error || !data) {

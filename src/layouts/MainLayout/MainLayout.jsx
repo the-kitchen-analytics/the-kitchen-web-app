@@ -32,7 +32,10 @@ export const MainLayout = () => {
           <Grid.Row>
             <Grid.Column {...outletColumConfig}>
               <UserDetailsContextProvider uid={user.uid}>
-                <ReceiptContextProvider uid={user.uid}>
+                <ReceiptContextProvider
+                  uid={user.uid}
+                  limit={250}
+                >
                   <Outlet context={{ user }} />
                 </ReceiptContextProvider>
               </UserDetailsContextProvider>

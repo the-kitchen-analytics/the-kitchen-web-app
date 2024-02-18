@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { mapFirebaseEntityToReceipt, streamReceiptsByUid } from '../../domain/receipt'
 
 export const useReceipts = (options) => {
-  const { uid } = options
+  const { uid, limit } = options
 
   const [data, setData] = useState()
   const [error, setError] = useState()
@@ -26,9 +26,9 @@ export const useReceipts = (options) => {
       setIsLoading(false)
     }
 
-    const unsubscribe = streamReceiptsByUid(uid, handleSnapshot, handleError)
+    const unsubscribe = streamReceiptsByUid(options, handleSnapshot, handleError)
     return unsubscribe
-  }, [uid])
+  }, [uid, limit])
 
   return [data, isLoading, error]
 }
