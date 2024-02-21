@@ -1,12 +1,7 @@
-import { NoContent } from '../NoContent'
-import { findOrDefault } from '../../utils'
+import { Outlet } from 'react-router-dom'
 
-const defaultPane = { content: <NoContent /> }
-
-export const TabPane = ({ tabs }) => (
+export const TabPane = () => (
   <div className="tab-pane">
-    {
-      findOrDefault(tabs, ({ active }) => active, defaultPane).content
-    }
+    <Outlet />
   </div>
 )

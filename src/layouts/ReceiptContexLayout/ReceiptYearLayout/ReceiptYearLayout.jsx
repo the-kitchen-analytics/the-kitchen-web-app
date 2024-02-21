@@ -1,21 +1,25 @@
 import _ from 'lodash'
-import { Form } from 'semantic-ui-react'
-import { Carousel, YearSelect } from '../../../shared/components'
-import { useReceiptContext, useReceiptsFilteredByDate } from '../../../shared/hooks'
+import { useState } from 'react'
 import { buildDropdownOptions } from '../../../shared/utils'
+import { YearSelect } from '../../../shared/components'
+import { DefaultLayout } from '../common'
+import { useReceipts } from './hooks'
 import {
-  decrement, increment, reset,
+  decrement,
+  increment,
+  reset,
   shouldDisableDecrementButton,
   shouldDisableIncrementButton,
   shouldDisableResetButton
 } from './helpers'
 
-export const YearFilterLayout = ({ getData, as: Component }) => {
+export const ReceiptYearLayout = () => {
 
-  const { workedYears: options } = useReceiptContext()
-  const [statistics, date, setDate] = useReceiptsFilteredByDate(options[0], getData)
+  const options = [2024, 2023, 2022]
+  const [date, setDate] = useState(options[0])
   const selectedYearIndex = _.indexOf(options, date)
   const yearSelectOptions = buildDropdownOptions(options)
+  const [receipts, loading] = useReceipts(date)
 
   const carouselProps = {
     leftButton: {
@@ -34,21 +38,16 @@ export const YearFilterLayout = ({ getData, as: Component }) => {
   }
 
   return (
-    <>
-      <Form className={'mb-1'}>
-        <Form.Field>
-          <YearSelect
-            value={date}
-            handleChange={(e, { value }) => setDate(value)}
-            options={yearSelectOptions}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Carousel {...carouselProps} />
-        </Form.Field>
-      </Form>
-
-      <Component {...statistics} />
-    </>
+    <DefaultLayout
+      loading={loading}
+      receipts={receipts}
+      dateSelect={{
+        as: YearSelect,
+        value: date,
+        handleChange: (e, { value }) => setDate(value),
+        options: yearSelectOptions
+      }}
+      carousel={{ ...carouselProps }}
+    />
   )
-}
+} 

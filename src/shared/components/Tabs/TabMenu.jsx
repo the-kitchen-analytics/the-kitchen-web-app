@@ -1,15 +1,13 @@
-import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
 
 export const TabMenu = ({ tabs }) => (
   <div className="tab-menu">
     {
-      tabs.map(({ name, active, onClick }) => (
-        <div key={name} className="tab-menu-item">
-          <button
-            type="button"
-            className={classNames({ active })}
-            onClick={onClick}
-          >{name}</button>
+      tabs.map(({ content, to }) => (
+        <div key={content} className="tab-menu-item">
+          <NavLink to={to}>
+            {content}
+          </NavLink>
         </div>
       ))
     }

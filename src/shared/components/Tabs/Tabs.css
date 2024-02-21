@@ -26,7 +26,8 @@
   flex: 1 0 0
 }
 
-.tabs .tab-menu .tab-menu-item button {
+.tabs .tab-menu .tab-menu-item a {
+  display: block;
   background: none;
   color: var(--btn-color);
   padding: var(--btn-padding);
@@ -44,7 +45,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.tabs .tab-menu .tab-menu-item button.active {
+.tabs .tab-menu .tab-menu-item a.active {
   background: var(--btn-bg-active);
   color: var(--btn-color-active);
   outline: var(--btn-outline-active);

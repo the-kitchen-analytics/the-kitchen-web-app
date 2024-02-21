@@ -6,7 +6,7 @@ export const decrement = (selectedDayIndex, options) => options[selectedDayIndex
 
 export const reset = options => _.first(options)
 
-export const shouldDisableResetButton = (date, options) => _.isEqual(date, _.first(options))
+export const shouldDisableResetButton = (date, options) => _.isEmpty(options) || _.isEqual(date, _.first(options))
 
 export const shouldDisableIncrementButton = (selectedDayIndex, options) =>
   options.length === 0 || selectedDayIndex === 0

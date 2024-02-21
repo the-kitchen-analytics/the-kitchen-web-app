@@ -1,7 +1,7 @@
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
+import { collection, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../../../config/firebase'
 import { PROCEDURES_V2 } from '../../../config/firebaseCollectionNames'
-import { getDocsData } from '../../../shared/utils'
+import { getDocsByQuery } from '../../../shared/utils'
 
 const getCollection = () => {
   return collection(db, PROCEDURES_V2)
@@ -15,6 +15,5 @@ export const getProceduresV2ByWorkerCategory = async (workerCategory) => {
     where('workerCategory', '==', workerCategory),
     orderBy('name'))
 
-  const snapshot = await getDocs(q)
-  return getDocsData(snapshot)
+  return getDocsByQuery(q)
 }

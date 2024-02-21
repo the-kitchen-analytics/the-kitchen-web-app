@@ -8,8 +8,7 @@ export const useUserDetails = (uid) => {
     return getUserDetailsByUid(uid)
   }, [uid])
 
-  const { data: doc, isLoading, refresh } = useFetchData(fetchData)
-
+  const [doc, isLoading, getError, refresh] = useFetchData(fetchData)
   const [isUpdating, updateError, update] = usePostData()
 
   const updateDetails = async (payload) => {
@@ -21,6 +20,6 @@ export const useUserDetails = (uid) => {
     userDetails: isLoading && !doc.empty ? {} : doc.data(),
     updateUserDetails: updateDetails,
     isLoading: isLoading || isUpdating,
-    error: updateError,
+    error: getError || updateError,
   }
 }
