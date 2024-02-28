@@ -31,6 +31,7 @@ const useReload = () => {
     e.preventDefault()
     setIsLoading(true)
     localStorage.clear()
+    sessionStorage.clear()
 
     setTimeout(() => {
       navigate(HOME_PATH)
