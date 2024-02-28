@@ -1,7 +1,13 @@
 import _ from 'lodash'
 import { useState } from 'react'
-import { DaySelect } from '../../../shared/components'
-import { atStartDay, buildDropdownOptions, getCurrentDate } from '../../../shared/utils'
+import { DatePicker } from '../../../shared/components'
+import {
+  atStartDay,
+  buildDropdownOptions,
+  formatDateForDatePicker,
+  getCurrentDate,
+  parseDateFromDropdown
+} from '../../../shared/utils'
 import { DefaultLayout } from '../common'
 import {
   decrement,
@@ -41,10 +47,10 @@ export const ReceiptDayLayout = () => {
   return (
     <DefaultLayout
       dateSelect={{
-        as: DaySelect,
-        value: date,
+        as: DatePicker,
+        value: formatDateForDatePicker(date),
         options: buildDropdownOptions(options),
-        handleChange: (e, { value }) => setDate(value)
+        handleChange: (e, { value }) => setDate(parseDateFromDropdown(value))
       }}
       carousel={carouselProps}
       loading={loading}
