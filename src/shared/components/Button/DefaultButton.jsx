@@ -1,5 +1,5 @@
 import { Button } from 'semantic-ui-react'
-import { useTheme } from '../../../shared/hooks'
+import { useTheme } from '../../hooks'
 
 export const DefaultButton = (props) => {
   const { size } = useTheme()
