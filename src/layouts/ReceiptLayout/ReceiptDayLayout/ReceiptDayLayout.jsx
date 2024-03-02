@@ -48,6 +48,7 @@ export const ReceiptDayLayout = () => {
     <DefaultLayout
       dateSelect={{
         as: DatePicker,
+        maxToday: true,
         value: formatDateForDatePicker(date),
         options: buildDropdownOptions(options),
         handleChange: (e, { value }) => setDate(parseDateFromDropdown(value))

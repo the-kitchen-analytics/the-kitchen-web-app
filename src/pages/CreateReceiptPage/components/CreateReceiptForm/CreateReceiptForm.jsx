@@ -40,7 +40,8 @@ export const CreateReceiptForm = (props) => {
       <Form.Group widths="equal">
         <Form.Field required>
           <DatePicker
-            size={'normal'}
+            sizeDefault
+            maxToday
             required={true}
             label={'Выберите день'}
             name={'date'}
