@@ -1,10 +1,13 @@
-import { query, where, addDoc, deleteDoc, orderBy, limit, getDoc, getDocs, Timestamp } from 'firebase/firestore'
+import { addDoc, deleteDoc, getDoc, getDocs, limit, orderBy, query, Timestamp, where } from 'firebase/firestore'
 import { RECEIPTS } from '../../../config/firebaseCollectionNames'
 import {
   deleteAllByUid,
   getCollection,
-  getDocRef, getDocsByQuery, getFirstDayOfMonth,
-  getFirstDayOfYear, getLastDayOfMonth,
+  getDocRef,
+  getDocsByQuery,
+  getFirstDayOfMonth,
+  getFirstDayOfYear,
+  getLastDayOfMonth,
   getLastDayOfYear,
 } from '../../../shared/utils'
 import { mapFirebaseEntityToReceipt } from '../mappers'
@@ -13,7 +16,7 @@ const path = RECEIPTS
 const collection = getCollection(path)
 
 export const findAllReceiptsByUid = async (uid, limitNumber = 100) => {
-  console.debug('findAllReceiptsByUid', uid)
+  console.debug('findAllReceiptsByUid', uid, 'limit', limitNumber)
 
   const q = query(collection,
     where('uid', '==', uid),
@@ -76,6 +79,13 @@ export const findAllByMonthAndYear = async (uid, month, year) => {
     orderBy('date', 'desc'))
 
   return getDocsByQuery(q, mapFirebaseEntityToReceipt)
+}
+
+export const getLastWorkedDay = async (uid) => {
+  console.debug('getLastWorkedDay', uid)
+  const [receipt] = await findAllReceiptsByUid(uid, 1)
+
+  return receipt ? receipt.date : null
 }
 
 export const createReceipt = (data) => {
