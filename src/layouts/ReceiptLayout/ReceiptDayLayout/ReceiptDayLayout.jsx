@@ -1,30 +1,28 @@
-import { useCallback, useState } from 'react'
-import { DatePicker, Loader } from '../../../shared/components'
-import { atStartDay, formatDateForDatePicker, getCurrentDate, parseDateFromDropdown } from '../../../shared/utils'
+import { useState } from 'react'
+import { DatePicker } from '../../../shared/components'
+import { areDatesEqual, formatDateForDatePicker, parseDateFromDropdown } from '../../../shared/utils'
 import { DefaultLayout } from '../common'
 import { useReceipts } from './hooks'
-import { useFetchData, useUserDetailsContext } from '../../../shared/hooks'
-import { getLastWorkedDay } from '../../../domain/receipt'
+import { useLastWorkedDayContext } from '../../../shared/hooks'
 
-const INITIAL_DATE = atStartDay(getCurrentDate())
-
-const ReceiptDayLayoutBody = ({ lastWorkedDay }) => {
-  const [date, setDate] = useState(lastWorkedDay)
+export const ReceiptDayLayout = () => {
+  const initialDate = useLastWorkedDayContext()
+  const [date, setDate] = useState(initialDate)
   const [receipts, loading] = useReceipts(date)
 
   const carouselProps = {
     leftButton: {
       disabled: true,
-      onClick: () => setDate(lastWorkedDay)
+      onClick: () => setDate(initialDate)
     },
     resetButton: {
       content: 'Последний день',
-      disabled: date === lastWorkedDay,
-      onClick: () => setDate(lastWorkedDay)
+      disabled: areDatesEqual(date, initialDate),
+      onClick: () => setDate(initialDate)
     },
     rightButton: {
       disabled: true,
-      onClick: () => setDate(lastWorkedDay)
+      onClick: () => setDate(initialDate)
     }
   }
 
@@ -42,23 +40,4 @@ const ReceiptDayLayoutBody = ({ lastWorkedDay }) => {
       receipts={receipts}
     />
   )
-}
-
-export const ReceiptDayLayout = () => {
-  const [{ uid }] = useUserDetailsContext()
-  const fetchLastWorkedDay = useCallback(() => getLastWorkedDay(uid), [uid])
-  const [lastWorkedDay, loading] = useFetchData(fetchLastWorkedDay)
-
-  if (loading) {
-    return <Loader
-      indeterminate
-      content={'Поиск последнего рабочего дня'}
-    />
-  }
-
-  const value = lastWorkedDay
-    ? atStartDay(lastWorkedDay)
-    : INITIAL_DATE
-
-  return <ReceiptDayLayoutBody lastWorkedDay={value} />
 }

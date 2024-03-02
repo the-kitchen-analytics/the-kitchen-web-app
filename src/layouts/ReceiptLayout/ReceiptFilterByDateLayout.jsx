@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import { MainHeader, Tabs } from '../../shared/components'
+import { LastWorkedDayContextProvider } from '../../context/'
 
 
 const titlePerPathname = {
@@ -44,7 +45,9 @@ export const ReceiptFilterByDateLayout = () => {
       </Grid.Column>
 
       <Grid.Column>
-        <Tabs tabs={tabs} />
+        <LastWorkedDayContextProvider>
+          <Tabs tabs={tabs} />
+        </LastWorkedDayContextProvider>
       </Grid.Column>
     </Grid>
   )

@@ -1,3 +1,4 @@
+export * from './areDatesEqual'
 export * from './atStartDay'
 export * from './formatDate'
 export * from './getCurrentDate'
