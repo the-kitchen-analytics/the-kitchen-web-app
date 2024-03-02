@@ -1,7 +1,8 @@
 import { Form } from 'semantic-ui-react'
 import { MonthSelect, YearSelect } from '../../../shared/components'
+import { buildDropdownOptions } from '../../../shared/utils/index.js'
 
-export const MonthAndYearSelect = ({ date: { month, year }, setSelectedYear, setSelectedMonth, yearSelectOptions }) => (
+export const MonthAndYearSelect = ({ date: { month, year }, setSelectedYear, setSelectedMonth, yearOptions }) => (
   <Form.Group widths={'2'} unstackable>
     <Form.Field>
       <MonthSelect
@@ -13,7 +14,7 @@ export const MonthAndYearSelect = ({ date: { month, year }, setSelectedYear, set
       <YearSelect
         value={year}
         handleChange={(e, { value }) => setSelectedYear(value)}
-        options={yearSelectOptions}
+        options={buildDropdownOptions(yearOptions)}
       />
     </Form.Field>
   </Form.Group>

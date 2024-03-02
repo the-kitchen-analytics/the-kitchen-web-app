@@ -1,25 +1,23 @@
 import _ from 'lodash'
 import { useState } from 'react'
-import { buildDropdownOptions } from '../../../shared/utils'
+import { buildDropdownOptions, getCurrentDate, getYearOptions } from '../../../shared/utils'
 import { YearSelect } from '../../../shared/components'
 import { DefaultLayout } from '../common'
 import { useReceipts } from './hooks'
-import {
-  decrement,
-  increment,
-  reset,
-  shouldDisableDecrementButton,
-  shouldDisableIncrementButton,
-  shouldDisableResetButton
-} from './helpers'
+import { decrement, increment, reset, shouldDisableDecrementButton, shouldDisableIncrementButton } from './helpers'
+import { useLastWorkedDayContext } from '../../../shared/hooks'
+
+const CURRENT_YEAR = getCurrentDate().getFullYear()
 
 export const ReceiptYearLayout = () => {
 
-  const options = [2024, 2023, 2022]
-  const [date, setDate] = useState(options[0])
+  const initialDate = useLastWorkedDayContext()
+  const [date, setDate] = useState(initialDate.getFullYear())
+  const [receipts, loading] = useReceipts(date)
+
+  const options = getYearOptions()
   const selectedYearIndex = _.indexOf(options, date)
   const yearSelectOptions = buildDropdownOptions(options)
-  const [receipts, loading] = useReceipts(date)
 
   const carouselProps = {
     leftButton: {
@@ -28,7 +26,7 @@ export const ReceiptYearLayout = () => {
     },
     resetButton: {
       content: 'Текущий год',
-      disabled: shouldDisableResetButton(date, options),
+      disabled: date === CURRENT_YEAR,
       onClick: () => setDate(reset(options))
     },
     rightButton: {

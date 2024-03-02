@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
-import { buildDropdownOptions, getCurrentMonthAndYear } from '../../../shared/utils'
+import { useState } from 'react'
+import { getCurrentMonthAndYear, getYearOptions } from '../../../shared/utils'
 import { DefaultLayout } from '../common'
 import { MonthAndYearSelect } from './MonthAndYearSelect'
-import { useReceipts } from './hooks'
+import { useInitialMonthAndYear, useReceipts } from './hooks'
 import {
   decrement,
   increment,
@@ -12,16 +12,16 @@ import {
   shouldDisableResetButton
 } from './helpers'
 
-const INITIAL_DATE = getCurrentMonthAndYear()
+const CURRENT_MONTH_AND_YEAR = getCurrentMonthAndYear()
 
 export const ReceiptMonthAndYearLayout = () => {
 
-  const initialDate = useMemo(() => INITIAL_DATE, [])
-  const [date, setDate] = useState(initialDate)
+  const initialMonthAndYear = useInitialMonthAndYear()
+
+  const [date, setDate] = useState(initialMonthAndYear)
   const [receipts, loading] = useReceipts(date)
 
-  const yearOptions = [2024, 2023, 2022]
-  const yearSelectOptions = buildDropdownOptions(yearOptions)
+  const yearOptions = getYearOptions()
 
   const setMonth = (month) => {
     setDate((date) => ({ ...date, month }))
@@ -38,8 +38,8 @@ export const ReceiptMonthAndYearLayout = () => {
     },
     resetButton: {
       content: 'Текущий месяц',
-      disabled: shouldDisableResetButton(date, initialDate),
-      onClick: () => setDate(reset(initialDate))
+      disabled: shouldDisableResetButton(date, CURRENT_MONTH_AND_YEAR),
+      onClick: () => setDate(reset(CURRENT_MONTH_AND_YEAR))
     },
     rightButton: {
       disabled: shouldDisableIncrementButton(date, yearOptions),
@@ -54,7 +54,7 @@ export const ReceiptMonthAndYearLayout = () => {
       dateSelect={{
         as: MonthAndYearSelect,
         date,
-        yearSelectOptions,
+        yearOptions,
         setSelectedMonth: setMonth,
         setSelectedYear: setYear
       }}
