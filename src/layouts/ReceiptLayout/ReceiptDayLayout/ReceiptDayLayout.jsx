@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { DatePicker } from '../../../shared/components'
 import { areDatesEqual, formatDateForDatePicker, parseDateFromDropdown } from '../../../shared/utils'
-import { DefaultLayout } from '../common'
+import { ReceiptCommonLayout } from '../common'
 import { useReceipts } from './hooks'
 import { useLastWorkedDayContext } from '../../../shared/hooks'
 
@@ -27,7 +27,7 @@ export const ReceiptDayLayout = () => {
   }
 
   return (
-    <DefaultLayout
+    <ReceiptCommonLayout
       dateSelect={{
         loading,
         as: DatePicker,

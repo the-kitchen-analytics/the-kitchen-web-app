@@ -1,6 +1,7 @@
 export * from './ButtonGroup'
 export * from './DefaultButton'
 export * from './GoBackButton'
+export * from './GoHomeButton'
 export * from './LogOutButton'
 export * from './SaveButton'
 export * from './SubmitButton'

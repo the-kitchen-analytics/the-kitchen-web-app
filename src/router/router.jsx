@@ -23,6 +23,7 @@ import {
   RequireAuth
 } from '../layouts'
 
+import { DefaultErrorBoundary } from '../shared/components'
 import { receiptDayLoader, receiptEditPageLoader, } from '../domain/receipt'
 
 const NavigateToHome = () => <Navigate to={DEFAULT_PATH} />
@@ -35,8 +36,9 @@ export const router = createBrowserRouter([
   {
     element: <RequireAuth />, children: [
       {
-        element: <MainLayout />, children: [
-
+        element: <MainLayout />,
+        errorElement: <DefaultErrorBoundary />,
+        children: [
           {
             path: 'receipts',
             children: [

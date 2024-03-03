@@ -1,1 +1,1 @@
-export * from './DefaultLayout.jsx'
+export * from './ReceiptCommonLayout'

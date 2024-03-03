@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useState } from 'react'
 import { buildDropdownOptions, getCurrentDate, getYearOptions } from '../../../shared/utils'
 import { YearSelect } from '../../../shared/components'
-import { DefaultLayout } from '../common'
+import { ReceiptCommonLayout } from '../common'
 import { useReceipts } from './hooks'
 import { decrement, increment, reset, shouldDisableDecrementButton, shouldDisableIncrementButton } from './helpers'
 import { useLastWorkedDayContext } from '../../../shared/hooks'
@@ -36,7 +36,7 @@ export const ReceiptYearLayout = () => {
   }
 
   return (
-    <DefaultLayout
+    <ReceiptCommonLayout
       loading={loading}
       receipts={receipts}
       dateSelect={{

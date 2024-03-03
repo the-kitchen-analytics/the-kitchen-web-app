@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { Carousel, Loader } from '../../../shared/components'
 
-export const DefaultLayout = ({ dateSelect, carousel, loading, receipts }) => {
+export const ReceiptCommonLayout = ({ dateSelect, carousel, loading, receipts }) => {
 
   const { as: DateSelect, ...dateSelectProps } = dateSelect
 

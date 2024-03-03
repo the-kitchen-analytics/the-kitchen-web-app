@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { getCurrentMonthAndYear, getYearOptions } from '../../../shared/utils'
-import { DefaultLayout } from '../common'
+import { ReceiptCommonLayout } from '../common'
 import { MonthAndYearSelect } from './MonthAndYearSelect'
 import { useInitialMonthAndYear, useReceipts } from './hooks'
 import {
@@ -48,15 +48,15 @@ export const ReceiptMonthAndYearLayout = () => {
   }
 
   return (
-    <DefaultLayout
+    <ReceiptCommonLayout
       loading={loading}
       receipts={receipts}
       dateSelect={{
         as: MonthAndYearSelect,
         date,
         yearOptions,
-        setSelectedMonth: setMonth,
-        setSelectedYear: setYear
+        setMonth,
+        setYear
       }}
       carousel={{ ...carouselProps }}
     />
