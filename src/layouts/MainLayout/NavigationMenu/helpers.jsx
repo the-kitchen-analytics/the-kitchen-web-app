@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { INFO_PATH, RECEIPT_CREATE_PATH, SETTINGS_PATH, STATISTICS_PATH, TABLE_PATH } from '../../../router'
+import { INFO_PATH, RECEIPT_CREATE_PATH, SETTINGS_PATH, STATISTICS_DAY_PATH, TABLE_DAY_PATH } from '../../../router'
 
 const getIconProps = (name) => ({
   link: true,
@@ -11,12 +11,12 @@ export const menuItems = [
   {
     key: 'home',
     icon: 'home',
-    to: TABLE_PATH,
+    to: TABLE_DAY_PATH,
   },
   {
     key: 'statistics',
     icon: 'chart pie',
-    to: STATISTICS_PATH,
+    to: STATISTICS_DAY_PATH,
   },
   {
     key: 'create-receipt',

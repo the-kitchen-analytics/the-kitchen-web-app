@@ -1,5 +1,5 @@
-import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../shared/utils'
 import _ from 'lodash'
+import { FIRST_MONTH_INDEX, LAST_MONTH_INDEX } from '../../../shared/utils'
 
 export const increment = ({ month, year }) =>
   month < LAST_MONTH_INDEX

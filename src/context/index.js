@@ -1,3 +1,3 @@
-export * from './ReceiptContext'
+export * from './LastWorkedDayContext'
 export * from './UserDetailsContext'
 export * from './UserSettingsContext'

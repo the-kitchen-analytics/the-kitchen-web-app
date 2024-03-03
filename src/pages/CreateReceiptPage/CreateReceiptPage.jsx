@@ -5,16 +5,21 @@ import { Grid } from 'semantic-ui-react'
 import { MainHeader } from '../../shared/components'
 import { CreateReceiptForm, MessageBar } from './components'
 import { useMessage, usePostData, useProcedures, useUserDetailsContext } from '../../shared/hooks'
-import { createReceipt, mapReceiptToFirebaseEntity, validateReceipt } from '../../domain/receipt'
+import {
+  createReceipt,
+  mapFirebaseEntityToReceipt,
+  mapReceiptToFirebaseEntity,
+  validateReceipt
+} from '../../domain/receipt'
 import { useAccordionActiveIndex, useReceipt } from './hooks'
-import { RECEIPT_PATH, TABLE_PATH } from '../../router'
+import { RECEIPT_PATH, DEFAULT_PATH } from '../../router'
 
 const WARNING_MESSAGE = 'Выбран не сегодняшний день'
 
 const ReceiptSavedMessage = ({ receipt }) => (
   <>
     <Link to={`${RECEIPT_PATH}/${receipt.id}`}>Запись</Link> сохранена.
-    Нажмите, чтобы <Link to={TABLE_PATH}>просмотреть все</Link>
+    Нажмите, чтобы <Link to={DEFAULT_PATH}>просмотреть все</Link>
   </>
 )
 
@@ -33,6 +38,9 @@ export const CreateReceiptPage = () => {
 
   const convertedFormData = useMemo(() =>
     mapReceiptToFirebaseEntity(receipt), [receipt])
+
+  const receiptPreview = useMemo(() =>
+    mapFirebaseEntityToReceipt({ data: () => convertedFormData }), [convertedFormData])
 
   useEffect(() => {
     if (receipt.date !== initialReceipt.date) {
@@ -97,7 +105,7 @@ export const CreateReceiptPage = () => {
             formData={receipt}
             procedures={procedures}
             setFormData={setReceipt}
-            receiptPreview={convertedFormData}
+            receiptPreview={receiptPreview}
             workerCategory={workerCategory}
             accordionActiveIndex={accordionActiveIndex}
             setAccordionActiveIndex={setAccordionActiveIndex}

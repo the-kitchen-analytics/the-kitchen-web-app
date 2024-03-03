@@ -1,34 +1,8 @@
-import { DayFilterLayout, MonthAndYearFilterLayout, YearFilterLayout } from '../../layouts'
-import { TabularPage, DataTable } from '../../modules'
-import { getTableDataByDay, getTableDataByMonthAndYear, getTableDataByYear } from './helpers'
+import { useOutletContext } from 'react-router-dom'
+import { DataTable } from '../../modules'
+import { buildTableData } from './helpers'
 
-export const tabs = [
-  {
-    name: 'За день',
-    content: <DayFilterLayout
-      as={DataTable}
-      getData={getTableDataByDay}
-    />
-  },
-  {
-    name: 'За месяц',
-    content: <MonthAndYearFilterLayout
-      as={DataTable}
-      getData={getTableDataByMonthAndYear}
-    />
-  },
-  {
-    name: 'За год',
-    content: <YearFilterLayout
-      as={DataTable}
-      getData={getTableDataByYear}
-    />
-  }
-]
-
-export const TablePage = () => (
-  <TabularPage
-    header={{ content: 'Главная' }}
-    tabs={tabs}
-  />
-)
+export const TablePage = () => {
+  const { receipts } = useOutletContext()
+  return <DataTable {...buildTableData(receipts)} />
+}

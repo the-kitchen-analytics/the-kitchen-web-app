@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from 'react'
 
-export const useFetchData = (fetchFunction, deps = []) => {
+export const useFetchData = (fetchFunction) => {
 
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState({})
@@ -21,7 +21,7 @@ export const useFetchData = (fetchFunction, deps = []) => {
       setIsLoading(false)
     }
 
-  }, [...deps, fetchFunction])
+  }, [fetchFunction])
 
   useEffect(() => {
     fetchData()
@@ -31,10 +31,10 @@ export const useFetchData = (fetchFunction, deps = []) => {
     fetchData()
   }, [fetchData])
 
-  return {
-    isLoading,
+  return [
     data,
+    isLoading,
     hasError,
     refresh
-  }
+  ]
 }

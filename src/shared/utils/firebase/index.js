@@ -2,12 +2,17 @@ import { collection, doc, query, where, getDocs, deleteDoc } from 'firebase/fire
 import { db } from '../../../config/firebase'
 
 export const getCollection = collectionName => collection(db, collectionName)
-export const getDoc = (path, id) => doc(db, path, id)
+export const getDocRef = (path, id) => doc(db, path, id)
 export const getDocData = doc => ({ id: doc.id, ...doc.data() })
 
-export const getDocsData = (snapshot) => {
-  console.debug('snapshot size:', snapshot.size)
-  return snapshot.docs.map(getDocData)
+export const getDocsData = (snapshot, mapper) => {
+  console.debug('snapshot size', snapshot.size)
+  return snapshot.docs.map(mapper)
+}
+
+export const getDocsByQuery = async (query, mapper = getDocData) => {
+  const snapshot = await getDocs(query)
+  return getDocsData(snapshot, mapper)
 }
 
 export const deleteAllByUid = async (path, uid) => {

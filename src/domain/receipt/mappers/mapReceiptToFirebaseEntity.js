@@ -1,4 +1,5 @@
 import { parseDateFromDropdown } from '../../../shared/utils'
+import { Timestamp } from 'firebase/firestore'
 
 export const mapReceiptToFirebaseEntity = (receipt) => {
   const procedures = receipt.procedures.map(procedure => ({
@@ -11,8 +12,8 @@ export const mapReceiptToFirebaseEntity = (receipt) => {
   return Object.freeze({
     uid: receipt.uid,
     procedures: procedures,
-    date: parseDateFromDropdown(receipt.date),
-    dateCreated: new Date(),
+    date: Timestamp.fromDate(parseDateFromDropdown(receipt.date)),
+    dateCreated: Timestamp.now(),
     notes: receipt.notes
   })
 }
