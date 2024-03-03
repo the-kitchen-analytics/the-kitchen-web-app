@@ -1,6 +1,7 @@
 import { addDoc, deleteDoc, getDoc, getDocs, limit, orderBy, query, Timestamp, where } from 'firebase/firestore'
 import { RECEIPTS } from '../../../config/firebaseCollectionNames'
 import {
+  atStartDay,
   deleteAllByUid,
   getCollection,
   getDocRef,
@@ -87,6 +88,37 @@ export const getLastWorkedDay = async (uid) => {
 
   return receipt ? receipt.date : null
 }
+
+export const getPreviousWorkedDay = async (uid, date) => {
+  console.debug('getPreviousWorkedDay', uid, date)
+
+  const startDate = Timestamp.fromDate(atStartDay(date))
+
+  const q = query(collection,
+    where('uid', '==', uid),
+    where('date', '<', startDate),
+    orderBy('date', 'desc'),
+    limit(1))
+
+  const [receipt] = await getDocsByQuery(q, mapFirebaseEntityToReceipt)
+  return receipt ? receipt.date : null
+}
+
+export const getNextWorkedDay = async (uid, date) => {
+  console.debug('getNextWorkedDay', uid, date)
+
+  const startDate = Timestamp.fromDate(atStartDay(date))
+
+  const q = query(collection,
+    where('uid', '==', uid),
+    where('date', '>', startDate),
+    orderBy('date', 'asc'),
+    limit(1))
+
+  const [receipt] = await getDocsByQuery(q, mapFirebaseEntityToReceipt)
+  return receipt ? receipt.date : null
+}
+
 
 export const createReceipt = (data) => {
   console.debug('createReceipt', data)
