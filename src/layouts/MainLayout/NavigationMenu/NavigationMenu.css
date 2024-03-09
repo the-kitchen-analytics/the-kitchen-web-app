@@ -1,10 +1,16 @@
 :root {
-  --navigation-menu-height: 85px;
+  @supports (-webkit-touch-callout: none) {
+    --navigation-menu-height: 85px;
+  }
+  @supports not (-webkit-touch-callout: none) {
+    --navigation-menu-height: 60px;
+  }
 }
 
 .navigation-menu {
-  height: var(--navigation-menu-height) !important;
-  padding-bottom: 1.75rem !important;
+  @supports (-webkit-touch-callout: none) {
+    padding-bottom: 1.75rem !important;
+  }
 }
 
 .navigation-menu .navigation-menu-item {
