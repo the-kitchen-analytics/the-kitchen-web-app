@@ -15,13 +15,17 @@ import { mapFirebaseEntityToReceipt } from '../mappers'
 
 const path = RECEIPTS
 const collection = getCollection(path)
+const ORDER_BY = [
+  orderBy('date', 'desc'),
+  orderBy('dateCreated', 'asc')
+]
 
 export const findAllReceiptsByUid = async (uid, limitNumber = 100) => {
   console.debug('findAllReceiptsByUid', uid, 'limit', limitNumber)
 
   const q = query(collection,
     where('uid', '==', uid),
-    orderBy('date', 'desc'),
+    ...ORDER_BY,
     limit(limitNumber))
 
   const snapshot = await getDocs(q)
@@ -47,7 +51,8 @@ export const findAllByDate = async (uid, date) => {
   const q = query(collection,
     where('uid', '==', uid),
     where('date', '==', Timestamp.fromMillis(date)),
-    orderBy('date', 'desc'))
+    ...ORDER_BY
+  )
 
   return getDocsByQuery(q, mapFirebaseEntityToReceipt)
 }
@@ -62,7 +67,8 @@ export const findAllByYear = async (uid, year) => {
     where('uid', '==', uid),
     where('date', '>=', startDate),
     where('date', '<=', endDate),
-    orderBy('date', 'desc'))
+    ...ORDER_BY
+  )
 
   return getDocsByQuery(q, mapFirebaseEntityToReceipt)
 }
@@ -77,7 +83,8 @@ export const findAllByMonthAndYear = async (uid, month, year) => {
     where('uid', '==', uid),
     where('date', '>=', startDate),
     where('date', '<=', endDate),
-    orderBy('date', 'desc'))
+    ...ORDER_BY
+  )
 
   return getDocsByQuery(q, mapFirebaseEntityToReceipt)
 }
