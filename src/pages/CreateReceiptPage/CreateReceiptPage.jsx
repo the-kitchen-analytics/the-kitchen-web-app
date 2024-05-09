@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import { MainHeader } from '../../shared/components'
@@ -25,7 +25,8 @@ const ReceiptSavedMessage = ({ receipt }) => (
 
 export const CreateReceiptPage = () => {
 
-  const [{ uid, workerCategory }] = useUserDetailsContext()
+  const [{ uid, workerCategory: defaultWorkerCategory }] = useUserDetailsContext()
+  const [workerCategory, setWorkerCategory] = useState(defaultWorkerCategory)
   const [procedures = [], isFetchingProcedures] = useProcedures(workerCategory)
   const [isSavingReceipt, error, postData] = usePostData()
   const [successMessage, setSuccessMessage, clearSuccessMessage] = useMessage(null)
@@ -107,6 +108,7 @@ export const CreateReceiptPage = () => {
             setFormData={setReceipt}
             receiptPreview={receiptPreview}
             workerCategory={workerCategory}
+            setWorkerCategory={setWorkerCategory}
             accordionActiveIndex={accordionActiveIndex}
             setAccordionActiveIndex={setAccordionActiveIndex}
             isLoading={isLoading}

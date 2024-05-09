@@ -9,7 +9,7 @@ const workerCategoryOptions = buildDropdownOptions(
   ({ name }) => name
 )
 
-export const WorkerCategorySelect = ({ value, options = workerCategoryOptions, handleChange }) => (
+export const WorkerCategorySelect = ({ value, options = workerCategoryOptions, handleChange, ...props }) => (
   <Form.Select
     required
     label={'Квалификация мастера'}
@@ -18,5 +18,6 @@ export const WorkerCategorySelect = ({ value, options = workerCategoryOptions, h
     value={value}
     onChange={handleChange}
     options={options}
+    {...props}
   />
 )
