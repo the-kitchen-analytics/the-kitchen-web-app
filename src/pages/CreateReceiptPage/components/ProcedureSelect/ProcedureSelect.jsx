@@ -93,6 +93,7 @@ export const ProcedureSelect = (props) => {
         .filter(({ type }) => type === procedureType.name)
         .map(halfPartProceduresMapperFn)
     ))
+      .filter(accordionItem => !_.isEmpty(accordionItem.data))
   }, [createAccordionItem, halfPartProceduresMapperFn, procedures])
 
   return (

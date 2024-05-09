@@ -6,5 +6,9 @@
   {
     "name": "top-master",
     "displayName": "Top-master"
+  },
+  {
+    "name": "instructor",
+    "displayName": "Instructor"
   }
 ]

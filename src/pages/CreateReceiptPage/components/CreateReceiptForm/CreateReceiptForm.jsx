@@ -1,9 +1,15 @@
 import _ from 'lodash'
 import { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
-import { ButtonGroup, DatePicker, PlaceholderParagraph, SaveButton } from '../../../../shared/components'
+import {
+  ButtonGroup,
+  DatePicker,
+  PlaceholderParagraph,
+  SaveButton,
+  WorkerCategorySelect
+} from '../../../../shared/components'
 import { ProcedureSelect } from '../ProcedureSelect'
-import { handleInputChange, getWorkerCategoryDisplayName } from '../../../../shared/utils'
+import { handleInputChange } from '../../../../shared/utils'
 import { Preview } from './Preview'
 import { useTheme } from '../../../../shared/hooks'
 
@@ -15,6 +21,7 @@ export const CreateReceiptForm = (props) => {
     setFormData,
     receiptPreview,
     workerCategory,
+    setWorkerCategory,
     accordionActiveIndex,
     setAccordionActiveIndex,
     isLoading,
@@ -30,6 +37,10 @@ export const CreateReceiptForm = (props) => {
   const getSubmitButtonLabel = useCallback(() => {
     return 'Сохранить' + (formData.procedures.length > 0 ? ` (${formData.procedures.length})` : '')
   }, [formData.procedures])
+
+  const handleWorkerCategoryChange = (e, { value }) => {
+    setWorkerCategory(value)
+  }
 
   return (
     <Form
@@ -49,13 +60,13 @@ export const CreateReceiptForm = (props) => {
             handleChange={handleInputChangeWrapper}
           />
         </Form.Field>
-        <Form.Input
-          fluid
-          required
-          disabled
-          label="Выберите квалификацию мастера"
-          value={getWorkerCategoryDisplayName(workerCategory)}
-        />
+        <Form.Field>
+          <WorkerCategorySelect
+            label="Выберите квалификацию мастера"
+            value={workerCategory}
+            handleChange={handleWorkerCategoryChange}
+          />
+        </Form.Field>
       </Form.Group>
 
       {
