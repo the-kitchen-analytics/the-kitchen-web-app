@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { formatPrice, calculateTotalWorkerIncome } from '../../../shared/utils'
+import { formatPrice, calculateTotalWorkerIncome, calculateTotalPrice } from '../../../shared/utils'
 import { buildChartData } from './buildChartData'
 
 export const buildStatisticsData = (rawData) => {
@@ -10,6 +10,7 @@ export const buildStatisticsData = (rawData) => {
     .flat()
 
   const totalWorkerIncome = calculateTotalWorkerIncome(allProcedures)
+  const totalWorkerRevenue = calculateTotalPrice(allProcedures)
   const operationCount = rawData.flat().length
   const workedDays = _.uniq(rawData.flat().map(it => it.dateFormatted))
   const daysCount = workedDays.length
@@ -18,22 +19,26 @@ export const buildStatisticsData = (rawData) => {
     {
       color: 'yellow',
       name: 'daysCount',
-      renderLabel: () => 'Дней отработано',
+      renderLabel: () => 'Рабочих дней',
       renderValue: () => daysCount
     },
-
     {
       color: 'teal',
       name: 'operationsCount',
-      renderLabel: () => 'Процедур произведено',
+      renderLabel: () => 'Процедур',
       renderValue: () => operationCount
     },
-
     {
       color: 'green',
       name: 'totalIncome',
-      renderLabel: () => 'Заработано',
+      renderLabel: () => 'Заработок',
       renderValue: () => formatPrice(totalWorkerIncome)
+    },
+    {
+      color: 'green',
+      name: 'totalRevenue',
+      renderLabel: () => 'Выручка',
+      renderValue: () => formatPrice(totalWorkerRevenue)
     }
   ])
 
@@ -48,14 +53,12 @@ export const buildStatisticsData = (rawData) => {
           renderLabel: () => 'Процедур в среднем за день',
           renderValue: () => _.divide(operationCount, daysCount).toFixed(0)
         },
-
         {
           color: 'blue',
           name: 'incomePerDay',
           renderLabel: () => 'В среднем за день',
           renderValue: () => formatPrice(_.divide(totalWorkerIncome, daysCount))
         },
-
         {
           color: 'violet',
           name: 'incomePerOperation',
